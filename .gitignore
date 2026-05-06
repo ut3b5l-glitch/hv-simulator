@@ -1,0 +1,27 @@
+# Database — kept local only
+happy_valley.db
+*.db
+*.db-shm
+*.db-wal
+
+# Claude Code project settings
+.claude/
+
+# Generated output
+predictions_*.json
+results_*.json
+agent.log
+
+# Saved HTML race cards and documents
+*.html
+*.rtf
+*.jpg
+*.mp3
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# macOS
+.DS_Store

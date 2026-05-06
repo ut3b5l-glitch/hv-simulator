@@ -1,0 +1,36 @@
+Happy Valley Simulator — Phase 4C Results
+Generated: 2026-05-05
+
+═══════════════════════════════════════════════════════════════════════
+PHASE 4C: GOING FACTOR — NOT APPLIED (insufficient data)
+═══════════════════════════════════════════════════════════════════════
+
+EMPIRICAL ANALYSIS:
+  Going distribution: GOOD 370 races, FIRM 163 races, SOFT 37 races
+  Field-level place rates: FIRM 25.8%, GOOD 26.0%, SOFT 25.1% — essentially flat
+  Horses with ≥3 runs on 2+ groups and >15% divergence: 128
+
+  Signal appeared horse-level, not field-level. However:
+    - Average horse has only 0.3 SOFT entries (437 entries / 1,416 horses)
+    - Most "divergent" cases are likely sampling noise
+    - Binomial std dev for 10 FIRM runs at 25.8% base: ±13.8% → >15% divergence
+      is EXPECTED by chance alone, not a real preference signal
+
+WALK-FORWARD WITH gf ACTIVE (GOING_M=5):
+  #1 win rate:    11.9%  (-2.2 vs 4B)
+  #1 place rate:  35.0%  (-0.6 vs 4B)
+  Coverage:       36.2%  (-2.2 vs 4B)
+  Precision:      31.8%  (-0.8 vs 4B)  ← clear regression
+  VB ROI:        -27.8%  (catastrophic, vs -12.6% at 4B)
+
+DECISION: Going factor excluded from multiplicative chain.
+  Infrastructure (build_stats horse_going + going_base_rate, _going_factor function,
+  going parameter in score_race, all callers updated) is retained in codebase.
+  Re-enable when 2+ full seasons of HV data are available (~1,200+ races).
+
+PHASE 4C FINAL BASELINE: Identical to Phase 4B
+  #1 pick win rate         14.1%
+  #1 pick place rate       35.6%
+  Winner in top-3          38.4%
+  Top-3 precision          32.6%
+  Value bet ROI           -12.6%  (326 bets / 177 races)

@@ -1,0 +1,73 @@
+Happy Valley Simulator — Phase 4A Baseline
+Generated: 2026-05-05
+Walk-forward: 4 folds, 177 races (2025-07-16 → 2026-04-29)
+
+═══════════════════════════════════════════════════════════════════════
+PRE-4A BASELINE (original model, with weight factor)
+═══════════════════════════════════════════════════════════════════════
+Fold  Train  Test  #1 Win  #1 Plc  Coverage  Precision  Baseline  VB ROI  VBets
+   1    400    50   14.0%   30.0%     44.0%      30.7%     26.0%  -40.7%     91
+   2    450    50   12.0%   32.0%     36.0%      32.0%     25.2%  +54.9%     88
+   3    500    50   14.0%   38.0%     36.0%      33.3%     26.0%  -47.8%     99
+   4    550    27   11.1%   29.6%     44.4%      40.7%     25.6%  -15.1%     47
+
+AGGREGATE:
+  #1 pick win rate         13.0%
+  #1 pick place rate       32.8%
+  Winner in top-3          39.5%
+  Top-3 precision          33.3%
+  Random baseline          25.7%
+  Value bet ROI           -13.3%  (325 bets)
+
+═══════════════════════════════════════════════════════════════════════
+BUG FIX: HTML form field_size (model_core.py _html_form_factor call)
+═══════════════════════════════════════════════════════════════════════
+Change: field_size=field_size → field_size=12 (HV average)
+Effect on walk-forward: NONE (last_6_runs is NULL for all historical rows;
+  only affects live racecard imports where the bug was present)
+Result: identical numbers to pre-4A baseline.
+
+═══════════════════════════════════════════════════════════════════════
+WEIGHT FACTOR TEST (wf = 1.0 for all runners)
+═══════════════════════════════════════════════════════════════════════
+Fold  Train  Test  #1 Win  #1 Plc  Coverage  Precision  Baseline  VB ROI  VBets
+   1    400    50   16.0%   32.0%     44.0%      30.7%     26.0%  -40.7%     91
+   2    450    50   12.0%   32.0%     38.0%      32.0%     25.2%  +51.4%     90
+   3    500    50   14.0%   38.0%     34.0%      32.7%     26.0%  -48.3%    100
+   4    550    27   11.1%   29.6%     44.4%      40.7%     25.6%  -13.3%     46
+
+AGGREGATE:
+  #1 pick win rate         13.6%  (+0.6 vs baseline)
+  #1 pick place rate       33.3%  (+0.5 vs baseline)
+  Winner in top-3          39.5%  (unchanged)
+  Top-3 precision          33.1%  (-0.2 vs baseline — within noise at n=177)
+  Value bet ROI           -13.8%  (327 bets)
+
+DECISION: Drop weight factor permanently.
+Rationale: 0.2% precision drop is ~0.35 races of difference over 177 races —
+statistical noise. #1 win rate and place rate both improved. The HKJC handicapper
+assigns weight to equalise chances; betting against it systematically has no edge.
+Phase 4D will add weight-CHANGE as a replacement signal if warranted.
+
+═══════════════════════════════════════════════════════════════════════
+PHASE 4A FINAL BASELINE (bug fixed, weight factor removed)
+═══════════════════════════════════════════════════════════════════════
+Fold  Train  Test  #1 Win  #1 Plc  Coverage  Precision  Baseline  VB ROI  VBets
+   1    400    50   16.0%   32.0%     44.0%      30.7%     26.0%  -40.7%     91
+   2    450    50   12.0%   32.0%     38.0%      32.0%     25.2%  +51.4%     90
+   3    500    50   14.0%   38.0%     34.0%      32.7%     26.0%  -48.3%    100
+   4    550    27   11.1%   29.6%     44.4%      40.7%     25.6%  -13.3%     46
+
+AGGREGATE:
+  #1 pick win rate         13.6%
+  #1 pick place rate       33.3%
+  Winner in top-3          39.5%
+  Top-3 precision          33.1%
+  Random baseline          25.7%
+  Value bet ROI           -13.8%  (327 bets / 177 races)
+
+Changes committed in model_core.py:
+  - _html_form_factor() called with field_size=12 (not dynamic len(entries))
+  - wf (weight factor) removed from multiplicative chain and augmented dict
+  - _weight_factors() call removed from score_race()
+  - _weight_factors() function retained for potential Phase 4D weight-change use
