@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS race_entries (
     trainer_id INTEGER,
     jockey_id INTEGER,
     barrier INTEGER,
+    horse_no INTEGER,
     weight REAL,
     gear TEXT,
     public_odds REAL,
@@ -101,3 +102,13 @@ else:
     conn.executescript(SQL)
     conn.close()
     print("SUCCESS: happy_valley.db created in your folder.")
+
+# ── Migrations ────────────────────────────────────────────────────────────────
+if os.path.exists("happy_valley.db"):
+    conn = sqlite3.connect("happy_valley.db")
+    cols = {r[1] for r in conn.execute("PRAGMA table_info(race_entries)").fetchall()}
+    if "horse_no" not in cols:
+        conn.execute("ALTER TABLE race_entries ADD COLUMN horse_no INTEGER")
+        conn.commit()
+        print("Migration: added horse_no column to race_entries.")
+    conn.close()

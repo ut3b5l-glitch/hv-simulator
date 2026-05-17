@@ -84,6 +84,7 @@ def parse_racecard_html(html_str):
     # 15=Best Time, 16=Age, 17=WFA, 18=Sex, 19=Season Stakes,
     # 20=Priority, 21=Days since Last Run, 22=Gear, ...
     COL = {
+        "horse_no":           0,
         "last_6_runs":        1,
         "horse_name":         3,
         "weight":             5,
@@ -146,6 +147,7 @@ def parse_racecard_html(html_str):
 
         entries.append({
             "horse_name":         horse_name,
+            "horse_no":           safe_int(txt(COL["horse_no"])),
             "barrier":            barrier,
             "jockey":             txt(COL["jockey"]),
             "trainer":            txt(COL["trainer"]),
@@ -230,11 +232,11 @@ def insert_race_day(conn, iso_date, parsed_races):
                 conn, e["horse_name"], e["jockey"], e["trainer"])
             c.execute("""
                 INSERT OR REPLACE INTO race_entries
-                  (race_id, horse_id, barrier, jockey_id, trainer_id,
+                  (race_id, horse_id, barrier, horse_no, jockey_id, trainer_id,
                    weight, public_odds, finish_position,
                    official_rating, rating_change, days_since_last_run, last_6_runs)
-                VALUES (?,?,?,?,?,?,?,NULL,?,?,?,?)
-            """, (race_id, hid, e["barrier"], jid, tid,
+                VALUES (?,?,?,?,?,?,?,?,NULL,?,?,?,?)
+            """, (race_id, hid, e["barrier"], e.get("horse_no"), jid, tid,
                   e.get("weight"), e.get("public_odds"),
                   e.get("official_rating"), e.get("rating_change"),
                   e.get("days_since_last_run"), e.get("last_6_runs")))
@@ -248,7 +250,7 @@ def insert_race_day(conn, iso_date, parsed_races):
 def load_entries_for_race(conn, race_id):
     """Fetch all entries for a race from DB, in the format score_race() expects."""
     rows = conn.execute("""
-        SELECT e.horse_id, h.horse_name, e.barrier,
+        SELECT e.horse_id, h.horse_name, e.barrier, e.horse_no,
                e.jockey_id, e.trainer_id, e.weight, e.public_odds, e.finish_position,
                e.official_rating, e.rating_change, e.days_since_last_run, e.last_6_runs
         FROM race_entries e
@@ -260,15 +262,16 @@ def load_entries_for_race(conn, race_id):
             "horse_id":            r[0],
             "horse_name":          r[1],
             "barrier":             r[2],
-            "jockey_id":           r[3],
-            "trainer_id":          r[4],
-            "weight":              r[5],
-            "public_odds":         r[6],
-            "finish_position":     r[7],
-            "official_rating":     r[8],
-            "rating_change":       r[9],
-            "days_since_last_run": r[10],
-            "last_6_runs":         r[11],
+            "horse_no":            r[3],
+            "jockey_id":           r[4],
+            "trainer_id":          r[5],
+            "weight":              r[6],
+            "public_odds":         r[7],
+            "finish_position":     r[8],
+            "official_rating":     r[9],
+            "rating_change":       r[10],
+            "days_since_last_run": r[11],
+            "last_6_runs":         r[12],
         }
         for r in rows
     ]

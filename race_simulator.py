@@ -45,7 +45,7 @@ def get_race_info(conn, race_id):
 def get_entries(conn, race_id):
     """Return entries in score_race() format, including all Phase B fields."""
     rows = conn.execute("""
-        SELECT e.horse_id, h.horse_name, e.barrier,
+        SELECT e.horse_id, h.horse_name, e.barrier, e.horse_no,
                e.jockey_id, j.jockey_name,
                e.trainer_id, t.trainer_name,
                e.weight, e.public_odds, e.finish_position,
@@ -63,17 +63,18 @@ def get_entries(conn, race_id):
             "horse_id":            r[0],
             "horse_name":          r[1],
             "barrier":             r[2],
-            "jockey_id":           r[3],
-            "jockey_name":         r[4],
-            "trainer_id":          r[5],
-            "trainer_name":        r[6],
-            "weight":              r[7],
-            "public_odds":         r[8],
-            "finish_position":     r[9],
-            "official_rating":     r[10],
-            "rating_change":       r[11],
-            "days_since_last_run": r[12],
-            "last_6_runs":         r[13],
+            "horse_no":            r[3],
+            "jockey_id":           r[4],
+            "jockey_name":         r[5],
+            "trainer_id":          r[6],
+            "trainer_name":        r[7],
+            "weight":              r[8],
+            "public_odds":         r[9],
+            "finish_position":     r[10],
+            "official_rating":     r[11],
+            "rating_change":       r[12],
+            "days_since_last_run": r[13],
+            "last_6_runs":         r[14],
         }
         for r in rows
     ]
@@ -106,7 +107,7 @@ def print_predictions(runners, base_rate, class_base_rate, race_class):
     has_phase_b = any(r.get("official_rating") for r in runners)
 
     # ── Top-3 predictions ───────────────────────────────────────────────────
-    print(f"\n  {'#':<3} {'Horse':<22} {'Bar':>3}", end="")
+    print(f"\n  {'#':<3} {'No':>3} {'Horse':<22} {'Bar':>3}", end="")
     if has_phase_b:
         print(f"  {'Rtg':>3} {'Days':>4}", end="")
     print(f"  {'Win%':>5} {'Plc%':>5} {'Shw%':>5}", end="")
@@ -119,7 +120,8 @@ def print_predictions(runners, base_rate, class_base_rate, race_class):
 
     for rank, r in enumerate(runners, 1):
         marker = "★ " if rank <= 3 else "  "
-        line = (f"  {marker}{rank:<2} {r['horse_name']:<22} {r['barrier']:>3}")
+        hno = r.get("horse_no") or ""
+        line = (f"  {marker}{rank:<2} {hno:>3} {r['horse_name']:<22} {r['barrier']:>3}")
         if has_phase_b:
             rtg  = f"{r.get('official_rating') or '':>3}"
             days = f"{r.get('days_since_last_run') or '':>4}"
@@ -136,7 +138,7 @@ def print_predictions(runners, base_rate, class_base_rate, race_class):
         print(line)
 
     # ── Factor breakdown ────────────────────────────────────────────────────
-    print(f"\n  {'#':<3} {'Horse':<22} {'BIV':>5} {'Joc':>5} {'Tra':>5} "
+    print(f"\n  {'#':<3} {'No':>3} {'Horse':<22} {'BIV':>5} {'Joc':>5} {'Tra':>5} "
           f"{'Hrs':>5} {'Frm':>5} {'Cls':>5} {'WtC':>5}", end="")
     if has_phase_b:
         print(f"  {'Rtg':>5} {'Day':>5}", end="")
@@ -144,7 +146,8 @@ def print_predictions(runners, base_rate, class_base_rate, race_class):
     print("  " + "-" * (W - 2))
     for rank, r in enumerate(runners, 1):
         marker = "★ " if rank <= 3 else "  "
-        line = (f"  {marker}{rank:<2} {r['horse_name']:<22} "
+        hno = r.get("horse_no") or ""
+        line = (f"  {marker}{rank:<2} {hno:>3} {r['horse_name']:<22} "
                 f"{r['b_iv']:>4.2f}  {r['jf']:>4.2f}  {r['tf']:>4.2f}  "
                 f"{r['hf']:>4.2f}  {r['ff']:>4.2f}  {r.get('cf', 1.0):>4.2f}  "
                 f"{r.get('wcf', 1.0):>4.2f}")

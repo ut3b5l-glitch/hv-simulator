@@ -47,7 +47,7 @@ def get_races_for_date(conn, date):
 
 def get_entries(conn, race_id):
     rows = conn.execute("""
-        SELECT e.horse_id, h.horse_name, e.barrier,
+        SELECT e.horse_id, h.horse_name, e.barrier, e.horse_no,
                e.jockey_id, j.jockey_name,
                e.trainer_id, t.trainer_name,
                e.weight, e.public_odds, e.finish_position,
@@ -63,11 +63,12 @@ def get_entries(conn, race_id):
     return [
         {
             "horse_id": r[0], "horse_name": r[1], "barrier": r[2],
-            "jockey_id": r[3], "jockey_name": r[4],
-            "trainer_id": r[5], "trainer_name": r[6],
-            "weight": r[7], "public_odds": r[8], "finish_position": r[9],
-            "official_rating": r[10], "rating_change": r[11],
-            "days_since_last_run": r[12], "last_6_runs": r[13],
+            "horse_no": r[3],
+            "jockey_id": r[4], "jockey_name": r[5],
+            "trainer_id": r[6], "trainer_name": r[7],
+            "weight": r[8], "public_odds": r[9], "finish_position": r[10],
+            "official_rating": r[11], "rating_change": r[12],
+            "days_since_last_run": r[13], "last_6_runs": r[14],
         }
         for r in rows
     ]
@@ -77,8 +78,54 @@ def get_entries(conn, race_id):
 # Page: Today's Races
 # ─────────────────────────────────────────────────────────────────────────────
 
+_GLASS_CSS = """
+<style>
+/* ── Liquid-glass race-number buttons ────────────────────────────── */
+div[data-testid="stHorizontalBlock"] button[data-testid="stBaseButton-secondary"] {
+    min-height: 68px !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    border-radius: 18px !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    background: rgba(255,255,255,0.06) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.1) !important;
+    transition: all 0.2s ease !important;
+    color: #e0e0e0 !important;
+}
+div[data-testid="stHorizontalBlock"] button[data-testid="stBaseButton-secondary"]:hover {
+    background: rgba(255,255,255,0.12) !important;
+    transform: scale(1.04);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.4),
+                inset 0 1px 0 rgba(255,255,255,0.15) !important;
+}
+div[data-testid="stHorizontalBlock"] button[data-testid="stBaseButton-primary"] {
+    min-height: 68px !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    border-radius: 18px !important;
+    background: rgba(255,215,0,0.15) !important;
+    border: 2px solid rgba(255,215,0,0.4) !important;
+    color: #ffd700 !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    box-shadow: 0 4px 24px rgba(255,215,0,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.15) !important;
+    transition: all 0.2s ease !important;
+}
+div[data-testid="stHorizontalBlock"] button[data-testid="stBaseButton-primary"]:hover {
+    background: rgba(255,215,0,0.25) !important;
+    transform: scale(1.04);
+}
+</style>
+"""
+
+
 def page_races():
     st.header("Race Predictions")
+    st.markdown(_GLASS_CSS, unsafe_allow_html=True)
 
     conn = get_conn()
     dates = get_meeting_dates(conn)
@@ -92,81 +139,105 @@ def page_races():
         st.info("No races found for this date.")
         return
 
+    # Reset selection when date changes or index out of bounds
+    if st.session_state.get("_race_date") != selected_date:
+        st.session_state["_race_date"] = selected_date
+        st.session_state["_race_idx"] = 0
+    idx = st.session_state.get("_race_idx", 0)
+    if idx >= len(races):
+        idx = 0
+        st.session_state["_race_idx"] = 0
+
+    # ── Race-number button row ──────────────────────────────────────
+    race_cols = st.columns(len(races))
+    for i, (_, race_no, *_rest) in enumerate(races):
+        with race_cols[i]:
+            btn_type = "primary" if i == idx else "secondary"
+            if st.button(str(race_no), key=f"race_btn_{race_no}",
+                         type=btn_type, use_container_width=True):
+                st.session_state["_race_idx"] = i
+                st.rerun()
+
+    # ── Single-race content ─────────────────────────────────────────
     stats = mc.build_stats(conn, before_date=selected_date, venue="HV")
 
-    for race_id, race_no, dist, cfg, race_class, going, field_size in races:
-        entries = get_entries(conn, race_id)
-        if not entries:
-            continue
+    race_id, race_no, dist, cfg, race_class, going, field_size = races[idx]
+    entries = get_entries(conn, race_id)
+    if not entries:
+        st.info("No entries for this race.")
+        conn.close()
+        return
 
-        runners = mc.score_race(entries, stats, dist, cfg, race_class=race_class, going=going)
-        if not runners:
-            continue
+    runners = mc.score_race(entries, stats, dist, cfg, race_class=race_class, going=going)
+    if not runners:
+        st.info("Could not score this race.")
+        conn.close()
+        return
 
-        has_results = any(r.get("finish_position") for r in runners)
-        has_odds = any(r.get("public_odds") for r in runners)
+    has_results = any(r.get("finish_position") for r in runners)
+    has_odds = any(r.get("public_odds") for r in runners)
 
-        class_str = race_class or "Class ?"
-        going_str = going or "?"
-        header = f"Race {race_no} — {dist}m {cfg} | {class_str} | Going: {going_str} | {len(runners)} runners"
+    class_str = race_class or "Class ?"
+    going_str = going or "?"
+    st.subheader(f"Race {race_no} — {dist}m {cfg} | {class_str} | Going: {going_str} | {len(runners)} runners")
 
-        with st.expander(header, expanded=(race_no <= 2)):
-            rows = []
-            for rank, r in enumerate(runners, 1):
-                row = {
-                    "#": rank,
-                    "Horse": r["horse_name"],
-                    "Bar": r["barrier"],
-                    "Jockey": r["jockey_name"],
-                    "Win%": round(r["win_pct"], 1),
-                    "Place%": round(r["place_pct"], 1),
-                    "Show%": round(r["show_pct"], 1),
-                }
-                if has_odds:
-                    row["Mkt%"] = round(r["market_pct"], 1)
-                    row["Edge"] = round(r["edge"], 1)
-                    row["Value"] = "Yes" if r["is_value"] else ""
-                if has_results:
-                    fp = r.get("finish_position")
-                    row["Actual"] = int(fp) if fp else ""
-                rows.append(row)
+    rows = []
+    for rank, r in enumerate(runners, 1):
+        row = {
+            "Place #": rank,
+            "Horse #": r.get("horse_no") or "",
+            "Horse Name": r["horse_name"],
+            "Bar": r["barrier"],
+            "Jockey": r["jockey_name"],
+            "Win%": round(r["win_pct"], 1),
+            "Place%": round(r["place_pct"], 1),
+            "Show%": round(r["show_pct"], 1),
+        }
+        if has_odds:
+            row["Mkt%"] = round(r["market_pct"], 1)
+            row["Edge"] = round(r["edge"], 1)
+            row["Value"] = "Yes" if r["is_value"] else ""
+        if has_results:
+            fp = r.get("finish_position")
+            row["Actual"] = int(fp) if fp else ""
+        rows.append(row)
 
-            df = pd.DataFrame(rows)
-            pct_cols = [c for c in df.columns if c.endswith("%")]
-            col_config = {c: st.column_config.NumberColumn(format="%.1f") for c in pct_cols}
+    df = pd.DataFrame(rows)
+    pct_cols = [c for c in df.columns if c.endswith("%")]
+    col_config = {c: st.column_config.NumberColumn(format="%.1f") for c in pct_cols}
 
-            def highlight_top3(row):
-                if row["#"] <= 3:
-                    return ["background-color: #1a3a1a"] * len(row)
-                return [""] * len(row)
+    def highlight_top3(row):
+        if row["Place #"] <= 3:
+            return ["background-color: #1a3a1a"] * len(row)
+        return [""] * len(row)
 
-            st.dataframe(
-                df.style.apply(highlight_top3, axis=1),
-                column_config=col_config,
-                use_container_width=True,
-                hide_index=True,
-            )
+    st.dataframe(
+        df.style.apply(highlight_top3, axis=1),
+        column_config=col_config,
+        use_container_width=True,
+        hide_index=True,
+    )
 
-            # Factor breakdown in a sub-expander
-            with st.expander("Factor breakdown", expanded=False):
-                factor_rows = []
-                for rank, r in enumerate(runners, 1):
-                    frow = {
-                        "#": rank,
-                        "Horse": r["horse_name"],
-                        "Barrier IV": round(r["b_iv"], 2),
-                        "Jockey F": round(r["jf"], 2),
-                        "Trainer F": round(r["tf"], 2),
-                        "Horse F": round(r["hf"], 2),
-                        "Form": round(r["ff"], 2),
-                        "Class F": round(r.get("cf", 1.0), 2),
-                        "Wt Chg F": round(r.get("wcf", 1.0), 2),
-                        "Rating": round(r["rtf"], 2),
-                        "Days": round(r["df"], 2),
-                        "Raw": round(r["raw_score"], 3),
-                    }
-                    factor_rows.append(frow)
-                st.dataframe(pd.DataFrame(factor_rows), use_container_width=True, hide_index=True)
+    with st.expander("Factor breakdown", expanded=False):
+        factor_rows = []
+        for rank, r in enumerate(runners, 1):
+            frow = {
+                "Place #": rank,
+                "Horse #": r.get("horse_no") or "",
+                "Horse Name": r["horse_name"],
+                "Barrier IV": round(r["b_iv"], 2),
+                "Jockey F": round(r["jf"], 2),
+                "Trainer F": round(r["tf"], 2),
+                "Horse F": round(r["hf"], 2),
+                "Form": round(r["ff"], 2),
+                "Class F": round(r.get("cf", 1.0), 2),
+                "Wt Chg F": round(r.get("wcf", 1.0), 2),
+                "Rating": round(r["rtf"], 2),
+                "Days": round(r["df"], 2),
+                "Raw": round(r["raw_score"], 3),
+            }
+            factor_rows.append(frow)
+        st.dataframe(pd.DataFrame(factor_rows), use_container_width=True, hide_index=True)
 
     conn.close()
 
@@ -425,9 +496,10 @@ def page_race_lookup():
     rows = []
     for rank, r in enumerate(runners, 1):
         row = {
-            "Rank": rank,
-            "Horse": r["horse_name"],
-            "Barrier": r["barrier"],
+            "Place #": rank,
+            "Horse #": r.get("horse_no") or "",
+            "Horse Name": r["horse_name"],
+            "Bar": r["barrier"],
             "Jockey": r["jockey_name"],
             "Trainer": r["trainer_name"],
             "Win%": round(r["win_pct"], 1),
@@ -449,7 +521,7 @@ def page_race_lookup():
     col_config = {c: st.column_config.NumberColumn(format="%.1f") for c in pct_cols}
 
     def highlight_rows(row):
-        rank = row["Rank"]
+        rank = row["Place #"]
         if has_results:
             fp = row.get("Actual")
             if rank <= 3 and fp and fp <= 3:
@@ -515,7 +587,6 @@ SILK_COLORS_SIM = [
 ]
 
 
-@st.cache_data
 def _load_audio_b64():
     p = Path(__file__).parent / "Mr Farts - Horse Racing Farts.mp3"
     return base64.b64encode(p.read_bytes()).decode() if p.exists() else None
@@ -829,7 +900,7 @@ function render(){
 
 function go(){
   document.getElementById('overlay').classList.add('hidden');
-  if(audioSrc){audio=new Audio(audioSrc);audio.volume=0.5;audio.play().catch(function(){});}
+  if(audioSrc){audio=new Audio(audioSrc);audio.volume=0.5;audio.play().catch(function(e){console.error('Audio play failed:',e);});}
   state=S.COUNT;cf=0;rf=0;ci=0;ac='';render();
 }
 
@@ -851,7 +922,7 @@ drawInfo();
 def _build_race_html(sim_data, audio_b64, race_info_str):
     audio_val = "null"
     if audio_b64:
-        audio_val = '"data:audio/mp3;base64,' + audio_b64 + '"'
+        audio_val = '"data:audio/mpeg;base64,' + audio_b64 + '"'
     return (_RACE_HTML
         .replace("__HORSES_DATA__", json.dumps(sim_data["horses"]))
         .replace("__COMMENTARY_DATA__", json.dumps(sim_data["commentary"]))
@@ -907,7 +978,8 @@ def page_simulation():
 
     quick = []
     for rank, r in enumerate(runners[:5], 1):
-        quick.append({"#": rank, "Horse": r["horse_name"], "Win%": round(r["win_pct"], 1),
+        quick.append({"Place #": rank, "Horse #": r.get("horse_no") or "", "Horse Name": r["horse_name"],
+                       "Win%": round(r["win_pct"], 1),
                        "Show%": round(r["show_pct"], 1), "Jockey": r["jockey_name"]})
     st.dataframe(pd.DataFrame(quick), use_container_width=True, hide_index=True)
 
@@ -939,6 +1011,24 @@ page = st.sidebar.radio("Navigation", [
     "Race Lookup",
     "Race Simulation",
 ])
+
+st.sidebar.divider()
+st.sidebar.markdown("""
+#### Column Guide
+
+| Column | Meaning |
+|--------|---------|
+| **Place #** | Model's predicted finishing order (1 = most likely winner) |
+| **Horse #** | Saddle cloth number assigned by HKJC (by handicap weight) |
+| **Bar** | Barrier / draw position at the starting gate |
+| **Win%** | Model's probability this horse wins the race |
+| **Place%** | Probability of finishing in the top 2 |
+| **Show%** | Probability of finishing in the top 3 |
+| **Mkt%** | Market-implied win probability from public odds (1 / odds) |
+| **Edge** | Win% minus Mkt% — positive means the model sees value the market doesn't |
+| **Value** | Flagged "Yes" when Edge > 5% and Win% > 10% |
+| **Actual** | Real finishing position (shown after results are in) |
+""")
 
 if page == "Race Predictions":
     page_races()

@@ -1,0 +1,218 @@
+{
+  "main": {
+    "id": "e8c83354840865b7",
+    "type": "split",
+    "children": [
+      {
+        "id": "23083037951132b9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5c43e3f1377f4d81",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4a3ec0cc51bdb1f4",
+    "type": "split",
+    "children": [
+      {
+        "id": "2c11aaf83bdaeda5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "41973fa53fca4a86",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "81958409c9384be5",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "27bfe1ef3826b956",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "515711b1d83b27ef",
+    "type": "split",
+    "children": [
+      {
+        "id": "54e88707727b527f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fedb8ede2ad30649",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "ce84083b99663e4b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "90047d2fbe67a182",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "2190252436614d65",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "8507a01eafa2bb7b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "5c43e3f1377f4d81",
+  "lastOpenFiles": [
+    "CLAUDE.md",
+    "Obsidian HV/wiki/model/factors/rating-days.md",
+    "Obsidian HV/wiki/model/factors/weight-change.md",
+    "Obsidian HV/wiki/model/factors/jockey-trainer.md",
+    "Obsidian HV/wiki/model/factors/horse.md",
+    "Obsidian HV/wiki/model/factors/form.md",
+    "Obsidian HV/wiki/model/factors/going.md",
+    "Obsidian HV/wiki/model/factors/class.md",
+    "Obsidian HV/wiki/model/factors/barrier.md",
+    "Obsidian HV/wiki/performance/live-meetings.md",
+    "Obsidian HV/wiki/workflow/operations.md",
+    "Obsidian HV/wiki/performance/walkforward.md",
+    "Obsidian HV/wiki/model/architecture.md",
+    "Obsidian HV/wiki/model/factors",
+    "Obsidian HV/wiki/issues/known-issues.md",
+    "Obsidian HV/wiki/data/database.md",
+    "Obsidian HV/wiki/data/api.md",
+    "Obsidian HV/wiki/workflow",
+    "Obsidian HV/wiki/performance",
+    "Obsidian HV/wiki/overview.md",
+    "Obsidian HV/wiki/model",
+    "Obsidian HV/wiki/log.md",
+    "Obsidian HV/wiki/issues",
+    "Obsidian HV/wiki/index.md",
+    "Obsidian HV/wiki/data",
+    "Obsidian HV/wiki",
+    "Obsidian HV",
+    "wiki/model/factors/weight-change.md",
+    "wiki/model/factors/rating-days.md",
+    "wiki/model/factors/jockey-trainer.md",
+    "wiki/model/factors/horse.md",
+    "wiki/model/factors/going.md",
+    "wiki/model/factors/form.md",
+    "wiki/model/factors/class.md",
+    "wiki/model/factors",
+    "wiki/workflow"
+  ]
+}

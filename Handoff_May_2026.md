@@ -1,7 +1,42 @@
 # Happy Valley Simulator — Handoff Note
-**Date:** May 6, 2026  
+**Date:** May 13, 2026  
 **Location:** `~/AI Playground/HV_Simulator/`  
-**Status:** Phases A, B, 1, 2, 3, 4A, 4B, 4C, 4D complete. Starting Phase 4E (integration & final validation).
+**Status:** Phases A, B, 1, 2, 3, 4A, 4B, 4C, 4D complete. Phase 4E in progress. Operational for live meetings.
+
+---
+
+## SESSION LOG — May 13, 2026 (Race Night)
+
+### What was done
+
+**1. Readiness audit** — confirmed all deps (Playwright, Streamlit, Plotly, model_core) operational. DB had 587 races through Apr 29. No races for May 6 (no HV meeting that week confirmed).
+
+**2. Bug fix: `wednesday_agent.build_predictions()` missing fields** — runner_dicts did not include `edge`, `market_pct`, or `public_odds`. This would crash `hkjc_odds.py`'s value bet display with `KeyError: 'edge'` whenever any value bet was found. Fixed — all three fields now included.
+
+**3. iPad access via Tailscale** — installed Tailscale on Mac + iPad. Streamlit served with `--server.address 0.0.0.0`. Dashboard accessible on iPad at `http://<mac-tailscale-ip>:8501`. Working.
+
+**4. Racecard import failure + fix** — `racing.hkjc.com` now times out for headless Chromium (30s timeout). Added `fetch_racecard_graphql()` to `wednesday_agent.py` as an automatic fallback: navigates to `bet.hkjc.com`, intercepts `info.cld.hkjc.com/graphql/base/` HTTP responses containing `data.raceMeetings[].races[].runners[]`, and parses directly. Today's 9 races were imported via this path.
+
+**5. Odds fetch: three bugs fixed in `hkjc_odds.py`**
+
+| Bug | Cause | Fix |
+|---|---|---|
+| `AttributeError: 'bytes' has no attribute 'payload'` | Playwright passes WS frame data as `bytes` directly (not an object with `.payload`) in newer versions | `_on_frame`: handle `isinstance(frame, bytes)` first |
+| Page load timeout | `wait_until="networkidle"` never fires on live betting page (constant polling/WS) | Changed to `wait_until="load"` |
+| DOM scraper extracting cloth numbers (1,2,3…) as odds | Grabbing first integer in row = saddle number | Row structure confirmed: `[cloth, name, draw, wt, jockey, trainer, WIN_ODDS, place_odds]`. Scraper now takes `tokens[-2]` (second-to-last) |
+
+**6. May 13 results** — 9 races imported, all 101 runner odds applied, predictions written. Live value bets flagged to dashboard before R1.
+
+### Files changed today
+- `wednesday_agent.py` — added `fetch_racecard_graphql()` fallback; added `edge`/`market_pct`/`public_odds` to runner_dicts
+- `hkjc_odds.py` — WS frame bytes fix; `wait_until="load"`; DOM token position fix for win odds
+
+### DB state after today
+- 596 races (587 historical + 9 from today's meeting)
+- `predictions_2026-05-13.json` written
+- `race_entries.public_odds` populated for all 101 May 13 runners
+
+---
 
 ---
 
@@ -87,7 +122,7 @@ probs   = mc.harville_probs(win_probs_dict)
 ## 4. Database Schema
 
 **File:** `happy_valley.db`  
-**Stats:** 578 races (2024-01-10 → 2026-04-29), 6,657 entries, 1,416 horses, 47 jockeys, 23 trainers
+**Stats:** 596 races (2024-01-10 → 2026-05-13), 6,867 entries, 1,483 horses, 47 jockeys, 23 trainers
 
 ### Key Tables
 
@@ -155,62 +190,57 @@ finish_position, profit, logged_at
 
 ---
 
-## 7. Current Live Workflow (Manual)
+## 7. Current Live Workflow
 
 ```bash
-# Wednesday morning (automated via cron 0 7 * * 3):
+# ── WEDNESDAY MORNING (automated via cron 0 7 * * 3) ──────────────────────
 python3 wednesday_agent.py
-# → fetches HKJC racecard via Playwright
-# → inserts to DB
-# → runs model (no odds → value bets not yet logged)
+# → tries racing.hkjc.com first; auto-falls back to bet.hkjc.com GraphQL
+# → inserts to DB, runs model (no odds yet)
 # → writes predictions_YYYY-MM-DD.json
 
-# On race day, once tote odds open (enter manually):
-python3 phase6_importer.py "Race Card_May 06 2026.html"
-# → enter date (YYYY-MM-DD)
-# → enter WIN tote odds for each runner
-# → value bets logged automatically to paper_trades
-# → enter results after race (or later via paper_trades.py --settle)
+# ── RACE DAY ~6PM HKT (manual, must be on HK IP or HK VPN) ───────────────
+python3 hkjc_odds.py --date YYYY-MM-DD
+# → opens bet.hkjc.com, waits for page load, captures live WIN odds
+# → updates race_entries.public_odds in DB
+# → re-runs model with market odds → refreshes predictions JSON with value bets
 
-# Post-race (automated via cron 0 23 * * 3):
+# ── DASHBOARD (iPad / browser) ────────────────────────────────────────────
+# On Mac: streamlit run dashboard.py --server.address 0.0.0.0
+# On iPad: http://<mac-tailscale-ip>:8501
+
+# ── POST-RACE (automated via cron 0 23 * * 3) ─────────────────────────────
 python3 results_agent.py
-# → fetches results from HKJC
-# → updates finish_position in DB
-# → auto-settles paper trades
+# → fetches results from HKJC, updates finish_position, settles paper trades
 
-# Review paper trades:
+# ── UTILITIES ──────────────────────────────────────────────────────────────
 python3 paper_trades.py            # summary + open bets
-python3 paper_trades.py --settle   # settle completed races
+python3 paper_trades.py --settle   # interactive settlement
 python3 paper_trades.py --all      # full history
 
-# Look up any past race:
-python3 race_simulator.py 2026-04-22 5
-python3 race_simulator.py 587
-
-# Run walk-forward validation:
-python3 walkforward_test.py
-
-# Open dashboard:
-streamlit run dashboard.py
+python3 race_simulator.py 2026-05-13 4   # look up any DB race
+python3 walkforward_test.py              # 4-fold walk-forward
 ```
 
 ---
 
 ## 8. Known Issues / Gaps
 
-1. **Race 587 (Apr 29 R1)** has no Phase B data and shows "Class ?" — was imported before Phase B was built. Re-run `phase6_importer.py` on the Apr 29 HTML to refresh it with ratings/form/days/weight.
+1. **Race 587 (Apr 29 R1)** has no Phase B data — was imported before Phase B was built. Re-run importer on Apr 29 HTML to populate ratings/form/days/weight.
 
-2. **Some Apr 22 races** have empty string `going` instead of NULL — minor DB quality issue, doesn't affect the model.
+2. **Some Apr 22 races** have empty string `going` instead of NULL — cosmetic, doesn't affect the model.
 
-3. **Going factor inactive** — `_going_factor()` and all infrastructure exists in `model_core.py` but `gf` is not in the multiplicative chain. Re-enable once 2+ seasons of HV data are available. The code comment explains exactly where to uncomment.
+3. **Going factor inactive** — infrastructure exists in `model_core.py` but `gf` is not in the multiplicative chain. Re-enable after 2+ full seasons of HV data.
 
-4. **`final_sectional_400m`** column exists in DB schema, is largely empty, not yet used in model. Could be a strong future signal.
+4. **`final_sectional_400m`** column in DB schema is mostly empty, unused. Future signal candidate.
 
-5. **Historical data volume is adequate** — 578 races / 6,657 entries over 2+ years. Only rare configs are thin: 1600m C (1 race ever), 1400m C (2 races), 2200m C (3 races). Not a data volume problem — these are scheduling rarities.
+5. **`racing.hkjc.com` headless fetch broken** — times out for Playwright as of May 2026. `wednesday_agent.py` now auto-falls back to GraphQL via `bet.hkjc.com`. If this also breaks in future, see `fetch_racecard_graphql()` and the `info.cld.hkjc.com/graphql/base/` endpoint structure documented in the May 13 session log above.
 
-6. **Results cron was misconfigured** — was `0 15 * * 3` (3pm HKT, before races). Fixed to `0 23 * * 3` (11pm HKT) on 2026-05-06.
+6. **`hkjc_odds.py` uses DOM scraper as primary path** — the HTTP GraphQL `winOdds` field is empty on initial page load (odds delivered via WebSocket push, not initial response). The DOM scraper navigates each race page and extracts the rendered odds table using the confirmed row structure: `[cloth, name, draw, wt, jockey, trainer, WIN_ODDS, place_odds]` → takes `tokens[-2]`. If HKJC changes their table layout, odds extraction will break silently (returns wrong numbers). Run with `--dry-run` first to sanity-check values look like real odds (non-sequential, with decimals) before writing to DB.
 
-7. **No class drop/rise factor for horses with no prior HV run** — these get `cf = 1.00` (neutral). No fix needed; prior class is often available via form history, but pulling it from `horse_form` table would require a schema join. Low priority.
+7. **WebSocket odds interception not yet working** — `_on_websocket` handler is wired and the bytes bug is fixed, but WS frames are not yielding parseable odds yet. The DOM fallback is reliable for now. If WS format is ever resolved, it would provide faster/more-reliable odds capture.
+
+8. **No class/weight factors for horses with no prior HV run** — `cf = wcf = 1.00` (neutral). Low priority.
 
 ---
 

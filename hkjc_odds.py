@@ -27,13 +27,10 @@ from pathlib import Path
 DB_PATH = Path(__file__).parent / "happy_valley.db"
 VENUE   = "HV"
 
-# HKJC betting odds page — only accessible during live betting sessions
-# (typically opens ~12:00 HKT on race day, closes after last race).
+# HKJC betting odds page — only accessible during live betting sessions.
 # Requires HK-accessible IP; returns 404 for historical or off-session dates.
-ODDS_PAGE_URL = (
-    "https://racing.hkjc.com/en-us/local/information/winplaceodds"
-    "?RaceDate={date}&Racecourse={venue}&RaceNo=1"
-)
+# URL pattern: /en/racing/wp/{YYYY-MM-DD}/{venue}/{race_no}
+ODDS_PAGE_URL = "https://bet.hkjc.com/en/racing/wp/{date}/{venue}/{race_no}"
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -42,20 +39,11 @@ ODDS_PAGE_URL = (
 
 def _parse_graphql_response(body: dict) -> dict:
     """
-    Extract {(race_no: int, horse_name_upper: str): float} from an intercepted
-    GraphQL response body. Handles both response formats HKJC uses:
-
-    Format A — main raceMeetings query (runners carry winOdds directly):
+    GraphQL format (racing.hkjc.com legacy):
       data.raceMeetings[].races[].runners[].name_en + winOdds
-
-    Format B — horseOddsQuery (pool-based, per race):
-      data.raceMeetings[].pmPools[] where oddsType==WIN,
-      oddsNodes[].combString (horse number) + oddsValue
-      — requires a separate horse_no→name map built from Format A.
     """
     result = {}
     data = body.get("data") or {}
-
     for meeting in (data.get("raceMeetings") or []):
         for race in (meeting.get("races") or []):
             try:
@@ -70,6 +58,158 @@ def _parse_graphql_response(body: dict) -> dict:
                         result[(race_no, name)] = float(raw)
                     except (ValueError, TypeError):
                         pass
+    return result
+
+
+def _parse_api_response(body) -> dict:
+    """
+    REST / alternate GraphQL formats bet.hkjc.com may return.
+    Tries several common shapes; returns empty dict if none match.
+    """
+    result = {}
+
+    def _try_races(races_list):
+        for race in races_list or []:
+            if not isinstance(race, dict):
+                continue
+            try:
+                race_no = int(
+                    race.get("no") or race.get("raceNo") or
+                    race.get("race_no") or race.get("raceNumber") or 0
+                )
+            except (TypeError, ValueError):
+                continue
+            runners = (
+                race.get("runners") or race.get("horses") or
+                race.get("entries") or []
+            )
+            for r in runners:
+                if not isinstance(r, dict):
+                    continue
+                name = (
+                    r.get("name_en") or r.get("horseName") or
+                    r.get("name") or r.get("horse_name") or ""
+                ).upper().strip()
+                raw = (
+                    r.get("winOdds") or r.get("win_odds") or
+                    r.get("odds") or r.get("winOdd") or
+                    r.get("currentOdds")
+                )
+                if name and raw is not None:
+                    try:
+                        result[(race_no, name)] = float(raw)
+                    except (ValueError, TypeError):
+                        pass
+
+    if isinstance(body, list):
+        _try_races(body)
+        return result
+
+    if not isinstance(body, dict):
+        return result
+
+    # Unwrap common envelope shapes
+    for key in ("races", "raceList", "race_list", "data"):
+        val = body.get(key)
+        if isinstance(val, list):
+            _try_races(val)
+        elif isinstance(val, dict):
+            result.update(_parse_api_response(val))
+
+    # Also try the top-level body as a races list fallback
+    if not result:
+        _try_races(body.get("races") or [])
+
+    return result
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DOM fallback — extract rendered odds table from the live page
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _scrape_odds_from_dom(page, race_date: str, venue: str = "HV") -> dict:
+    """
+    Read the rendered WIN/PLACE odds table directly from the DOM.
+    Navigates R1..R9 and extracts (race_no, horse_name) → win_odds
+    by looking for rows that contain a horse name and a decimal odds value.
+    """
+    import sqlite3 as _sq
+
+    # Load all runner names for today from DB so we can match them in the DOM
+    known_names: set = set()
+    try:
+        conn = _sq.connect(DB_PATH)
+        rows = conn.execute("""
+            SELECT UPPER(h.horse_name)
+              FROM race_entries re
+              JOIN races r  ON re.race_id  = r.race_id
+              JOIN horses h ON re.horse_id = h.horse_id
+             WHERE r.race_date=? AND r.venue=?
+        """, (race_date, venue)).fetchall()
+        known_names = {r[0] for r in rows}
+        conn.close()
+    except Exception:
+        pass
+
+    result: dict = {}
+
+    for race_no in range(1, 10):
+        url = ODDS_PAGE_URL.format(date=race_date, venue=venue, race_no=race_no)
+        try:
+            page.goto(url, wait_until="networkidle", timeout=20_000)
+            page.wait_for_timeout(2_000)
+        except Exception:
+            break
+
+        try:
+            # Extract all leaf text nodes grouped by their nearest table-row ancestor
+            rows_text = page.evaluate("""
+                () => {
+                    const rows = [];
+                    const candidates = document.querySelectorAll(
+                        'tr, [class*="row"], [class*="runner"], [class*="horse"]'
+                    );
+                    candidates.forEach(el => {
+                        const texts = [];
+                        el.querySelectorAll('*').forEach(child => {
+                            if (child.children.length === 0) {
+                                const t = (child.innerText || child.textContent || '').trim();
+                                if (t) texts.push(t);
+                            }
+                        });
+                        if (texts.length > 1) rows.push(texts);
+                    });
+                    return rows;
+                }
+            """)
+        except Exception:
+            continue
+
+        for tokens in (rows_text or []):
+            # Find a known horse name among tokens
+            name_match = next(
+                (t.upper() for t in tokens if t.upper() in known_names), None
+            )
+            if not name_match:
+                continue
+            # Row structure: [cloth, name, draw, wt, jockey, trainer, WIN_ODDS, place_odds]
+            # Win odds is always the second-to-last token. Fall back to last if needed.
+            for t in reversed(tokens[-3:-1] if len(tokens) >= 4 else tokens):
+                try:
+                    val = float(t)
+                    if 1.0 <= val <= 999.0:
+                        result[(race_no, name_match)] = val
+                        break
+                except ValueError:
+                    pass
+
+        if result:
+            # Check if we have entries for this race_no; if yes, move to next
+            race_count = len({k[0] for k in result})
+            if race_count >= race_no:
+                continue  # got this race, keep going
+        else:
+            break  # nothing on first race, give up
 
     return result
 
@@ -78,33 +218,67 @@ def _parse_graphql_response(body: dict) -> dict:
 # Browser fetch
 # ─────────────────────────────────────────────────────────────────────────────
 
-def fetch_win_odds(race_date: str, venue: str = "HV", timeout_s: int = 30) -> dict:
+def fetch_win_odds(
+    race_date: str,
+    venue: str = "HV",
+    timeout_s: int = 30,
+    debug: bool = False,
+) -> dict:
     """
-    Navigate to HKJC WIN/PLACE odds page in headless Chromium, capture every
-    GraphQL response the page fires, and return the union of all extracted odds.
+    Navigate to bet.hkjc.com WIN/PLACE odds pages in headless Chromium,
+    intercept every JSON API response the page fires, and return the union
+    of all extracted odds.
 
     race_date : "YYYY-MM-DD"
     venue     : "HV" or "ST"
+    debug     : write captured WS frames + HTTP bodies to odds_debug_{date}.json
     Returns   : {(race_no: int, horse_name_upper: str): float}
     """
+    import json as _json
+
     try:
         from playwright.sync_api import sync_playwright
     except ImportError:
         print("ERROR: playwright not installed. Run:  pip3 install playwright && playwright install chromium")
         return {}
 
-    captured: dict = {}
+    captured_odds: dict = {}
+    debug_log: list = []
+
+    def _try_parse(body):
+        for parser in (_parse_graphql_response, _parse_api_response):
+            odds = parser(body)
+            if odds:
+                captured_odds.update(odds)
 
     def _on_response(response):
-        if "graphql/base" not in response.url or response.status != 200:
+        if response.status != 200 or "hkjc.com" not in response.url:
             return
         try:
             body = response.json()
-            odds = _parse_graphql_response(body)
-            if odds:
-                captured.update(odds)
         except Exception:
-            pass
+            return
+        if debug:
+            debug_log.append({"type": "http", "url": response.url, "body": body})
+        _try_parse(body)
+
+    def _on_websocket(ws):
+        def _on_frame(frame):
+            try:
+                # Playwright passes frame data as bytes directly in newer versions;
+                # older versions wrapped it in an object with a .payload attribute.
+                payload = frame if isinstance(frame, bytes) else getattr(frame, "payload", None)
+                if not payload:
+                    return
+                if isinstance(payload, bytes):
+                    payload = payload.decode("utf-8", errors="ignore")
+                body = _json.loads(payload)
+            except Exception:
+                return
+            if debug:
+                debug_log.append({"type": "ws", "url": ws.url, "body": body})
+            _try_parse(body)
+        ws.on("framereceived", _on_frame)
 
     with sync_playwright() as pw:
         browser = pw.chromium.launch(headless=True)
@@ -115,18 +289,35 @@ def fetch_win_odds(race_date: str, venue: str = "HV", timeout_s: int = 30) -> di
             )
         )
         page = context.new_page()
-        page.on("response", _on_response)
+        page.on("response",   _on_response)
+        page.on("websocket",  _on_websocket)
 
-        date_hkjc = race_date.replace("-", "/")
-        url = ODDS_PAGE_URL.format(date=date_hkjc, venue=venue)
+        url = ODDS_PAGE_URL.format(date=race_date, venue=venue, race_no=1)
         try:
-            page.goto(url, wait_until="networkidle", timeout=timeout_s * 1000)
+            # Use "load" — networkidle never fires on a live betting page
+            # due to continuous WebSocket + polling activity.
+            page.goto(url, wait_until="load", timeout=timeout_s * 1000)
         except Exception as e:
             print(f"  [odds] Page load warning: {e}")
 
+        # Wait for initial GraphQL responses and first WebSocket odds push
+        print("  Waiting for live odds push …")
+        page.wait_for_timeout(8_000)
+
+        # DOM fallback — extract rendered odds directly from the page
+        if not captured_odds:
+            print("  WebSocket yielded nothing — trying DOM extraction …")
+            captured_odds = _scrape_odds_from_dom(page, race_date, venue)
+
+        if debug and debug_log:
+            debug_path = DB_PATH.parent / f"odds_debug_{race_date}.json"
+            with open(debug_path, "w") as f:
+                _json.dump(debug_log, f, indent=2, default=str)
+            print(f"  [debug] {len(debug_log)} message(s) written → {debug_path.name}")
+
         browser.close()
 
-    return captured
+    return captured_odds
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -180,6 +371,8 @@ def main():
                         help="Racecourse code (default: HV)")
     parser.add_argument("--dry-run", action="store_true",
                         help="Print fetched odds only; do not write to DB")
+    parser.add_argument("--debug", action="store_true",
+                        help="Dump all captured API responses to odds_debug_DATE.json")
     args = parser.parse_args()
 
     print(f"\n{'='*62}")
@@ -187,7 +380,7 @@ def main():
     print(f"{'='*62}")
     print(f"\n  Opening browser and navigating to odds page …")
 
-    odds = fetch_win_odds(args.date, args.venue)
+    odds = fetch_win_odds(args.date, args.venue, debug=args.debug)
 
     if not odds:
         print("  No odds captured.")

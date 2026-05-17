@@ -164,8 +164,8 @@ def roi_str(roi):
 def print_results(fold_metrics, fold_infos):
     W = 80
     print("\n" + "=" * W)
-    print("  HAPPY VALLEY — WALK-FORWARD VALIDATION  (model_core Phase A)")
-    print(f"  ExactTrip-m{mc.HORSE_M} + Weight + Form + Harville  |  "
+    print("  HAPPY VALLEY — WALK-FORWARD VALIDATION  (model_core Phase 4D)")
+    print(f"  ExactTrip-m{mc.HORSE_M} + Class + WtChg + Form + Harville  |  "
           f"Edge>{mc.EDGE_THRESHOLD:.0f}%  Model>{mc.MIN_MODEL_PCT:.0f}%")
     print("=" * W)
 

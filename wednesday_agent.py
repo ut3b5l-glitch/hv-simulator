@@ -100,6 +100,7 @@ def build_predictions(conn, meeting_date: str, inserted_races) -> dict:
                 "rank":             rank,
                 "horse_name":       r["horse_name"],
                 "horse_id":         r["horse_id"],
+                "horse_no":         r.get("horse_no"),
                 "barrier":          r["barrier"],
                 "jockey_name":      r.get("jockey_name", ""),
                 "trainer_name":     r.get("trainer_name", ""),
