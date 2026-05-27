@@ -107,7 +107,7 @@ def _parse_graphql_racecard(body: dict) -> list:
 
             entries = []
             for runner in (race.get("runners") or []):
-                if (runner.get("status") or "").upper() in ("SCRATCHED", "WITHDRAWN"):
+                if (runner.get("status") or "").upper() in ("SCRATCHED", "WITHDRAWN", "STANDBY"):
                     continue
                 name = (runner.get("name_en") or "").upper().strip()
                 if not name:
