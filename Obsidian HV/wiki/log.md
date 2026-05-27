@@ -13,6 +13,31 @@ grep "experiment" "Obsidian HV/wiki/log.md"              # all walk-forward test
 
 ---
 
+## [2026-05-28] ingest | HV Meeting 2026-05-27 — results & reconciliation
+
+22.2% top-3 precision (6/27). 14 value bets flagged; 0 won, 3 placed, 11 lost. Worst live meeting to date.
+4 complete misses (R1, R4, R6, R9). jf×tf overconfidence dominant failure mode — HONEST WITNESS 84.1% model win, finished out of frame.
+Going updated to GOOD TO FIRM (was GOOD on early fetch). Standby runner parser bug fixed (16 reserves excluded).
+
+Updated pages:
+- `performance/live-meetings.md` — added full May 27 section with race-by-race and value bet breakdown
+- `overview.md` — updated live performance table (2-meeting average now 37.1%)
+
+---
+
+## [2026-05-28] build | Mobile PWA shipped to hv-simulator.vercel.app
+
+Next.js 14 PWA in `web/` with glass / Apple-native design — installable to iOS home screen. Three pages: Tonight's Races (race tab strip, value pills, tap-to-expand factor breakdown), Performance (lifetime ROI / hit rate / recent meetings), Profiles (searchable jockeys/trainers/horses with 60-day trailing form). Fed by `export_data.py` which converts `happy_valley.db` + `predictions_*.json` + `results_*.json` into static JSON snapshots committed to the repo. Deployed to Vercel Hobby (project `ut3b5l-3494s-projects/hv-simulator`). Created `wiki/web/pwa.md`, updated `overview.md` and `index.md`. Streamlit `dashboard.py` retained as local race-day cockpit.
+
+---
+
+## [2026-05-28] query | May 27 race day workflow — racecard, odds, dashboard, results
+
+Racecard: 9 races via GraphQL fallback. Odds: 106 entries (14 value bets). Results: 9 races fetched, 22.2% precision.
+Technical fixes made: Standby filter in wednesday_agent.py, edge/market_pct/public_odds added to build_predictions(), both committed to git.
+
+---
+
 ## [2026-05-17] ingest | Project raw sources (baselines 4A–4D, predictions/results JSON, agent.log)
 
 Updated pages:

@@ -2,9 +2,10 @@
 
 A private Hong Kong horse racing prediction engine for **Happy Valley (HV) night meetings**. Predicts the top-3 finishers, flags value bets, and tracks paper trade performance.
 
-**Stack:** Python 3 + SQLite. No external ML libraries in the core model.  
+**Stack:** Python 3 + SQLite core. Next.js / Vercel PWA for mobile.  
 **Primary goal:** Reliable top-3 placement predictions — a structured shortlist, not a guaranteed system.  
-**Live since:** May 13, 2026.
+**Live since:** May 13, 2026.  
+**Mobile PWA (since 2026-05-28):** https://hv-simulator.vercel.app — see [[web/pwa]]
 
 ---
 
@@ -35,16 +36,14 @@ The top-3 precision regression vs baseline is statistical noise (±4 pp at 177 r
 
 ## Live Meeting Performance
 
-### May 13, 2026 (9 races, first live meeting)
+| Meeting | Top-3 Precision | Value Bets | Notes |
+|---|---|---|---|
+| 2026-05-13 | **51.9%** (14/27) | +6.7% ROI | Debut; R2+R5 perfect; jf×tf failures R6-R9 |
+| 2026-05-27 | **22.2%** (6/27) | 0/14 won, 3 placed | Worst night; 4 complete misses; extreme jf×tf overconfidence |
 
-| Metric | Result |
-|---|---|
-| Top-3 precision | **51.9%** (14/27) — well above walk-forward avg |
-| Value bet ROI | **+6.7%** (+1.2 units on 18 bets) |
-| Perfect calls | R2 (3/3), R5 (3/3) |
-| Weak calls | R6-R9 (1/3 each) |
+**2-meeting average: 37.1%** (20/54) vs 32.2% walk-forward and 25.7% random baseline.
 
-Post-mortem: jf×tf leverage failures in R6-R9. See [[issues/known-issues#jf-tf-leverage]].
+May 27 post-mortem: HONEST WITNESS was 84.1% model win vs 3.5 market odds (~28%). 4 races went 0/3. jf×tf leverage is producing epistemically unjustified certainty. Priority fix is overdue. See [[issues/known-issues#jf-tf-leverage]] and [[performance/live-meetings#2026-05-27]].
 
 ---
 

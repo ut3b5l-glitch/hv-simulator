@@ -10,6 +10,8 @@ This file is the operating schema for the LLM Wiki embedded in this project. It 
 
 **Schema** (this file) — defines structure, conventions, and workflows. Co-evolve with Claude as the project grows.
 
+**Web app** (`web/`) — Next.js 14 PWA deployed to https://hv-simulator.vercel.app. Read-only mobile dashboard fed by JSON snapshots in `web/public/data/` produced by `export_data.py`. See [[web/pwa]] for details.
+
 ## Directory Structure
 
 ```
@@ -38,6 +40,8 @@ Obsidian HV/wiki/
     operations.md        ← cron schedule, manual race-day commands
   issues/
     known-issues.md      ← bugs, gaps, todos, with status
+  web/
+    pwa.md               ← Vercel PWA architecture, refresh workflow, deploy notes
 ```
 
 ## Raw Source Locations
@@ -65,6 +69,7 @@ Trigger: user says "ingest [date] meeting" or shares results data.
 4. If any new issues or post-mortems emerge, update `wiki/issues/known-issues.md`.
 5. Append to `wiki/log.md`: `## [YYYY-MM-DD] ingest | HV Meeting YYYY-MM-DD`
 6. Update `wiki/index.md` if new pages were created.
+7. **Refresh the mobile PWA** — run `python export_data.py`, then `git add web/public/data && git commit -m "data: YYYY-MM-DD" && git push`. Vercel auto-deploys. See [[web/pwa]].
 
 ### Experiment — After a Walk-Forward Test
 

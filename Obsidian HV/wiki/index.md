@@ -47,3 +47,9 @@ Master catalog of all pages. Updated on every ingest, experiment, or new page cr
 | Page | Summary |
 |---|---|
 | [[issues/known-issues]] | Open bugs, inactive features, data gaps, todos |
+
+## Web
+
+| Page | Summary |
+|---|---|
+| [[web/pwa]] | Mobile Progressive Web App (hv-simulator.vercel.app) — Next.js, glass design, JSON-snapshot driven |
