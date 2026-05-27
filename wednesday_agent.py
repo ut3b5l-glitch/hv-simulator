@@ -77,6 +77,148 @@ def fetch_racecard_html(page, race_date_str: str, race_no: int) -> str | None:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# GraphQL fallback — intercepts bet.hkjc.com internal API responses
+# ─────────────────────────────────────────────────────────────────────────────
+
+BET_HKJC_URL = "https://bet.hkjc.com/en/racing/wp/{date}/HV/1"
+GRAPHQL_HOST = "info.cld.hkjc.com"
+
+
+def _parse_graphql_racecard(body: dict) -> list:
+    """
+    Parse a GraphQL raceMeetings response into the same list-of-race-dicts
+    format that parse_racecard_html() returns, so insert_race_day() can consume it.
+    """
+    races_out = []
+    data = body.get("data") or {}
+    for meeting in (data.get("raceMeetings") or []):
+        for race in (meeting.get("races") or []):
+            try:
+                race_no = int(race["no"])
+            except (KeyError, TypeError, ValueError):
+                continue
+
+            distance_m = race.get("distance") or 0
+            course_cfg = (race.get("raceCourse") or {}).get("displayCode") or "C"
+            track_raw  = (race.get("raceTrack") or {}).get("description_en") or "Turf"
+            track_surface = "AWT" if "weather" in track_raw.lower() else "Turf"
+            race_class = race.get("raceClass_en") or None
+            going      = (race.get("go_en") or "").upper() or None
+
+            entries = []
+            for runner in (race.get("runners") or []):
+                if (runner.get("status") or "").upper() in ("SCRATCHED", "WITHDRAWN"):
+                    continue
+                name = (runner.get("name_en") or "").upper().strip()
+                if not name:
+                    continue
+
+                try:
+                    barrier = int(runner.get("barrierDrawNumber") or 99)
+                except (TypeError, ValueError):
+                    barrier = 99
+
+                try:
+                    horse_no = int(runner.get("no") or 0) or None
+                except (TypeError, ValueError):
+                    horse_no = None
+
+                try:
+                    weight = float(runner.get("handicapWeight") or 0) or None
+                    if weight and not (100 <= weight <= 140):
+                        weight = None
+                except (TypeError, ValueError):
+                    weight = None
+
+                try:
+                    official_rating = int(runner.get("currentRating") or 0) or None
+                except (TypeError, ValueError):
+                    official_rating = None
+
+                jockey_info  = runner.get("jockey") or {}
+                trainer_info = runner.get("trainer") or {}
+
+                entries.append({
+                    "horse_name":          name,
+                    "horse_no":            horse_no,
+                    "barrier":             barrier,
+                    "jockey":              jockey_info.get("name_en") or "",
+                    "trainer":             trainer_info.get("name_en") or "",
+                    "weight":              weight,
+                    "official_rating":     official_rating,
+                    "rating_change":       None,
+                    "days_since_last_run": None,
+                    "last_6_runs":         runner.get("last6run") or None,
+                    "public_odds":         None,
+                })
+
+            if entries:
+                races_out.append({
+                    "race_number":   race_no,
+                    "distance_m":    distance_m,
+                    "course_config": course_cfg,
+                    "track_surface": track_surface,
+                    "race_class":    race_class,
+                    "going":         going,
+                    "entries":       entries,
+                })
+
+    races_out.sort(key=lambda r: r["race_number"])
+    return races_out
+
+
+def fetch_racecard_graphql(meeting_date: str) -> list:
+    """
+    Navigate to bet.hkjc.com and intercept the GraphQL HTTP responses that
+    contain data.raceMeetings[].races[].runners[]. Returns a list of race dicts
+    in the same format as parse_racecard_html().
+
+    meeting_date: 'YYYY-MM-DD'
+    """
+    from playwright.sync_api import sync_playwright
+
+    captured: list = []
+
+    def _on_response(response):
+        if response.status != 200:
+            return
+        if GRAPHQL_HOST not in response.url:
+            return
+        try:
+            body = response.json()
+        except Exception:
+            return
+        races = _parse_graphql_racecard(body)
+        if races:
+            # Keep the response with the most races
+            if len(races) > len(captured):
+                captured.clear()
+                captured.extend(races)
+
+    url = BET_HKJC_URL.format(date=meeting_date)
+    print(f"  [GraphQL fallback] Navigating to bet.hkjc.com …")
+
+    with sync_playwright() as pw:
+        browser = pw.chromium.launch(headless=True)
+        context = browser.new_context(
+            user_agent=(
+                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+            )
+        )
+        page = context.new_page()
+        page.on("response", _on_response)
+        try:
+            page.goto(url, wait_until="load", timeout=40_000)
+        except Exception as e:
+            print(f"  [GraphQL fallback] Page load warning: {e}")
+        page.wait_for_timeout(6_000)
+        browser.close()
+
+    return captured
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Predictions JSON
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -110,6 +252,9 @@ def build_predictions(conn, meeting_date: str, inserted_races) -> dict:
                 "win_pct":          round(r["win_pct"], 2),
                 "place_pct":        round(r["place_pct"], 2),
                 "show_pct":         round(r["show_pct"], 2),
+                "public_odds":      r.get("public_odds"),
+                "market_pct":       round(r.get("market_pct", 0.0), 2),
+                "edge":             round(r.get("edge", 0.0), 2),
                 "is_value":         r.get("is_value", False),
                 "factors": {
                     "barrier_iv": round(r["b_iv"], 3),
@@ -225,15 +370,24 @@ def main():
         browser.close()
 
     if not parsed_all:
-        if args.retry > 0:
-            print(f"\nCard not posted yet — retrying in 60 min ({args.retry} attempt(s) left).")
-            time.sleep(3600)
-            sys.argv = [a for a in sys.argv if not a.startswith("--retry")]
-            sys.argv += [f"--retry={args.retry - 1}"]
-            main()
-            return
-        print("\nNo races found. The card may not be posted yet.")
-        sys.exit(0)
+        print("\n  Primary fetch yielded nothing — trying GraphQL fallback …")
+        parsed_all = fetch_racecard_graphql(meeting_str)
+        if parsed_all:
+            print(f"  GraphQL fallback returned {len(parsed_all)} race(s).")
+            for r in parsed_all:
+                print(f"  R{r['race_number']:>2}  {r['distance_m']}m {r['course_config']:<5}  "
+                      f"{(r.get('race_class') or '?'):>8}  "
+                      f"{len(r['entries'])} runners  going={r.get('going') or '?'}")
+        else:
+            if args.retry > 0:
+                print(f"\nCard not posted yet — retrying in 60 min ({args.retry} attempt(s) left).")
+                time.sleep(3600)
+                sys.argv = [a for a in sys.argv if not a.startswith("--retry")]
+                sys.argv += [f"--retry={args.retry - 1}"]
+                main()
+                return
+            print("\nNo races found. The card may not be posted yet.")
+            sys.exit(0)
 
     print(f"\n  Parsed {len(parsed_all)} race(s).")
 
