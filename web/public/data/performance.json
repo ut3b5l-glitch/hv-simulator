@@ -1,0 +1,49 @@
+{
+  "generated_at": "2026-05-28T00:29:06",
+  "meetings_total": 2,
+  "meetings_settled": 2,
+  "top3_precision": 37.03703703703704,
+  "top3_hits": 20,
+  "top3_attempts": 54,
+  "top_pick_rate": 50.0,
+  "top_pick_hits": 9,
+  "top_pick_attempts": 18,
+  "value_bet_staked": 32,
+  "value_bet_wins": 2,
+  "value_bet_pnl": -12.8,
+  "value_bet_roi": -40.0,
+  "meetings": [
+    {
+      "meeting_date": "2026-05-27",
+      "race_count": 9,
+      "has_results": true,
+      "top3_hits": 6,
+      "top3_attempts": 27,
+      "top3_precision": 22.22222222222222,
+      "top_pick_hits": 3,
+      "top_pick_attempts": 9,
+      "top_pick_rate": 33.33333333333333,
+      "value_bet_count": 14,
+      "value_bet_settled": 14,
+      "value_bet_wins": 0,
+      "value_bet_pnl": -14,
+      "value_bet_roi": -100.0
+    },
+    {
+      "meeting_date": "2026-05-13",
+      "race_count": 9,
+      "has_results": true,
+      "top3_hits": 14,
+      "top3_attempts": 27,
+      "top3_precision": 51.85185185185185,
+      "top_pick_hits": 6,
+      "top_pick_attempts": 9,
+      "top_pick_rate": 66.66666666666666,
+      "value_bet_count": 18,
+      "value_bet_settled": 18,
+      "value_bet_wins": 2,
+      "value_bet_pnl": 1.1999999999999993,
+      "value_bet_roi": 6.6666666666666625
+    }
+  ]
+}
