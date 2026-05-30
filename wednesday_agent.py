@@ -232,6 +232,7 @@ def build_predictions(conn, meeting_date: str, inserted_races) -> dict:
             entries, stats,
             pr["distance_m"], pr["course_config"],
             race_class=pr.get("race_class"), going=pr.get("going"),
+            blend_coef="auto",
         )
         if not runners:
             continue

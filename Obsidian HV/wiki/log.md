@@ -61,3 +61,15 @@ Pages created:
 - data/database, data/api
 - workflow/operations
 - issues/known-issues
+
+
+## [2026-05-30] experiment | Phase 5 — market-blend combiner (Benter conditional logit)
+Discovered the model ignored market odds entirely (used only for value bets).
+Benchmarked: market favourite already places top-3 ~61% / wins ~28% vs the
+factor model's 34% / 14%. Built a race-grouped conditional logit fusing the
+de-vigged market prob with the log-factors (`train_blend.py` → `blend_coef.json`,
+applied via `score_race(blend_coef="auto")`). Walk-forward (204 races,
+`validate_blend.py`): #1-place 34%→~60%, top-3 precision 34%→50%. Established the
+oracle top-3 precision ceiling ~52% (60% is physically unreachable on HV fields).
+jf×tf overconfidence and inert hf both resolved by the joint fit. Live in
+export_data/dashboard/phase6_importer/race_simulator. New page [[market-blend]].

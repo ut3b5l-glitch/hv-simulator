@@ -168,7 +168,7 @@ def page_races():
         conn.close()
         return
 
-    runners = mc.score_race(entries, stats, dist, cfg, race_class=race_class, going=going)
+    runners = mc.score_race(entries, stats, dist, cfg, race_class=race_class, going=going, blend_coef="auto")
     if not runners:
         st.info("Could not score this race.")
         conn.close()
@@ -338,7 +338,7 @@ def page_model_health():
             has_results = any(e.get("finish_position") for e in entries)
             if not has_results:
                 continue
-            runners = mc.score_race(entries, stats, dist, cfg, race_class=race_class, going=going)
+            runners = mc.score_race(entries, stats, dist, cfg, race_class=race_class, going=going, blend_coef="auto")
             if not runners:
                 continue
             for rank, r in enumerate(runners[:3], 1):
@@ -479,7 +479,7 @@ def page_race_lookup():
         return
 
     stats = mc.build_stats(conn, before_date=selected_date, venue="HV")
-    runners = mc.score_race(entries, stats, dist, cfg, race_class=race_class, going=going)
+    runners = mc.score_race(entries, stats, dist, cfg, race_class=race_class, going=going, blend_coef="auto")
     if not runners:
         st.warning("Could not score race.")
         conn.close()
@@ -966,7 +966,7 @@ def page_simulation():
         return
 
     stats = mc.build_stats(conn, before_date=selected_date, venue="HV")
-    runners = mc.score_race(entries, stats, dist, cfg, race_class=race_class, going=going)
+    runners = mc.score_race(entries, stats, dist, cfg, race_class=race_class, going=going, blend_coef="auto")
     if not runners:
         st.warning("Could not score race.")
         conn.close()

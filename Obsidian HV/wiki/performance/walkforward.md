@@ -7,6 +7,19 @@ Script: `walkforward_test.py`
 
 ---
 
+## Production model — market blend (validate_blend.py, 204 recent races)
+
+| Ranker | #1 win | #1 place | top-3 prec | coverage |
+|---|---|---|---|---|
+| Old factor model | 13.7% | 34.3% | 34.2% | 36.8% |
+| **Market-blend (live)** | 27.5% | ~60% | 50.3% | 59.3% |
+| Market favourite (ceiling) | 27.9% | 61.3% | 51.0% | 58.8% |
+
+The betting market supplies essentially all the signal; the factor tilt adds
+<1 pt, and the oracle top-3 precision ceiling is ~52%. See [[model/market-blend]].
+The tables below are the **pure factor model** (no market), kept as a baseline /
+regression guard (`walkforward_test.py`).
+
 ## Cumulative Results by Phase
 
 | Phase | Key Change | Top-3 Prec | #1 Win% | #1 Place% | VB ROI | VBets | Notes |

@@ -548,7 +548,8 @@ def main():
         runners = mc.score_race(
             entries, stats,
             pr["distance_m"], pr["course_config"],
-            race_class=pr.get("race_class"), going=pr.get("going")
+            race_class=pr.get("race_class"), going=pr.get("going"),
+            blend_coef="auto",
         )
 
         has_odds = any(r.get("public_odds") for r in entries)
@@ -564,7 +565,8 @@ def main():
                 runners  = mc.score_race(
                     entries, stats,
                     pr["distance_m"], pr["course_config"],
-                    race_class=pr.get("race_class"), going=pr.get("going")
+                    race_class=pr.get("race_class"), going=pr.get("going"),
+                    blend_coef="auto",
                 )
                 print("\nUpdated output with odds:")
                 print_output(pr, runners, has_odds=True)

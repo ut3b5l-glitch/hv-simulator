@@ -8,6 +8,18 @@ Tracked bugs, inactive features, data gaps, and todos. Mark resolved issues with
 
 ### jf × tf Multiplicative Leverage {#jf-tf-leverage}
 
+> **RESOLVED (Phase 5, 2026-05-30)** — the [[model/market-blend]] conditional
+> logit fits jockey+trainer jointly with the de-vigged market probability. The
+> trainer coefficient shrinks to ~0 (collinear with jockey & market) and the
+> market log-prob (coef ~1.0) dominates, so the overconfident jf x tf products
+> are gone. The inert `hf` is confirmed (logit weight 0.000). Detail below is
+> retained for history.
+
+> **Related ceiling:** do NOT chase 60% top-3 precision — the oracle bound on
+> HV's ~11.5-horse fields is ~52% even with perfect probabilities. Edge beyond
+> the market needs richer features (sectionals, ratings), not harder ranking.
+
+
 **Status:** Open — highest priority fix  
 **Impact:** Causes severe overconfidence in top jockey/trainer combinations. jf×tf products up to 7.6× found on May 13.
 

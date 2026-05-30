@@ -13,6 +13,7 @@ Master catalog of all pages. Updated on every ingest, experiment, or new page cr
 | Page | Summary |
 |---|---|
 | [[model/architecture]] | 9-factor multiplicative engine, key constants, value bet criteria, public API |
+| [[model/market-blend]] | Market-anchored conditional-logit combiner (Phase 5) — the production ranker |
 | [[model/factors/barrier]] | Barrier IV — win-rate index per (distance, course config, barrier) |
 | [[model/factors/jockey-trainer]] | Jockey and trainer factors, 60-day trailing override, floor, known leverage issue |
 | [[model/factors/horse]] | Horse exact-trip Bayesian factor, m=10 phantom runs, class-specific prior |

@@ -29,6 +29,8 @@ Public API
 """
 
 import math
+import json
+import os
 
 # ── Tunable constants ──────────────────────────────────────────────────────
 VENUE               = "HV"
@@ -54,6 +56,26 @@ DAYS_OPTIMAL_HI     = 28
 GOING_M             = 5       # Bayesian prior strength for going factor (sparser than HORSE_M)
 GOING_FLOOR         = 0.50
 GOING_CAP           = 2.00
+
+# ── Market-blend combiner ("Benter" conditional logit) ───────────────────────
+# The single largest source of predictive signal in racing is the betting
+# market itself. On Happy Valley's ~11.5-horse fields the 9-factor chain alone
+# barely beats random (walk-forward #1-place 34%, top-3 precision 34%); the
+# de-vigged market probability lifts that to ~61% / ~51%. This combiner blends
+# the market with the log-factors in a race-grouped conditional logit, fitted by
+# train_blend.py and persisted to BLEND_COEF_PATH. beta[i] pairs with
+# BLEND_FEATURES[i]; index 0 (log_mkt) is the market and is anchored near 1.0.
+BLEND_FEATURES = ["log_mkt", "log_jf", "log_tf", "log_hf", "log_ff",
+                  "log_biv", "log_cf", "log_wcf", "log_rtf", "log_df"]
+# Map each non-market feature name to its key in the augmented runner dict.
+_BLEND_FACTOR_KEY = {
+    "log_jf": "jf", "log_tf": "tf", "log_hf": "hf", "log_ff": "ff",
+    "log_biv": "b_iv", "log_cf": "cf", "log_wcf": "wcf",
+    "log_rtf": "rtf", "log_df": "df",
+}
+BLEND_COEF_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                               "blend_coef.json")
+_BLEND_CACHE = {}   # path → coef dict (or None)
 
 # Going condition grouping — maps raw DB strings to 3 buckets
 GOING_GROUP = {
@@ -581,10 +603,68 @@ def harville_probs(win_probs):
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# Market-blend combiner
+# ─────────────────────────────────────────────────────────────────────────────
+
+def load_blend_coef(path=BLEND_COEF_PATH):
+    """Load persisted conditional-logit coefficients (or None). Cached per path."""
+    if path in _BLEND_CACHE:
+        return _BLEND_CACHE[path]
+    coef = None
+    try:
+        with open(path) as f:
+            coef = json.load(f)
+    except (FileNotFoundError, ValueError, OSError):
+        coef = None
+    _BLEND_CACHE[path] = coef
+    return coef
+
+
+def _devig_market(augmented):
+    """De-vigged market win prob per horse_id. None unless EVERY runner has odds."""
+    valid = [(hid, 1.0 / rd["public_odds"])
+             for hid, rd in augmented.items()
+             if rd.get("public_odds") and rd["public_odds"] > 0]
+    if len(valid) < len(augmented) or len(valid) < 2:
+        return None
+    s = sum(v for _, v in valid)
+    return {hid: v / s for hid, v in valid}
+
+
+def _blend_win_probs(augmented, coef):
+    """
+    Conditional-logit blend of the de-vigged market probability and the log
+    fundamental factors:  P(win_i) = softmax_i( Σ_k beta_k · log feature_{i,k} ).
+    Returns {horse_id: win_prob}, or None if odds are incomplete (caller keeps
+    the pure-factor probabilities as a fallback).
+    """
+    if not coef:
+        return None
+    market = _devig_market(augmented)
+    if market is None:
+        return None
+    features, beta = coef["features"], coef["beta"]
+    utils = {}
+    for hid, rd in augmented.items():
+        u = 0.0
+        for fname, b in zip(features, beta):
+            val = market[hid] if fname == "log_mkt" else rd.get(_BLEND_FACTOR_KEY.get(fname, ""), 1.0)
+            u += b * math.log(max(val, 1e-9))
+        utils[hid] = u
+    mx = max(utils.values())
+    exps = {hid: math.exp(u - mx) for hid, u in utils.items()}
+    tot = sum(exps.values())
+    if tot <= 0:
+        return None
+    return {hid: e / tot for hid, e in exps.items()}
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Full race scorer — the main API call
 # ─────────────────────────────────────────────────────────────────────────────
 
-def score_race(entries, stats, dist, cfg, race_class=None, going=None):
+def score_race(entries, stats, dist, cfg, race_class=None, going=None,
+               blend_coef=None):
     """
     Score all runners and return Harville probabilities, sorted by show% (top-3 order).
 
@@ -659,6 +739,17 @@ def score_race(entries, stats, dist, cfg, race_class=None, going=None):
         return []
 
     win_probs = {hid: s / total for hid, s in raw_scores.items()}
+
+    # ── Market blend (opt-in) ────────────────────────────────────────────────
+    # blend_coef="auto" loads the persisted coefficients; a dict uses it
+    # directly; None keeps the pure factor model (default — keeps backtests
+    # honest). Falls back to factor probs when any runner lacks odds.
+    if blend_coef is not None:
+        coef = load_blend_coef() if blend_coef == "auto" else blend_coef
+        blended = _blend_win_probs(augmented, coef)
+        if blended is not None:
+            win_probs = blended
+
     h_probs   = harville_probs(win_probs)
 
     # Build result list sorted by show_pct so we can assign ranks

@@ -93,3 +93,13 @@ Factors 8 (class) and 9 (weight-change) behave **opposite to Western racing conv
 Both signals reflect the same underlying momentum: the horse's official rating went up. Class factor captures class-threshold crossings; weight-change factor captures within-class rating micro-adjustments.
 
 See [[factors/class]] and [[factors/weight-change]] for calibration details.
+
+
+## Market blend (Phase 5)
+
+`score_race` accepts `blend_coef`. When coefficients are supplied (live paths pass
+`"auto"`, loading `blend_coef.json`) and every runner has odds, the factor-only
+win probabilities are replaced by a race-grouped conditional-logit blend of the
+de-vigged market probability and the log-factors, then fed to Harville as usual.
+The market dominates (coef ≈1.0); jockey and class add a small tilt; everything
+else ≈0. This is the production ranking. Full detail: [[market-blend]].

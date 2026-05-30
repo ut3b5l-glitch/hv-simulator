@@ -226,7 +226,7 @@ def simulate(race_id, run_mc=False, n_sims=10_000):
     # Build stats up to (but not including) race day — strict pre-race only
     stats = mc.build_stats(conn, before_date=race_date, venue=venue)
 
-    runners = mc.score_race(entries, stats, dist, cfg, race_class=race_class, going=going)
+    runners = mc.score_race(entries, stats, dist, cfg, race_class=race_class, going=going, blend_coef="auto")
     if not runners:
         print("Could not score race (no valid entries).")
         conn.close()

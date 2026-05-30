@@ -11,13 +11,30 @@ A private Hong Kong horse racing prediction engine for **Happy Valley (HV) night
 
 ## Current Status
 
-**Phases complete:** A, B, 1, 2, 3, 4A, 4B, 4C, 4D  
+**Phases complete:** A, B, 1, 2, 3, 4A, 4B, 4C, 4D, **5 (market blend — live)**  
 **In progress:** Phase 4E (integration & final validation)  
 **Next major phase:** Phase 5 (ML) — not before November 2026
 
 ---
 
-## Walk-Forward Performance (Phase 4D, 177 races)
+## Performance — Market Blend (Phase 5, live)
+
+The model now **anchors to the betting market** (see [[model/market-blend]]) —
+the single biggest accuracy lift in the project. Walk-forward over the 204 most
+recent races (leak-free, train-before-each-meeting, `validate_blend.py`):
+
+| Ranker | #1 win | #1 place (top-3) | top-3 precision | coverage |
+|---|---|---|---|---|
+| Old factor model | 13.7% | 34.3% | 34.2% | 36.8% |
+| **Market-blend (live)** | 27.5% | **~60%** | 50.3% | 59.3% |
+| Market favourite (ceiling) | 27.9% | 61.3% | 51.0% | 58.8% |
+
+- "Top pick lands top-3 >=60%": **met** (~60%; market ceiling 61%).
+- "Top-3 precision >=60%": **above the ~52% mathematical ceiling** for HV's
+  ~11.5-horse fields — unreachable even with perfect probabilities. See
+  [[model/market-blend]].
+
+## Walk-Forward Performance — pure factor baseline (Phase 4D, 177 races)
 
 | Metric | Phase 4D | Pre-4A Baseline | Delta |
 |---|---|---|---|
@@ -68,7 +85,7 @@ See [[workflow/operations]] for full commands.
 
 ## Critical Known Issues
 
-1. **jf×tf multiplicative leverage** — jockey and trainer factors are correlated but treated as independent. Products up to 7.6× cause overconfidence in top picks. Priority fix. See [[issues/known-issues]].
+1. **jf x tf leverage** — **RESOLVED (Phase 5)**: the market-blend logit fits jockey+trainer jointly with the market, driving the trainer coefficient to ~0 so the correlated pair is no longer double-counted. See [[issues/known-issues]] and [[model/market-blend]].
 2. **Going factor inactive** — re-enable after 2+ full seasons of data.
 3. **racing.hkjc.com Playwright blocked** — wednesday_agent auto-falls back to GraphQL via bet.hkjc.com.
 
