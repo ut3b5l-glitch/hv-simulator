@@ -1,31 +1,35 @@
-import { getMeetingSummaries, getMeeting, type Meeting } from "../lib/data";
-import { Simulator } from "../components/Simulator";
-import { BottomNav } from "../components/BottomNav";
+import { getMeetingsIndex, getMeeting } from "@/lib/data";
+import type { Meeting } from "@/lib/types";
+import Simulator from "@/components/Simulator";
 
-export const dynamic = "force-static";
+export default async function SimulatorPage() {
+  const index = await getMeetingsIndex().catch(() => null);
+  if (!index || index.meetings.length === 0) {
+    return (
+      <div className="flex min-h-[60vh] flex-col items-center justify-center text-center">
+        <div className="text-2xl font-semibold">No meetings yet</div>
+        <div className="mt-2 max-w-xs text-sm text-white/60">
+          Run <code className="rounded bg-white/8 px-1.5 py-0.5">python export_data.py</code> to publish a snapshot.
+        </div>
+      </div>
+    );
+  }
 
-export default function SimulatorPage() {
-  const summaries = getMeetingSummaries();
-  const meetings = summaries
-    .map((s) => getMeeting(s.meeting_date))
-    .filter(Boolean) as Meeting[];
+  const meetings = (
+    await Promise.all(index.meetings.map((m) => getMeeting(m.date).catch(() => null)))
+  ).filter(Boolean) as Meeting[];
 
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-100 pb-24">
-      <header className="px-5 pt-12 pb-5">
-        <h1 className="text-3xl font-bold tracking-tight">Simulator</h1>
-        <p className="text-neutral-400 text-sm mt-1">
-          Monte Carlo race outcomes from the model&apos;s probabilities
-        </p>
+    <div className="space-y-5 pb-8">
+      <header>
+        <div className="text-[11px] uppercase tracking-[0.16em] text-white/55">Happy Valley</div>
+        <h1 className="mt-0.5 text-[28px] font-semibold leading-tight">Race Simulator</h1>
+        <div className="mt-0.5 text-xs text-white/55">
+          Monte Carlo outcomes from the model&apos;s probabilities
+        </div>
       </header>
 
-      {meetings.length ? (
-        <Simulator meetings={meetings} />
-      ) : (
-        <div className="px-5 text-neutral-400">No meeting data yet.</div>
-      )}
-
-      <BottomNav />
-    </main>
+      <Simulator meetings={meetings} />
+    </div>
   );
 }
