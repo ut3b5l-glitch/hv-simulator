@@ -106,8 +106,9 @@ export default function Simulator({ meetings }: { meetings: Meeting[] }) {
     return base.sort((a, b) => result.top3[b.i] - result.top3[a.i]);
   }, [result, runners]);
 
-  const actualName = (pos: number) =>
-    race?.finishers?.find((f) => f.position === pos)?.horse_name ?? race?.actual_top3?.[pos - 1];
+  // actual_top3 is the reliable ordered source [1st, 2nd, 3rd]; the finishers
+  // array's `position` field is not the true finishing place (and can dupe).
+  const actualName = (pos: number) => race?.actual_top3?.[pos - 1];
 
   return (
     <div className="space-y-4">
