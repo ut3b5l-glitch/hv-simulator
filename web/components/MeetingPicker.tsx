@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import type { MeetingSummary } from "@/lib/types";
 import { formatDate } from "@/lib/format";
+import { ChevronIcon } from "./Icons";
 
 export default function MeetingPicker({
   current,
@@ -17,27 +18,34 @@ export default function MeetingPicker({
     <div className="relative">
       <button
         onClick={() => setOpen((o) => !o)}
-        className="glass flex items-center gap-2 rounded-2xl px-3 py-1.5 text-sm font-medium text-white/85"
+        className="glass tap flex items-center gap-1.5 rounded-pill px-3.5 py-2 text-callout font-medium text-ink-50"
       >
         {formatDate(current)}
-        <span className="text-[10px] text-white/55">▼</span>
+        <ChevronIcon
+          className={`h-3.5 w-3.5 text-ink-80 transition-transform duration-300 ease-out-expo ${
+            open ? "rotate-180" : ""
+          }`}
+        />
       </button>
       {open && (
-        <div className="glass-strong absolute right-0 z-40 mt-2 w-56 overflow-hidden rounded-2xl shadow-glass">
-          {meetings.map((m) => (
-            <Link
-              key={m.date}
-              href={`/?date=${m.date}`}
-              onClick={() => setOpen(false)}
-              className={`flex items-center justify-between px-4 py-3 text-sm transition-colors hover:bg-white/8 ${
-                m.date === current ? "bg-white/8 text-white" : "text-white/75"
-              }`}
-            >
-              <span>{formatDate(m.date)}</span>
-              <span className="text-[11px] text-white/50">{m.race_count} races</span>
-            </Link>
-          ))}
-        </div>
+        <>
+          <div className="fixed inset-0 z-30" onClick={() => setOpen(false)} />
+          <div className="glass-strong animate-expand-down absolute right-0 z-40 mt-2 w-60 overflow-hidden rounded-card shadow-glass-3">
+            {meetings.map((m) => (
+              <Link
+                key={m.date}
+                href={`/?date=${m.date}`}
+                onClick={() => setOpen(false)}
+                className={`flex items-center justify-between px-4 py-3 text-callout transition-colors ${
+                  m.date === current ? "bg-white/10 text-white" : "text-ink-60 hover:bg-white/5"
+                }`}
+              >
+                <span>{formatDate(m.date)}</span>
+                <span className="num text-micro text-ink-80">{m.race_count} races</span>
+              </Link>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );

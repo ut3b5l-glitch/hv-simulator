@@ -1,7 +1,9 @@
-import { getMeeting, getMeetingsIndex, getLatestMeeting } from "@/lib/data";
+import { getMeeting, getMeetingsIndex } from "@/lib/data";
 import { formatDate } from "@/lib/format";
 import RaceView from "@/components/RaceView";
 import MeetingPicker from "@/components/MeetingPicker";
+import PageHeader from "@/components/PageHeader";
+import EmptyState from "@/components/EmptyState";
 
 export default async function Page({
   searchParams,
@@ -21,34 +23,18 @@ export default async function Page({
 
   return (
     <div className="space-y-5 pb-8">
-      <header className="flex items-end justify-between">
-        <div>
-          <div className="text-[11px] uppercase tracking-[0.16em] text-white/55">
-            Happy Valley
-          </div>
-          <h1 className="mt-0.5 text-[28px] font-semibold leading-tight">
-            {formatDate(meeting.meeting_date)}
-          </h1>
-          <div className="mt-0.5 text-xs text-white/55">
+      <PageHeader
+        eyebrow="Happy Valley"
+        title={formatDate(meeting.meeting_date)}
+        subtitle={
+          <span className="num">
             {meeting.races.length} races · {settled ? "settled" : "live card"}
-          </div>
-        </div>
-        <MeetingPicker current={meeting.meeting_date} meetings={index.meetings} />
-      </header>
+          </span>
+        }
+        right={<MeetingPicker current={meeting.meeting_date} meetings={index.meetings} />}
+      />
 
       <RaceView meeting={meeting} />
-    </div>
-  );
-}
-
-function EmptyState() {
-  return (
-    <div className="flex min-h-[60vh] flex-col items-center justify-center text-center">
-      <div className="text-2xl font-semibold">No meetings yet</div>
-      <div className="mt-2 max-w-xs text-sm text-white/60">
-        Run <code className="rounded bg-white/8 px-1.5 py-0.5">python export_data.py</code> to
-        publish a snapshot.
-      </div>
     </div>
   );
 }

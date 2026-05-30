@@ -38,6 +38,21 @@ Vercel auto-deploys in ~30s.
 
 Glassmorphic / Apple-native: frosted-blur cards on a deep navy gradient with gold/green/red accents. Tabular-numeric mono for numbers. Bottom nav as a floating glass pill. Safe-area aware (notch + home indicator).
 
+### Visual Uplift — Phase 2 design system (2026-05-30)
+
+A full design-system pass turned the "subpar" first cut into a cohesive racing-analytics terminal. The data visualizations are the hero; typography stays on the native SF stack by intent (iOS-installed PWA).
+
+- **Type scale** — semantic Tailwind `fontSize` tokens (`display`/`title`/`headline`/`body`/`callout`/`caption`/`micro`/`micro2`) with paired line-height + tracking, plus an `.eyebrow` utility. No more hand-tuned `text-[11px]`. `tailwind.config.ts` changes need a dev-server restart to recompile.
+- **Glass system** — three depth levels (`.glass-tile` / `.glass` / `.glass-strong`) + gold-tinted `.glass-gold` for value picks; layered shadows (`shadow-glass-1/2/3`) and accent glows. Subtle SVG-noise grain overlay on `body::before`.
+- **Accent tokens** — `accent.{gold,green,red,blue,purple,indigo,cyan}`; gold = model pick/value, green = win/positive, blue = place/market, indigo/violet = simulation.
+- **Probability visualizations** — `ProbBar` (reusable gradient bar, left-anchored reveal), `WPSMeter` (nested win⊆place⊆show stacked bar), comparative win bars scaled to the field leader on every runner card, and `FactorBars` rebuilt as **diverging bars around ×1.0 neutral** (green right = tailwind, red left = headwind) — far truer to the multiplicative factors than the old left-anchored bars.
+- **Finishing-position distribution chart** (`FinishDistribution`) — the MC now samples the *full* finishing order (not just top-3), yielding a per-runner position distribution. Rendered as a heatmap matrix (runners × positions, intensity = likelihood) plus a tap-to-select per-runner histogram with expected (mean) finish. Favourites cascade left, longshots concentrate right.
+- **Motion** — staggered `rise` entrances (`.stagger` + `--i`), `bar-fill` grow, `expand-down` disclosure, chevron rotate, `.tap` press-scale; all gated by `prefers-reduced-motion`.
+- **Nav** — emoji replaced with monoline SVG icons (`Icons.tsx`); active tab = gold icon + highlighted pill.
+- **Shared primitives** — `PageHeader`, `EmptyState`, `GlassCard` (level/accent props) unify the four pages.
+
+New component files: `ProbBar`, `WPSMeter`, `FinishDistribution`, `Icons`, `PageHeader`, `EmptyState`. `next build` passes (7/7 pages). Phase 3 (parked): loading/empty states, animated simulate, shareable race, PWA niceties.
+
 ## Key files
 
 | File | Role |

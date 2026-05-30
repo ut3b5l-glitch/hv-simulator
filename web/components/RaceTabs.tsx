@@ -16,17 +16,33 @@ export default function RaceTabs({
       <div className="flex gap-2 pb-1">
         {races.map((race, i) => {
           const active = i === activeIdx;
+          const settled = race.has_results;
           return (
             <button
               key={race.race_id}
               onClick={() => onChange(i)}
-              className={`shrink-0 rounded-2xl px-4 py-2.5 text-sm font-semibold transition-all ${
+              className={`tap relative flex shrink-0 flex-col items-center gap-1 rounded-tile px-3.5 py-2 transition-all duration-300 ease-out-expo ${
                 active
-                  ? "glass-strong text-accent-gold shadow-glass ring-1 ring-accent-gold/40"
-                  : "glass text-white/70"
+                  ? "glass-strong text-white ring-1 ring-accent-gold/45 shadow-glow-gold"
+                  : "glass text-ink-60"
               }`}
             >
-              R{race.race_number}
+              <span className="num text-callout font-bold leading-none">
+                R{race.race_number}
+              </span>
+              {settled ? (
+                <span
+                  className={`h-1 w-1 rounded-full ${
+                    race.top3_hits >= 2
+                      ? "bg-accent-green"
+                      : race.top3_hits === 1
+                        ? "bg-accent-gold"
+                        : "bg-accent-red/80"
+                  }`}
+                />
+              ) : (
+                <span className="h-1 w-1 rounded-full bg-white/20" />
+              )}
             </button>
           );
         })}

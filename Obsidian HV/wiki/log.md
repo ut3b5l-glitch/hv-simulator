@@ -73,3 +73,5 @@ applied via `score_race(blend_coef="auto")`). Walk-forward (204 races,
 oracle top-3 precision ceiling ~52% (60% is physically unreachable on HV fields).
 jf×tf overconfidence and inert hf both resolved by the joint fit. Live in
 export_data/dashboard/phase6_importer/race_simulator. New page [[market-blend]].
+
+## [2026-05-30] experiment | Visual Uplift Phase 2 — PWA design-system pass (type scale, layered glass + accent tokens, ProbBar/WPSMeter probability viz, diverging factor bars, finishing-position distribution heatmap+histogram in simulator, SVG nav icons, motion). next build 7/7 green. See [[web/pwa]].

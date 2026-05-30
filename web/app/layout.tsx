@@ -29,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className="min-h-screen safe-bottom">
-        <main className="mx-auto w-full max-w-screen-sm px-4 pt-[max(env(safe-area-inset-top),16px)]">
+        <main className="relative z-10 mx-auto w-full max-w-screen-sm px-4 pt-[max(env(safe-area-inset-top),18px)]">
           {children}
         </main>
         <BottomNav />
