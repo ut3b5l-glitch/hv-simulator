@@ -107,7 +107,7 @@ export default function Simulator({ meetings }: { meetings: Meeting[] }) {
   }, [result, runners]);
 
   const actualName = (pos: number) =>
-    race?.results?.find((f) => f.position === pos)?.horse_name ?? race?.actual_top3?.[pos - 1];
+    race?.finishers?.find((f) => f.position === pos)?.horse_name ?? race?.actual_top3?.[pos - 1];
 
   return (
     <div className="space-y-4">
@@ -223,7 +223,7 @@ export default function Simulator({ meetings }: { meetings: Meeting[] }) {
             {result.trifecta.map((t, k) => <Combo key={k} pct={t.p} names={[runners[t.a]?.horse_name, runners[t.b]?.horse_name, runners[t.c]?.horse_name]} />)}
           </Exotic>
 
-          {(race?.results?.length || race?.actual_top3?.length) ? (
+          {race?.has_results ? (
             <div className="rounded-2xl border border-amber-300/25 bg-amber-300/[0.07] p-4">
               <div className="text-[11px] font-semibold uppercase tracking-wider text-amber-200/80">Actual result</div>
               <div className="mt-1.5 space-x-3 text-sm">
