@@ -75,3 +75,5 @@ jf×tf overconfidence and inert hf both resolved by the joint fit. Live in
 export_data/dashboard/phase6_importer/race_simulator. New page [[market-blend]].
 
 ## [2026-05-30] experiment | Visual Uplift Phase 2 — PWA design-system pass (type scale, layered glass + accent tokens, ProbBar/WPSMeter probability viz, diverging factor bars, finishing-position distribution heatmap+histogram in simulator, SVG nav icons, motion). next build 7/7 green. See [[web/pwa]].
+
+## [2026-05-31] build | PWA Phase 3 — Race Date dropdown portal fix (backdrop-filter z-order), loading skeletons + empty states, incremental rAF Monte Carlo (live convergence + draw progress), pull-to-refresh, offline service worker (prod-only), full light/dark toggle (CSS-var tokens + `light:` variant, no-flash). next build 7/7 green. Committed fd13fc7, pushed, vercel deploy --prod → hv-simulator.vercel.app (verified 200). See [[web/pwa]].

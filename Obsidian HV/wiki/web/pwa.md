@@ -51,7 +51,21 @@ A full design-system pass turned the "subpar" first cut into a cohesive racing-a
 - **Nav** — emoji replaced with monoline SVG icons (`Icons.tsx`); active tab = gold icon + highlighted pill.
 - **Shared primitives** — `PageHeader`, `EmptyState`, `GlassCard` (level/accent props) unify the four pages.
 
-New component files: `ProbBar`, `WPSMeter`, `FinishDistribution`, `Icons`, `PageHeader`, `EmptyState`. `next build` passes (7/7 pages). Phase 3 (parked): loading/empty states, animated simulate, shareable race, PWA niceties.
+New component files: `ProbBar`, `WPSMeter`, `FinishDistribution`, `Icons`, `PageHeader`, `EmptyState`. `next build` passes (7/7 pages).
+
+### Phase 3 — polish & theming (2026-05-31, shipped)
+
+Shipped + deployed (commit `fd13fc7`). Covers the parked polish list (sharing was deliberately dropped this round).
+
+- **Race Date dropdown fix** — the picker menu lost the z-order fight to the glass R-tabs: their `backdrop-filter` promotes them to composited layers that paint over any higher `z-index` ancestor inside `<main>` (WebKit/Blink bug). Fix: the menu is now **portalled to `<body>`** (`createPortal`, fixed-positioned from the trigger) — the same level `BottomNav` lives at. Inline `z-50` wrappers did **not** work; portalling is the reliable fix.
+- **Loading & empty states** — shimmer `Skeleton` primitive (`.skeleton` in `globals.css`) + per-route `loading.tsx` for all four pages; `EmptyState` now used on Performance/Profiles too.
+- **Animated Monte Carlo** (`Simulator.tsx`) — the sim runs **incrementally in `requestAnimationFrame` chunks** so win/top-3 probabilities visibly converge, with a live "N / total draws" progress bar. Row order frozen by model win% (no reshuffle); `FinishDistribution` gained an `order` prop to stay stable. `prefers-reduced-motion` → instant result.
+- **Pull-to-refresh** (`PullToRefresh.tsx`) — top-drag gesture → `router.refresh()` for the installed PWA (no browser chrome of its own). Spring-y armed indicator; passive listeners; `overscroll-behavior-y: contain`.
+- **Offline service worker** (`public/sw.js` + `ServiceWorkerRegister.tsx`) — network-first for navigations, cache-first for assets. **Registration is production-only** (a SW in `next dev` caches stale HMR chunks) → only verifiable on the deployed site.
+- **Light / dark toggle** (`ThemeToggle.tsx`) — `white`/`ink`/`accent` routed through CSS variables (`--fg`, `--c-*`) so the whole UI flips centrally; glass surfaces themed per mode; a custom `light:` Tailwind variant (plugin) for the few white-on-colour exceptions. Persisted to `localStorage`, applied pre-paint by `public/theme-init.js`, `<html suppressHydrationWarning>` to avoid the hydration mismatch. Toggle sits in `PageHeader` (top-right, every page). **Default stays dark** (night meetings); status-bar/splash colours unchanged.
+- **Gotcha:** editing `tailwind.config.ts` (the new var tokens + `light:` variant plugin) needs a dev-server **restart** to recompile.
+
+Parked / not done: a launch (splash) screen — decided against an artificial timed one; a *native* iOS launch screen remains an option. App icon kept navy/gold (an HKJC-red recolor was prototyped then reverted).
 
 ## Key files
 
