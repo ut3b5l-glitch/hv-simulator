@@ -4,11 +4,17 @@ import StatTile from "@/components/StatTile";
 import GlassCard from "@/components/GlassCard";
 import PageHeader from "@/components/PageHeader";
 import ProbBar from "@/components/ProbBar";
+import EmptyState from "@/components/EmptyState";
 
 export default async function PerformancePage() {
   const perf = await getPerformance();
   if (!perf) {
-    return <div className="pt-10 text-center text-ink-60">No performance data yet.</div>;
+    return (
+      <EmptyState
+        title="No performance data yet"
+        hint="Settle a meeting, then run python export_data.py to publish stats."
+      />
+    );
   }
 
   const roiTone =

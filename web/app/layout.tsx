@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import BottomNav from "@/components/BottomNav";
+import PullToRefresh from "@/components/PullToRefresh";
+import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 
 export const metadata: Metadata = {
   title: "HV Simulator",
@@ -27,12 +29,15 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <body className="min-h-screen safe-bottom">
+        {/* Render-blocking: sets the saved theme before first paint (no flash). */}
+        <script src="/theme-init.js" />
         <main className="relative z-10 mx-auto w-full max-w-screen-sm px-4 pt-[max(env(safe-area-inset-top),18px)]">
-          {children}
+          <PullToRefresh>{children}</PullToRefresh>
         </main>
         <BottomNav />
+        <ServiceWorkerRegister />
       </body>
     </html>
   );

@@ -13,19 +13,26 @@ import type { Runner } from "@/lib/types";
 export default function FinishDistribution({
   runners,
   posDist,
+  order,
 }: {
   runners: Runner[];
   posDist: number[][];
+  /** Frozen display order (runner indices). Keeps rows stable while a live
+   *  simulation converges; without it rows sort by P(1st) and reshuffle. */
+  order?: number[];
 }) {
   const n = runners.length;
 
-  // Rows sorted by win probability (P of 1st) — favourites on top.
+  // Rows in the frozen order if supplied, else sorted by P(1st) — favourites top.
   const rows = useMemo(
     () =>
-      runners
-        .map((r, i) => ({ r, i }))
-        .sort((a, b) => (posDist[b.i]?.[0] ?? 0) - (posDist[a.i]?.[0] ?? 0)),
-    [runners, posDist],
+      (order ?? runners.map((_, i) => i))
+        .map((i) => ({ r: runners[i], i }))
+        .filter((x): x is { r: Runner; i: number } => Boolean(x.r))
+        .sort((a, b) =>
+          order ? 0 : (posDist[b.i]?.[0] ?? 0) - (posDist[a.i]?.[0] ?? 0),
+        ),
+    [runners, posDist, order],
   );
 
   const [sel, setSel] = useState(rows[0]?.i ?? 0);

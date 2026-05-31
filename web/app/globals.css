@@ -2,15 +2,79 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Theme tokens ───────────────────────────────────────────────────
+   `--fg` is the foreground channel (white in dark, near-black in light) —
+   Tailwind's `white`/`ink` resolve to it, so every white-based class flips.
+   Glass surfaces, accents, and the page gradient are themed explicitly. */
 :root {
   color-scheme: dark;
-  /* Semantic accent channels reused by gradients / glows in JS-free CSS. */
-  --gold: 245 201 113;
-  --green: 61 220 151;
-  --red: 251 113 133;
-  --blue: 95 168 255;
-  --indigo: 129 140 248;
   --gutter: 1rem;
+
+  --fg: 255 255 255;
+
+  --c-gold: 245 201 113;
+  --c-green: 61 220 151;
+  --c-red: 251 113 133;
+  --c-blue: 95 168 255;
+  --c-purple: 167 139 250;
+  --c-indigo: 129 140 248;
+  --c-cyan: 52 214 224;
+
+  --glass-bg: rgba(255, 255, 255, 0.055);
+  --glass-bg-top: rgba(255, 255, 255, 0.035);
+  --glass-strong-bg: rgba(255, 255, 255, 0.1);
+  --glass-strong-top: rgba(255, 255, 255, 0.06);
+  --glass-tile-bg: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.11);
+  --glass-border-strong: rgba(255, 255, 255, 0.18);
+  --glass-border-tile: rgba(255, 255, 255, 0.07);
+  --glass-highlight: rgba(255, 255, 255, 0.08);
+  --glass-highlight-strong: rgba(255, 255, 255, 0.14);
+  --glass-shadow: rgba(0, 0, 0, 0.45);
+  --glass-shadow-strong: rgba(0, 0, 0, 0.6);
+
+  --grain-opacity: 0.025;
+  --page-grad:
+    radial-gradient(1100px 760px at 6% -12%, rgba(129, 140, 248, 0.2), transparent 58%),
+    radial-gradient(900px 680px at 112% 6%, rgba(95, 168, 255, 0.15), transparent 55%),
+    radial-gradient(1000px 900px at 50% 118%, rgba(245, 201, 113, 0.08), transparent 60%),
+    linear-gradient(180deg, #0b0c16 0%, #07080f 52%, #05060b 100%);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --fg: 18 23 33;
+
+  /* Deeper accents so gold/green/red stay legible on frosted white. */
+  --c-gold: 161 110 12;
+  --c-green: 12 140 84;
+  --c-red: 214 45 74;
+  --c-blue: 30 104 214;
+  --c-purple: 109 76 240;
+  --c-indigo: 74 82 214;
+  --c-cyan: 11 132 144;
+
+  /* Frosted-white glass on a soft light gradient. */
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-bg-top: rgba(255, 255, 255, 0.55);
+  --glass-strong-bg: rgba(255, 255, 255, 0.82);
+  --glass-strong-top: rgba(255, 255, 255, 0.62);
+  --glass-tile-bg: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(15, 23, 42, 0.1);
+  --glass-border-strong: rgba(15, 23, 42, 0.14);
+  --glass-border-tile: rgba(15, 23, 42, 0.07);
+  --glass-highlight: rgba(255, 255, 255, 0.7);
+  --glass-highlight-strong: rgba(255, 255, 255, 0.9);
+  --glass-shadow: rgba(15, 23, 42, 0.1);
+  --glass-shadow-strong: rgba(15, 23, 42, 0.16);
+
+  --grain-opacity: 0.02;
+  --page-grad:
+    radial-gradient(1100px 760px at 6% -12%, rgba(129, 140, 248, 0.22), transparent 58%),
+    radial-gradient(900px 680px at 112% 6%, rgba(95, 168, 255, 0.2), transparent 55%),
+    radial-gradient(1000px 900px at 50% 118%, rgba(245, 201, 113, 0.16), transparent 60%),
+    linear-gradient(180deg, #eef1f7 0%, #e9edf4 52%, #e6eaf2 100%);
 }
 
 html,
@@ -19,16 +83,14 @@ body {
 }
 
 body {
-  background:
-    radial-gradient(1100px 760px at 6% -12%, rgba(129, 140, 248, 0.20), transparent 58%),
-    radial-gradient(900px 680px at 112% 6%, rgba(95, 168, 255, 0.15), transparent 55%),
-    radial-gradient(1000px 900px at 50% 118%, rgba(245, 201, 113, 0.08), transparent 60%),
-    linear-gradient(180deg, #0b0c16 0%, #07080f 52%, #05060b 100%);
+  background: var(--page-grad);
   background-attachment: fixed;
-  color: rgba(255, 255, 255, 0.94);
+  color: rgb(var(--fg) / 0.94);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   letter-spacing: -0.01em;
+  /* Keep overscroll local so the custom pull-to-refresh reads cleanly. */
+  overscroll-behavior-y: contain;
 }
 
 /* Fine grain overlay — adds tooth to the flat gradient so glass reads as glass.
@@ -39,7 +101,7 @@ body::before {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.025;
+  opacity: var(--grain-opacity);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -53,47 +115,47 @@ body::before {
    level 2 (.glass): default surface card
    level 3 (.glass-strong): raised — nav, active chips, popovers      */
 .glass-tile {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  background: var(--glass-tile-bg);
+  border: 1px solid var(--glass-border-tile);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
 }
 
 .glass {
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0)),
-    rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(255, 255, 255, 0.11);
+    linear-gradient(180deg, var(--glass-bg-top), rgba(255, 255, 255, 0)),
+    var(--glass-bg);
+  border: 1px solid var(--glass-border);
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
   box-shadow:
-    0 8px 30px -6px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 8px 30px -6px var(--glass-shadow),
+    inset 0 1px 0 var(--glass-highlight);
 }
 
 .glass-strong {
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01)),
-    rgba(255, 255, 255, 0.10);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+    linear-gradient(180deg, var(--glass-strong-top), rgba(255, 255, 255, 0.01)),
+    var(--glass-strong-bg);
+  border: 1px solid var(--glass-border-strong);
   backdrop-filter: blur(30px) saturate(170%);
   -webkit-backdrop-filter: blur(30px) saturate(170%);
   box-shadow:
-    0 18px 50px -10px rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    0 18px 50px -10px var(--glass-shadow-strong),
+    inset 0 1px 0 var(--glass-highlight-strong);
 }
 
 /* Accent-tinted glass — for value picks / highlighted surfaces. */
 .glass-gold {
   background:
-    linear-gradient(180deg, rgba(var(--gold), 0.10), rgba(var(--gold), 0.02)),
-    rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(var(--gold), 0.28);
+    linear-gradient(180deg, rgb(var(--c-gold) / 0.1), rgb(var(--c-gold) / 0.02)),
+    var(--glass-bg);
+  border: 1px solid rgb(var(--c-gold) / 0.28);
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
   box-shadow:
-    0 8px 30px -8px rgba(0, 0, 0, 0.45),
-    0 0 0 1px rgba(var(--gold), 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 8px 30px -8px var(--glass-shadow),
+    0 0 0 1px rgb(var(--c-gold) / 0.06),
+    inset 0 1px 0 var(--glass-highlight);
 }
 
 .num {
@@ -107,13 +169,13 @@ body::before {
   line-height: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgb(var(--fg) / 0.5);
   font-weight: 600;
 }
 
 /* Hairline divider that survives retina rounding. */
 .hairline {
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: rgb(var(--fg) / 0.1);
 }
 
 /* Tap feedback for interactive surfaces. */
@@ -131,13 +193,39 @@ body::before {
   animation: grow-x 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* Skeleton shimmer for loading states — a faint sheen sweeps across a
+   translucent block. The reduced-motion guard below freezes the sweep. */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: rgb(var(--fg) / 0.06);
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(var(--fg) / 0.08),
+    transparent
+  );
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 /* Subtle scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgb(var(--fg) / 0.12);
   border-radius: 999px;
 }
 

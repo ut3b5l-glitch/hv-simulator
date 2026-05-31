@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
@@ -42,27 +43,34 @@ const config: Config = {
         eyebrow: "0.16em",
       },
       colors: {
+        // `--fg` is the foreground channel: white in dark mode, near-black in
+        // light. Routing `white` + `ink` through it flips every white-based
+        // text/overlay/border (bg-white/10, text-ink-70, ring-white/15, …)
+        // between themes with no per-callsite changes.
+        white: "rgb(var(--fg) / <alpha-value>)",
         ink: {
-          50: "rgba(255,255,255,0.94)",
-          60: "rgba(255,255,255,0.72)",
-          70: "rgba(255,255,255,0.56)",
-          80: "rgba(255,255,255,0.40)",
-          90: "rgba(255,255,255,0.24)",
+          50: "rgb(var(--fg) / 0.94)",
+          60: "rgb(var(--fg) / 0.72)",
+          70: "rgb(var(--fg) / 0.56)",
+          80: "rgb(var(--fg) / 0.40)",
+          90: "rgb(var(--fg) / 0.24)",
         },
         glass: {
-          surface: "rgba(255,255,255,0.055)",
-          surfaceStrong: "rgba(255,255,255,0.10)",
-          border: "rgba(255,255,255,0.11)",
-          borderStrong: "rgba(255,255,255,0.20)",
+          surface: "rgb(var(--fg) / 0.055)",
+          surfaceStrong: "rgb(var(--fg) / 0.10)",
+          border: "rgb(var(--fg) / 0.11)",
+          borderStrong: "rgb(var(--fg) / 0.20)",
         },
+        // Accents are themed too — light mode uses deeper, higher-contrast
+        // values so gold/green/red stay legible on frosted-white surfaces.
         accent: {
-          gold: "#f5c971",
-          green: "#3ddc97",
-          red: "#fb7185",
-          blue: "#5fa8ff",
-          purple: "#a78bfa",
-          indigo: "#818cf8",
-          cyan: "#34d6e0",
+          gold: "rgb(var(--c-gold) / <alpha-value>)",
+          green: "rgb(var(--c-green) / <alpha-value>)",
+          red: "rgb(var(--c-red) / <alpha-value>)",
+          blue: "rgb(var(--c-blue) / <alpha-value>)",
+          purple: "rgb(var(--c-purple) / <alpha-value>)",
+          indigo: "rgb(var(--c-indigo) / <alpha-value>)",
+          cyan: "rgb(var(--c-cyan) / <alpha-value>)",
         },
       },
       backdropBlur: { xs: "8px" },
@@ -128,7 +136,13 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    // `light:` variant — targeted overrides for the few spots where a white
+    // value sits on a coloured surface and must not flip (solid active chips).
+    plugin(({ addVariant }) => {
+      addVariant("light", '[data-theme="light"] &');
+    }),
+  ],
 };
 
 export default config;

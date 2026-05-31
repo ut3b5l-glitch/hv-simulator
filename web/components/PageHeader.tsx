@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 export default function PageHeader({
   eyebrow,
@@ -18,7 +19,10 @@ export default function PageHeader({
         <h1 className="mt-1 text-display font-semibold leading-none">{title}</h1>
         {subtitle && <div className="mt-2 text-caption text-ink-70">{subtitle}</div>}
       </div>
-      {right && <div className="shrink-0 pt-1">{right}</div>}
+      <div className="flex shrink-0 items-center gap-2 pt-1">
+        {right}
+        <ThemeToggle />
+      </div>
     </header>
   );
 }
