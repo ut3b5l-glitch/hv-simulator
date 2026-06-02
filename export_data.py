@@ -263,6 +263,22 @@ def build_profiles(conn) -> dict:
     }
 
 
+def compute_model_quality() -> dict | None:
+    """Leak-free walk-forward probability-quality + calibration for the blend.
+
+    Backtest-derived trust stats (Brier / log-loss / reliability) for the
+    Performance page. Heavy-ish (rebuilds stats per date) and depends on numpy,
+    so it is isolated here: any failure logs a warning and returns None, leaving
+    the rest of the snapshot intact.
+    """
+    try:
+        import validate_blend
+        return validate_blend.evaluate(verbose=False)
+    except Exception as exc:  # noqa: BLE001 — never let this break the export
+        print(f"  · model_quality skipped: {type(exc).__name__}: {exc}")
+        return None
+
+
 def build_performance(meeting_summaries: list[dict]) -> dict:
     settled = [m for m in meeting_summaries if m["has_results"]]
     total_top3_hits = sum(m["top3_hits"] for m in settled)
@@ -325,6 +341,11 @@ def main():
     })
 
     perf = build_performance(summaries)
+    perf["model_quality"] = compute_model_quality()
+    if perf["model_quality"]:
+        mq = perf["model_quality"]["metrics"]["blend"]
+        print(f"  · model_quality: blend Brier {mq['brier']} · "
+              f"logloss {mq['logloss']} (leak-free walk-forward)")
     jdump(OUT / "performance.json", perf)
 
     if DB_PATH.exists():

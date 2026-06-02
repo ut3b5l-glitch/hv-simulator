@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-30T17:50:53",
+  "generated_at": "2026-06-02T09:02:34",
   "meetings_total": 2,
   "meetings_settled": 2,
   "top3_precision": 50.0,
@@ -45,5 +45,136 @@
       "value_bet_pnl": null,
       "value_bet_roi": null
     }
-  ]
+  ],
+  "model_quality": {
+    "generated_at": "2026-06-02T01:02:37+00:00",
+    "n_races": 204,
+    "n_meetings": 24,
+    "window": "leak-free walk-forward, test races 400+",
+    "best_l2": 40.0,
+    "metrics": {
+      "blend": {
+        "brier": 0.0724,
+        "logloss": 0.2591,
+        "race_logloss": 2.1093
+      },
+      "market": {
+        "brier": 0.0723,
+        "logloss": 0.2585,
+        "race_logloss": 2.103
+      },
+      "model": {
+        "brier": 0.0889,
+        "logloss": 0.3429,
+        "race_logloss": 2.9391
+      }
+    },
+    "reference": {
+      "label": "CatBoost \u00b7 hkjc-ml-research (64k rows)",
+      "brier": 0.0657,
+      "logloss": 0.2354
+    },
+    "calibration": [
+      {
+        "lo": 0,
+        "hi": 2,
+        "n": 437,
+        "pred": 1.2,
+        "actual": 1.1
+      },
+      {
+        "lo": 2,
+        "hi": 5,
+        "n": 584,
+        "pred": 3.4,
+        "actual": 3.8
+      },
+      {
+        "lo": 5,
+        "hi": 10,
+        "n": 643,
+        "pred": 7.3,
+        "actual": 7.2
+      },
+      {
+        "lo": 10,
+        "hi": 15,
+        "n": 311,
+        "pred": 12.3,
+        "actual": 12.5
+      },
+      {
+        "lo": 15,
+        "hi": 25,
+        "n": 294,
+        "pred": 19.1,
+        "actual": 20.1
+      },
+      {
+        "lo": 25,
+        "hi": 40,
+        "n": 95,
+        "pred": 30.5,
+        "actual": 27.4
+      },
+      {
+        "lo": 40,
+        "hi": 101,
+        "n": 18,
+        "pred": 45.8,
+        "actual": 38.9
+      }
+    ],
+    "calibration_market": [
+      {
+        "lo": 0,
+        "hi": 2,
+        "n": 402,
+        "pred": 1.2,
+        "actual": 1.5
+      },
+      {
+        "lo": 2,
+        "hi": 5,
+        "n": 586,
+        "pred": 3.3,
+        "actual": 3.2
+      },
+      {
+        "lo": 5,
+        "hi": 10,
+        "n": 667,
+        "pred": 7.3,
+        "actual": 6.6
+      },
+      {
+        "lo": 10,
+        "hi": 15,
+        "n": 337,
+        "pred": 12.4,
+        "actual": 12.8
+      },
+      {
+        "lo": 15,
+        "hi": 25,
+        "n": 286,
+        "pred": 19.3,
+        "actual": 20.6
+      },
+      {
+        "lo": 25,
+        "hi": 40,
+        "n": 88,
+        "pred": 30.5,
+        "actual": 29.5
+      },
+      {
+        "lo": 40,
+        "hi": 101,
+        "n": 16,
+        "pred": 44.5,
+        "actual": 43.8
+      }
+    ]
+  }
 }

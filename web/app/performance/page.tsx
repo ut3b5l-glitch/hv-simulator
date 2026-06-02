@@ -4,6 +4,7 @@ import StatTile from "@/components/StatTile";
 import GlassCard from "@/components/GlassCard";
 import PageHeader from "@/components/PageHeader";
 import ProbBar from "@/components/ProbBar";
+import ModelCalibration from "@/components/ModelCalibration";
 import EmptyState from "@/components/EmptyState";
 
 export default async function PerformancePage() {
@@ -60,6 +61,8 @@ export default async function PerformancePage() {
           tone={perf.value_bet_pnl >= 0 ? "good" : "bad"}
         />
       </div>
+
+      {perf.model_quality && <ModelCalibration mq={perf.model_quality} />}
 
       <section>
         <h2 className="eyebrow mb-2 px-1">Recent Meetings</h2>

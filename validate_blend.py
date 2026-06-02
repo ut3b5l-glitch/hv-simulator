@@ -14,6 +14,7 @@ Run once; numbers here are the source of truth for the wiki.
 """
 import sqlite3
 import math
+from datetime import datetime, timezone
 import numpy as np
 import model_core as mc
 
@@ -130,11 +131,56 @@ def tally(order, runners, acc):
     acc["cover"] += int(winner in picks)
 
 
-def main():
-    conn = sqlite3.connect(DB)
+# ── Probabilistic scoring (added: Brier / log-loss / calibration) ─────────────
+# These score the QUALITY of the win probabilities, not just the ranking — the
+# same metrics the public hkjc-ml-research repo reports (CatBoost: LL 0.235,
+# Brier 0.066), so our blend is directly comparable.
+
+def collect_probs(win_probs, runners, bag):
+    """Append (p_win, outcome) per runner and per-race -log(p_winner)."""
+    winner = next((i for i, r in enumerate(runners) if r["finish_position"] == 1), None)
+    if winner is None:
+        return
+    for i, r in enumerate(runners):
+        p = float(win_probs[i])
+        bag["p"].append(p)
+        bag["y"].append(1 if i == winner else 0)
+    pw = max(float(win_probs[winner]), 1e-12)
+    bag["mlogloss"].append(-math.log(pw))   # per-race multinomial log-loss
+
+
+def brier_logloss(bag):
+    p = np.clip(np.array(bag["p"]), 1e-12, 1 - 1e-12)
+    y = np.array(bag["y"])
+    brier = float(np.mean((p - y) ** 2))
+    binll = float(-np.mean(y * np.log(p) + (1 - y) * np.log(1 - p)))
+    multill = float(np.mean(bag["mlogloss"])) if bag["mlogloss"] else float("nan")
+    return brier, binll, multill
+
+
+def reliability(bag, edges=(0, .02, .05, .10, .15, .25, .40, 1.01)):
+    """Reliability table: predicted-prob bin → mean predicted vs empirical win rate."""
+    p = np.array(bag["p"]); y = np.array(bag["y"])
+    rows = []
+    for lo, hi in zip(edges[:-1], edges[1:]):
+        m = (p >= lo) & (p < hi)
+        if m.sum() == 0:
+            continue
+        rows.append((lo, hi, int(m.sum()), float(p[m].mean()), float(y[m].mean())))
+    return rows
+
+
+def evaluate(db=DB, verbose=True):
+    """Run the leak-free walk-forward and return a structured metrics dict.
+
+    When verbose, also prints the canonical console report (unchanged). The
+    returned dict is what export_data.py publishes to the PWA Performance page.
+    """
+    conn = sqlite3.connect(db)
     races = load_races(conn)
     dates = sorted({r[1] for r in races})
-    print(f"Building leak-free stats for {len(dates)} dates...")
+    if verbose:
+        print(f"Building leak-free stats for {len(dates)} dates...")
     sbd = {d: mc.build_stats(conn, before_date=d, venue=VENUE) for d in dates}
 
     # Pre-score every race (pure factors) + build feature matrix
@@ -162,6 +208,12 @@ def main():
     acc_market = dict(n=0, win=0, place=0, prec=0.0, cover=0)
     acc_blend = {l2: dict(n=0, win=0, place=0, prec=0.0, cover=0) for l2 in L2_GRID}
 
+    # Probability bags for Brier / log-loss / calibration
+    def newbag():
+        return {"p": [], "y": [], "mlogloss": []}
+    bag_model, bag_market = newbag(), newbag()
+    bag_blend = {l2: newbag() for l2 in L2_GRID}
+
     # Train blend per test-date (cache by date)
     beta_by_date = {l2: {} for l2 in L2_GRID}
     for d in test_dates:
@@ -175,32 +227,109 @@ def main():
         # model
         order = sorted(range(len(runners)), key=lambda i: runners[i]["show_pct"], reverse=True)
         tally(order, runners, acc_model)
+        collect_probs([runners[i]["win_pct"] / 100.0 for i in range(len(runners))],
+                      runners, bag_model)
         # market
         if X is not None:
+            mkt = devig(runners)
             order = sorted(range(len(runners)),
                            key=lambda i: (runners[i].get("public_odds") or 9e9))
             tally(order, runners, acc_market)
+            if mkt is not None:
+                collect_probs([mkt[runners[i]["horse_id"]] for i in range(len(runners))],
+                              runners, bag_market)
             for l2 in L2_GRID:
                 wp = logit_probs(X, beta_by_date[l2][d])
                 order = harville_order_from_winprobs(wp)
                 tally(order, runners, acc_blend[l2])
+                collect_probs(list(wp), runners, bag_blend[l2])
 
-    def line(name, a):
-        n = a["n"] or 1
-        return (f"  {name:<12} {a['n']:>4} {a['win']/n*100:>7.1f}% "
-                f"{a['place']/n*100:>8.1f}% {a['prec']/n*100:>9.1f}% "
-                f"{a['cover']/n*100:>8.1f}%")
+    # ── Best blend (by binary log-loss) drives the published numbers ─────────
+    best_l2 = min(L2_GRID, key=lambda l2: brier_logloss(bag_blend[l2])[1]
+                  if bag_blend[l2]["p"] else 9e9)
 
-    print(f"\n{'='*72}")
-    print(f"  WALK-FORWARD (test index {START}+, train-before-each-meeting, leak-free)")
-    print(f"{'='*72}")
-    print(f"  {'Ranker':<12} {'N':>4} {'#1 Win':>8} {'#1 Place':>9} {'Top3 Prec':>10} {'Coverage':>9}")
-    print(f"  {'-'*68}")
-    print(line("model", acc_model))
-    print(line("market", acc_market))
-    for l2 in L2_GRID:
-        print(line(f"blend L2={l2:g}", acc_blend[l2]))
-    print(f"{'='*72}")
+    def metric_block(bag):
+        if not bag["p"]:
+            return None
+        b, bll, mll = brier_logloss(bag)
+        return {"brier": round(b, 4), "logloss": round(bll, 4),
+                "race_logloss": round(mll, 4)}
+
+    def calib_rows(bag):
+        return [{"lo": round(lo * 100), "hi": round(hi * 100), "n": n,
+                 "pred": round(mp * 100, 1), "actual": round(aw * 100, 1)}
+                for lo, hi, n, mp, aw in reliability(bag)]
+
+    result = {
+        "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "n_races": acc_blend[best_l2]["n"],
+        "n_meetings": len(test_dates),
+        "window": f"leak-free walk-forward, test races {START}+",
+        "best_l2": best_l2,
+        "metrics": {
+            "blend": metric_block(bag_blend[best_l2]),
+            "market": metric_block(bag_market),
+            "model": metric_block(bag_model),
+        },
+        "reference": {"label": "CatBoost · hkjc-ml-research (64k rows)",
+                      "brier": 0.0657, "logloss": 0.2354},
+        "calibration": calib_rows(bag_blend[best_l2]),
+        "calibration_market": calib_rows(bag_market),
+    }
+
+    if verbose:
+        def line(name, a):
+            n = a["n"] or 1
+            return (f"  {name:<12} {a['n']:>4} {a['win']/n*100:>7.1f}% "
+                    f"{a['place']/n*100:>8.1f}% {a['prec']/n*100:>9.1f}% "
+                    f"{a['cover']/n*100:>8.1f}%")
+
+        print(f"\n{'='*72}")
+        print(f"  WALK-FORWARD (test index {START}+, train-before-each-meeting, leak-free)")
+        print(f"{'='*72}")
+        print(f"  {'Ranker':<12} {'N':>4} {'#1 Win':>8} {'#1 Place':>9} {'Top3 Prec':>10} {'Coverage':>9}")
+        print(f"  {'-'*68}")
+        print(line("model", acc_model))
+        print(line("market", acc_market))
+        for l2 in L2_GRID:
+            print(line(f"blend L2={l2:g}", acc_blend[l2]))
+        print(f"{'='*72}")
+
+        # ── Probabilistic scoring: Brier / log-loss (comparable to ML repos) ──
+        print(f"\n{'='*72}")
+        print("  PROBABILITY QUALITY (lower is better) — Brier, binary & multinomial log-loss")
+        print(f"{'='*72}")
+        print(f"  {'Ranker':<14} {'Brier':>8} {'BinLogLoss':>12} {'RaceLogLoss':>13}")
+        print(f"  {'-'*48}")
+        named = [("model", bag_model), ("market", bag_market)]
+        named += [(f"blend L2={l2:g}", bag_blend[l2]) for l2 in L2_GRID]
+        for nm, bag in named:
+            if not bag["p"]:
+                continue
+            b, bll, mll = brier_logloss(bag)
+            star = "  ←best" if nm == f"blend L2={best_l2:g}" else ""
+            print(f"  {nm:<14} {b:>8.4f} {bll:>12.4f} {mll:>13.4f}{star}")
+        print(f"{'='*72}")
+        print("  Reference — hkjc-ml-research CatBoost market-aware: Brier 0.0657  BinLogLoss 0.2354")
+        print(f"{'='*72}")
+
+        # ── Calibration / reliability for the best blend + the market ────────
+        for nm, bag in [(f"blend L2={best_l2:g}", bag_blend[best_l2]), ("market", bag_market)]:
+            if not bag["p"]:
+                continue
+            print(f"\n  CALIBRATION — {nm}  (are predicted win% honest?)")
+            print(f"  {'pred bin':<14} {'n':>6} {'mean pred':>10} {'actual win':>11} {'gap':>7}")
+            print(f"  {'-'*52}")
+            for lo, hi, n, mp, aw in reliability(bag):
+                print(f"  {f'{lo*100:.0f}-{hi*100:.0f}%':<14} {n:>6} "
+                      f"{mp*100:>9.1f}% {aw*100:>10.1f}% {(mp-aw)*100:>+6.1f}")
+        print(f"{'='*72}")
+
+    return result
+
+
+def main():
+    evaluate(verbose=True)
 
 
 if __name__ == "__main__":

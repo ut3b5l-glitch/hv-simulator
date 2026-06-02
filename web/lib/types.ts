@@ -72,10 +72,41 @@ export type MeetingsIndex = {
   meetings: MeetingSummary[];
 };
 
+export type QualityMetric = {
+  brier: number;
+  logloss: number;
+  race_logloss: number;
+};
+
+export type CalibrationBin = {
+  lo: number;
+  hi: number;
+  n: number;
+  pred: number;
+  actual: number;
+};
+
+export type ModelQuality = {
+  generated_at: string;
+  n_races: number;
+  n_meetings: number;
+  window: string;
+  best_l2: number;
+  metrics: {
+    blend: QualityMetric | null;
+    market: QualityMetric | null;
+    model: QualityMetric | null;
+  };
+  reference: { label: string; brier: number; logloss: number };
+  calibration: CalibrationBin[];
+  calibration_market: CalibrationBin[];
+};
+
 export type Performance = {
   generated_at: string;
   meetings_total: number;
   meetings_settled: number;
+  model_quality?: ModelQuality | null;
   top3_precision: number | null;
   top3_hits: number;
   top3_attempts: number;
