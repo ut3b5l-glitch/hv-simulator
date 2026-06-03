@@ -84,14 +84,23 @@ BET_HKJC_URL = "https://bet.hkjc.com/en/racing/wp/{date}/HV/1"
 GRAPHQL_HOST = "info.cld.hkjc.com"
 
 
-def _parse_graphql_racecard(body: dict) -> list:
+def _parse_graphql_racecard(body: dict, expected_date: str | None = None) -> list:
     """
     Parse a GraphQL raceMeetings response into the same list-of-race-dicts
     format that parse_racecard_html() returns, so insert_race_day() can consume it.
+
+    expected_date ('YYYY-MM-DD'): if given, only meetings whose own date matches
+    are imported. bet.hkjc.com serves the NEAREST meeting when the requested date
+    has no race day, so without this guard a non-meeting date would silently
+    import the wrong meeting's card stamped with the wrong date.
     """
     races_out = []
     data = body.get("data") or {}
     for meeting in (data.get("raceMeetings") or []):
+        if expected_date and meeting.get("date") != expected_date:
+            continue
+        if meeting.get("venueCode") and meeting["venueCode"].upper() != "HV":
+            continue
         for race in (meeting.get("races") or []):
             try:
                 race_no = int(race["no"])
@@ -188,7 +197,7 @@ def fetch_racecard_graphql(meeting_date: str) -> list:
             body = response.json()
         except Exception:
             return
-        races = _parse_graphql_racecard(body)
+        races = _parse_graphql_racecard(body, meeting_date)
         if races:
             # Keep the response with the most races
             if len(races) > len(captured):
