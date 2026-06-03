@@ -4,17 +4,32 @@ Full live workflow for a Happy Valley Wednesday meeting.
 
 ---
 
-## Cron Schedule
+## Cron Schedule (weekly automation — `hv_auto.sh`, since 2026-06-03)
 
 ```
-# Racecard agent — Wed 7am HKT
-0 7 * * 3   python3 wednesday_agent.py --retry 3  >> agent.log
-
-# Results agent — Wed 11pm HKT
-0 23 * * 3  python3 results_agent.py               >> agent.log
+# Pull racecard + odds → export_data → git → vercel deploy --prod
+0 11 * * 3   hv_auto.sh pull       # catch the card early / detect special meetings
+30 17 * * 3  hv_auto.sh pull       # pre-track: predictions + live odds in the app
+30 19 * * 3  hv_auto.sh pull       # mid-card odds refresh
+# Reconcile results → export_data → git → vercel deploy --prod
+0 23 * * 3   hv_auto.sh reconcile
+30 23 * * 3  hv_auto.sh reconcile  # catches the late nightcap (R9)
 ```
 
-Note: results cron was fixed from `0 15 * * 3` (3pm HKT — before races finish) to `0 23 * * 3` on 2026-05-06.
+`hv_auto.sh` (project root) is the single orchestrator. Each run **no-ops cleanly when there is no meeting**, so it fires every Wednesday and still catches irregular *special between-week* meetings automatically. It runs the full chain (scrape → `export_data.py` → commit/push → `vercel deploy --prod --yes`) so the PWA self-updates with **no manual step and no laptop access required** — the Mac is the unattended worker.
+
+**Hard requirements:**
+- **Mac must be awake** at those times (set to never sleep, incl. lid closed). Cron does not wake a sleeping Mac.
+- `vercel` is a Node CLI under nvm — `hv_auto.sh` puts `~/.nvm/.../bin` on PATH and uses absolute paths for `python3`/`git`. Vercel CLI must stay logged in (GitHub→Vercel auto-deploy is NOT connected).
+
+**Why the old crons were replaced:** the 7am racecard cron **failed silently** on the 2026-06-03 special meeting, and the 11pm results cron only ran `results_agent.py` (it never refreshed/deployed the PWA). History: results cron was earlier fixed from `0 15 * * 3` to `0 23 * * 3` on 2026-05-06.
+
+**Manual / on-demand** (special meeting, or backup if the Mac was asleep):
+```bash
+./hv_auto.sh pull 2026-06-03        # full pull for a specific date
+./hv_auto.sh reconcile 2026-06-03   # full reconcile for a specific date
+```
+Or drive it from your phone via Claude Code **Remote Control** (`claude remote-control` on the Mac). See [[web/dynamic-pull-plan]].
 
 ---
 
