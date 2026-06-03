@@ -91,6 +91,17 @@ Manual deploy from the CLI:
 cd web && vercel deploy --prod --yes
 ```
 
+## Betting Returns panel (Performance page, 2026-06-03)
+
+`web/components/BettingReturns.tsx` renders lifetime flat-HK$10 P&L for four
+strategies on the model's top-3 picks (Win on #1 / Place box / Quinella Place
+box / Quinella box), plus a per-meeting net breakdown. Fed by `performance.json`
+→ `betting` block, produced by `export_data.build_betting()` which aggregates
+`bet_report.compute()` across meetings (official HKJC dividends). Lifetime so far:
+**Win-on-#1 is the only profitable strategy** (+$23.50, +8.7% over 3 meetings);
+all spread/exotic boxes lose. Numbers refresh whenever `export_data.py` runs
+(i.e. after every reconcile via `hv_auto.sh`). See [[../workflow/operations]].
+
 ## Phase 2 ideas (parked)
 
 - Pull-to-refresh + offline service-worker caching
