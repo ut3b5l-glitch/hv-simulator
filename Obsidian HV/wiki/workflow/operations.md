@@ -82,7 +82,16 @@ python3 results_agent.py
 ```
 
 - Fetches HKJC results, updates `finish_position` in DB
+- Scrapes the official **dividend table** (WIN / PLACE / QUINELLA / QUINELLA PLACE / …) into `results_<date>.json` via `parse_dividends()`
 - Settles paper trades automatically
+- **Final step — Betting P&L** (`bet_report.py`): prints flat-stake HK$10 P&L for four strategies on the model's top-3 picks (Win on #1, Place box, Quinella box, Quinella Place box) using the official dividends, and writes `bet_report_<date>.json`. Runs after every reconciliation (manual or cron).
+
+```bash
+python3 bet_report.py 2026-06-03   # re-print the P&L for a date (reads existing JSONs)
+```
+
+Dividends are per HK$10 and include the stake. Place = top-3 (fields of 7+).
+Example (2026-06-03): Win on #1 **+$31.00** (+34.4%), Quinella Place box **+$29.00** (+10.7%), Place box −$25.50, Quinella box −$134.50.
 
 ---
 
