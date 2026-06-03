@@ -1,18 +1,34 @@
 {
-  "generated_at": "2026-06-02T09:02:34",
-  "meetings_total": 2,
-  "meetings_settled": 2,
-  "top3_precision": 50.0,
-  "top3_hits": 27,
-  "top3_attempts": 54,
-  "top_pick_rate": 66.66666666666666,
-  "top_pick_hits": 12,
-  "top_pick_attempts": 18,
+  "generated_at": "2026-06-03T23:23:48",
+  "meetings_total": 3,
+  "meetings_settled": 3,
+  "top3_precision": 50.617283950617285,
+  "top3_hits": 41,
+  "top3_attempts": 81,
+  "top_pick_rate": 62.96296296296296,
+  "top_pick_hits": 17,
+  "top_pick_attempts": 27,
   "value_bet_staked": 0,
   "value_bet_wins": 0,
   "value_bet_pnl": 0,
   "value_bet_roi": null,
   "meetings": [
+    {
+      "meeting_date": "2026-06-03",
+      "race_count": 9,
+      "has_results": true,
+      "top3_hits": 14,
+      "top3_attempts": 27,
+      "top3_precision": 51.85185185185185,
+      "top_pick_hits": 5,
+      "top_pick_attempts": 9,
+      "top_pick_rate": 55.55555555555556,
+      "value_bet_count": 0,
+      "value_bet_settled": 0,
+      "value_bet_wins": 0,
+      "value_bet_pnl": null,
+      "value_bet_roi": null
+    },
     {
       "meeting_date": "2026-05-27",
       "race_count": 9,
@@ -47,26 +63,26 @@
     }
   ],
   "model_quality": {
-    "generated_at": "2026-06-02T01:02:37+00:00",
-    "n_races": 204,
-    "n_meetings": 24,
+    "generated_at": "2026-06-03T15:23:52+00:00",
+    "n_races": 213,
+    "n_meetings": 25,
     "window": "leak-free walk-forward, test races 400+",
     "best_l2": 40.0,
     "metrics": {
       "blend": {
-        "brier": 0.0724,
-        "logloss": 0.2591,
-        "race_logloss": 2.1093
+        "brier": 0.0722,
+        "logloss": 0.2579,
+        "race_logloss": 2.0989
       },
       "market": {
-        "brier": 0.0723,
-        "logloss": 0.2585,
-        "race_logloss": 2.103
+        "brier": 0.072,
+        "logloss": 0.2573,
+        "race_logloss": 2.0932
       },
       "model": {
-        "brier": 0.0889,
-        "logloss": 0.3429,
-        "race_logloss": 2.9391
+        "brier": 0.0886,
+        "logloss": 0.3402,
+        "race_logloss": 2.9134
       }
     },
     "reference": {
@@ -78,44 +94,44 @@
       {
         "lo": 0,
         "hi": 2,
-        "n": 437,
+        "n": 461,
         "pred": 1.2,
         "actual": 1.1
       },
       {
         "lo": 2,
         "hi": 5,
-        "n": 584,
+        "n": 609,
         "pred": 3.4,
-        "actual": 3.8
+        "actual": 3.6
       },
       {
         "lo": 5,
         "hi": 10,
-        "n": 643,
+        "n": 666,
         "pred": 7.3,
-        "actual": 7.2
+        "actual": 7.4
       },
       {
         "lo": 10,
         "hi": 15,
-        "n": 311,
+        "n": 329,
         "pred": 12.3,
         "actual": 12.5
       },
       {
         "lo": 15,
         "hi": 25,
-        "n": 294,
-        "pred": 19.1,
-        "actual": 20.1
+        "n": 307,
+        "pred": 19.2,
+        "actual": 19.5
       },
       {
         "lo": 25,
         "hi": 40,
-        "n": 95,
-        "pred": 30.5,
-        "actual": 27.4
+        "n": 99,
+        "pred": 30.6,
+        "actual": 29.3
       },
       {
         "lo": 40,
@@ -129,44 +145,44 @@
       {
         "lo": 0,
         "hi": 2,
-        "n": 402,
+        "n": 421,
         "pred": 1.2,
-        "actual": 1.5
+        "actual": 1.4
       },
       {
         "lo": 2,
         "hi": 5,
-        "n": 586,
+        "n": 614,
         "pred": 3.3,
-        "actual": 3.2
+        "actual": 3.1
       },
       {
         "lo": 5,
         "hi": 10,
-        "n": 667,
+        "n": 693,
         "pred": 7.3,
-        "actual": 6.6
+        "actual": 6.8
       },
       {
         "lo": 10,
         "hi": 15,
-        "n": 337,
+        "n": 355,
         "pred": 12.4,
-        "actual": 12.8
+        "actual": 12.7
       },
       {
         "lo": 15,
         "hi": 25,
-        "n": 286,
+        "n": 298,
         "pred": 19.3,
-        "actual": 20.6
+        "actual": 20.1
       },
       {
         "lo": 25,
         "hi": 40,
-        "n": 88,
+        "n": 92,
         "pred": 30.5,
-        "actual": 29.5
+        "actual": 31.5
       },
       {
         "lo": 40,

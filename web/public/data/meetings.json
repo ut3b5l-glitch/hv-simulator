@@ -1,6 +1,14 @@
 {
-  "generated_at": "2026-06-02T09:02:34",
+  "generated_at": "2026-06-03T23:23:48",
   "meetings": [
+    {
+      "date": "2026-06-03",
+      "race_count": 9,
+      "has_results": true,
+      "top3_precision": 51.85185185185185,
+      "value_bet_count": 0,
+      "value_bet_roi": null
+    },
     {
       "date": "2026-05-27",
       "race_count": 9,

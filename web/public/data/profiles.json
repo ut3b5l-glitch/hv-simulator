@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-05-27",
+  "as_of": "2026-06-03",
   "horses": [
     {
       "id": 626,
@@ -80,6 +80,16 @@
       "win_pct": 0.0,
       "place_pct": 0.0,
       "last_run": "2025-04-16"
+    },
+    {
+      "id": 6854,
+      "name": "ACE CHAMPION",
+      "runs": 1,
+      "wins": 0,
+      "places": 1,
+      "win_pct": 0.0,
+      "place_pct": 100.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 1094,
@@ -304,12 +314,12 @@
     {
       "id": 296,
       "name": "ALL ROUND WINNER",
-      "runs": 4,
+      "runs": 5,
       "wins": 1,
       "places": 2,
-      "win_pct": 25.0,
-      "place_pct": 50.0,
-      "last_run": "2026-05-27"
+      "win_pct": 20.0,
+      "place_pct": 40.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 6118,
@@ -414,12 +424,12 @@
     {
       "id": 215,
       "name": "ALWAYS MY FOLKS",
-      "runs": 7,
+      "runs": 8,
       "wins": 1,
       "places": 3,
-      "win_pct": 14.285714285714285,
-      "place_pct": 42.857142857142854,
-      "last_run": "2026-04-15"
+      "win_pct": 12.5,
+      "place_pct": 37.5,
+      "last_run": "2026-06-03"
     },
     {
       "id": 2174,
@@ -464,12 +474,12 @@
     {
       "id": 314,
       "name": "AMAZING KID",
-      "runs": 12,
+      "runs": 13,
       "wins": 4,
       "places": 5,
-      "win_pct": 33.33333333333333,
-      "place_pct": 41.66666666666667,
-      "last_run": "2026-05-13"
+      "win_pct": 30.76923076923077,
+      "place_pct": 38.46153846153847,
+      "last_run": "2026-06-03"
     },
     {
       "id": 2249,
@@ -544,12 +554,12 @@
     {
       "id": 365,
       "name": "ANOTHER ZONDA",
-      "runs": 9,
+      "runs": 10,
       "wins": 1,
       "places": 3,
-      "win_pct": 11.11111111111111,
-      "place_pct": 33.33333333333333,
-      "last_run": "2026-03-25"
+      "win_pct": 10.0,
+      "place_pct": 30.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 3129,
@@ -594,12 +604,12 @@
     {
       "id": 298,
       "name": "ARMOR GOLDEN EAGLE",
-      "runs": 3,
+      "runs": 4,
       "wins": 2,
       "places": 3,
-      "win_pct": 66.66666666666666,
-      "place_pct": 100.0,
-      "last_run": "2026-05-27"
+      "win_pct": 50.0,
+      "place_pct": 75.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 890,
@@ -754,32 +764,32 @@
     {
       "id": 674,
       "name": "AUTUMN VIBES",
-      "runs": 1,
+      "runs": 2,
       "wins": 0,
-      "places": 1,
+      "places": 2,
       "win_pct": 0.0,
       "place_pct": 100.0,
-      "last_run": "2026-02-25"
+      "last_run": "2026-06-03"
     },
     {
       "id": 658,
       "name": "AWESOME FLUKE",
-      "runs": 7,
+      "runs": 8,
       "wins": 1,
       "places": 3,
-      "win_pct": 14.285714285714285,
-      "place_pct": 42.857142857142854,
-      "last_run": "2026-05-13"
+      "win_pct": 12.5,
+      "place_pct": 37.5,
+      "last_run": "2026-06-03"
     },
     {
       "id": 388,
       "name": "AWESOME TREASURE",
-      "runs": 9,
+      "runs": 10,
       "wins": 0,
       "places": 0,
       "win_pct": 0.0,
       "place_pct": 0.0,
-      "last_run": "2026-05-13"
+      "last_run": "2026-06-03"
     },
     {
       "id": 4779,
@@ -864,12 +874,12 @@
     {
       "id": 263,
       "name": "BEAUTY ALLIANCE",
-      "runs": 8,
+      "runs": 9,
       "wins": 2,
       "places": 4,
-      "win_pct": 25.0,
-      "place_pct": 50.0,
-      "last_run": "2026-05-13"
+      "win_pct": 22.22222222222222,
+      "place_pct": 44.44444444444444,
+      "last_run": "2026-06-03"
     },
     {
       "id": 802,
@@ -914,12 +924,12 @@
     {
       "id": 614,
       "name": "BEAUTY GLORY",
-      "runs": 11,
+      "runs": 12,
       "wins": 1,
       "places": 2,
-      "win_pct": 9.090909090909092,
-      "place_pct": 18.181818181818183,
-      "last_run": "2026-05-13"
+      "win_pct": 8.333333333333332,
+      "place_pct": 16.666666666666664,
+      "last_run": "2026-06-03"
     },
     {
       "id": 869,
@@ -1314,12 +1324,12 @@
     {
       "id": 3651,
       "name": "BRIGHT DAY",
-      "runs": 2,
+      "runs": 3,
       "wins": 1,
       "places": 1,
-      "win_pct": 50.0,
-      "place_pct": 50.0,
-      "last_run": "2026-05-27"
+      "win_pct": 33.33333333333333,
+      "place_pct": 33.33333333333333,
+      "last_run": "2026-06-03"
     },
     {
       "id": 3987,
@@ -1394,12 +1404,12 @@
     {
       "id": 390,
       "name": "BROWNNEEDSFURTHER",
-      "runs": 2,
-      "wins": 0,
-      "places": 2,
-      "win_pct": 0.0,
+      "runs": 3,
+      "wins": 1,
+      "places": 3,
+      "win_pct": 33.33333333333333,
       "place_pct": 100.0,
-      "last_run": "2026-03-25"
+      "last_run": "2026-06-03"
     },
     {
       "id": 4661,
@@ -1554,12 +1564,12 @@
     {
       "id": 272,
       "name": "CALIFORNIA MOXIE",
-      "runs": 10,
+      "runs": 11,
       "wins": 3,
       "places": 6,
-      "win_pct": 30.0,
-      "place_pct": 60.0,
-      "last_run": "2026-04-15"
+      "win_pct": 27.27272727272727,
+      "place_pct": 54.54545454545454,
+      "last_run": "2026-06-03"
     },
     {
       "id": 6073,
@@ -1594,12 +1604,12 @@
     {
       "id": 657,
       "name": "CALIFORNIATOTALITY",
-      "runs": 5,
+      "runs": 6,
       "wins": 1,
-      "places": 3,
-      "win_pct": 20.0,
-      "place_pct": 60.0,
-      "last_run": "2026-02-25"
+      "places": 4,
+      "win_pct": 16.666666666666664,
+      "place_pct": 66.66666666666666,
+      "last_run": "2026-06-03"
     },
     {
       "id": 6328,
@@ -1614,12 +1624,12 @@
     {
       "id": 386,
       "name": "CALL TO COMMAND",
-      "runs": 5,
+      "runs": 6,
       "wins": 0,
       "places": 2,
       "win_pct": 0.0,
-      "place_pct": 40.0,
-      "last_run": "2026-03-25"
+      "place_pct": 33.33333333333333,
+      "last_run": "2026-06-03"
     },
     {
       "id": 4357,
@@ -1664,12 +1674,12 @@
     {
       "id": 260,
       "name": "CAN'T GO WONG",
-      "runs": 24,
+      "runs": 25,
       "wins": 2,
-      "places": 12,
-      "win_pct": 8.333333333333332,
-      "place_pct": 50.0,
-      "last_run": "2026-05-13"
+      "places": 13,
+      "win_pct": 8.0,
+      "place_pct": 52.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 52,
@@ -1714,12 +1724,12 @@
     {
       "id": 97,
       "name": "CAPTAIN LINK",
-      "runs": 3,
+      "runs": 4,
       "wins": 0,
       "places": 1,
       "win_pct": 0.0,
-      "place_pct": 33.33333333333333,
-      "last_run": "2026-04-22"
+      "place_pct": 25.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 1189,
@@ -1764,12 +1774,12 @@
     {
       "id": 90,
       "name": "CASA LEGEND",
-      "runs": 5,
+      "runs": 6,
       "wins": 0,
       "places": 1,
       "win_pct": 0.0,
-      "place_pct": 20.0,
-      "last_run": "2026-04-22"
+      "place_pct": 16.666666666666664,
+      "last_run": "2026-06-03"
     },
     {
       "id": 49,
@@ -1784,12 +1794,12 @@
     {
       "id": 4216,
       "name": "CASA ROCHESTER",
-      "runs": 5,
+      "runs": 6,
       "wins": 1,
       "places": 1,
-      "win_pct": 20.0,
-      "place_pct": 20.0,
-      "last_run": "2025-09-10"
+      "win_pct": 16.666666666666664,
+      "place_pct": 16.666666666666664,
+      "last_run": "2026-06-03"
     },
     {
       "id": 4450,
@@ -2094,12 +2104,12 @@
     {
       "id": 632,
       "name": "CHILL MASTER",
-      "runs": 8,
+      "runs": 9,
       "wins": 0,
       "places": 0,
       "win_pct": 0.0,
       "place_pct": 0.0,
-      "last_run": "2026-02-25"
+      "last_run": "2026-06-03"
     },
     {
       "id": 3374,
@@ -2280,6 +2290,16 @@
       "win_pct": 0.0,
       "place_pct": 0.0,
       "last_run": "2024-07-10"
+    },
+    {
+      "id": 6858,
+      "name": "CLASS",
+      "runs": 1,
+      "wins": 0,
+      "places": 0,
+      "win_pct": 0.0,
+      "place_pct": 0.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 817,
@@ -2474,12 +2494,12 @@
     {
       "id": 5163,
       "name": "CONRAD THE GREAT",
-      "runs": 2,
+      "runs": 3,
       "wins": 0,
       "places": 0,
       "win_pct": 0.0,
       "place_pct": 0.0,
-      "last_run": "2025-10-22"
+      "last_run": "2026-06-03"
     },
     {
       "id": 327,
@@ -2764,12 +2784,22 @@
     {
       "id": 5361,
       "name": "DANCING CLASSICS",
-      "runs": 2,
+      "runs": 3,
       "wins": 1,
       "places": 1,
-      "win_pct": 50.0,
-      "place_pct": 50.0,
-      "last_run": "2025-10-15"
+      "win_pct": 33.33333333333333,
+      "place_pct": 33.33333333333333,
+      "last_run": "2026-06-03"
+    },
+    {
+      "id": 6850,
+      "name": "DANICA'S CHOICE",
+      "runs": 1,
+      "wins": 0,
+      "places": 0,
+      "win_pct": 0.0,
+      "place_pct": 0.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 1239,
@@ -2844,12 +2874,12 @@
     {
       "id": 6046,
       "name": "DASHING MAURISON",
-      "runs": 3,
+      "runs": 4,
       "wins": 1,
       "places": 2,
-      "win_pct": 33.33333333333333,
-      "place_pct": 66.66666666666666,
-      "last_run": "2026-05-13"
+      "win_pct": 25.0,
+      "place_pct": 50.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 366,
@@ -3604,12 +3634,12 @@
     {
       "id": 594,
       "name": "EVERSTAR",
-      "runs": 11,
+      "runs": 12,
       "wins": 1,
       "places": 2,
-      "win_pct": 9.090909090909092,
-      "place_pct": 18.181818181818183,
-      "last_run": "2026-03-04"
+      "win_pct": 8.333333333333332,
+      "place_pct": 16.666666666666664,
+      "last_run": "2026-06-03"
     },
     {
       "id": 6286,
@@ -3632,14 +3662,24 @@
       "last_run": "2024-02-28"
     },
     {
+      "id": 6847,
+      "name": "EXCEED THE LIMIT",
+      "runs": 1,
+      "wins": 0,
+      "places": 1,
+      "win_pct": 0.0,
+      "place_pct": 100.0,
+      "last_run": "2026-06-03"
+    },
+    {
       "id": 237,
       "name": "EXCEED THE WISH",
-      "runs": 11,
+      "runs": 12,
       "wins": 0,
       "places": 2,
       "win_pct": 0.0,
-      "place_pct": 18.181818181818183,
-      "last_run": "2026-05-27"
+      "place_pct": 16.666666666666664,
+      "last_run": "2026-06-03"
     },
     {
       "id": 1701,
@@ -3754,12 +3794,12 @@
     {
       "id": 227,
       "name": "FAMILY FORTUNE",
-      "runs": 5,
-      "wins": 2,
-      "places": 3,
-      "win_pct": 40.0,
-      "place_pct": 60.0,
-      "last_run": "2026-04-29"
+      "runs": 6,
+      "wins": 3,
+      "places": 4,
+      "win_pct": 50.0,
+      "place_pct": 66.66666666666666,
+      "last_run": "2026-06-03"
     },
     {
       "id": 591,
@@ -3974,12 +4014,12 @@
     {
       "id": 300,
       "name": "FIVEFORTWO",
-      "runs": 6,
+      "runs": 7,
       "wins": 2,
-      "places": 3,
-      "win_pct": 33.33333333333333,
-      "place_pct": 50.0,
-      "last_run": "2026-05-13"
+      "places": 4,
+      "win_pct": 28.57142857142857,
+      "place_pct": 57.14285714285714,
+      "last_run": "2026-06-03"
     },
     {
       "id": 3755,
@@ -4030,6 +4070,16 @@
       "win_pct": 33.33333333333333,
       "place_pct": 33.33333333333333,
       "last_run": "2026-03-04"
+    },
+    {
+      "id": 6849,
+      "name": "FLASHING FIGHTER",
+      "runs": 1,
+      "wins": 0,
+      "places": 0,
+      "win_pct": 0.0,
+      "place_pct": 0.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 233,
@@ -4110,6 +4160,16 @@
       "win_pct": 11.11111111111111,
       "place_pct": 44.44444444444444,
       "last_run": "2026-04-22"
+    },
+    {
+      "id": 6848,
+      "name": "FLYING FORTUNE",
+      "runs": 1,
+      "wins": 0,
+      "places": 0,
+      "win_pct": 0.0,
+      "place_pct": 0.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 1485,
@@ -4224,12 +4284,22 @@
     {
       "id": 5018,
       "name": "FORERUNNER",
-      "runs": 4,
+      "runs": 5,
+      "wins": 1,
+      "places": 3,
+      "win_pct": 20.0,
+      "place_pct": 60.0,
+      "last_run": "2026-06-03"
+    },
+    {
+      "id": 6852,
+      "name": "FOREVER FANCY",
+      "runs": 1,
       "wins": 0,
-      "places": 2,
+      "places": 0,
       "win_pct": 0.0,
-      "place_pct": 50.0,
-      "last_run": "2026-05-13"
+      "place_pct": 0.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 5527,
@@ -4374,12 +4444,12 @@
     {
       "id": 6426,
       "name": "FORZA LEADER",
-      "runs": 2,
+      "runs": 3,
       "wins": 0,
       "places": 0,
       "win_pct": 0.0,
       "place_pct": 0.0,
-      "last_run": "2026-05-13"
+      "last_run": "2026-06-03"
     },
     {
       "id": 1839,
@@ -4424,12 +4494,12 @@
     {
       "id": 458,
       "name": "FREE PONY",
-      "runs": 6,
+      "runs": 7,
       "wins": 1,
       "places": 3,
-      "win_pct": 16.666666666666664,
-      "place_pct": 50.0,
-      "last_run": "2026-03-18"
+      "win_pct": 14.285714285714285,
+      "place_pct": 42.857142857142854,
+      "last_run": "2026-06-03"
     },
     {
       "id": 724,
@@ -4684,12 +4754,12 @@
     {
       "id": 23,
       "name": "GAZELEY",
-      "runs": 4,
+      "runs": 5,
       "wins": 0,
       "places": 0,
       "win_pct": 0.0,
       "place_pct": 0.0,
-      "last_run": "2026-05-13"
+      "last_run": "2026-06-03"
     },
     {
       "id": 1221,
@@ -4740,6 +4810,16 @@
       "win_pct": 0.0,
       "place_pct": 33.33333333333333,
       "last_run": "2026-04-15"
+    },
+    {
+      "id": 6851,
+      "name": "GEORGIAN SIGMA",
+      "runs": 1,
+      "wins": 0,
+      "places": 1,
+      "win_pct": 0.0,
+      "place_pct": 100.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 6607,
@@ -4864,22 +4944,22 @@
     {
       "id": 4853,
       "name": "GLORIOUS RYDER",
-      "runs": 5,
+      "runs": 6,
       "wins": 0,
       "places": 1,
       "win_pct": 0.0,
-      "place_pct": 20.0,
-      "last_run": "2026-05-27"
+      "place_pct": 16.666666666666664,
+      "last_run": "2026-06-03"
     },
     {
       "id": 1443,
       "name": "GLORY B",
-      "runs": 11,
+      "runs": 12,
       "wins": 2,
       "places": 6,
-      "win_pct": 18.181818181818183,
-      "place_pct": 54.54545454545454,
-      "last_run": "2025-09-10"
+      "win_pct": 16.666666666666664,
+      "place_pct": 50.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 1642,
@@ -4994,12 +5074,12 @@
     {
       "id": 280,
       "name": "GOLDEN EMPIRE",
-      "runs": 13,
+      "runs": 14,
       "wins": 2,
       "places": 3,
-      "win_pct": 15.384615384615385,
-      "place_pct": 23.076923076923077,
-      "last_run": "2026-05-13"
+      "win_pct": 14.285714285714285,
+      "place_pct": 21.428571428571427,
+      "last_run": "2026-06-03"
     },
     {
       "id": 329,
@@ -5584,12 +5664,12 @@
     {
       "id": 646,
       "name": "HAPPY BUDDIES",
-      "runs": 4,
+      "runs": 5,
       "wins": 0,
       "places": 0,
       "win_pct": 0.0,
       "place_pct": 0.0,
-      "last_run": "2026-04-29"
+      "last_run": "2026-06-03"
     },
     {
       "id": 3004,
@@ -5690,6 +5770,16 @@
       "win_pct": 0.0,
       "place_pct": 0.0,
       "last_run": "2024-05-15"
+    },
+    {
+      "id": 6853,
+      "name": "HAPPY INDEX",
+      "runs": 1,
+      "wins": 0,
+      "places": 0,
+      "win_pct": 0.0,
+      "place_pct": 0.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 1033,
@@ -5814,12 +5904,12 @@
     {
       "id": 372,
       "name": "HARMONY N BLESSED",
-      "runs": 20,
+      "runs": 21,
       "wins": 2,
       "places": 6,
-      "win_pct": 10.0,
-      "place_pct": 30.0,
-      "last_run": "2026-05-13"
+      "win_pct": 9.523809523809524,
+      "place_pct": 28.57142857142857,
+      "last_run": "2026-06-03"
     },
     {
       "id": 764,
@@ -5894,12 +5984,12 @@
     {
       "id": 44,
       "name": "HEALTHY HEALTHY",
-      "runs": 22,
+      "runs": 23,
       "wins": 0,
       "places": 5,
       "win_pct": 0.0,
-      "place_pct": 22.727272727272727,
-      "last_run": "2026-05-13"
+      "place_pct": 21.73913043478261,
+      "last_run": "2026-06-03"
     },
     {
       "id": 783,
@@ -5914,12 +6004,12 @@
     {
       "id": 2181,
       "name": "HELENE FEELING",
-      "runs": 10,
+      "runs": 11,
       "wins": 1,
       "places": 3,
-      "win_pct": 10.0,
-      "place_pct": 30.0,
-      "last_run": "2026-05-13"
+      "win_pct": 9.090909090909092,
+      "place_pct": 27.27272727272727,
+      "last_run": "2026-06-03"
     },
     {
       "id": 1505,
@@ -5984,12 +6074,12 @@
     {
       "id": 448,
       "name": "HEROIC MASTER",
-      "runs": 13,
+      "runs": 14,
       "wins": 1,
       "places": 6,
-      "win_pct": 7.6923076923076925,
-      "place_pct": 46.15384615384615,
-      "last_run": "2026-03-18"
+      "win_pct": 7.142857142857142,
+      "place_pct": 42.857142857142854,
+      "last_run": "2026-06-03"
     },
     {
       "id": 374,
@@ -6234,12 +6324,12 @@
     {
       "id": 709,
       "name": "IGOR STRAVINSKY",
-      "runs": 2,
+      "runs": 3,
       "wins": 0,
       "places": 0,
       "win_pct": 0.0,
       "place_pct": 0.0,
-      "last_run": "2026-05-13"
+      "last_run": "2026-06-03"
     },
     {
       "id": 2951,
@@ -6374,22 +6464,22 @@
     {
       "id": 422,
       "name": "IRON SECURITY",
-      "runs": 1,
+      "runs": 2,
       "wins": 0,
       "places": 0,
       "win_pct": 0.0,
       "place_pct": 0.0,
-      "last_run": "2026-03-25"
+      "last_run": "2026-06-03"
     },
     {
       "id": 3390,
       "name": "ISLAND BREEZES",
-      "runs": 6,
+      "runs": 7,
       "wins": 0,
       "places": 2,
       "win_pct": 0.0,
-      "place_pct": 33.33333333333333,
-      "last_run": "2026-02-11"
+      "place_pct": 28.57142857142857,
+      "last_run": "2026-06-03"
     },
     {
       "id": 964,
@@ -6554,12 +6644,12 @@
     {
       "id": 1374,
       "name": "JOY OF SPRING",
-      "runs": 4,
+      "runs": 5,
       "wins": 1,
       "places": 2,
-      "win_pct": 25.0,
-      "place_pct": 50.0,
-      "last_run": "2025-10-15"
+      "win_pct": 20.0,
+      "place_pct": 40.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 908,
@@ -6634,12 +6724,12 @@
     {
       "id": 73,
       "name": "JUBILANT WINNER",
-      "runs": 3,
+      "runs": 4,
       "wins": 1,
       "places": 1,
-      "win_pct": 33.33333333333333,
-      "place_pct": 33.33333333333333,
-      "last_run": "2026-04-22"
+      "win_pct": 25.0,
+      "place_pct": 25.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 1021,
@@ -6864,12 +6954,12 @@
     {
       "id": 299,
       "name": "KEEFY",
-      "runs": 13,
+      "runs": 14,
       "wins": 2,
       "places": 3,
-      "win_pct": 15.384615384615385,
-      "place_pct": 23.076923076923077,
-      "last_run": "2026-05-13"
+      "win_pct": 14.285714285714285,
+      "place_pct": 21.428571428571427,
+      "last_run": "2026-06-03"
     },
     {
       "id": 702,
@@ -6964,12 +7054,12 @@
     {
       "id": 1509,
       "name": "KING GLORIOSO",
-      "runs": 6,
+      "runs": 7,
       "wins": 1,
       "places": 1,
-      "win_pct": 16.666666666666664,
-      "place_pct": 16.666666666666664,
-      "last_run": "2026-02-11"
+      "win_pct": 14.285714285714285,
+      "place_pct": 14.285714285714285,
+      "last_run": "2026-06-03"
     },
     {
       "id": 780,
@@ -7024,12 +7114,12 @@
     {
       "id": 37,
       "name": "KING PROFIT",
-      "runs": 4,
+      "runs": 5,
       "wins": 1,
-      "places": 2,
-      "win_pct": 25.0,
-      "place_pct": 50.0,
-      "last_run": "2026-04-22"
+      "places": 3,
+      "win_pct": 20.0,
+      "place_pct": 60.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 4318,
@@ -7204,12 +7294,12 @@
     {
       "id": 243,
       "name": "LAKESHORE HERO",
-      "runs": 6,
+      "runs": 7,
       "wins": 1,
       "places": 1,
-      "win_pct": 16.666666666666664,
-      "place_pct": 16.666666666666664,
-      "last_run": "2026-05-13"
+      "win_pct": 14.285714285714285,
+      "place_pct": 14.285714285714285,
+      "last_run": "2026-06-03"
     },
     {
       "id": 1350,
@@ -7234,12 +7324,12 @@
     {
       "id": 99,
       "name": "LEADING AGILITY",
-      "runs": 3,
+      "runs": 4,
       "wins": 1,
-      "places": 1,
-      "win_pct": 33.33333333333333,
-      "place_pct": 33.33333333333333,
-      "last_run": "2026-05-13"
+      "places": 2,
+      "win_pct": 25.0,
+      "place_pct": 50.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 3919,
@@ -7494,12 +7584,12 @@
     {
       "id": 63,
       "name": "LIVEANDLETLIVE",
-      "runs": 6,
+      "runs": 7,
       "wins": 1,
-      "places": 4,
-      "win_pct": 16.666666666666664,
-      "place_pct": 66.66666666666666,
-      "last_run": "2026-05-13"
+      "places": 5,
+      "win_pct": 14.285714285714285,
+      "place_pct": 71.42857142857143,
+      "last_run": "2026-06-03"
     },
     {
       "id": 4861,
@@ -7634,12 +7724,12 @@
     {
       "id": 32,
       "name": "LOVING VIBES",
-      "runs": 10,
+      "runs": 11,
       "wins": 0,
-      "places": 5,
+      "places": 6,
       "win_pct": 0.0,
-      "place_pct": 50.0,
-      "last_run": "2026-05-27"
+      "place_pct": 54.54545454545454,
+      "last_run": "2026-06-03"
     },
     {
       "id": 901,
@@ -8084,12 +8174,12 @@
     {
       "id": 4453,
       "name": "MAJESTIC DELIGHT",
-      "runs": 5,
-      "wins": 0,
-      "places": 1,
-      "win_pct": 0.0,
-      "place_pct": 20.0,
-      "last_run": "2025-11-12"
+      "runs": 6,
+      "wins": 1,
+      "places": 2,
+      "win_pct": 16.666666666666664,
+      "place_pct": 33.33333333333333,
+      "last_run": "2026-06-03"
     },
     {
       "id": 3444,
@@ -8154,12 +8244,12 @@
     {
       "id": 1349,
       "name": "MANYTHANKS FOREVER",
-      "runs": 5,
+      "runs": 6,
       "wins": 0,
       "places": 0,
       "win_pct": 0.0,
       "place_pct": 0.0,
-      "last_run": "2026-05-13"
+      "last_run": "2026-06-03"
     },
     {
       "id": 1176,
@@ -8184,12 +8274,12 @@
     {
       "id": 461,
       "name": "MARVEL AND GOLD",
-      "runs": 5,
+      "runs": 6,
       "wins": 0,
       "places": 0,
       "win_pct": 0.0,
       "place_pct": 0.0,
-      "last_run": "2026-05-13"
+      "last_run": "2026-06-03"
     },
     {
       "id": 2322,
@@ -8244,12 +8334,12 @@
     {
       "id": 398,
       "name": "MASTER OF HUMOR",
-      "runs": 4,
+      "runs": 5,
       "wins": 0,
       "places": 0,
       "win_pct": 0.0,
       "place_pct": 0.0,
-      "last_run": "2026-03-25"
+      "last_run": "2026-06-03"
     },
     {
       "id": 1223,
@@ -8424,12 +8514,12 @@
     {
       "id": 5231,
       "name": "MEOWTH",
-      "runs": 5,
+      "runs": 6,
       "wins": 1,
-      "places": 4,
-      "win_pct": 20.0,
-      "place_pct": 80.0,
-      "last_run": "2026-02-11"
+      "places": 5,
+      "win_pct": 16.666666666666664,
+      "place_pct": 83.33333333333334,
+      "last_run": "2026-06-03"
     },
     {
       "id": 1057,
@@ -8624,12 +8714,12 @@
     {
       "id": 2151,
       "name": "MISTER DAPPER",
-      "runs": 3,
+      "runs": 4,
       "wins": 1,
       "places": 1,
-      "win_pct": 33.33333333333333,
-      "place_pct": 33.33333333333333,
-      "last_run": "2026-02-11"
+      "win_pct": 25.0,
+      "place_pct": 25.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 1071,
@@ -8984,12 +9074,12 @@
     {
       "id": 1,
       "name": "NEBRASKAN",
-      "runs": 17,
+      "runs": 18,
       "wins": 2,
       "places": 5,
-      "win_pct": 11.76470588235294,
-      "place_pct": 29.411764705882355,
-      "last_run": "2026-05-13"
+      "win_pct": 11.11111111111111,
+      "place_pct": 27.77777777777778,
+      "last_run": "2026-06-03"
     },
     {
       "id": 2727,
@@ -9504,12 +9594,12 @@
     {
       "id": 6829,
       "name": "PACKING ANGEL",
-      "runs": 1,
+      "runs": 2,
       "wins": 1,
       "places": 1,
-      "win_pct": 100.0,
-      "place_pct": 100.0,
-      "last_run": "2026-05-13"
+      "win_pct": 50.0,
+      "place_pct": 50.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 6527,
@@ -9844,12 +9934,12 @@
     {
       "id": 395,
       "name": "PHOENIX LIGHT",
-      "runs": 3,
+      "runs": 4,
       "wins": 0,
       "places": 2,
       "win_pct": 0.0,
-      "place_pct": 66.66666666666666,
-      "last_run": "2026-03-25"
+      "place_pct": 50.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 558,
@@ -9912,14 +10002,24 @@
       "last_run": "2025-03-12"
     },
     {
+      "id": 6856,
+      "name": "POCKETING",
+      "runs": 1,
+      "wins": 0,
+      "places": 0,
+      "win_pct": 0.0,
+      "place_pct": 0.0,
+      "last_run": "2026-06-03"
+    },
+    {
       "id": 85,
       "name": "PODIUM",
-      "runs": 17,
+      "runs": 18,
       "wins": 4,
       "places": 8,
-      "win_pct": 23.52941176470588,
-      "place_pct": 47.05882352941176,
-      "last_run": "2026-05-13"
+      "win_pct": 22.22222222222222,
+      "place_pct": 44.44444444444444,
+      "last_run": "2026-06-03"
     },
     {
       "id": 3625,
@@ -9944,12 +10044,12 @@
     {
       "id": 505,
       "name": "POWER KOEPP",
-      "runs": 21,
-      "wins": 2,
-      "places": 7,
-      "win_pct": 9.523809523809524,
-      "place_pct": 33.33333333333333,
-      "last_run": "2026-03-18"
+      "runs": 22,
+      "wins": 3,
+      "places": 8,
+      "win_pct": 13.636363636363635,
+      "place_pct": 36.36363636363637,
+      "last_run": "2026-06-03"
     },
     {
       "id": 236,
@@ -10134,12 +10234,12 @@
     {
       "id": 691,
       "name": "PRINCE ALEX",
-      "runs": 15,
+      "runs": 16,
       "wins": 2,
       "places": 3,
-      "win_pct": 13.333333333333334,
-      "place_pct": 20.0,
-      "last_run": "2026-05-13"
+      "win_pct": 12.5,
+      "place_pct": 18.75,
+      "last_run": "2026-06-03"
     },
     {
       "id": 891,
@@ -10814,12 +10914,12 @@
     {
       "id": 240,
       "name": "RUN RUN TIMING",
-      "runs": 9,
+      "runs": 10,
       "wins": 1,
       "places": 4,
-      "win_pct": 11.11111111111111,
-      "place_pct": 44.44444444444444,
-      "last_run": "2026-05-13"
+      "win_pct": 10.0,
+      "place_pct": 40.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 224,
@@ -10834,12 +10934,12 @@
     {
       "id": 5664,
       "name": "RUNJEET",
-      "runs": 1,
+      "runs": 2,
       "wins": 0,
       "places": 0,
       "win_pct": 0.0,
       "place_pct": 0.0,
-      "last_run": "2025-10-15"
+      "last_run": "2026-06-03"
     },
     {
       "id": 745,
@@ -10934,12 +11034,12 @@
     {
       "id": 1346,
       "name": "SAME TO YOU",
-      "runs": 12,
+      "runs": 13,
       "wins": 1,
-      "places": 3,
-      "win_pct": 8.333333333333332,
-      "place_pct": 25.0,
-      "last_run": "2026-01-28"
+      "places": 4,
+      "win_pct": 7.6923076923076925,
+      "place_pct": 30.76923076923077,
+      "last_run": "2026-06-03"
     },
     {
       "id": 4911,
@@ -11034,12 +11134,12 @@
     {
       "id": 5983,
       "name": "SAVVY WARRIOR",
-      "runs": 3,
+      "runs": 4,
       "wins": 0,
       "places": 0,
       "win_pct": 0.0,
       "place_pct": 0.0,
-      "last_run": "2026-05-13"
+      "last_run": "2026-06-03"
     },
     {
       "id": 872,
@@ -11154,12 +11254,12 @@
     {
       "id": 1695,
       "name": "SETANTA",
-      "runs": 23,
+      "runs": 24,
       "wins": 2,
       "places": 8,
-      "win_pct": 8.695652173913043,
-      "place_pct": 34.78260869565217,
-      "last_run": "2026-05-13"
+      "win_pct": 8.333333333333332,
+      "place_pct": 33.33333333333333,
+      "last_run": "2026-06-03"
     },
     {
       "id": 6822,
@@ -11354,12 +11454,12 @@
     {
       "id": 620,
       "name": "SILVERY BREEZE",
-      "runs": 4,
-      "wins": 1,
-      "places": 2,
-      "win_pct": 25.0,
-      "place_pct": 50.0,
-      "last_run": "2026-05-13"
+      "runs": 5,
+      "wins": 2,
+      "places": 3,
+      "win_pct": 40.0,
+      "place_pct": 60.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 3540,
@@ -11532,6 +11632,16 @@
       "last_run": "2025-03-19"
     },
     {
+      "id": 6857,
+      "name": "SMART AVENUE",
+      "runs": 1,
+      "wins": 0,
+      "places": 0,
+      "win_pct": 0.0,
+      "place_pct": 0.0,
+      "last_run": "2026-06-03"
+    },
+    {
       "id": 1631,
       "name": "SMART BEAUTY",
       "runs": 3,
@@ -11594,12 +11704,12 @@
     {
       "id": 234,
       "name": "SMART TRIO",
-      "runs": 7,
+      "runs": 8,
       "wins": 0,
       "places": 0,
       "win_pct": 0.0,
       "place_pct": 0.0,
-      "last_run": "2026-04-15"
+      "last_run": "2026-06-03"
     },
     {
       "id": 2813,
@@ -11644,12 +11754,12 @@
     {
       "id": 6826,
       "name": "SMILING ONE",
-      "runs": 1,
+      "runs": 2,
       "wins": 0,
       "places": 0,
       "win_pct": 0.0,
       "place_pct": 0.0,
-      "last_run": "2026-05-13"
+      "last_run": "2026-06-03"
     },
     {
       "id": 1600,
@@ -11804,12 +11914,12 @@
     {
       "id": 653,
       "name": "SOLEIL FIGHTER",
-      "runs": 13,
+      "runs": 14,
       "wins": 4,
       "places": 11,
-      "win_pct": 30.76923076923077,
-      "place_pct": 84.61538461538461,
-      "last_run": "2026-05-13"
+      "win_pct": 28.57142857142857,
+      "place_pct": 78.57142857142857,
+      "last_run": "2026-06-03"
     },
     {
       "id": 3949,
@@ -11874,12 +11984,12 @@
     {
       "id": 635,
       "name": "SONIC BOOM",
-      "runs": 5,
+      "runs": 6,
       "wins": 0,
-      "places": 3,
+      "places": 4,
       "win_pct": 0.0,
-      "place_pct": 60.0,
-      "last_run": "2026-02-25"
+      "place_pct": 66.66666666666666,
+      "last_run": "2026-06-03"
     },
     {
       "id": 4001,
@@ -12094,12 +12204,12 @@
     {
       "id": 6834,
       "name": "SPIRITED STEED",
-      "runs": 0,
+      "runs": 1,
       "wins": 0,
       "places": 0,
-      "win_pct": 0,
-      "place_pct": 0,
-      "last_run": null
+      "win_pct": 0.0,
+      "place_pct": 0.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 257,
@@ -12204,12 +12314,12 @@
     {
       "id": 5736,
       "name": "STAR FIGURE",
-      "runs": 2,
+      "runs": 3,
       "wins": 0,
       "places": 1,
       "win_pct": 0.0,
-      "place_pct": 50.0,
-      "last_run": "2025-11-12"
+      "place_pct": 33.33333333333333,
+      "last_run": "2026-06-03"
     },
     {
       "id": 5525,
@@ -12234,12 +12344,12 @@
     {
       "id": 3724,
       "name": "STAR MAC",
-      "runs": 7,
+      "runs": 8,
       "wins": 1,
       "places": 2,
-      "win_pct": 14.285714285714285,
-      "place_pct": 28.57142857142857,
-      "last_run": "2025-12-10"
+      "win_pct": 12.5,
+      "place_pct": 25.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 570,
@@ -12384,12 +12494,12 @@
     {
       "id": 519,
       "name": "STORMI",
-      "runs": 11,
+      "runs": 12,
       "wins": 2,
-      "places": 3,
-      "win_pct": 18.181818181818183,
-      "place_pct": 27.27272727272727,
-      "last_run": "2026-05-13"
+      "places": 4,
+      "win_pct": 16.666666666666664,
+      "place_pct": 33.33333333333333,
+      "last_run": "2026-06-03"
     },
     {
       "id": 274,
@@ -12754,12 +12864,12 @@
     {
       "id": 1038,
       "name": "SUPER JOY N FUN",
-      "runs": 13,
+      "runs": 14,
       "wins": 3,
       "places": 6,
-      "win_pct": 23.076923076923077,
-      "place_pct": 46.15384615384615,
-      "last_run": "2026-01-28"
+      "win_pct": 21.428571428571427,
+      "place_pct": 42.857142857142854,
+      "last_run": "2026-06-03"
     },
     {
       "id": 5685,
@@ -13084,12 +13194,12 @@
     {
       "id": 310,
       "name": "SYMBOL OF STRENGTH",
-      "runs": 7,
+      "runs": 8,
       "wins": 1,
       "places": 2,
-      "win_pct": 14.285714285714285,
-      "place_pct": 28.57142857142857,
-      "last_run": "2026-04-15"
+      "win_pct": 12.5,
+      "place_pct": 25.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 4837,
@@ -13100,6 +13210,16 @@
       "win_pct": 0.0,
       "place_pct": 0.0,
       "last_run": "2025-06-04"
+    },
+    {
+      "id": 6855,
+      "name": "TACTICAL ACE",
+      "runs": 1,
+      "wins": 0,
+      "places": 0,
+      "win_pct": 0.0,
+      "place_pct": 0.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 581,
@@ -13124,12 +13244,12 @@
     {
       "id": 4865,
       "name": "TAI VICTORY",
-      "runs": 1,
+      "runs": 2,
       "wins": 0,
       "places": 0,
       "win_pct": 0.0,
       "place_pct": 0.0,
-      "last_run": "2025-05-21"
+      "last_run": "2026-06-03"
     },
     {
       "id": 4,
@@ -13164,12 +13284,12 @@
     {
       "id": 244,
       "name": "TAKE ACTION",
-      "runs": 16,
-      "wins": 2,
-      "places": 6,
-      "win_pct": 12.5,
-      "place_pct": 37.5,
-      "last_run": "2026-05-13"
+      "runs": 17,
+      "wins": 3,
+      "places": 7,
+      "win_pct": 17.647058823529413,
+      "place_pct": 41.17647058823529,
+      "last_run": "2026-06-03"
     },
     {
       "id": 2873,
@@ -13254,12 +13374,12 @@
     {
       "id": 94,
       "name": "TELECOM POWER",
-      "runs": 21,
+      "runs": 22,
       "wins": 1,
-      "places": 6,
-      "win_pct": 4.761904761904762,
-      "place_pct": 28.57142857142857,
-      "last_run": "2026-05-13"
+      "places": 7,
+      "win_pct": 4.545454545454546,
+      "place_pct": 31.818181818181817,
+      "last_run": "2026-06-03"
     },
     {
       "id": 923,
@@ -13394,12 +13514,12 @@
     {
       "id": 286,
       "name": "THE HEIR",
-      "runs": 5,
-      "wins": 0,
-      "places": 3,
-      "win_pct": 0.0,
-      "place_pct": 60.0,
-      "last_run": "2026-04-15"
+      "runs": 6,
+      "wins": 1,
+      "places": 4,
+      "win_pct": 16.666666666666664,
+      "place_pct": 66.66666666666666,
+      "last_run": "2026-06-03"
     },
     {
       "id": 1905,
@@ -13424,12 +13544,12 @@
     {
       "id": 397,
       "name": "THE PERFECT MATCH",
-      "runs": 8,
+      "runs": 9,
       "wins": 0,
       "places": 3,
       "win_pct": 0.0,
-      "place_pct": 37.5,
-      "last_run": "2026-05-27"
+      "place_pct": 33.33333333333333,
+      "last_run": "2026-06-03"
     },
     {
       "id": 3116,
@@ -13474,12 +13594,12 @@
     {
       "id": 4041,
       "name": "THE WAY WE WIN",
-      "runs": 7,
+      "runs": 8,
       "wins": 0,
-      "places": 0,
+      "places": 1,
       "win_pct": 0.0,
-      "place_pct": 0.0,
-      "last_run": "2025-10-15"
+      "place_pct": 12.5,
+      "last_run": "2026-06-03"
     },
     {
       "id": 3693,
@@ -13494,12 +13614,12 @@
     {
       "id": 11,
       "name": "THOUSAND CUPS",
-      "runs": 10,
+      "runs": 11,
       "wins": 0,
       "places": 1,
       "win_pct": 0.0,
-      "place_pct": 10.0,
-      "last_run": "2026-04-22"
+      "place_pct": 9.090909090909092,
+      "last_run": "2026-06-03"
     },
     {
       "id": 5149,
@@ -14104,12 +14224,12 @@
     {
       "id": 96,
       "name": "VIGOR EYE",
-      "runs": 2,
+      "runs": 3,
       "wins": 1,
-      "places": 1,
-      "win_pct": 50.0,
-      "place_pct": 50.0,
-      "last_run": "2026-05-13"
+      "places": 2,
+      "win_pct": 33.33333333333333,
+      "place_pct": 66.66666666666666,
+      "last_run": "2026-06-03"
     },
     {
       "id": 829,
@@ -14284,12 +14404,12 @@
     {
       "id": 231,
       "name": "WAH MAY WAI WAI",
-      "runs": 16,
+      "runs": 17,
       "wins": 0,
       "places": 3,
       "win_pct": 0.0,
-      "place_pct": 18.75,
-      "last_run": "2026-05-13"
+      "place_pct": 17.647058823529413,
+      "last_run": "2026-06-03"
     },
     {
       "id": 4415,
@@ -14410,6 +14530,16 @@
       "win_pct": 33.33333333333333,
       "place_pct": 66.66666666666666,
       "last_run": "2024-04-10"
+    },
+    {
+      "id": 6846,
+      "name": "WINALOT",
+      "runs": 1,
+      "wins": 0,
+      "places": 0,
+      "win_pct": 0.0,
+      "place_pct": 0.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 917,
@@ -14534,12 +14664,12 @@
     {
       "id": 5910,
       "name": "WINNING NOW",
-      "runs": 3,
+      "runs": 4,
       "wins": 0,
       "places": 0,
       "win_pct": 0.0,
       "place_pct": 0.0,
-      "last_run": "2026-05-13"
+      "last_run": "2026-06-03"
     },
     {
       "id": 1416,
@@ -14614,12 +14744,12 @@
     {
       "id": 401,
       "name": "WITHOUT COMPARE",
-      "runs": 1,
-      "wins": 1,
-      "places": 1,
+      "runs": 2,
+      "wins": 2,
+      "places": 2,
       "win_pct": 100.0,
       "place_pct": 100.0,
-      "last_run": "2026-03-25"
+      "last_run": "2026-06-03"
     },
     {
       "id": 4474,
@@ -14794,12 +14924,12 @@
     {
       "id": 416,
       "name": "YEE CHEONG GLORY",
-      "runs": 1,
+      "runs": 2,
       "wins": 0,
       "places": 0,
       "win_pct": 0.0,
       "place_pct": 0.0,
-      "last_run": "2026-03-25"
+      "last_run": "2026-06-03"
     },
     {
       "id": 1450,
@@ -14814,12 +14944,12 @@
     {
       "id": 584,
       "name": "YEE CHEONG SPIRIT",
-      "runs": 13,
+      "runs": 14,
       "wins": 1,
       "places": 6,
-      "win_pct": 7.6923076923076925,
-      "place_pct": 46.15384615384615,
-      "last_run": "2026-03-04"
+      "win_pct": 7.142857142857142,
+      "place_pct": 42.857142857142854,
+      "last_run": "2026-06-03"
     },
     {
       "id": 747,
@@ -14904,12 +15034,12 @@
     {
       "id": 98,
       "name": "YOUNG ARROW",
-      "runs": 13,
+      "runs": 14,
       "wins": 0,
       "places": 6,
       "win_pct": 0.0,
-      "place_pct": 46.15384615384615,
-      "last_run": "2026-05-13"
+      "place_pct": 42.857142857142854,
+      "last_run": "2026-06-03"
     },
     {
       "id": 560,
@@ -15054,12 +15184,12 @@
     {
       "id": 229,
       "name": "ZETTA FORCE",
-      "runs": 4,
+      "runs": 5,
       "wins": 0,
       "places": 1,
       "win_pct": 0.0,
-      "place_pct": 25.0,
-      "last_run": "2026-05-13"
+      "place_pct": 20.0,
+      "last_run": "2026-06-03"
     },
     {
       "id": 106,
@@ -15096,273 +15226,273 @@
     {
       "id": 2,
       "name": "Z Purton",
-      "runs": 454,
-      "wins": 80,
-      "places": 217,
-      "win_pct": 17.62114537444934,
-      "place_pct": 47.797356828193834,
+      "runs": 460,
+      "wins": 82,
+      "places": 220,
+      "win_pct": 17.82608695652174,
+      "place_pct": 47.82608695652174,
       "trail60": {
-        "rides": 30,
-        "wins": 7,
-        "places": 16,
-        "win_pct": 23.333333333333332,
-        "place_pct": 53.333333333333336
+        "rides": 36,
+        "wins": 9,
+        "places": 19,
+        "win_pct": 25.0,
+        "place_pct": 52.77777777777778
       }
     },
     {
       "id": 12,
       "name": "H Bowman",
-      "runs": 406,
+      "runs": 409,
       "wins": 63,
       "places": 144,
-      "win_pct": 15.517241379310345,
-      "place_pct": 35.467980295566505,
+      "win_pct": 15.403422982885084,
+      "place_pct": 35.2078239608802,
       "trail60": {
-        "rides": 28,
+        "rides": 31,
         "wins": 3,
         "places": 9,
-        "win_pct": 10.714285714285714,
-        "place_pct": 32.142857142857146
+        "win_pct": 9.67741935483871,
+        "place_pct": 29.03225806451613
       }
     },
     {
       "id": 1,
       "name": "A Atzeni",
-      "runs": 405,
+      "runs": 414,
       "wins": 44,
-      "places": 122,
-      "win_pct": 10.864197530864198,
-      "place_pct": 30.12345679012346,
+      "places": 124,
+      "win_pct": 10.628019323671497,
+      "place_pct": 29.951690821256037,
       "trail60": {
-        "rides": 28,
+        "rides": 37,
         "wins": 2,
-        "places": 6,
-        "win_pct": 7.142857142857142,
-        "place_pct": 21.428571428571427
+        "places": 8,
+        "win_pct": 5.405405405405405,
+        "place_pct": 21.62162162162162
       }
     },
     {
       "id": 7,
       "name": "K Teetan",
-      "runs": 443,
+      "runs": 449,
       "wins": 42,
-      "places": 124,
-      "win_pct": 9.480812641083523,
-      "place_pct": 27.99097065462754,
+      "places": 126,
+      "win_pct": 9.35412026726058,
+      "place_pct": 28.06236080178174,
       "trail60": {
-        "rides": 28,
+        "rides": 34,
         "wins": 2,
-        "places": 7,
-        "win_pct": 7.142857142857142,
-        "place_pct": 25.0
+        "places": 9,
+        "win_pct": 5.88235294117647,
+        "place_pct": 26.47058823529412
       }
     },
     {
       "id": 33,
       "name": "H Bentley",
-      "runs": 348,
+      "runs": 355,
       "wins": 38,
-      "places": 103,
-      "win_pct": 10.919540229885058,
-      "place_pct": 29.597701149425287,
+      "places": 104,
+      "win_pct": 10.704225352112676,
+      "place_pct": 29.295774647887324,
       "trail60": {
-        "rides": 23,
+        "rides": 30,
         "wins": 4,
-        "places": 8,
-        "win_pct": 17.391304347826086,
-        "place_pct": 34.78260869565217
+        "places": 9,
+        "win_pct": 13.333333333333334,
+        "place_pct": 30.0
       }
     },
     {
       "id": 23,
       "name": "L Ferraris",
-      "runs": 323,
+      "runs": 330,
       "wins": 32,
-      "places": 83,
-      "win_pct": 9.907120743034056,
-      "place_pct": 25.696594427244584,
+      "places": 85,
+      "win_pct": 9.696969696969697,
+      "place_pct": 25.757575757575758,
       "trail60": {
-        "rides": 14,
+        "rides": 21,
         "wins": 0,
-        "places": 6,
+        "places": 8,
         "win_pct": 0.0,
-        "place_pct": 42.857142857142854
+        "place_pct": 38.095238095238095
       }
     },
     {
       "id": 14,
       "name": "C Y Ho",
-      "runs": 226,
+      "runs": 230,
       "wins": 30,
-      "places": 71,
-      "win_pct": 13.274336283185843,
-      "place_pct": 31.41592920353982,
+      "places": 72,
+      "win_pct": 13.043478260869565,
+      "place_pct": 31.30434782608696,
       "trail60": {
-        "rides": 13,
+        "rides": 17,
         "wins": 0,
-        "places": 1,
+        "places": 2,
         "win_pct": 0.0,
-        "place_pct": 7.6923076923076925
+        "place_pct": 11.76470588235294
       }
     },
     {
       "id": 15,
       "name": "C L Chau",
-      "runs": 297,
-      "wins": 26,
-      "places": 72,
-      "win_pct": 8.754208754208754,
-      "place_pct": 24.242424242424242,
+      "runs": 304,
+      "wins": 27,
+      "places": 73,
+      "win_pct": 8.881578947368421,
+      "place_pct": 24.013157894736842,
       "trail60": {
-        "rides": 24,
-        "wins": 2,
-        "places": 5,
-        "win_pct": 8.333333333333332,
-        "place_pct": 20.833333333333336
+        "rides": 31,
+        "wins": 3,
+        "places": 6,
+        "win_pct": 9.67741935483871,
+        "place_pct": 19.35483870967742
       }
     },
     {
       "id": 22,
       "name": "A Badel",
-      "runs": 354,
-      "wins": 25,
-      "places": 94,
-      "win_pct": 7.062146892655368,
-      "place_pct": 26.55367231638418,
+      "runs": 361,
+      "wins": 27,
+      "places": 97,
+      "win_pct": 7.479224376731302,
+      "place_pct": 26.869806094182824,
       "trail60": {
-        "rides": 16,
-        "wins": 2,
-        "places": 4,
-        "win_pct": 12.5,
-        "place_pct": 25.0
+        "rides": 23,
+        "wins": 4,
+        "places": 7,
+        "win_pct": 17.391304347826086,
+        "place_pct": 30.434782608695656
       }
     },
     {
       "id": 4,
       "name": "E C W Wong",
-      "runs": 251,
+      "runs": 254,
       "wins": 24,
-      "places": 68,
-      "win_pct": 9.56175298804781,
-      "place_pct": 27.091633466135455,
+      "places": 69,
+      "win_pct": 9.448818897637794,
+      "place_pct": 27.165354330708663,
       "trail60": {
-        "rides": 12,
+        "rides": 15,
         "wins": 1,
-        "places": 2,
-        "win_pct": 8.333333333333332,
-        "place_pct": 16.666666666666664
+        "places": 3,
+        "win_pct": 6.666666666666667,
+        "place_pct": 20.0
       }
     },
     {
       "id": 11,
       "name": "Y L Chung",
-      "runs": 338,
+      "runs": 343,
       "wins": 24,
-      "places": 69,
-      "win_pct": 7.100591715976331,
-      "place_pct": 20.414201183431953,
+      "places": 70,
+      "win_pct": 6.997084548104956,
+      "place_pct": 20.408163265306122,
       "trail60": {
-        "rides": 12,
+        "rides": 17,
         "wins": 3,
-        "places": 6,
-        "win_pct": 25.0,
-        "place_pct": 50.0
+        "places": 7,
+        "win_pct": 17.647058823529413,
+        "place_pct": 41.17647058823529
       }
     },
     {
       "id": 6,
       "name": "M F Poon",
-      "runs": 357,
+      "runs": 363,
       "wins": 23,
-      "places": 78,
-      "win_pct": 6.442577030812324,
-      "place_pct": 21.84873949579832,
+      "places": 80,
+      "win_pct": 6.336088154269973,
+      "place_pct": 22.03856749311295,
       "trail60": {
-        "rides": 19,
+        "rides": 25,
         "wins": 1,
-        "places": 4,
-        "win_pct": 5.263157894736842,
-        "place_pct": 21.052631578947366
+        "places": 6,
+        "win_pct": 4.0,
+        "place_pct": 24.0
       }
     },
     {
       "id": 21,
       "name": "L Hewitson",
-      "runs": 334,
+      "runs": 341,
       "wins": 22,
-      "places": 77,
-      "win_pct": 6.58682634730539,
-      "place_pct": 23.053892215568865,
+      "places": 79,
+      "win_pct": 6.451612903225806,
+      "place_pct": 23.16715542521994,
       "trail60": {
-        "rides": 18,
+        "rides": 25,
         "wins": 1,
-        "places": 4,
-        "win_pct": 5.555555555555555,
-        "place_pct": 22.22222222222222
+        "places": 6,
+        "win_pct": 4.0,
+        "place_pct": 24.0
       }
     },
     {
       "id": 90,
       "name": "M Chadwick",
-      "runs": 343,
+      "runs": 346,
       "wins": 22,
-      "places": 79,
-      "win_pct": 6.41399416909621,
-      "place_pct": 23.03206997084548,
+      "places": 80,
+      "win_pct": 6.358381502890173,
+      "place_pct": 23.121387283236995,
       "trail60": {
-        "rides": 12,
+        "rides": 15,
         "wins": 0,
-        "places": 2,
+        "places": 3,
         "win_pct": 0.0,
-        "place_pct": 16.666666666666664
+        "place_pct": 20.0
       }
     },
     {
       "id": 35,
       "name": "B Avdulla",
-      "runs": 283,
-      "wins": 18,
-      "places": 63,
-      "win_pct": 6.36042402826855,
-      "place_pct": 22.261484098939928,
+      "runs": 287,
+      "wins": 19,
+      "places": 64,
+      "win_pct": 6.620209059233449,
+      "place_pct": 22.299651567944252,
       "trail60": {
-        "rides": 12,
-        "wins": 1,
-        "places": 2,
-        "win_pct": 8.333333333333332,
-        "place_pct": 16.666666666666664
+        "rides": 16,
+        "wins": 2,
+        "places": 3,
+        "win_pct": 12.5,
+        "place_pct": 18.75
       }
     },
     {
       "id": 3,
       "name": "M L Yeung",
-      "runs": 262,
+      "runs": 263,
       "wins": 13,
       "places": 49,
-      "win_pct": 4.961832061068702,
-      "place_pct": 18.702290076335878,
+      "win_pct": 4.942965779467681,
+      "place_pct": 18.631178707224336,
       "trail60": {
-        "rides": 15,
+        "rides": 16,
         "wins": 0,
         "places": 5,
         "win_pct": 0.0,
-        "place_pct": 33.33333333333333
+        "place_pct": 31.25
       }
     },
     {
       "id": 5,
       "name": "K C Leung",
-      "runs": 275,
+      "runs": 281,
       "wins": 10,
       "places": 50,
-      "win_pct": 3.6363636363636362,
-      "place_pct": 18.181818181818183,
+      "win_pct": 3.558718861209965,
+      "place_pct": 17.793594306049823,
       "trail60": {
-        "rides": 13,
+        "rides": 19,
         "wins": 1,
         "places": 2,
-        "win_pct": 7.6923076923076925,
-        "place_pct": 15.384615384615385
+        "win_pct": 5.263157894736842,
+        "place_pct": 10.526315789473683
       }
     },
     {
@@ -15375,6 +15505,38 @@
       "place_pct": 32.69230769230769
     },
     {
+      "id": 9,
+      "name": "J Orman",
+      "runs": 159,
+      "wins": 8,
+      "places": 44,
+      "win_pct": 5.031446540880504,
+      "place_pct": 27.67295597484277,
+      "trail60": {
+        "rides": 23,
+        "wins": 1,
+        "places": 4,
+        "win_pct": 4.3478260869565215,
+        "place_pct": 17.391304347826086
+      }
+    },
+    {
+      "id": 20,
+      "name": "J Moreira",
+      "runs": 42,
+      "wins": 8,
+      "places": 12,
+      "win_pct": 19.047619047619047,
+      "place_pct": 28.57142857142857,
+      "trail60": {
+        "rides": 34,
+        "wins": 6,
+        "places": 10,
+        "win_pct": 17.647058823529413,
+        "place_pct": 29.411764705882355
+      }
+    },
+    {
       "id": 754,
       "name": "A Hamelin",
       "runs": 168,
@@ -15382,38 +15544,6 @@
       "places": 36,
       "win_pct": 4.761904761904762,
       "place_pct": 21.428571428571427
-    },
-    {
-      "id": 9,
-      "name": "J Orman",
-      "runs": 155,
-      "wins": 7,
-      "places": 43,
-      "win_pct": 4.516129032258064,
-      "place_pct": 27.741935483870968,
-      "trail60": {
-        "rides": 19,
-        "wins": 0,
-        "places": 3,
-        "win_pct": 0.0,
-        "place_pct": 15.789473684210526
-      }
-    },
-    {
-      "id": 20,
-      "name": "J Moreira",
-      "runs": 37,
-      "wins": 6,
-      "places": 10,
-      "win_pct": 16.216216216216218,
-      "place_pct": 27.027027027027028,
-      "trail60": {
-        "rides": 29,
-        "wins": 4,
-        "places": 8,
-        "win_pct": 13.793103448275861,
-        "place_pct": 27.586206896551722
-      }
     },
     {
       "id": 737,
@@ -15470,33 +15600,33 @@
     {
       "id": 8,
       "name": "E Brown",
-      "runs": 18,
+      "runs": 21,
       "wins": 2,
       "places": 5,
-      "win_pct": 11.11111111111111,
-      "place_pct": 27.77777777777778,
+      "win_pct": 9.523809523809524,
+      "place_pct": 23.809523809523807,
       "trail60": {
-        "rides": 18,
+        "rides": 21,
         "wins": 2,
         "places": 5,
-        "win_pct": 11.11111111111111,
-        "place_pct": 27.77777777777778
+        "win_pct": 9.523809523809524,
+        "place_pct": 23.809523809523807
       }
     },
     {
       "id": 36,
       "name": "P N Wong",
-      "runs": 32,
+      "runs": 35,
       "wins": 2,
       "places": 5,
-      "win_pct": 6.25,
-      "place_pct": 15.625,
+      "win_pct": 5.714285714285714,
+      "place_pct": 14.285714285714285,
       "trail60": {
-        "rides": 18,
+        "rides": 21,
         "wins": 1,
         "places": 3,
-        "win_pct": 5.555555555555555,
-        "place_pct": 16.666666666666664
+        "win_pct": 4.761904761904762,
+        "place_pct": 14.285714285714285
       }
     },
     {
@@ -15538,17 +15668,17 @@
     {
       "id": 60,
       "name": "H T Mo",
-      "runs": 80,
+      "runs": 81,
       "wins": 1,
-      "places": 3,
-      "win_pct": 1.25,
-      "place_pct": 3.75,
+      "places": 4,
+      "win_pct": 1.2345679012345678,
+      "place_pct": 4.938271604938271,
       "trail60": {
-        "rides": 7,
+        "rides": 8,
         "wins": 0,
-        "places": 0,
+        "places": 1,
         "win_pct": 0.0,
-        "place_pct": 0.0
+        "place_pct": 12.5
       }
     },
     {
@@ -15780,319 +15910,319 @@
   ],
   "trainers": [
     {
-      "id": 4,
-      "name": "C S Shum",
-      "runs": 409,
-      "wins": 55,
-      "places": 122,
-      "win_pct": 13.447432762836186,
-      "place_pct": 29.82885085574572,
+      "id": 20,
+      "name": "C Fownes",
+      "runs": 432,
+      "wins": 57,
+      "places": 138,
+      "win_pct": 13.194444444444445,
+      "place_pct": 31.944444444444443,
       "trail60": {
-        "rides": 26,
-        "wins": 7,
-        "places": 11,
-        "win_pct": 26.923076923076923,
-        "place_pct": 42.30769230769231
+        "rides": 35,
+        "wins": 5,
+        "places": 10,
+        "win_pct": 14.285714285714285,
+        "place_pct": 28.57142857142857
       }
     },
     {
-      "id": 20,
-      "name": "C Fownes",
-      "runs": 427,
-      "wins": 55,
-      "places": 136,
-      "win_pct": 12.88056206088993,
-      "place_pct": 31.85011709601874,
+      "id": 4,
+      "name": "C S Shum",
+      "runs": 418,
+      "wins": 56,
+      "places": 126,
+      "win_pct": 13.397129186602871,
+      "place_pct": 30.14354066985646,
       "trail60": {
-        "rides": 30,
-        "wins": 3,
-        "places": 8,
-        "win_pct": 10.0,
-        "place_pct": 26.666666666666668
+        "rides": 35,
+        "wins": 8,
+        "places": 15,
+        "win_pct": 22.857142857142858,
+        "place_pct": 42.857142857142854
       }
     },
     {
       "id": 11,
       "name": "A S Cruz",
-      "runs": 423,
+      "runs": 430,
       "wins": 50,
-      "places": 133,
-      "win_pct": 11.82033096926714,
-      "place_pct": 31.44208037825059,
+      "places": 135,
+      "win_pct": 11.627906976744185,
+      "place_pct": 31.3953488372093,
       "trail60": {
-        "rides": 24,
+        "rides": 31,
         "wins": 4,
-        "places": 11,
-        "win_pct": 16.666666666666664,
-        "place_pct": 45.83333333333333
+        "places": 13,
+        "win_pct": 12.903225806451612,
+        "place_pct": 41.935483870967744
       }
     },
     {
       "id": 17,
       "name": "M Newnham",
-      "runs": 366,
-      "wins": 41,
-      "places": 112,
-      "win_pct": 11.202185792349727,
-      "place_pct": 30.601092896174865,
+      "runs": 373,
+      "wins": 42,
+      "places": 115,
+      "win_pct": 11.26005361930295,
+      "place_pct": 30.831099195710454,
       "trail60": {
-        "rides": 23,
-        "wins": 1,
-        "places": 10,
-        "win_pct": 4.3478260869565215,
-        "place_pct": 43.47826086956522
+        "rides": 30,
+        "wins": 2,
+        "places": 13,
+        "win_pct": 6.666666666666667,
+        "place_pct": 43.333333333333336
       }
     },
     {
       "id": 33,
       "name": "D A Hayes",
-      "runs": 420,
+      "runs": 426,
       "wins": 41,
-      "places": 116,
-      "win_pct": 9.761904761904763,
-      "place_pct": 27.61904761904762,
+      "places": 117,
+      "win_pct": 9.624413145539906,
+      "place_pct": 27.464788732394368,
       "trail60": {
-        "rides": 25,
+        "rides": 31,
         "wins": 4,
-        "places": 9,
-        "win_pct": 16.0,
-        "place_pct": 36.0
+        "places": 10,
+        "win_pct": 12.903225806451612,
+        "place_pct": 32.25806451612903
       }
     },
     {
       "id": 10,
       "name": "D J Whyte",
-      "runs": 409,
+      "runs": 414,
       "wins": 37,
       "places": 117,
-      "win_pct": 9.04645476772616,
-      "place_pct": 28.606356968215156,
+      "win_pct": 8.937198067632849,
+      "place_pct": 28.26086956521739,
       "trail60": {
-        "rides": 19,
+        "rides": 24,
         "wins": 0,
         "places": 5,
         "win_pct": 0.0,
-        "place_pct": 26.31578947368421
+        "place_pct": 20.833333333333336
       }
     },
     {
       "id": 6,
       "name": "P F Yiu",
-      "runs": 366,
+      "runs": 370,
       "wins": 33,
       "places": 102,
-      "win_pct": 9.01639344262295,
-      "place_pct": 27.86885245901639,
+      "win_pct": 8.91891891891892,
+      "place_pct": 27.56756756756757,
       "trail60": {
-        "rides": 22,
+        "rides": 26,
         "wins": 1,
         "places": 6,
-        "win_pct": 4.545454545454546,
-        "place_pct": 27.27272727272727
+        "win_pct": 3.8461538461538463,
+        "place_pct": 23.076923076923077
       }
     },
     {
       "id": 9,
       "name": "K W Lui",
-      "runs": 295,
+      "runs": 301,
       "wins": 33,
-      "places": 93,
-      "win_pct": 11.186440677966102,
-      "place_pct": 31.52542372881356,
+      "places": 94,
+      "win_pct": 10.96345514950166,
+      "place_pct": 31.22923588039867,
       "trail60": {
-        "rides": 22,
+        "rides": 28,
         "wins": 1,
-        "places": 4,
-        "win_pct": 4.545454545454546,
-        "place_pct": 18.181818181818183
+        "places": 5,
+        "win_pct": 3.571428571428571,
+        "place_pct": 17.857142857142858
       }
     },
     {
       "id": 5,
       "name": "W K Mo",
-      "runs": 335,
-      "wins": 29,
-      "places": 83,
-      "win_pct": 8.656716417910449,
-      "place_pct": 24.776119402985074,
+      "runs": 341,
+      "wins": 30,
+      "places": 87,
+      "win_pct": 8.797653958944283,
+      "place_pct": 25.513196480938415,
       "trail60": {
-        "rides": 25,
-        "wins": 3,
-        "places": 7,
-        "win_pct": 12.0,
-        "place_pct": 28.000000000000004
+        "rides": 31,
+        "wins": 4,
+        "places": 11,
+        "win_pct": 12.903225806451612,
+        "place_pct": 35.483870967741936
       }
     },
     {
       "id": 14,
       "name": "F C Lor",
-      "runs": 343,
+      "runs": 347,
       "wins": 28,
-      "places": 93,
-      "win_pct": 8.16326530612245,
-      "place_pct": 27.113702623906704,
+      "places": 94,
+      "win_pct": 8.069164265129682,
+      "place_pct": 27.089337175792505,
       "trail60": {
-        "rides": 16,
+        "rides": 20,
         "wins": 1,
-        "places": 5,
-        "win_pct": 6.25,
-        "place_pct": 31.25
+        "places": 6,
+        "win_pct": 5.0,
+        "place_pct": 30.0
       }
     },
     {
       "id": 1,
       "name": "J Size",
-      "runs": 319,
-      "wins": 24,
-      "places": 80,
-      "win_pct": 7.523510971786834,
-      "place_pct": 25.07836990595611,
+      "runs": 323,
+      "wins": 25,
+      "places": 81,
+      "win_pct": 7.739938080495357,
+      "place_pct": 25.077399380804955,
       "trail60": {
-        "rides": 23,
-        "wins": 3,
-        "places": 7,
-        "win_pct": 13.043478260869565,
-        "place_pct": 30.434782608695656
-      }
-    },
-    {
-      "id": 47,
-      "name": "K L Man",
-      "runs": 243,
-      "wins": 23,
-      "places": 53,
-      "win_pct": 9.465020576131687,
-      "place_pct": 21.810699588477366,
-      "trail60": {
-        "rides": 14,
-        "wins": 1,
-        "places": 3,
-        "win_pct": 7.142857142857142,
-        "place_pct": 21.428571428571427
-      }
-    },
-    {
-      "id": 12,
-      "name": "J Richards",
-      "runs": 335,
-      "wins": 22,
-      "places": 84,
-      "win_pct": 6.567164179104477,
-      "place_pct": 25.07462686567164,
-      "trail60": {
-        "rides": 16,
-        "wins": 3,
-        "places": 5,
-        "win_pct": 18.75,
-        "place_pct": 31.25
+        "rides": 27,
+        "wins": 4,
+        "places": 8,
+        "win_pct": 14.814814814814813,
+        "place_pct": 29.629629629629626
       }
     },
     {
       "id": 19,
       "name": "D Eustace",
-      "runs": 209,
-      "wins": 21,
-      "places": 54,
-      "win_pct": 10.047846889952153,
-      "place_pct": 25.837320574162682,
+      "runs": 215,
+      "wins": 23,
+      "places": 56,
+      "win_pct": 10.69767441860465,
+      "place_pct": 26.046511627906977,
       "trail60": {
-        "rides": 21,
-        "wins": 2,
-        "places": 2,
-        "win_pct": 9.523809523809524,
-        "place_pct": 9.523809523809524
+        "rides": 27,
+        "wins": 4,
+        "places": 4,
+        "win_pct": 14.814814814814813,
+        "place_pct": 14.814814814814813
+      }
+    },
+    {
+      "id": 47,
+      "name": "K L Man",
+      "runs": 248,
+      "wins": 23,
+      "places": 53,
+      "win_pct": 9.274193548387096,
+      "place_pct": 21.370967741935484,
+      "trail60": {
+        "rides": 19,
+        "wins": 1,
+        "places": 3,
+        "win_pct": 5.263157894736842,
+        "place_pct": 15.789473684210526
+      }
+    },
+    {
+      "id": 12,
+      "name": "J Richards",
+      "runs": 341,
+      "wins": 22,
+      "places": 85,
+      "win_pct": 6.451612903225806,
+      "place_pct": 24.926686217008797,
+      "trail60": {
+        "rides": 22,
+        "wins": 3,
+        "places": 6,
+        "win_pct": 13.636363636363635,
+        "place_pct": 27.27272727272727
       }
     },
     {
       "id": 8,
       "name": "Y S Tsui",
-      "runs": 254,
+      "runs": 259,
       "wins": 19,
-      "places": 60,
-      "win_pct": 7.480314960629922,
-      "place_pct": 23.62204724409449,
+      "places": 61,
+      "win_pct": 7.335907335907336,
+      "place_pct": 23.552123552123554,
       "trail60": {
-        "rides": 15,
+        "rides": 20,
         "wins": 2,
-        "places": 5,
-        "win_pct": 13.333333333333334,
-        "place_pct": 33.33333333333333
+        "places": 6,
+        "win_pct": 10.0,
+        "place_pct": 30.0
       }
     },
     {
       "id": 22,
       "name": "C H Yip",
-      "runs": 244,
+      "runs": 248,
       "wins": 18,
       "places": 50,
-      "win_pct": 7.377049180327869,
-      "place_pct": 20.491803278688526,
+      "win_pct": 7.258064516129033,
+      "place_pct": 20.161290322580644,
       "trail60": {
-        "rides": 22,
+        "rides": 26,
         "wins": 0,
         "places": 3,
         "win_pct": 0.0,
-        "place_pct": 13.636363636363635
+        "place_pct": 11.538461538461538
       }
     },
     {
       "id": 7,
       "name": "D J Hall",
-      "runs": 277,
-      "wins": 16,
-      "places": 57,
-      "win_pct": 5.776173285198556,
-      "place_pct": 20.577617328519857,
+      "runs": 280,
+      "wins": 17,
+      "places": 58,
+      "win_pct": 6.071428571428571,
+      "place_pct": 20.714285714285715,
       "trail60": {
-        "rides": 10,
-        "wins": 0,
-        "places": 0,
-        "win_pct": 0.0,
-        "place_pct": 0.0
+        "rides": 13,
+        "wins": 1,
+        "places": 1,
+        "win_pct": 7.6923076923076925,
+        "place_pct": 7.6923076923076925
       }
     },
     {
       "id": 44,
       "name": "P C Ng",
-      "runs": 387,
+      "runs": 391,
       "wins": 15,
-      "places": 89,
-      "win_pct": 3.875968992248062,
-      "place_pct": 22.997416020671835,
+      "places": 91,
+      "win_pct": 3.8363171355498724,
+      "place_pct": 23.273657289002557,
       "trail60": {
-        "rides": 18,
+        "rides": 22,
         "wins": 0,
-        "places": 0,
+        "places": 2,
         "win_pct": 0.0,
-        "place_pct": 0.0
+        "place_pct": 9.090909090909092
       }
     },
     {
       "id": 2,
       "name": "C W Chang",
-      "runs": 239,
+      "runs": 244,
       "wins": 14,
       "places": 50,
-      "win_pct": 5.857740585774058,
-      "place_pct": 20.920502092050206,
+      "win_pct": 5.737704918032787,
+      "place_pct": 20.491803278688526,
       "trail60": {
-        "rides": 18,
+        "rides": 23,
         "wins": 1,
         "places": 6,
-        "win_pct": 5.555555555555555,
-        "place_pct": 33.33333333333333
+        "win_pct": 4.3478260869565215,
+        "place_pct": 26.08695652173913
       }
     },
     {
       "id": 16,
       "name": "W Y So",
-      "runs": 268,
+      "runs": 270,
       "wins": 13,
       "places": 46,
-      "win_pct": 4.850746268656716,
-      "place_pct": 17.16417910447761,
+      "win_pct": 4.814814814814815,
+      "place_pct": 17.037037037037038,
       "trail60": {
-        "rides": 11,
+        "rides": 13,
         "wins": 0,
         "places": 0,
         "win_pct": 0.0,
@@ -16102,17 +16232,17 @@
     {
       "id": 3,
       "name": "K H Ting",
-      "runs": 173,
+      "runs": 174,
       "wins": 7,
       "places": 29,
-      "win_pct": 4.046242774566474,
-      "place_pct": 16.76300578034682,
+      "win_pct": 4.022988505747127,
+      "place_pct": 16.666666666666664,
       "trail60": {
-        "rides": 13,
+        "rides": 14,
         "wins": 0,
         "places": 2,
         "win_pct": 0.0,
-        "place_pct": 15.384615384615385
+        "place_pct": 14.285714285714285
       }
     },
     {
@@ -16127,17 +16257,17 @@
     {
       "id": 27,
       "name": "B Crawford",
-      "runs": 51,
+      "runs": 54,
       "wins": 2,
-      "places": 12,
-      "win_pct": 3.9215686274509802,
-      "place_pct": 23.52941176470588,
+      "places": 13,
+      "win_pct": 3.7037037037037033,
+      "place_pct": 24.074074074074073,
       "trail60": {
-        "rides": 15,
+        "rides": 18,
         "wins": 0,
-        "places": 2,
+        "places": 3,
         "win_pct": 0.0,
-        "place_pct": 13.333333333333334
+        "place_pct": 16.666666666666664
       }
     },
     {
