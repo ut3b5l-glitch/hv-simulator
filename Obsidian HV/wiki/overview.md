@@ -57,10 +57,13 @@ The top-3 precision regression vs baseline is statistical noise (±4 pp at 177 r
 |---|---|---|---|
 | 2026-05-13 | **51.9%** (14/27) | +6.7% ROI | Debut; R2+R5 perfect; jf×tf failures R6-R9 |
 | 2026-05-27 | **22.2%** (6/27) | 0/14 won, 3 placed | Worst night; 4 complete misses; extreme jf×tf overconfidence |
+| 2026-06-03 | **51.9%** (14/27) | none flagged | Special between-week mtg; first true live blend run; #1 win 44.4%, place 55.6%; R5 perfect; only R4 0/3. See [[performance/live-meetings#2026-06-03]] |
 
-**2-meeting average: 37.1%** (20/54) vs 32.2% walk-forward and 25.7% random baseline.
+**3-meeting average: 42.0%** (34/81) vs 32.2% walk-forward and 25.7% random baseline.
 
-May 27 post-mortem: HONEST WITNESS was 84.1% model win vs 3.5 market odds (~28%). 4 races went 0/3. jf×tf leverage is producing epistemically unjustified certainty. Priority fix is overdue. See [[issues/known-issues#jf-tf-leverage]] and [[performance/live-meetings#2026-05-27]].
+June 3 was the **first genuinely live outing for the Phase 5 market-blend** (May 13/27 were blend-scored retroactively) and it tied the best night to date — #1-pick win 44.4% vs the ~28% market-favourite expectation. The blend has dissolved the old jf×tf overconfidence (it anchors to de-vigged market prob). Standing operational risk: the 7am racecard cron **failed silently** on this meeting day — see [[web/dynamic-pull-plan]] for the unattended-pull fix.
+
+May 27 post-mortem (pre-blend-era failure mode): HONEST WITNESS was 84.1% model win vs 3.5 market odds (~28%). 4 races went 0/3. jf×tf leverage produced epistemically unjustified certainty. See [[issues/known-issues#jf-tf-leverage]] and [[performance/live-meetings#2026-05-27]].
 
 ---
 

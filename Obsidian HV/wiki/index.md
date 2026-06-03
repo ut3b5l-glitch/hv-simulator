@@ -54,3 +54,4 @@ Master catalog of all pages. Updated on every ingest, experiment, or new page cr
 | Page | Summary |
 |---|---|
 | [[web/pwa]] | Mobile Progressive Web App (hv-simulator.vercel.app) — Next.js, glass design, JSON-snapshot driven |
+| [[web/dynamic-pull-plan]] | PLAN — race-day on-demand pull button + 11pm auto-reconcile via a Mac-backend FastAPI service over Tailscale |

@@ -4,6 +4,47 @@ Append a new section for each race night after ingesting results. Most recent fi
 
 ---
 
+## 2026-06-03 — Happy Valley (9 races)
+
+**DB state:** 623 races total (614 prior + 9 from this meeting; race_ids 615–623).
+**Import path:** bet.hkjc.com GraphQL fallback (racing.hkjc.com timed out — Playwright block).
+**Note:** This was a **special between-week Wednesday meeting** (off the normal fortnightly cadence). The 7am racecard cron **failed silently** — no card/predictions were produced; the full pipeline (racecard → odds → results) was run manually post-hoc the same evening. Picks are therefore on **closing odds**; the model never sees results, so it remains a valid skill read. First genuinely live outing for the Phase 5 market-blend (May 13/27 were blend-scored retroactively).
+
+### Summary
+
+| Metric | Result |
+|---|---|
+| Top-3 precision | **51.9%** (14/27 picks) |
+| #1 pick win rate | **44.4%** (4/9) |
+| #1 pick place rate | **55.6%** (5/9) |
+| Value bets | none flagged (edge >5% & win >10%) — expected for market-anchored blend |
+| Random baseline | 25.7% |
+
+Tied with the May 13 debut for the **best live night to date**, and a full reversal of May 27. Top-3 precision sits on the model's ~52% ceiling; #1-pick win rate (44.4%) is well above the ~28% market-favourite expectation.
+
+### Race-by-Race
+
+| Race | Model Picks (top-3) | Actual Top-3 | Hits | Notes |
+|---|---|---|---|---|
+| R1 (C5) | FAMILY FORTUNE · WAH MAY WAI WAI · SETANTA | FAMILY FORTUNE / THE WAY WE WIN / TELECOM POWER | 1/3 | **Top pick WON** (2.7) |
+| R2 (C5) | ALWAYS MY FOLKS · RUNJEET · AUTUMN VIBES | MAJESTIC DELIGHT / AUTUMN VIBES / SONIC BOOM | 1/3 | Top pick 5th; AUTUMN VIBES placed |
+| R3 (C4) | YOUNG ARROW · LEADING AGILITY · SAME TO YOU | FORERUNNER / SAME TO YOU / LEADING AGILITY | 2/3 | Winner FORERUNNER was the pre-refresh #3 pick (closing-odds wobble) |
+| R4 (C4) | RUN RUN TIMING · DASHING MAURISON · SAVVY WARRIOR | TAKE ACTION / EXCEED THE LIMIT / CAN'T GO WONG | 0/3 | **Bust** — top pick (2.4 fav) finished last (12th) |
+| R5 (C4) | BROWNNEEDSFURTHER · LOVING VIBES · GEORGIAN SIGMA | BROWNNEEDSFURTHER / LOVING VIBES / GEORGIAN SIGMA | 3/3 | **Perfect** — exact 1-2-3; top pick WON |
+| R6 (C4) | THE HEIR · NEBRASKAN · MEOWTH | THE HEIR / MEOWTH / VIGOR EYE | 2/3 | **Top pick WON** |
+| R7 (C3) | ACE CHAMPION · AMAZING KID · KING PROFIT | POWER KOEPP / KING PROFIT / ACE CHAMPION | 2/3 | ACE CHAMPION 3rd; KING PROFIT placed |
+| R8 (C2) | ARMOR GOLDEN EAGLE · LIVEANDLETLIVE · BEAUTY ALLIANCE | SILVERY BREEZE / LIVEANDLETLIVE / CALIFORNIATOTALITY | 1/3 | Top pick 5th; LIVEANDLETLIVE placed |
+| R9 (C3) | WITHOUT COMPARE · FIVEFORTWO · ALL ROUND WINNER | WITHOUT COMPARE / STORMI / FIVEFORTWO | 2/3 | **Top pick WON** |
+
+**Total: 14/27 = 51.9%.** Four winning top picks (R1, R5, R6, R9); R5 a clean sweep. Only one 0/3 (R4 — a short-priced favourite that flopped, market's miss as much as the model's).
+
+### Operational learnings
+
+- **7am racecard cron failed silently on a meeting day** — biggest reliability gap. Plan: automated Wednesday-evening pull on the Mac (tries every Wed, no-ops if no card → catches special meetings) + 11pm reconcile. See [[web/dynamic-pull-plan]].
+- Re-pulling R9's odds refreshed all races to final and shifted R3's #3 pick (FORERUNNER → SAME TO YOU); net precision unchanged. Marginal picks move with closing odds.
+
+---
+
 ## 2026-05-27 — Happy Valley (9 races)
 
 **DB state:** 614 races total (605 historical + 9 from this meeting)
