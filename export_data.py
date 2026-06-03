@@ -279,6 +279,52 @@ def compute_model_quality() -> dict | None:
         return None
 
 
+def build_betting(dates: list[str]) -> dict | None:
+    """Aggregate the betting-P&L (bet_report) across meetings for the PWA.
+
+    Flat-stake returns for the four strategies on the model's top-3 picks, using
+    official dividends. Isolated/guarded: any failure returns None so the rest of
+    the snapshot still builds.
+    """
+    try:
+        import bet_report
+    except Exception as exc:  # noqa: BLE001
+        print(f"  · betting skipped: {type(exc).__name__}: {exc}")
+        return None
+
+    keys = ["win_top1", "place_box3", "quinella_place_box3", "quinella_box3"]
+    agg = {k: {"label": None, "staked": 0.0, "returned": 0.0} for k in keys}
+    per_meeting = []
+    for d in dates:
+        data = bet_report.compute(d)
+        if not data:
+            continue
+        nets = {}
+        for k in keys:
+            s = data["strategies"][k]
+            agg[k]["label"] = s["label"]
+            agg[k]["staked"] += s["staked"]
+            agg[k]["returned"] += s["returned"]
+            nets[k] = round(s["net"], 2)
+        per_meeting.append({"date": d, "nets": nets})
+
+    if not per_meeting:
+        return None
+
+    strategies = []
+    for k in keys:
+        a = agg[k]
+        net = round(a["returned"] - a["staked"], 2)
+        strategies.append({
+            "key": k, "label": a["label"],
+            "staked": round(a["staked"], 2), "returned": round(a["returned"], 2),
+            "net": net,
+            "roi_pct": round(100 * net / a["staked"], 1) if a["staked"] else 0.0,
+        })
+    per_meeting.sort(key=lambda m: m["date"], reverse=True)
+    return {"unit": bet_report.UNIT, "strategies": strategies, "per_meeting": per_meeting}
+
+
 def build_performance(meeting_summaries: list[dict]) -> dict:
     settled = [m for m in meeting_summaries if m["has_results"]]
     total_top3_hits = sum(m["top3_hits"] for m in settled)
@@ -341,6 +387,11 @@ def main():
     })
 
     perf = build_performance(summaries)
+    perf["betting"] = build_betting(dates)
+    if perf["betting"]:
+        w = next((s for s in perf["betting"]["strategies"] if s["key"] == "win_top1"), None)
+        if w:
+            print(f"  · betting: Win-on-#1 net {w['net']:+.0f} ({w['roi_pct']:+.1f}% ROI) over {len(perf['betting']['per_meeting'])} mtg")
     perf["model_quality"] = compute_model_quality()
     if perf["model_quality"]:
         mq = perf["model_quality"]["metrics"]["blend"]

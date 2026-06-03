@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-03T23:35:14",
+  "generated_at": "2026-06-04T00:09:48",
   "meetings_total": 3,
   "meetings_settled": 3,
   "top3_precision": 50.617283950617285,
@@ -62,8 +62,74 @@
       "value_bet_roi": null
     }
   ],
+  "betting": {
+    "unit": 10.0,
+    "strategies": [
+      {
+        "key": "win_top1",
+        "label": "WIN on #1 pick",
+        "staked": 270.0,
+        "returned": 293.5,
+        "net": 23.5,
+        "roi_pct": 8.7
+      },
+      {
+        "key": "place_box3",
+        "label": "PLACE \u2014 all 3 picks",
+        "staked": 810.0,
+        "returned": 557.0,
+        "net": -253.0,
+        "roi_pct": -31.2
+      },
+      {
+        "key": "quinella_place_box3",
+        "label": "QUINELLA PLACE box (3 picks)",
+        "staked": 810.0,
+        "returned": 492.0,
+        "net": -318.0,
+        "roi_pct": -39.3
+      },
+      {
+        "key": "quinella_box3",
+        "label": "QUINELLA box (3 picks)",
+        "staked": 810.0,
+        "returned": 317.0,
+        "net": -493.0,
+        "roi_pct": -60.9
+      }
+    ],
+    "per_meeting": [
+      {
+        "date": "2026-06-03",
+        "nets": {
+          "win_top1": 31.0,
+          "place_box3": -25.5,
+          "quinella_place_box3": 29.0,
+          "quinella_box3": -134.5
+        }
+      },
+      {
+        "date": "2026-05-27",
+        "nets": {
+          "win_top1": 26.5,
+          "place_box3": -106.5,
+          "quinella_place_box3": -163.5,
+          "quinella_box3": -88.5
+        }
+      },
+      {
+        "date": "2026-05-13",
+        "nets": {
+          "win_top1": -34.0,
+          "place_box3": -121.0,
+          "quinella_place_box3": -183.5,
+          "quinella_box3": -270.0
+        }
+      }
+    ]
+  },
   "model_quality": {
-    "generated_at": "2026-06-03T15:35:17+00:00",
+    "generated_at": "2026-06-03T16:09:51+00:00",
     "n_races": 213,
     "n_meetings": 25,
     "window": "leak-free walk-forward, test races 400+",

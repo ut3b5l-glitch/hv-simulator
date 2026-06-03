@@ -102,10 +102,26 @@ export type ModelQuality = {
   calibration_market: CalibrationBin[];
 };
 
+export type BettingStrategy = {
+  key: string;
+  label: string;
+  staked: number;
+  returned: number;
+  net: number;
+  roi_pct: number;
+};
+
+export type Betting = {
+  unit: number;
+  strategies: BettingStrategy[];
+  per_meeting: { date: string; nets: Record<string, number> }[];
+};
+
 export type Performance = {
   generated_at: string;
   meetings_total: number;
   meetings_settled: number;
+  betting?: Betting | null;
   model_quality?: ModelQuality | null;
   top3_precision: number | null;
   top3_hits: number;

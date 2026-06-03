@@ -85,17 +85,25 @@ def compute(meeting_date: str) -> dict | None:
         if not pred or not div:
             continue  # need both model picks and official dividends
 
-        # Model's top-3 picks, with horse numbers
+        finishers = race.get("finishers", [])
+        name2no = {f.get("horse_name"): f.get("horse_no")
+                   for f in finishers if f.get("horse_no") is not None}
+
+        # Model's top-3 picks, resolved to horse numbers (fallback: by name)
         picks = sorted(pred.get("runners", []), key=lambda r: r.get("rank", 99))[:3]
-        pick_nos = [p.get("horse_no") for p in picks if p.get("horse_no") is not None]
-        pick_names = {p.get("horse_no"): p.get("horse_name") for p in picks}
-        if len(pick_nos) < 3:
+
+        def _no(p):
+            return p.get("horse_no") if p.get("horse_no") is not None else name2no.get(p.get("horse_name"))
+
+        pick_nos = [_no(p) for p in picks]
+        if len(pick_nos) < 3 or any(n is None for n in pick_nos):
             continue
+        pick_names = {_no(p): p.get("horse_name") for p in picks}
         pick_set = set(pick_nos)
 
         # Actual finish: number -> position
         pos_by_no = {f.get("horse_no"): f.get("position")
-                     for f in race.get("finishers", []) if f.get("horse_no") is not None}
+                     for f in finishers if f.get("horse_no") is not None}
         winner_no = next((n for n, p in pos_by_no.items() if p == 1), None)
         top3_nos = {n for n, p in pos_by_no.items() if p in (1, 2, 3)}
 

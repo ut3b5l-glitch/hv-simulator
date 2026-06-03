@@ -1,7 +1,7 @@
 {
   "meeting_date": "2026-05-13",
   "fetched_at": "2026-05-30T17:50:43",
-  "settled_at": "2026-05-13T23:06:40",
+  "settled_at": "2026-06-04T00:06:51",
   "races": [
     {
       "race_id": 597,
@@ -399,51 +399,63 @@
       "finishers": [
         {
           "position": 1,
-          "horse_name": "PODIUM"
+          "horse_name": "PODIUM",
+          "horse_no": 1
         },
         {
           "position": 2,
-          "horse_name": "SETANTA"
+          "horse_name": "SETANTA",
+          "horse_no": 3
         },
         {
           "position": 3,
-          "horse_name": "WAH MAY WAI WAI"
+          "horse_name": "WAH MAY WAI WAI",
+          "horse_no": 12
         },
         {
           "position": 4,
-          "horse_name": "TELECOM POWER"
+          "horse_name": "TELECOM POWER",
+          "horse_no": 5
         },
         {
           "position": 5,
-          "horse_name": "ZETTA FORCE"
+          "horse_name": "ZETTA FORCE",
+          "horse_no": 6
         },
         {
           "position": 6,
-          "horse_name": "MANYTHANKS FOREVER"
+          "horse_name": "MANYTHANKS FOREVER",
+          "horse_no": 8
         },
         {
           "position": 7,
-          "horse_name": "SMILING EMPEROR"
+          "horse_name": "SMILING EMPEROR",
+          "horse_no": 10
         },
         {
           "position": 8,
-          "horse_name": "PRINCE ALEX"
+          "horse_name": "PRINCE ALEX",
+          "horse_no": 2
         },
         {
           "position": 9,
-          "horse_name": "DOUBLE BINGO"
+          "horse_name": "DOUBLE BINGO",
+          "horse_no": 7
         },
         {
           "position": 10,
-          "horse_name": "DRAGON SUNRISE"
+          "horse_name": "DRAGON SUNRISE",
+          "horse_no": 11
         },
         {
           "position": 11,
-          "horse_name": "NOBLE FANS"
+          "horse_name": "NOBLE FANS",
+          "horse_no": 4
         },
         {
           "position": 12,
-          "horse_name": "WINDICATOR FAMILY"
+          "horse_name": "WINDICATOR FAMILY",
+          "horse_no": 9
         }
       ],
       "top3_hits": 0,
@@ -846,51 +858,63 @@
       "finishers": [
         {
           "position": 1,
-          "horse_name": "NEBRASKAN"
+          "horse_name": "NEBRASKAN",
+          "horse_no": 12
         },
         {
           "position": 2,
-          "horse_name": "FORERUNNER"
+          "horse_name": "FORERUNNER",
+          "horse_no": 8
         },
         {
           "position": 3,
-          "horse_name": "WORLD HERO"
+          "horse_name": "WORLD HERO",
+          "horse_no": 4
         },
         {
           "position": 4,
-          "horse_name": "FORZA LEADER"
+          "horse_name": "FORZA LEADER",
+          "horse_no": 10
         },
         {
           "position": 5,
-          "horse_name": "BEAUTY GLORY"
+          "horse_name": "BEAUTY GLORY",
+          "horse_no": 1
         },
         {
           "position": 6,
-          "horse_name": "MARVEL AND GOLD"
+          "horse_name": "MARVEL AND GOLD",
+          "horse_no": 9
         },
         {
           "position": 7,
-          "horse_name": "KING OBERON"
+          "horse_name": "KING OBERON",
+          "horse_no": 5
         },
         {
           "position": 8,
-          "horse_name": "HEALTHY HEALTHY"
+          "horse_name": "HEALTHY HEALTHY",
+          "horse_no": 3
         },
         {
           "position": 9,
-          "horse_name": "AWESOME TREASURE"
+          "horse_name": "AWESOME TREASURE",
+          "horse_no": 11
         },
         {
           "position": 10,
-          "horse_name": "KING CANNON"
+          "horse_name": "KING CANNON",
+          "horse_no": 6
         },
         {
           "position": 11,
-          "horse_name": "BLASTED TALENT"
+          "horse_name": "BLASTED TALENT",
+          "horse_no": 7
         },
         {
           "position": 12,
-          "horse_name": "CHARMING BABE"
+          "horse_name": "CHARMING BABE",
+          "horse_no": 2
         }
       ],
       "top3_hits": 2,
@@ -1200,39 +1224,48 @@
       "finishers": [
         {
           "position": 1,
-          "horse_name": "ROMANTIC GLADIATOR"
+          "horse_name": "ROMANTIC GLADIATOR",
+          "horse_no": 7
         },
         {
           "position": 2,
-          "horse_name": "FIVEFORTWO"
+          "horse_name": "FIVEFORTWO",
+          "horse_no": 1
         },
         {
           "position": 3,
-          "horse_name": "ALL ROUND WINNER"
+          "horse_name": "ALL ROUND WINNER",
+          "horse_no": 4
         },
         {
           "position": 4,
-          "horse_name": "FORTUNATE SON"
+          "horse_name": "FORTUNATE SON",
+          "horse_no": 5
         },
         {
           "position": 5,
-          "horse_name": "PRAY FOR JUSTICE"
+          "horse_name": "PRAY FOR JUSTICE",
+          "horse_no": 6
         },
         {
           "position": 6,
-          "horse_name": "SUPER UNICORN"
+          "horse_name": "SUPER UNICORN",
+          "horse_no": 9
         },
         {
           "position": 7,
-          "horse_name": "STORMI"
+          "horse_name": "STORMI",
+          "horse_no": 8
         },
         {
           "position": 8,
-          "horse_name": "SEWARD"
+          "horse_name": "SEWARD",
+          "horse_no": 2
         },
         {
           "position": 9,
-          "horse_name": "IGOR STRAVINSKY"
+          "horse_name": "IGOR STRAVINSKY",
+          "horse_no": 3
         }
       ],
       "top3_hits": 3,
@@ -1635,51 +1668,63 @@
       "finishers": [
         {
           "position": 1,
-          "horse_name": "GENERAL REDWOOD"
+          "horse_name": "GENERAL REDWOOD",
+          "horse_no": 4
         },
         {
           "position": 2,
-          "horse_name": "DASHING MAURISON"
+          "horse_name": "DASHING MAURISON",
+          "horse_no": 10
         },
         {
           "position": 3,
-          "horse_name": "CAN'T GO WONG"
+          "horse_name": "CAN'T GO WONG",
+          "horse_no": 11
         },
         {
           "position": 4,
-          "horse_name": "SAVVY WARRIOR"
+          "horse_name": "SAVVY WARRIOR",
+          "horse_no": 8
         },
         {
           "position": 5,
-          "horse_name": "NOBLE PURSUIT"
+          "horse_name": "NOBLE PURSUIT",
+          "horse_no": 5
         },
         {
           "position": 6,
-          "horse_name": "WHOWROTETHATSONG"
+          "horse_name": "WHOWROTETHATSONG",
+          "horse_no": 9
         },
         {
           "position": 7,
-          "horse_name": "ROMANTIC LAOS"
+          "horse_name": "ROMANTIC LAOS",
+          "horse_no": 2
         },
         {
           "position": 8,
-          "horse_name": "ACE POWER"
+          "horse_name": "ACE POWER",
+          "horse_no": 7
         },
         {
           "position": 9,
-          "horse_name": "MEGA MASTERMIND"
+          "horse_name": "MEGA MASTERMIND",
+          "horse_no": 3
         },
         {
           "position": 10,
-          "horse_name": "LAKESHORE HERO"
+          "horse_name": "LAKESHORE HERO",
+          "horse_no": 12
         },
         {
           "position": 11,
-          "horse_name": "CELTIC TIMES"
+          "horse_name": "CELTIC TIMES",
+          "horse_no": 6
         },
         {
           "position": 12,
-          "horse_name": "MIGHTY STEED"
+          "horse_name": "MIGHTY STEED",
+          "horse_no": 1
         }
       ],
       "top3_hits": 1,
@@ -1989,39 +2034,48 @@
       "finishers": [
         {
           "position": 1,
-          "horse_name": "LIVEANDLETLIVE"
+          "horse_name": "LIVEANDLETLIVE",
+          "horse_no": 1
         },
         {
           "position": 2,
-          "horse_name": "THE AUSPICIOUS"
+          "horse_name": "THE AUSPICIOUS",
+          "horse_no": 6
         },
         {
           "position": 3,
-          "horse_name": "ACE WAR"
+          "horse_name": "ACE WAR",
+          "horse_no": 8
         },
         {
           "position": 4,
-          "horse_name": "NOISY BOY"
+          "horse_name": "NOISY BOY",
+          "horse_no": 7
         },
         {
           "position": 5,
-          "horse_name": "LE ZONDA"
+          "horse_name": "LE ZONDA",
+          "horse_no": 5
         },
         {
           "position": 6,
-          "horse_name": "FLYING LUCK"
+          "horse_name": "FLYING LUCK",
+          "horse_no": 3
         },
         {
           "position": 7,
-          "horse_name": "SO YOU WILL"
+          "horse_name": "SO YOU WILL",
+          "horse_no": 9
         },
         {
           "position": 8,
-          "horse_name": "KEEFY"
+          "horse_name": "KEEFY",
+          "horse_no": 2
         },
         {
           "position": 9,
-          "horse_name": "DRAGON ON SNOW"
+          "horse_name": "DRAGON ON SNOW",
+          "horse_no": 10
         }
       ],
       "top3_hits": 3,
@@ -2424,51 +2478,63 @@
       "finishers": [
         {
           "position": 1,
-          "horse_name": "THE AZURE"
+          "horse_name": "THE AZURE",
+          "horse_no": 7
         },
         {
           "position": 2,
-          "horse_name": "TAKE ACTION"
+          "horse_name": "TAKE ACTION",
+          "horse_no": 6
         },
         {
           "position": 3,
-          "horse_name": "RUN RUN TIMING"
+          "horse_name": "RUN RUN TIMING",
+          "horse_no": 10
         },
         {
           "position": 4,
-          "horse_name": "PRECISION HOPE"
+          "horse_name": "PRECISION HOPE",
+          "horse_no": 8
         },
         {
           "position": 5,
-          "horse_name": "SHOOTING TO TOP"
+          "horse_name": "SHOOTING TO TOP",
+          "horse_no": 3
         },
         {
           "position": 6,
-          "horse_name": "VIVA FIRECRACKER"
+          "horse_name": "VIVA FIRECRACKER",
+          "horse_no": 12
         },
         {
           "position": 7,
-          "horse_name": "INCANTO STAR"
+          "horse_name": "INCANTO STAR",
+          "horse_no": 9
         },
         {
           "position": 8,
-          "horse_name": "STURDY RUBY"
+          "horse_name": "STURDY RUBY",
+          "horse_no": 2
         },
         {
           "position": 9,
-          "horse_name": "HARMONY GALAXY"
+          "horse_name": "HARMONY GALAXY",
+          "horse_no": 1
         },
         {
           "position": 10,
-          "horse_name": "SMILING ONE"
+          "horse_name": "SMILING ONE",
+          "horse_no": 5
         },
         {
           "position": 11,
-          "horse_name": "GAZELEY"
+          "horse_name": "GAZELEY",
+          "horse_no": 4
         },
         {
           "position": 12,
-          "horse_name": "TO INFINITY"
+          "horse_name": "TO INFINITY",
+          "horse_no": 11
         }
       ],
       "top3_hits": 2,
@@ -2871,51 +2937,63 @@
       "finishers": [
         {
           "position": 1,
-          "horse_name": "LEADING AGILITY"
+          "horse_name": "LEADING AGILITY",
+          "horse_no": 11
         },
         {
           "position": 2,
-          "horse_name": "AMAZING VICTORY"
+          "horse_name": "AMAZING VICTORY",
+          "horse_no": 3
         },
         {
           "position": 3,
-          "horse_name": "YOUNG ARROW"
+          "horse_name": "YOUNG ARROW",
+          "horse_no": 1
         },
         {
           "position": 4,
-          "horse_name": "WINNING NOW"
+          "horse_name": "WINNING NOW",
+          "horse_no": 12
         },
         {
           "position": 5,
-          "horse_name": "TACTICAL COMMAND"
+          "horse_name": "TACTICAL COMMAND",
+          "horse_no": 8
         },
         {
           "position": 6,
-          "horse_name": "JOLLY COMPANION"
+          "horse_name": "JOLLY COMPANION",
+          "horse_no": 10
         },
         {
           "position": 7,
-          "horse_name": "JUMBO BLESSING"
+          "horse_name": "JUMBO BLESSING",
+          "horse_no": 9
         },
         {
           "position": 8,
-          "horse_name": "GOLDEN EMPIRE"
+          "horse_name": "GOLDEN EMPIRE",
+          "horse_no": 4
         },
         {
           "position": 9,
-          "horse_name": "LUCKY MCQUEEN"
+          "horse_name": "LUCKY MCQUEEN",
+          "horse_no": 7
         },
         {
           "position": 10,
-          "horse_name": "CORNERSTONE"
+          "horse_name": "CORNERSTONE",
+          "horse_no": 2
         },
         {
           "position": 11,
-          "horse_name": "SMART FIGHTER"
+          "horse_name": "SMART FIGHTER",
+          "horse_no": 5
         },
         {
           "position": 12,
-          "horse_name": "VIGOR EYE"
+          "horse_name": "VIGOR EYE",
+          "horse_no": 6
         }
       ],
       "top3_hits": 1,
@@ -3318,51 +3396,63 @@
       "finishers": [
         {
           "position": 1,
-          "horse_name": "MOTOR"
+          "horse_name": "MOTOR",
+          "horse_no": 11
         },
         {
           "position": 2,
-          "horse_name": "SON PAK FU"
+          "horse_name": "SON PAK FU",
+          "horse_no": 1
         },
         {
           "position": 3,
-          "horse_name": "AURIO"
+          "horse_name": "AURIO",
+          "horse_no": 2
         },
         {
           "position": 4,
-          "horse_name": "TELECOM FIGHTERS"
+          "horse_name": "TELECOM FIGHTERS",
+          "horse_no": 8
         },
         {
           "position": 5,
-          "horse_name": "PRESTIGE ALWAYS"
+          "horse_name": "PRESTIGE ALWAYS",
+          "horse_no": 12
         },
         {
           "position": 6,
-          "horse_name": "AMAZING KID"
+          "horse_name": "AMAZING KID",
+          "horse_no": 6
         },
         {
           "position": 7,
-          "horse_name": "MATTERS MOST"
+          "horse_name": "MATTERS MOST",
+          "horse_no": 7
         },
         {
           "position": 8,
-          "horse_name": "SOVEREIGN FUND"
+          "horse_name": "SOVEREIGN FUND",
+          "horse_no": 4
         },
         {
           "position": 9,
-          "horse_name": "SOMELOVEFROMABOVE"
+          "horse_name": "SOMELOVEFROMABOVE",
+          "horse_no": 10
         },
         {
           "position": 10,
-          "horse_name": "HARMONY N BLESSED"
+          "horse_name": "HARMONY N BLESSED",
+          "horse_no": 5
         },
         {
           "position": 11,
-          "horse_name": "FLASH CURRENT"
+          "horse_name": "FLASH CURRENT",
+          "horse_no": 9
         },
         {
           "position": 12,
-          "horse_name": "DRAGON FOUR SEAS"
+          "horse_name": "DRAGON FOUR SEAS",
+          "horse_no": 3
         }
       ],
       "top3_hits": 2,
@@ -3734,47 +3824,58 @@
       "finishers": [
         {
           "position": 1,
-          "horse_name": "PACKING ANGEL"
+          "horse_name": "PACKING ANGEL",
+          "horse_no": 9
         },
         {
           "position": 2,
-          "horse_name": "SOLEIL FIGHTER"
+          "horse_name": "SOLEIL FIGHTER",
+          "horse_no": 4
         },
         {
           "position": 3,
-          "horse_name": "BEAUTY ALLIANCE"
+          "horse_name": "BEAUTY ALLIANCE",
+          "horse_no": 10
         },
         {
           "position": 4,
-          "horse_name": "SILVERY BREEZE"
+          "horse_name": "SILVERY BREEZE",
+          "horse_no": 8
         },
         {
           "position": 5,
-          "horse_name": "HELENE FEELING"
+          "horse_name": "HELENE FEELING",
+          "horse_no": 2
         },
         {
           "position": 6,
-          "horse_name": "AWESOME FLUKE"
+          "horse_name": "AWESOME FLUKE",
+          "horse_no": 5
         },
         {
           "position": 7,
-          "horse_name": "LO RIDER"
+          "horse_name": "LO RIDER",
+          "horse_no": 11
         },
         {
           "position": 8,
-          "horse_name": "SPEED DRAGON"
+          "horse_name": "SPEED DRAGON",
+          "horse_no": 1
         },
         {
           "position": 9,
-          "horse_name": "INFINITE RESOLVE"
+          "horse_name": "INFINITE RESOLVE",
+          "horse_no": 6
         },
         {
           "position": 10,
-          "horse_name": "KAHOLO ANGEL"
+          "horse_name": "KAHOLO ANGEL",
+          "horse_no": 7
         },
         {
           "position": 11,
-          "horse_name": "MOMENTS IN TIME"
+          "horse_name": "MOMENTS IN TIME",
+          "horse_no": 3
         }
       ],
       "top3_hits": 2,
