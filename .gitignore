@@ -10,6 +10,7 @@ happy_valley.db
 # Generated output
 predictions_*.json
 results_*.json
+bet_report_*.json
 agent.log
 
 # Saved HTML race cards and documents

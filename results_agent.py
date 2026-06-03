@@ -185,6 +185,60 @@ def parse_results_html(html: str) -> list[dict]:
     return finishers
 
 
+def _to_float(s):
+    try:
+        return float(str(s).replace(",", "").strip())
+    except (ValueError, TypeError):
+        return None
+
+
+def parse_dividends(html: str) -> dict:
+    """
+    Parse the dividend payout table (columns: Pool / Winning Combination /
+    Dividend (HK$)) from a per-race results page. Dividends are per HK$10 and
+    include the stake.
+
+    Returns {POOL_NAME: [{"combo": "<nums>", "div": float}, ...]}, e.g.
+      {"WIN": [{"combo":"4","div":39.0}],
+       "PLACE": [{"combo":"4","div":16.0}, ...],
+       "QUINELLA PLACE": [{"combo":"4,10","div":102.0}, ...]}
+
+    Multi-row pools (PLACE, QUINELLA PLACE) carry the pool name only on their
+    first row; continuation rows have just [combination, dividend].
+    """
+    soup = BeautifulSoup(html, "html.parser")
+    div_table = None
+    for t in soup.find_all("table"):
+        txt = t.get_text(" ", strip=True)
+        if "Winning Combination" in txt and "Dividend" in txt:
+            div_table = t
+            break
+    if div_table is None:
+        return {}
+
+    pools: dict[str, list] = {}
+    current_pool = None
+    for row in div_table.find_all("tr"):
+        cells = [c.get_text(strip=True) for c in row.find_all(["td", "th"])]
+        if len(cells) == 3:
+            pool, combo, div = cells
+            if combo.lower() == "winning combination":   # header row
+                continue
+            current_pool = pool.strip().upper()
+        elif len(cells) == 2:
+            combo, div = cells
+            pool = current_pool
+        else:
+            continue
+        if not current_pool:
+            continue
+        d = _to_float(div)
+        if d is None:        # e.g. "Details" rows for jockey/trainer challenge
+            continue
+        pools.setdefault(current_pool, []).append({"combo": combo.strip(), "div": d})
+    return pools
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # DB operations
 # ─────────────────────────────────────────────────────────────────────────────
@@ -333,9 +387,11 @@ def build_results_json(conn, meeting_date: str, race_results: list[dict]) -> dic
         races_out.append({
             "race_number": race_no,
             "race_id":     race_id,
-            "finishers":   [{"position": f["position"], "horse_name": f["horse_name"]}
+            "finishers":   [{"position": f["position"], "horse_name": f["horse_name"],
+                             "horse_no": f.get("horse_no")}
                             for f in finishers if f["position"]],
             "actual_top3": actual_top3,
+            "dividends":   entry.get("dividends", {}),
         })
 
     return {
@@ -478,7 +534,8 @@ def main():
             print(f"✓  {len(ranked)} finishers  1st: {winner}"
                   + (f"  ({len(scratched)} scratched)" if scratched else ""))
 
-            race_results.append({"race_no": race_no, "finishers": finishers})
+            race_results.append({"race_no": race_no, "finishers": finishers,
+                                 "dividends": parse_dividends(html)})
             time.sleep(1.0)
 
         browser.close()
@@ -527,6 +584,13 @@ def main():
 
     conn.close()
     print_summary(meeting_str, race_results, settlements, accuracy)
+
+    # ── Betting P&L report (final step, follows reconciliation) ────────────────
+    try:
+        from bet_report import report as _bet_report
+        _bet_report(meeting_str)
+    except Exception as e:
+        print(f"  [bet-report skipped: {e}]")
 
 
 if __name__ == "__main__":
