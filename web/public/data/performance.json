@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-04T00:09:48",
-  "meetings_total": 3,
-  "meetings_settled": 3,
-  "top3_precision": 50.617283950617285,
-  "top3_hits": 41,
-  "top3_attempts": 81,
-  "top_pick_rate": 62.96296296296296,
-  "top_pick_hits": 17,
-  "top_pick_attempts": 27,
+  "generated_at": "2026-06-05T22:59:53",
+  "meetings_total": 4,
+  "meetings_settled": 4,
+  "top3_precision": 54.054054054054056,
+  "top3_hits": 60,
+  "top3_attempts": 111,
+  "top_pick_rate": 64.86486486486487,
+  "top_pick_hits": 24,
+  "top_pick_attempts": 37,
   "value_bet_staked": 0,
   "value_bet_wins": 0,
   "value_bet_pnl": 0,
@@ -15,6 +15,7 @@
   "meetings": [
     {
       "meeting_date": "2026-06-03",
+      "venue": "HV",
       "race_count": 9,
       "has_results": true,
       "top3_hits": 14,
@@ -31,6 +32,7 @@
     },
     {
       "meeting_date": "2026-05-27",
+      "venue": "HV",
       "race_count": 9,
       "has_results": true,
       "top3_hits": 11,
@@ -47,6 +49,7 @@
     },
     {
       "meeting_date": "2026-05-13",
+      "venue": "HV",
       "race_count": 9,
       "has_results": true,
       "top3_hits": 16,
@@ -55,6 +58,23 @@
       "top_pick_hits": 6,
       "top_pick_attempts": 9,
       "top_pick_rate": 66.66666666666666,
+      "value_bet_count": 0,
+      "value_bet_settled": 0,
+      "value_bet_wins": 0,
+      "value_bet_pnl": null,
+      "value_bet_roi": null
+    },
+    {
+      "meeting_date": "2024-11-09",
+      "venue": "ST",
+      "race_count": 10,
+      "has_results": true,
+      "top3_hits": 19,
+      "top3_attempts": 30,
+      "top3_precision": 63.33333333333333,
+      "top_pick_hits": 7,
+      "top_pick_attempts": 10,
+      "top_pick_rate": 70.0,
       "value_bet_count": 0,
       "value_bet_settled": 0,
       "value_bet_wins": 0,
@@ -129,7 +149,7 @@
     ]
   },
   "model_quality": {
-    "generated_at": "2026-06-03T16:09:51+00:00",
+    "generated_at": "2026-06-05T14:59:57+00:00",
     "n_races": 213,
     "n_meetings": 25,
     "window": "leak-free walk-forward, test races 400+",
@@ -258,5 +278,70 @@
         "actual": 43.8
       }
     ]
+  },
+  "win_edge": {
+    "venues": {
+      "HV": {
+        "venue": "HV",
+        "stake": 10.0,
+        "best_l2": 40.0,
+        "n_races": 214,
+        "n_meetings": 25,
+        "from_date": "2025-07-09",
+        "rankers": {
+          "blend": {
+            "bets": 213,
+            "wins": 61,
+            "win_pct": 28.6,
+            "staked": 2130.0,
+            "returned": 1960.0,
+            "profit": -170.0,
+            "roi_pct": -7.98
+          },
+          "market": {
+            "bets": 213,
+            "wins": 61,
+            "win_pct": 28.6,
+            "staked": 2130.0,
+            "returned": 1922.0,
+            "profit": -208.0,
+            "roi_pct": -9.77
+          },
+          "model": {
+            "bets": 214,
+            "wins": 29,
+            "win_pct": 13.6,
+            "staked": 2140.0,
+            "returned": 1376.0,
+            "profit": -764.0,
+            "roi_pct": -35.7
+          }
+        },
+        "edge_gap_pts": 1.79,
+        "verdict": "real_edge",
+        "selective": {
+          "agree": {
+            "bets": 199,
+            "wins": 58,
+            "win_pct": 29.1,
+            "staked": 1990.0,
+            "returned": 1808.0,
+            "profit": -182.0,
+            "roi_pct": -9.15
+          },
+          "disagree": {
+            "bets": 14,
+            "wins": 3,
+            "win_pct": 21.4,
+            "staked": 140.0,
+            "returned": 152.0,
+            "profit": 12.0,
+            "roi_pct": 8.57
+          }
+        },
+        "generated_at": "2026-06-05T11:04:33+00:00"
+      }
+    },
+    "generated_at": "2026-06-05T11:04:33+00:00"
   }
 }

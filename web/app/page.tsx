@@ -20,11 +20,13 @@ export default async function Page({
   if (!meeting) return <EmptyState />;
 
   const settled = meeting.has_results;
+  const venueName = meeting.venue === "ST" ? "Sha Tin" : "Happy Valley";
 
   return (
     <div className="space-y-5 pb-8">
       <PageHeader
-        eyebrow="Happy Valley"
+        hero
+        eyebrow={venueName}
         title={formatDate(meeting.meeting_date)}
         subtitle={
           <span className="num">

@@ -58,8 +58,8 @@ export default function FactorBars({ factors }: { factors: Factors }) {
                   <div
                     className={`bar-fill absolute inset-y-[1px] rounded-pill ${
                       g.positive
-                        ? "bg-gradient-to-r from-emerald-400/70 to-teal-300/80"
-                        : "bg-gradient-to-l from-rose-400/70 to-red-400/80"
+                        ? "bg-gradient-to-r from-accent-green/75 to-accent-cyan/80"
+                        : "bg-gradient-to-l from-accent-red/70 to-accent-red/90"
                     }`}
                     style={{
                       left: `${g.left}%`,

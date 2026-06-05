@@ -1,17 +1,25 @@
 import type { Metadata, Viewport } from "next";
+import { Urbanist } from "next/font/google";
 import "./globals.css";
 import BottomNav from "@/components/BottomNav";
 import PullToRefresh from "@/components/PullToRefresh";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 
+// Urbanist — geometric, rounded sans that anchors the Zokki visual identity.
+const urbanist = Urbanist({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-urbanist",
+});
+
 export const metadata: Metadata = {
-  title: "HV Simulator",
-  description: "Happy Valley horse-racing model — predictions, value bets, performance.",
+  title: "Zokki",
+  description: "Zokki — Happy Valley & Sha Tin racing model: predictions, value bets, performance.",
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
-    statusBarStyle: "black-translucent",
-    title: "HV",
+    statusBarStyle: "default",
+    title: "Zokki",
   },
   icons: {
     icon: [{ url: "/icons/icon.svg", type: "image/svg+xml" }],
@@ -20,7 +28,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#06070d",
+  themeColor: "#eef5f2",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -29,10 +37,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-theme="dark" suppressHydrationWarning>
+    <html lang="en" data-theme="light" className={urbanist.variable} suppressHydrationWarning>
       <body className="min-h-screen safe-bottom">
-        {/* Render-blocking: sets the saved theme before first paint (no flash). */}
-        <script src="/theme-init.js" />
         <main className="relative z-10 mx-auto w-full max-w-screen-sm px-4 pt-[max(env(safe-area-inset-top),18px)]">
           <PullToRefresh>{children}</PullToRefresh>
         </main>

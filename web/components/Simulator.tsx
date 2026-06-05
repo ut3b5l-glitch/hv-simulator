@@ -210,10 +210,21 @@ export default function Simulator({ meetings }: { meetings: Meeting[] }) {
               }}
               className={`tap num shrink-0 rounded-pill px-3.5 py-1.5 text-caption font-semibold transition ${
                 on
-                  ? "bg-white text-neutral-900 light:bg-neutral-900 light:text-neutral-50"
+                  ? "bg-navy text-mint shadow-glow-indigo"
                   : "glass text-ink-60"
               }`}
             >
+              <span
+                className={`mr-1.5 text-[0.625rem] font-bold ${
+                  m.venue === "ST"
+                    ? on ? "text-mint/70" : "text-accent-cyan"
+                    : on
+                      ? "text-mint/70"
+                      : "text-accent-gold"
+                }`}
+              >
+                {m.venue === "ST" ? "ST" : "HV"}
+              </span>
               {m.meeting_date}
             </button>
           );
@@ -230,7 +241,7 @@ export default function Simulator({ meetings }: { meetings: Meeting[] }) {
               onClick={() => setRaceNo(r.race_number)}
               className={`tap num rounded-tile py-2 text-callout font-bold transition ${
                 on
-                  ? "bg-gradient-to-br from-violet-400 to-indigo-500 text-neutral-50 shadow-glow-indigo"
+                  ? "bg-gradient-to-br from-accent-blue to-navy text-mint shadow-glow-indigo"
                   : "glass text-ink-60"
               }`}
             >
@@ -268,7 +279,7 @@ export default function Simulator({ meetings }: { meetings: Meeting[] }) {
               }}
               className={`tap num rounded-chip px-2.5 py-1.5 text-caption font-semibold transition ${
                 nSims === opt
-                  ? "bg-white text-neutral-900 light:bg-neutral-900 light:text-neutral-50"
+                  ? "bg-navy text-mint"
                   : "text-ink-70"
               }`}
             >
@@ -279,7 +290,7 @@ export default function Simulator({ meetings }: { meetings: Meeting[] }) {
         <button
           onClick={() => run()}
           disabled={running || !runners.length}
-          className="tap flex-1 rounded-tile bg-gradient-to-r from-violet-400 to-indigo-500 py-2.5 text-body font-semibold text-neutral-50 shadow-glow-indigo disabled:opacity-50"
+          className="tap flex-1 rounded-tile bg-gradient-to-r from-accent-blue to-navy py-2.5 text-body font-semibold text-mint shadow-glow-indigo disabled:opacity-50"
         >
           {running ? "Simulating…" : `Run ${nSims / 1000}k simulations`}
         </button>
@@ -307,8 +318,8 @@ export default function Simulator({ meetings }: { meetings: Meeting[] }) {
           <div className="flex items-center justify-between px-1 text-micro text-ink-80">
             <span>Ranked by model win probability</span>
             <span className="flex items-center gap-2.5">
-              <Key dot="bg-emerald-400" label="Win" />
-              <Key dot="bg-sky-400" label="Top-3" />
+              <Key dot="bg-accent-green" label="Win" />
+              <Key dot="bg-accent-blue" label="Top-3" />
             </span>
           </div>
 
@@ -328,7 +339,7 @@ export default function Simulator({ meetings }: { meetings: Meeting[] }) {
                     <span
                       className={`num grid h-6 w-6 shrink-0 place-items-center rounded-chip text-caption font-bold ${
                         idx < 3
-                          ? "bg-emerald-400/15 text-emerald-300 ring-1 ring-emerald-400/25 light:text-emerald-700"
+                          ? "bg-accent-green/15 text-accent-green ring-1 ring-accent-green/30"
                           : "bg-white/[0.06] text-ink-70"
                       }`}
                     >
@@ -345,7 +356,7 @@ export default function Simulator({ meetings }: { meetings: Meeting[] }) {
                       </div>
                     </div>
                     <div className="num shrink-0 text-right">
-                      <div className="text-callout font-bold text-emerald-300 light:text-emerald-600">
+                      <div className="text-callout font-bold text-accent-green">
                         {winV.toFixed(1)}%
                       </div>
                       <div className="text-micro2 text-ink-80">win</div>
@@ -357,7 +368,7 @@ export default function Simulator({ meetings }: { meetings: Meeting[] }) {
                       model {r.win_pct.toFixed(0)}%
                     </span>
                     <ProbBar value={top3V} tone="place" height={5} animate={false} />
-                    <span className="num w-16 text-right text-micro2 text-sky-300/80 light:text-sky-700">
+                    <span className="num w-16 text-right text-micro2 text-accent-blue">
                       top-3 {top3V.toFixed(0)}%
                     </span>
                   </div>

@@ -1,13 +1,13 @@
 {
-  "name": "HV Simulator",
-  "short_name": "HV",
-  "description": "Happy Valley horse-racing predictions, value bets, and performance.",
+  "name": "Zokki",
+  "short_name": "Zokki",
+  "description": "Zokki — Happy Valley & Sha Tin racing predictions, value bets, and performance.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#06070d",
-  "theme_color": "#06070d",
+  "background_color": "#eef5f2",
+  "theme_color": "#eef5f2",
   "icons": [
     { "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
     { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },

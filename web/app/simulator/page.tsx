@@ -17,7 +17,7 @@ export default async function SimulatorPage() {
   return (
     <div className="space-y-5 pb-8">
       <PageHeader
-        eyebrow="Happy Valley"
+        eyebrow="Hong Kong Racing"
         title="Race Simulator"
         subtitle="Monte Carlo outcomes from the model's probabilities"
       />

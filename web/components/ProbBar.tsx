@@ -1,22 +1,24 @@
 export type BarTone = "win" | "place" | "show" | "market" | "gold" | "indigo" | "neutral";
 
+// Fills are built from the Zokki accent tokens so every bar lives in the
+// navy + mint family. Two-stop gradients fade an accent toward mint-teal.
 const FILL: Record<BarTone, string> = {
-  win: "bg-gradient-to-r from-emerald-400 to-teal-300",
-  place: "bg-gradient-to-r from-sky-400 to-blue-400",
-  show: "bg-gradient-to-r from-cyan-400/90 to-teal-400/80",
-  market: "bg-gradient-to-r from-white/40 to-white/25",
-  gold: "bg-gradient-to-r from-amber-300 to-yellow-200",
-  indigo: "bg-gradient-to-r from-violet-400 to-indigo-400",
-  neutral: "bg-white/30",
+  win: "bg-gradient-to-r from-accent-green to-accent-cyan",
+  place: "bg-gradient-to-r from-accent-blue to-accent-cyan",
+  show: "bg-gradient-to-r from-accent-cyan to-accent-green",
+  market: "bg-gradient-to-r from-white/35 to-white/20",
+  gold: "bg-gradient-to-r from-accent-gold to-accent-gold/65",
+  indigo: "bg-gradient-to-r from-accent-blue to-navy",
+  neutral: "bg-white/25",
 };
 
 const GLOW: Record<BarTone, string> = {
-  win: "shadow-[0_0_12px_-2px_rgba(61,220,151,0.55)]",
-  place: "shadow-[0_0_12px_-2px_rgba(95,168,255,0.5)]",
-  show: "shadow-[0_0_10px_-3px_rgba(52,214,224,0.45)]",
+  win: "shadow-[0_0_12px_-3px_rgba(13,138,101,0.45)]",
+  place: "shadow-[0_0_12px_-3px_rgba(28,110,140,0.4)]",
+  show: "shadow-[0_0_10px_-3px_rgba(35,150,150,0.4)]",
   market: "",
-  gold: "shadow-[0_0_12px_-2px_rgba(245,201,113,0.6)]",
-  indigo: "shadow-[0_0_12px_-2px_rgba(129,140,248,0.55)]",
+  gold: "shadow-[0_0_12px_-3px_rgba(178,122,28,0.45)]",
+  indigo: "shadow-[0_0_12px_-3px_rgba(27,64,91,0.4)]",
   neutral: "",
 };
 

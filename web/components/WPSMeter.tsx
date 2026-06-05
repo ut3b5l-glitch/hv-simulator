@@ -19,22 +19,22 @@ export default function WPSMeter({
     <div className={className}>
       <div className="relative h-2 w-full overflow-hidden rounded-pill bg-white/[0.06]">
         <div
-          className="bar-fill absolute inset-y-0 left-0 rounded-pill bg-gradient-to-r from-cyan-400/45 to-teal-400/35"
+          className="bar-fill absolute inset-y-0 left-0 rounded-pill bg-gradient-to-r from-accent-cyan/45 to-accent-green/35"
           style={{ width: `${clamp(show)}%` }}
         />
         <div
-          className="bar-fill absolute inset-y-0 left-0 rounded-pill bg-gradient-to-r from-sky-400/80 to-blue-400/70"
+          className="bar-fill absolute inset-y-0 left-0 rounded-pill bg-gradient-to-r from-accent-blue/80 to-accent-cyan/60"
           style={{ width: `${clamp(place)}%`, animationDelay: "60ms" }}
         />
         <div
-          className="bar-fill absolute inset-y-0 left-0 rounded-pill bg-gradient-to-r from-emerald-400 to-teal-300 shadow-[0_0_12px_-2px_rgba(61,220,151,0.55)]"
+          className="bar-fill absolute inset-y-0 left-0 rounded-pill bg-gradient-to-r from-accent-green to-accent-cyan shadow-[0_0_12px_-3px_rgba(13,138,101,0.45)]"
           style={{ width: `${clamp(win)}%`, animationDelay: "120ms" }}
         />
       </div>
       <div className="num mt-1.5 flex items-center gap-3 text-micro2 text-ink-70">
-        <Legend dot="bg-emerald-400" label="W" value={win} bright />
-        <Legend dot="bg-sky-400" label="P" value={place} />
-        <Legend dot="bg-cyan-400/80" label="S" value={show} />
+        <Legend dot="bg-accent-green" label="W" value={win} bright />
+        <Legend dot="bg-accent-blue" label="P" value={place} />
+        <Legend dot="bg-accent-cyan/80" label="S" value={show} />
       </div>
     </div>
   );

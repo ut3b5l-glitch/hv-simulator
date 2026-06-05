@@ -7,6 +7,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: [
+          "var(--font-urbanist)",
           "-apple-system",
           "BlinkMacSystemFont",
           "SF Pro Display",
@@ -72,6 +73,9 @@ const config: Config = {
           indigo: "rgb(var(--c-indigo) / <alpha-value>)",
           cyan: "rgb(var(--c-cyan) / <alpha-value>)",
         },
+        // Brand anchors — Synthex teal-navy + pale mint.
+        navy: "rgb(var(--c-navy) / <alpha-value>)",
+        mint: "rgb(var(--c-mint) / <alpha-value>)",
       },
       backdropBlur: { xs: "8px" },
       borderRadius: {
@@ -83,18 +87,20 @@ const config: Config = {
       },
       boxShadow: {
         // Layered glass depth — each level sits a little higher off the page.
-        "glass-1": "0 1px 1px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.05)",
+        // Navy-tinted soft shadows suit the light theme (the .glass CSS
+        // classes also set token-driven shadows; these cover standalone use).
+        "glass-1": "0 1px 2px rgba(22,49,68,0.08), inset 0 1px 0 rgba(255,255,255,0.6)",
         "glass-2":
-          "0 8px 30px -6px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.08)",
+          "0 8px 30px -6px rgba(22,49,68,0.14), inset 0 1px 0 rgba(255,255,255,0.7)",
         "glass-3":
-          "0 18px 50px -10px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.14)",
+          "0 18px 50px -10px rgba(22,49,68,0.2), inset 0 1px 0 rgba(255,255,255,0.85)",
         // Back-compat aliases used by existing markup.
-        glass: "0 8px 30px -6px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.08)",
+        glass: "0 8px 30px -6px rgba(22,49,68,0.14), inset 0 1px 0 rgba(255,255,255,0.7)",
         glassHover:
-          "0 18px 50px -10px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.14)",
-        "glow-gold": "0 0 0 1px rgba(245,201,113,0.35), 0 6px 24px -6px rgba(245,201,113,0.4)",
-        "glow-green": "0 0 0 1px rgba(61,220,151,0.3), 0 6px 24px -8px rgba(61,220,151,0.35)",
-        "glow-indigo": "0 8px 28px -8px rgba(129,140,248,0.5)",
+          "0 18px 50px -10px rgba(22,49,68,0.2), inset 0 1px 0 rgba(255,255,255,0.85)",
+        "glow-gold": "0 0 0 1px rgba(178,122,28,0.28), 0 6px 24px -6px rgba(178,122,28,0.3)",
+        "glow-green": "0 0 0 1px rgba(13,138,101,0.26), 0 6px 24px -8px rgba(13,138,101,0.28)",
+        "glow-indigo": "0 8px 28px -8px rgba(27,64,91,0.4)",
       },
       transitionTimingFunction: {
         "out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",

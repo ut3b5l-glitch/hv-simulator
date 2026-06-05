@@ -141,8 +141,8 @@ export default function FinishDistribution({
                   <div
                     className={`bar-fill origin-bottom rounded-[3px] ${
                       inMoney
-                        ? "bg-gradient-to-t from-emerald-500/70 to-teal-300"
-                        : "bg-gradient-to-t from-indigo-500/50 to-indigo-400/80"
+                        ? "bg-gradient-to-t from-accent-green to-accent-cyan"
+                        : "bg-gradient-to-t from-navy/45 to-accent-blue/75"
                     }`}
                     style={{ height: `${h}%`, animationDelay: `${p * 25}ms` }}
                   />

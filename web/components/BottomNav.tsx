@@ -31,7 +31,7 @@ export default function BottomNav() {
                 }`}
               >
                 {active && (
-                  <span className="absolute inset-0 rounded-pill bg-white/10 ring-1 ring-white/10" />
+                  <span className="absolute inset-0 rounded-pill bg-[#ffffff] shadow-[0_5px_16px_-6px_rgba(22,49,68,0.32)] ring-1 ring-[rgba(22,49,68,0.05)]" />
                 )}
                 <Icon
                   className={`relative h-5 w-5 ${active ? "text-accent-gold" : ""}`}

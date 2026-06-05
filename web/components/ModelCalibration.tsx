@@ -37,7 +37,7 @@ function Legend({ tone, label }: { tone: "market" | "win"; label: string }) {
     <span className="flex items-center gap-1">
       <span
         className={`h-1.5 w-1.5 rounded-pill ${
-          tone === "win" ? "bg-emerald-400" : "bg-white/40"
+          tone === "win" ? "bg-accent-green" : "bg-white/40"
         }`}
       />
       {label}

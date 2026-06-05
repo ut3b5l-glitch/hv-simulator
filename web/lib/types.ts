@@ -52,6 +52,7 @@ export type Race = {
 
 export type Meeting = {
   meeting_date: string;
+  venue?: string;
   fetched_at?: string;
   settled_at?: string;
   has_results: boolean;
@@ -60,6 +61,7 @@ export type Meeting = {
 
 export type MeetingSummary = {
   date: string;
+  venue?: string;
   race_count: number;
   has_results: boolean;
   top3_precision: number | null;
@@ -117,12 +119,42 @@ export type Betting = {
   per_meeting: { date: string; nets: Record<string, number> }[];
 };
 
+export type WinEdgeRanker = {
+  bets: number;
+  wins: number;
+  win_pct: number;
+  staked: number;
+  returned: number;
+  profit: number;
+  roi_pct: number;
+};
+
+export type WinEdgeVenue = {
+  venue: string;
+  stake: number;
+  best_l2: number;
+  n_races: number;
+  n_meetings: number;
+  from_date: string;
+  rankers: { blend: WinEdgeRanker; market: WinEdgeRanker; model: WinEdgeRanker };
+  edge_gap_pts: number | null;
+  verdict: "real_edge" | "rides_market" | "worse_than_market" | null;
+  selective: { agree: WinEdgeRanker | null; disagree: WinEdgeRanker | null };
+  generated_at: string;
+};
+
+export type WinEdge = {
+  venues: Record<string, WinEdgeVenue>;
+  generated_at: string;
+};
+
 export type Performance = {
   generated_at: string;
   meetings_total: number;
   meetings_settled: number;
   betting?: Betting | null;
   model_quality?: ModelQuality | null;
+  win_edge?: WinEdge | null;
   top3_precision: number | null;
   top3_hits: number;
   top3_attempts: number;
@@ -135,6 +167,7 @@ export type Performance = {
   value_bet_roi: number | null;
   meetings: {
     meeting_date: string;
+    venue?: string;
     race_count: number;
     has_results: boolean;
     top3_precision: number | null;

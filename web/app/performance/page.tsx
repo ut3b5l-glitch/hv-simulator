@@ -6,6 +6,7 @@ import PageHeader from "@/components/PageHeader";
 import ProbBar from "@/components/ProbBar";
 import ModelCalibration from "@/components/ModelCalibration";
 import BettingReturns from "@/components/BettingReturns";
+import WinEdge from "@/components/WinEdge";
 import EmptyState from "@/components/EmptyState";
 
 export default async function PerformancePage() {
@@ -25,6 +26,7 @@ export default async function PerformancePage() {
   return (
     <div className="space-y-5 pb-8">
       <PageHeader
+        hero
         eyebrow="Lifetime"
         title="Performance"
         subtitle={
@@ -65,6 +67,8 @@ export default async function PerformancePage() {
 
       {perf.betting && <BettingReturns betting={perf.betting} />}
 
+      {perf.win_edge && <WinEdge data={perf.win_edge} />}
+
       {perf.model_quality && <ModelCalibration mq={perf.model_quality} />}
 
       <section>
@@ -80,7 +84,18 @@ export default async function PerformancePage() {
               >
                 <div className="flex items-center gap-3">
                   <div className="min-w-0 flex-1">
-                    <div className="text-body font-semibold">{formatDate(m.meeting_date)}</div>
+                    <div className="flex items-center gap-2">
+                      <span
+                        className={`rounded px-1.5 py-0.5 text-[0.5625rem] font-semibold uppercase tracking-wide ${
+                          m.venue === "ST"
+                            ? "bg-accent-cyan/15 text-accent-cyan"
+                            : "bg-accent-gold/15 text-accent-gold"
+                        }`}
+                      >
+                        {m.venue === "ST" ? "ST" : "HV"}
+                      </span>
+                      <span className="text-body font-semibold">{formatDate(m.meeting_date)}</span>
+                    </div>
                     <div className="num mt-0.5 text-micro text-ink-70">
                       {m.race_count} races · {m.value_bet_count} value bets
                     </div>
