@@ -5,7 +5,7 @@ A private Hong Kong horse racing prediction engine for **Happy Valley (HV) night
 **Stack:** Python 3 + SQLite core. Next.js / Vercel PWA for mobile.  
 **Primary goal:** Reliable top-3 placement predictions — a structured shortlist, not a guaranteed system.  
 **Live since:** May 13, 2026.  
-**Mobile PWA (since 2026-05-28):** https://hv-simulator.vercel.app — see [[web/pwa]]
+**Mobile PWA — "Zokki" (since 2026-05-28; rebranded + light visual overhaul 2026-06-06):** https://hv-simulator.vercel.app — see [[web/pwa]]
 
 ---
 

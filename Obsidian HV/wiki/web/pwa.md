@@ -1,11 +1,12 @@
-# Mobile PWA
+# Mobile PWA — Zokki
 
 A Next.js Progressive Web App that mirrors [[../workflow/operations|the dashboard]] for phone/iPad use. Installable to the iOS home screen — no App Store, no Apple Developer fee.
 
-**Live URL:** https://hv-simulator.vercel.app
+**App name:** **Zokki** (rebranded from "HV Simulator" on 2026-06-06). The name applies to the *product*; the underlying Python engine and this wiki keep the HV Simulator name.
+**Live URL:** https://hv-simulator.vercel.app (Vercel project still named `hv-simulator`; the URL is unchanged)
 **Stack:** Next.js 14 (App Router) · TypeScript · Tailwind · Vercel Hobby
 **Repo path:** `web/`
-**Built:** 2026-05-28
+**Built:** 2026-05-28 · **Rebranded + light visual overhaul:** 2026-06-06
 
 ## How data flows
 
@@ -36,7 +37,7 @@ Vercel auto-deploys in ~30s.
 
 ## Design
 
-Glassmorphic / Apple-native: frosted-blur cards on a deep navy gradient with gold/green/red accents. Tabular-numeric mono for numbers. Bottom nav as a floating glass pill. Safe-area aware (notch + home indicator).
+Glassmorphic, with a **single light theme** (since the Zokki overhaul, 2026-06-06): frosted near-white cards on a pale mint→blue gradient, navy text, semantic honey/sea-green/coral accents. Bottom nav as a floating glass pill. Safe-area aware (notch + home indicator). The current look is described in **Zokki visual overhaul** below; the Phase 2/3 sections are kept as history (note: the dark theme and light/dark toggle they describe were **removed** in the overhaul).
 
 ### Visual Uplift — Phase 2 design system (2026-05-30)
 
@@ -66,6 +67,20 @@ Shipped + deployed (commit `fd13fc7`). Covers the parked polish list (sharing wa
 - **Gotcha:** editing `tailwind.config.ts` (the new var tokens + `light:` variant plugin) needs a dev-server **restart** to recompile.
 
 Parked / not done: a launch (splash) screen — decided against an artificial timed one; a *native* iOS launch screen remains an option. App icon kept navy/gold (an HKJC-red recolor was prototyped then reverted).
+
+### Zokki visual overhaul + rebrand (2026-06-06, shipped — commit `b79d93d`)
+
+Major visual uplift drawing on the **Synthex** SaaS-dashboard aesthetic (Dribbble 27131881), plus the official rename to **Zokki**. Deployed live (HTTP 200, `vercel deploy --prod`). The app was already token-driven, so the reskin flowed mostly from `globals.css` + `tailwind.config.ts`.
+
+- **Single light theme — dark mode dropped.** `ThemeToggle.tsx` + `public/theme-init.js` deleted; `<html data-theme="light">` is hardcoded (so the existing `light:` Tailwind variant still matches). Pale mint→blue page gradient, frosted near-white glass, `#163144` navy text (`--fg`). User decision: light-only.
+- **Font → Urbanist** via `next/font/google` (`--font-urbanist`, led in `fontFamily.sans`). Geometric/rounded — the Zokki identity.
+- **Palette = navy + mint** (Synthex family). Brand anchors `--c-navy` #1B405B + `--c-mint` #DFF3EB (exposed as Tailwind `navy`/`mint`). Functional accents kept their **semantics** but were retuned into the family: `--c-gold` honey #B27A1C (value), `--c-green` sea-green #0D8A65 (win), `--c-red` coral #D1543F (loss), `--c-blue` teal #1C6E8C (top-3/place), `--c-cyan` mint-teal #239696, `--c-indigo` → navy. User decision: "near-monochrome navy+mint but keep gold/green/red recoded into complementary hues."
+- **All raw Tailwind colors rewired to tokens.** `ProbBar`, `Simulator` (was purple/violet buttons + black active pills → navy+mint; emerald/sky → accent-green/blue), `WPSMeter`, `FinishDistribution`, `FactorBars`, `ModelCalibration`. A grep for `(emerald|sky|violet|indigo|rose|amber)-\d00` should now return nothing; only tokenized `bg-white`/`text-white` (which resolve to navy via `--fg`) remain.
+- **Signature touches:** navy→teal gradient **hero** (`.hero-grad`) on Races + Performance via a `hero` prop on `PageHeader`; **Zokki wordmark** (`Wordmark.tsx`, light in the hero / navy top-right on plain pages); **crisper white active pill** in the bottom nav.
+- **Rebranded assets:** `icon.svg` = a "Z" wordmark, navy→mint gradient + teal dot; PNGs (192/512/180) regenerated from it with macOS `qlmanage -t -s <size>` (no rsvg/imagemagick available; qlmanage outputs transparent RGBA but overwrites `icon.svg.png`, so render each size into its own tmpdir). Manifest + layout metadata + appleWebApp title → "Zokki"; theme/bg colour → `#eef5f2`; `package.json` name → `zokki-web`.
+- **Gotcha (unchanged):** editing `tailwind.config.ts` needs a dev-server **restart** to recompile theme tokens.
+
+New component files: `Wordmark.tsx`. Removed: `ThemeToggle.tsx`, `public/theme-init.js`. This deploy also shipped the previously-parked **Sha Tin expansion** (`WinEdge.tsx` + the 2024-11-09 ST demo meeting), which was sharing the working tree.
 
 ## Key files
 
