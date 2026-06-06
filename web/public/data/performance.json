@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-06-06T14:54:13",
-  "meetings_total": 4,
-  "meetings_settled": 4,
-  "top3_precision": 54.054054054054056,
-  "top3_hits": 60,
-  "top3_attempts": 111,
-  "top_pick_rate": 64.86486486486487,
-  "top_pick_hits": 24,
-  "top_pick_attempts": 37,
-  "value_bet_staked": 0,
+  "generated_at": "2026-06-06T18:54:16",
+  "meetings_total": 5,
+  "meetings_settled": 5,
+  "top3_precision": 51.388888888888886,
+  "top3_hits": 74,
+  "top3_attempts": 144,
+  "top_pick_rate": 68.75,
+  "top_pick_hits": 33,
+  "top_pick_attempts": 48,
+  "value_bet_staked": 2,
   "value_bet_wins": 0,
-  "value_bet_pnl": 0,
-  "value_bet_roi": null,
+  "value_bet_pnl": -2,
+  "value_bet_roi": -100.0,
   "meetings": [
     {
       "meeting_date": "2026-06-03",
@@ -29,6 +29,23 @@
       "value_bet_wins": 0,
       "value_bet_pnl": null,
       "value_bet_roi": null
+    },
+    {
+      "meeting_date": "2026-05-31",
+      "venue": "ST",
+      "race_count": 11,
+      "has_results": true,
+      "top3_hits": 14,
+      "top3_attempts": 33,
+      "top3_precision": 42.42424242424242,
+      "top_pick_hits": 9,
+      "top_pick_attempts": 11,
+      "top_pick_rate": 81.81818181818183,
+      "value_bet_count": 2,
+      "value_bet_settled": 2,
+      "value_bet_wins": 0,
+      "value_bet_pnl": -2,
+      "value_bet_roi": -100.0
     },
     {
       "meeting_date": "2026-05-27",
@@ -149,7 +166,7 @@
     ]
   },
   "model_quality": {
-    "generated_at": "2026-06-06T06:54:18+00:00",
+    "generated_at": "2026-06-06T10:54:21+00:00",
     "n_races": 213,
     "n_meetings": 25,
     "window": "leak-free walk-forward, test races 400+",

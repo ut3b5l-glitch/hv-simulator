@@ -22,17 +22,19 @@ one venue produces a card; the rest no-op.
 0 9 * * 6,0    hv_auto.sh pull       # card early
 30 11 * * 6,0  hv_auto.sh pull       # odds firming
 30 12 * * 6,0  hv_auto.sh pull       # final pre-off odds
+0 15 * * 6,0   hv_auto.sh pull       # mid-card odds refresh
 0 18 * * 6,0   hv_auto.sh reconcile
 30 18 * * 6,0  hv_auto.sh reconcile  # after the last
 ```
 
 The weekend lines use default `VENUES="HV ST"`, so they also catch the rare
 weekend HV fixture; the Wednesday lines likewise catch a rare midweek ST card.
-**Activation:** the weekend ST block is documented and committed but **not yet
-installed** in the live crontab (installing it enables automatic
-`vercel deploy --prod` on the next ST meeting). To turn it on, append the Sha Tin
-block to `crontab -e`. Public-holiday meetings on other weekdays are not yet
-scheduled — run manually (`./hv_auto.sh pull YYYY-MM-DD`) for those.
+**Status: INSTALLED 2026-06-06** in the live crontab (the weekend block above
+is live; first run is the 2026-06-07 Sunday ST meeting). The ST live-fetch path
+was validated the day before via `wednesday_agent.py --venue ST --date 2026-06-07
+--dry-run` (pulled the 11-race card cleanly). Public-holiday meetings on other
+weekdays are still not scheduled — run manually (`./hv_auto.sh pull YYYY-MM-DD`)
+for those. A crontab backup is in `/tmp/zokki_brand/crontab_backup_*.txt`.
 
 `hv_auto.sh` (project root) is the single orchestrator. Each run **no-ops cleanly when there is no meeting**, so it fires on every scheduled day and still catches irregular *special* meetings automatically. It runs the full chain (scrape → `export_data.py` → commit/push → `vercel deploy --prod --yes`) so the PWA self-updates with **no manual step and no laptop access required** — the Mac is the unattended worker.
 
