@@ -1,22 +1,40 @@
 # Operations
 
-Full live workflow for a Happy Valley Wednesday meeting.
+Full live workflow for a race meeting — **Happy Valley (Wed nights)** and
+**Sha Tin (weekend afternoons)**. `hv_auto.sh` is venue-aware (since 2026-06-06):
+it probes each venue in `VENUES` (default `"HV ST"`) for the given date and
+processes whichever is actually racing. HKJC runs one fixture per day, so at most
+one venue produces a card; the rest no-op.
 
 ---
 
-## Cron Schedule (weekly automation — `hv_auto.sh`, since 2026-06-03)
+## Cron Schedule (automation — `hv_auto.sh`)
 
 ```
-# Pull racecard + odds → export_data → git → vercel deploy --prod
+# ── Happy Valley — Wednesday nights (HKT) ──────────────────────────────────
 0 11 * * 3   hv_auto.sh pull       # catch the card early / detect special meetings
 30 17 * * 3  hv_auto.sh pull       # pre-track: predictions + live odds in the app
 30 19 * * 3  hv_auto.sh pull       # mid-card odds refresh
-# Reconcile results → export_data → git → vercel deploy --prod
 0 23 * * 3   hv_auto.sh reconcile
 30 23 * * 3  hv_auto.sh reconcile  # catches the late nightcap (R9)
+
+# ── Sha Tin — weekend afternoons (Sat=6, Sun=0; first race ~13:00, last ~17:30) ──
+0 9 * * 6,0    hv_auto.sh pull       # card early
+30 11 * * 6,0  hv_auto.sh pull       # odds firming
+30 12 * * 6,0  hv_auto.sh pull       # final pre-off odds
+0 18 * * 6,0   hv_auto.sh reconcile
+30 18 * * 6,0  hv_auto.sh reconcile  # after the last
 ```
 
-`hv_auto.sh` (project root) is the single orchestrator. Each run **no-ops cleanly when there is no meeting**, so it fires every Wednesday and still catches irregular *special between-week* meetings automatically. It runs the full chain (scrape → `export_data.py` → commit/push → `vercel deploy --prod --yes`) so the PWA self-updates with **no manual step and no laptop access required** — the Mac is the unattended worker.
+The weekend lines use default `VENUES="HV ST"`, so they also catch the rare
+weekend HV fixture; the Wednesday lines likewise catch a rare midweek ST card.
+**Activation:** the weekend ST block is documented and committed but **not yet
+installed** in the live crontab (installing it enables automatic
+`vercel deploy --prod` on the next ST meeting). To turn it on, append the Sha Tin
+block to `crontab -e`. Public-holiday meetings on other weekdays are not yet
+scheduled — run manually (`./hv_auto.sh pull YYYY-MM-DD`) for those.
+
+`hv_auto.sh` (project root) is the single orchestrator. Each run **no-ops cleanly when there is no meeting**, so it fires on every scheduled day and still catches irregular *special* meetings automatically. It runs the full chain (scrape → `export_data.py` → commit/push → `vercel deploy --prod --yes`) so the PWA self-updates with **no manual step and no laptop access required** — the Mac is the unattended worker.
 
 **Hard requirements:**
 - **Mac must be awake** at those times (set to never sleep, incl. lid closed). Cron does not wake a sleeping Mac.
@@ -26,9 +44,14 @@ Full live workflow for a Happy Valley Wednesday meeting.
 
 **Manual / on-demand** (special meeting, or backup if the Mac was asleep):
 ```bash
-./hv_auto.sh pull 2026-06-03        # full pull for a specific date
-./hv_auto.sh reconcile 2026-06-03   # full reconcile for a specific date
+./hv_auto.sh pull 2026-06-03            # probe HV+ST for a date (auto-detects venue)
+./hv_auto.sh reconcile 2026-06-03
+./hv_auto.sh pull 2026-06-13 ST         # restrict to a single venue (3rd arg)
 ```
+Each underlying agent also takes `--venue {HV,ST}` directly:
+`python3 wednesday_agent.py --venue ST --date 2026-06-13`,
+`python3 hkjc_odds.py --venue ST --date 2026-06-13`,
+`python3 results_agent.py --venue ST --date 2026-06-13`.
 Or drive it from your phone via Claude Code **Remote Control** (`claude remote-control` on the Mac). See [[web/dynamic-pull-plan]].
 
 ---

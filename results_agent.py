@@ -32,8 +32,10 @@ MAX_RACES = 11  # probe R1..R10, stop on first miss
 
 RESULTS_URL = (
     "https://racing.hkjc.com/en-us/local/information/localresults"
-    "?racedate={date}&Racecourse=HV&RaceNo={race_no}"
+    "?racedate={date}&Racecourse={venue}&RaceNo={race_no}"
 )
+
+VENUE_NAMES = {"HV": "Happy Valley", "ST": "Sha Tin"}
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -50,13 +52,13 @@ def last_wednesday(from_date: date) -> date:
 # Playwright fetch
 # ─────────────────────────────────────────────────────────────────────────────
 
-def fetch_results_html(page, race_date_str: str, race_no: int) -> str | None:
+def fetch_results_html(page, race_date_str: str, race_no: int, venue: str = VENUE) -> str | None:
     """
     Fetch a single per-race results page using an already-open Playwright page.
     race_date_str: 'YYYY/MM/DD'
     Returns HTML string, or None if no results were found.
     """
-    url = RESULTS_URL.format(date=race_date_str, race_no=race_no)
+    url = RESULTS_URL.format(date=race_date_str, venue=venue, race_no=race_no)
     try:
         page.goto(url, wait_until="domcontentloaded", timeout=30_000)
     except Exception as e:
@@ -243,10 +245,10 @@ def parse_dividends(html: str) -> dict:
 # DB operations
 # ─────────────────────────────────────────────────────────────────────────────
 
-def get_race_id(conn, meeting_date: str, race_no: int) -> int | None:
+def get_race_id(conn, meeting_date: str, race_no: int, venue: str = VENUE) -> int | None:
     row = conn.execute(
         "SELECT race_id FROM races WHERE race_date=? AND race_number=? AND venue=?",
-        (meeting_date, race_no, VENUE),
+        (meeting_date, race_no, venue),
     ).fetchone()
     return row[0] if row else None
 
@@ -295,7 +297,7 @@ def update_finish_positions(conn, race_id: int, finishers: list[dict]) -> int:
     return updated
 
 
-def settle_paper_trades(conn, meeting_date: str) -> list[dict]:
+def settle_paper_trades(conn, meeting_date: str, venue: str = VENUE) -> list[dict]:
     """
     Auto-settle open paper trades for the given meeting date.
     Returns list of settlement records for reporting.
@@ -308,7 +310,7 @@ def settle_paper_trades(conn, meeting_date: str) -> list[dict]:
         JOIN horses h ON pt.horse_id = h.horse_id
         WHERE r.race_date=? AND r.venue=? AND pt.result IS NULL
         ORDER BY r.race_number
-    """, (meeting_date, VENUE)).fetchall()
+    """, (meeting_date, venue)).fetchall()
 
     if not open_trades:
         return []
@@ -362,14 +364,15 @@ def load_predictions(meeting_date: str) -> dict | None:
         return json.load(f)
 
 
-def build_results_json(conn, meeting_date: str, race_results: list[dict]) -> dict:
+def build_results_json(conn, meeting_date: str, race_results: list[dict],
+                       venue: str = VENUE) -> dict:
     """Merge race_results (parsed finishers per race) with DB actuals."""
     races_out = []
     for entry in race_results:
         race_no   = entry["race_no"]
         finishers = entry["finishers"]
 
-        race_id = get_race_id(conn, meeting_date, race_no)
+        race_id = get_race_id(conn, meeting_date, race_no, venue)
         if not race_id:
             continue
 
@@ -396,6 +399,7 @@ def build_results_json(conn, meeting_date: str, race_results: list[dict]) -> dic
 
     return {
         "meeting_date": meeting_date,
+        "venue":        venue,
         "settled_at":   __import__("datetime").datetime.now().isoformat(timespec="seconds"),
         "races":        races_out,
     }
@@ -464,13 +468,18 @@ def print_summary(meeting_date: str, race_results: list[dict],
 # ─────────────────────────────────────────────────────────────────────────────
 
 def main():
-    parser = argparse.ArgumentParser(description="Fetch HV race results and settle paper trades.")
+    parser = argparse.ArgumentParser(description="Fetch HKJC race results and settle paper trades.")
     parser.add_argument("--date",        help="Meeting date YYYY-MM-DD (default: last Wednesday)")
+    parser.add_argument("--venue",       default=VENUE, choices=["HV", "ST"],
+                        help="Racecourse code (default: HV)")
     parser.add_argument("--dry-run",     action="store_true",
                         help="Fetch and parse only — no DB writes")
     parser.add_argument("--settle-only", action="store_true",
                         help="Skip fetch; settle trades using existing finish_positions in DB")
     args = parser.parse_args()
+
+    venue      = args.venue
+    venue_name = VENUE_NAMES.get(venue, venue)
 
     if args.date:
         try:
@@ -486,7 +495,7 @@ def main():
     results_out  = Path(__file__).parent / f"results_{meeting_str}.json"
 
     print(f"\n{'='*66}")
-    print(f"  HV Results Agent  →  {meeting_str}")
+    print(f"  {venue_name} Results Agent  →  {meeting_str}")
     print(f"{'='*66}")
 
     conn = sqlite3.connect(DB_PATH)
@@ -494,7 +503,7 @@ def main():
     # ── Settle-only mode ─────────────────────────────────────────────────────
     if args.settle_only:
         print("  [settle-only] Using existing finish_positions from DB.\n")
-        settlements = settle_paper_trades(conn, meeting_str)
+        settlements = settle_paper_trades(conn, meeting_str, venue)
         conn.close()
         print_summary(meeting_str, [], settlements, {})
         return
@@ -517,7 +526,7 @@ def main():
 
         for race_no in range(1, MAX_RACES):
             print(f"  Fetching R{race_no} results …", end=" ", flush=True)
-            html = fetch_results_html(page, meeting_hkjc, race_no)
+            html = fetch_results_html(page, meeting_hkjc, race_no, venue)
 
             if html is None:
                 print("not found — stopping.")
@@ -560,7 +569,7 @@ def main():
     print(f"\n  Updating DB …")
     for entry in race_results:
         race_no  = entry["race_no"]
-        race_id  = get_race_id(conn, meeting_str, race_no)
+        race_id  = get_race_id(conn, meeting_str, race_no, venue)
         if race_id is None:
             print(f"    [WARN] Race {race_no} not in DB — skipping (run wednesday_agent first?)")
             continue
@@ -569,10 +578,10 @@ def main():
 
     # ── Settle paper trades ───────────────────────────────────────────────────
     print(f"\n  Settling paper trades …")
-    settlements = settle_paper_trades(conn, meeting_str)
+    settlements = settle_paper_trades(conn, meeting_str, venue)
 
     # ── Build results JSON ────────────────────────────────────────────────────
-    results_data = build_results_json(conn, meeting_str, race_results)
+    results_data = build_results_json(conn, meeting_str, race_results, venue)
     predictions  = load_predictions(meeting_str)
     accuracy     = compute_accuracy(results_data, predictions)
     results_data["accuracy"] = accuracy

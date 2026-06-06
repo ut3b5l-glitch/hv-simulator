@@ -243,10 +243,17 @@ def print_results(fold_metrics, fold_infos):
 # ─────────────────────────────────────────────────────────────────────────────
 
 def main():
+    global VENUE
+    import argparse
+    ap = argparse.ArgumentParser(description="Pure-factor expanding walk-forward.")
+    ap.add_argument("--venue", default="HV", choices=["HV", "ST"])
+    args = ap.parse_args()
+    VENUE = args.venue
+
     conn  = sqlite3.connect(DB_PATH)
     races = load_races(conn)
     total = len(races)
-    print(f"Loaded {total} Happy Valley races.")
+    print(f"Loaded {total} {VENUE} races.")
 
     folds = []
     train_end = INITIAL_TRAIN

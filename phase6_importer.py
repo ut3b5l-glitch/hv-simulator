@@ -200,14 +200,14 @@ def get_or_create_ids(conn, horse_name, jockey_name, trainer_name):
     return hid, jid, tid
 
 
-def insert_race_day(conn, iso_date, parsed_races):
+def insert_race_day(conn, iso_date, parsed_races, venue=VENUE):
     inserted = []
     for pr in parsed_races:
         c = conn.cursor()
         row = c.execute("""
             SELECT race_id FROM races
             WHERE race_date=? AND venue=? AND race_number=?
-        """, (iso_date, VENUE, pr["race_number"])).fetchone()
+        """, (iso_date, venue, pr["race_number"])).fetchone()
 
         if row:
             race_id = row[0]
@@ -221,7 +221,7 @@ def insert_race_day(conn, iso_date, parsed_races):
                   (race_date, venue, race_number, distance_m, course_config,
                    track_surface, race_class, going)
                 VALUES (?,?,?,?,?,?,?,?)
-            """, (iso_date, VENUE, pr["race_number"], pr["distance_m"],
+            """, (iso_date, venue, pr["race_number"], pr["distance_m"],
                   pr["course_config"], pr["track_surface"], pr.get("race_class"),
                   pr.get("going")))
             race_id = c.lastrowid

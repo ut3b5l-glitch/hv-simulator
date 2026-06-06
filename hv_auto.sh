@@ -18,6 +18,8 @@ set -uo pipefail
 
 MODE="${1:-}"
 DATE="${2:-$(date +%F)}"            # today, local time (Mac is on HKT)
+VENUES="${3:-HV ST}"                # venues to probe; HKJC runs one fixture/day,
+                                    # so we try each and process whichever races.
 
 PROJECT_DIR="/Users/ryanx.x/AI Playground/HV_Simulator"
 PY="/Library/Frameworks/Python.framework/Versions/3.14/bin/python3"
@@ -45,6 +47,21 @@ except Exception:
 PYEOF
 }
 
+# True if the JSON has ≥1 race AND its venue tag matches $2 (default HV).
+# Used to attribute a date-keyed file to the venue we just pulled, so a stale
+# file from the *other* venue can't be mis-claimed during multi-venue probing.
+file_is_venue() {
+  [ -f "$1" ] || return 1
+  "$PY" - "$1" "$2" <<'PYEOF'
+import json, sys
+try:
+    d = json.load(open(sys.argv[1]))
+    sys.exit(0 if (d.get("races") and d.get("venue", "HV") == sys.argv[2]) else 1)
+except Exception:
+    sys.exit(1)
+PYEOF
+}
+
 # Refresh the PWA snapshot, commit the data, and deploy to Vercel.
 deploy() {
   log "meeting data present → refreshing PWA snapshot"
@@ -66,21 +83,35 @@ deploy() {
 
 case "$MODE" in
   pull)
-    log "── start pull for $DATE ──"
-    "$PY" wednesday_agent.py --date "$DATE" --retry 0 >> "$LOG" 2>&1
-    "$PY" hkjc_odds.py        --date "$DATE"            >> "$LOG" 2>&1
-    if has_races "predictions_$DATE.json"; then
-      if deploy; then notify "HV $DATE: card + odds live in the app ✅"; fi
-      log "── pull complete ──"
+    log "── start pull for $DATE (venues: $VENUES) ──"
+    MEETING_VENUE=""
+    for V in $VENUES; do
+      "$PY" wednesday_agent.py --venue "$V" --date "$DATE" --retry 0 >> "$LOG" 2>&1
+      if file_is_venue "predictions_$DATE.json" "$V"; then
+        "$PY" hkjc_odds.py --venue "$V" --date "$DATE" >> "$LOG" 2>&1
+        MEETING_VENUE="$V"
+        break
+      fi
+    done
+    if [ -n "$MEETING_VENUE" ]; then
+      if deploy; then notify "$MEETING_VENUE $DATE: card + odds live in the app ✅"; fi
+      log "── pull complete ($MEETING_VENUE) ──"
     else
       rm -f "predictions_$DATE.json"   # drop any stray race-less file so export_data won't pick it up
-      log "no meeting on $DATE — no-op"
+      log "no meeting on $DATE (any of: $VENUES) — no-op"
     fi
     ;;
   reconcile)
-    log "── start reconcile for $DATE ──"
-    "$PY" results_agent.py --date "$DATE" >> "$LOG" 2>&1
-    if has_races "results_$DATE.json"; then
+    log "── start reconcile for $DATE (venues: $VENUES) ──"
+    MEETING_VENUE=""
+    for V in $VENUES; do
+      "$PY" results_agent.py --venue "$V" --date "$DATE" >> "$LOG" 2>&1
+      if file_is_venue "results_$DATE.json" "$V"; then
+        MEETING_VENUE="$V"
+        break
+      fi
+    done
+    if [ -n "$MEETING_VENUE" ]; then
       acc="$("$PY" - "results_$DATE.json" <<'PYEOF'
 import json,sys
 try:
@@ -88,11 +119,11 @@ try:
 except Exception: pass
 PYEOF
 )"
-      if deploy; then notify "HV $DATE results in — ${acc:-see app} 🏇"; fi
-      log "── reconcile complete (${acc:-n/a}) ──"
+      if deploy; then notify "$MEETING_VENUE $DATE results in — ${acc:-see app} 🏇"; fi
+      log "── reconcile complete ($MEETING_VENUE: ${acc:-n/a}) ──"
     else
       rm -f "results_$DATE.json"   # drop any stray race-less file
-      log "no results on $DATE yet — no-op"
+      log "no results on $DATE yet (any of: $VENUES) — no-op"
     fi
     ;;
   *)

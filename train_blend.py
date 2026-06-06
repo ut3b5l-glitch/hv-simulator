@@ -99,9 +99,16 @@ def fit_conditional_logit(samples, k, l2, iters=200):
 
 
 def main():
+    global VENUE
     l2 = L2_DEFAULT
     if "--l2" in sys.argv:
         l2 = float(sys.argv[sys.argv.index("--l2") + 1])
+    if "--venue" in sys.argv:
+        VENUE = sys.argv[sys.argv.index("--venue") + 1].upper()
+
+    # HV keeps the canonical live path (blend_coef.json); other venues are
+    # written to a suffixed file so the live HV scorer is never clobbered.
+    out_path = mc.BLEND_COEF_PATH if VENUE == "HV" else f"blend_coef_{VENUE}.json"
 
     conn = sqlite3.connect(DB)
     races = load_races(conn)
@@ -128,6 +135,7 @@ def main():
     beta = fit_conditional_logit(samples, len(mc.BLEND_FEATURES), l2)
 
     coef = {
+        "venue": VENUE,
         "features": mc.BLEND_FEATURES,
         "beta": [round(float(b), 6) for b in beta],
         "l2": l2,
@@ -135,10 +143,10 @@ def main():
         "trained": date.today().isoformat(),
         "method": "race-grouped conditional logit (Newton, ridge→market prior); de-vigged market + log-factors",
     }
-    with open(mc.BLEND_COEF_PATH, "w") as f:
+    with open(out_path, "w") as f:
         json.dump(coef, f, indent=2)
 
-    print(f"\nWrote {mc.BLEND_COEF_PATH}  ({len(samples)} races)")
+    print(f"\nWrote {out_path}  ({len(samples)} races)")
     print(f"  {'feature':<10}{'beta':>10}")
     for name, b in zip(coef["features"], coef["beta"]):
         print(f"  {name:<10}{b:>10.4f}")

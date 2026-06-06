@@ -73,9 +73,21 @@ _BLEND_FACTOR_KEY = {
     "log_biv": "b_iv", "log_cf": "cf", "log_wcf": "wcf",
     "log_rtf": "rtf", "log_df": "df",
 }
-BLEND_COEF_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                               "blend_coef.json")
+_MODEL_DIR = os.path.dirname(os.path.abspath(__file__))
+BLEND_COEF_PATH = os.path.join(_MODEL_DIR, "blend_coef.json")
 _BLEND_CACHE = {}   # path → coef dict (or None)
+
+
+def blend_coef_path(venue=None):
+    """Resolve the persisted-coef path for a venue.
+
+    HV (and the unspecified default) keeps the canonical ``blend_coef.json`` so
+    the live HV scorer is never disturbed; other venues use ``blend_coef_<V>.json``
+    as written by ``train_blend.py --venue <V>``.
+    """
+    if not venue or venue == "HV":
+        return BLEND_COEF_PATH
+    return os.path.join(_MODEL_DIR, f"blend_coef_{venue}.json")
 
 # Going condition grouping — maps raw DB strings to 3 buckets
 GOING_GROUP = {
@@ -606,8 +618,15 @@ def harville_probs(win_probs):
 # Market-blend combiner
 # ─────────────────────────────────────────────────────────────────────────────
 
-def load_blend_coef(path=BLEND_COEF_PATH):
-    """Load persisted conditional-logit coefficients (or None). Cached per path."""
+def load_blend_coef(path=None, venue=None):
+    """Load persisted conditional-logit coefficients (or None). Cached per path.
+
+    Pass ``venue`` to pick the per-venue file (``blend_coef_<V>.json``); if that
+    file is absent the HV/default ``blend_coef.json`` is used as a fallback so a
+    venue without its own fit still gets the market-anchored blend.
+    """
+    if path is None:
+        path = blend_coef_path(venue)
     if path in _BLEND_CACHE:
         return _BLEND_CACHE[path]
     coef = None
@@ -616,6 +635,8 @@ def load_blend_coef(path=BLEND_COEF_PATH):
             coef = json.load(f)
     except (FileNotFoundError, ValueError, OSError):
         coef = None
+    if coef is None and path != BLEND_COEF_PATH:
+        coef = load_blend_coef(path=BLEND_COEF_PATH)   # fall back to HV/default
     _BLEND_CACHE[path] = coef
     return coef
 
@@ -745,7 +766,8 @@ def score_race(entries, stats, dist, cfg, race_class=None, going=None,
     # directly; None keeps the pure factor model (default — keeps backtests
     # honest). Falls back to factor probs when any runner lacks odds.
     if blend_coef is not None:
-        coef = load_blend_coef() if blend_coef == "auto" else blend_coef
+        coef = (load_blend_coef(venue=stats.get("venue"))
+                if blend_coef == "auto" else blend_coef)
         blended = _blend_win_probs(augmented, coef)
         if blended is not None:
             win_probs = blended

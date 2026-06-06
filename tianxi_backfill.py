@@ -41,9 +41,11 @@ import requests
 from bs4 import BeautifulSoup
 
 DB_PATH  = Path(__file__).parent / "happy_valley.db"
-VENUE    = "HV"
-MAX_RACE = 11   # probe R1..R10, stop at first miss
+VENUE    = "HV"   # overridden by --venue in main()
+MAX_RACE = 12   # probe R1..R11, stop at first miss (ST cards run up to 11)
 
+# Rebuilt in main() once --venue is known. {date} and {race_no} stay as
+# placeholders for run_backfill; {venue} is substituted up-front.
 RESULTS_URL = (
     "https://racing.hkjc.com/en-us/local/information/localresults"
     "?racedate={date}&Racecourse=HV&RaceNo={race_no}"
@@ -387,7 +389,7 @@ def run_backfill(dates: list[str], conn, dry_run: bool, delay: float):
                 if race_meta is None:
                     # No results table → no more races for this date
                     if race_no == 1:
-                        print("no HV meeting.")
+                        print(f"no {VENUE} meeting.")
                     break
 
                 if not runners:
@@ -439,10 +441,19 @@ def main():
                         help="Process at most N dates (0 = no limit)")
     parser.add_argument("--delay",     type=float, default=1.5, metavar="SEC",
                         help="Seconds to wait between race page fetches (default: 1.5)")
+    parser.add_argument("--venue", default="HV", choices=["HV", "ST"],
+                        help="Racecourse: HV (Happy Valley) or ST (Sha Tin)")
     args = parser.parse_args()
 
+    global VENUE, RESULTS_URL
+    VENUE = args.venue
+    RESULTS_URL = (
+        "https://racing.hkjc.com/en-us/local/information/localresults"
+        f"?racedate={{date}}&Racecourse={VENUE}&RaceNo={{race_no}}"
+    )
+
     print(f"\n{'='*64}")
-    print(f"  HV Historical Backfill  {args.date_from}  →  {args.date_to}")
+    print(f"  {VENUE} Historical Backfill  {args.date_from}  →  {args.date_to}")
     print(f"{'='*64}")
 
     # ── Get candidate dates ───────────────────────────────────────────────────

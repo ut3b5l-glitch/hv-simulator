@@ -170,14 +170,24 @@ def reliability(bag, edges=(0, .02, .05, .10, .15, .25, .40, 1.01)):
     return rows
 
 
-def evaluate(db=DB, verbose=True):
+def evaluate(db=DB, verbose=True, venue=None, start=None):
     """Run the leak-free walk-forward and return a structured metrics dict.
 
     When verbose, also prints the canonical console report (unchanged). The
     returned dict is what export_data.py publishes to the PWA Performance page.
+
+    venue/start are opt-in: with defaults (None) behavior is identical to the
+    original HV run, so export_data.py and the wiki numbers are unchanged.
     """
+    global VENUE, START
+    if venue:
+        VENUE = venue
+    if start is not None:
+        START = start
     conn = sqlite3.connect(db)
     races = load_races(conn)
+    if START >= len(races):          # guard small venues; HV (614 vs 400) untouched
+        START = max(1, len(races) // 2)
     dates = sorted({r[1] for r in races})
     if verbose:
         print(f"Building leak-free stats for {len(dates)} dates...")
@@ -329,7 +339,13 @@ def evaluate(db=DB, verbose=True):
 
 
 def main():
-    evaluate(verbose=True)
+    import argparse
+    ap = argparse.ArgumentParser(description="Leak-free market-blend validator.")
+    ap.add_argument("--venue", default="HV", choices=["HV", "ST"])
+    ap.add_argument("--start", type=int, default=None,
+                    help="First test-race index (default 400 for HV).")
+    args = ap.parse_args()
+    evaluate(verbose=True, venue=args.venue, start=args.start)
 
 
 if __name__ == "__main__":

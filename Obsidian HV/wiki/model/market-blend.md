@@ -108,6 +108,28 @@ regression guard.
 
 To retrain after new meetings: `python3 train_blend.py` then re-export.
 
+## Per-venue coefficients (Sha Tin added 2026-06-06)
+
+The blend is fit and persisted **per venue**. `train_blend.py --venue HV` writes
+the canonical `blend_coef.json`; any other venue writes `blend_coef_<V>.json`
+(e.g. `blend_coef_ST.json`) so the live HV scorer is never clobbered.
+`model_core.load_blend_coef(venue=...)` resolves the right file at scoring time
+(`score_race(..., blend_coef="auto")` passes `stats["venue"]`), falling back to
+the HV file if a venue has no fit of its own.
+
+Sha Tin's fit tells the same story as HV — market-anchored, factors a whisper:
+
+| | HV | ST |
+|---|---|---|
+| `log_mkt` β | 1.082 | **1.117** |
+| n races | ~610 | 1,306 |
+| edge over market (#1 WIN ROI) | +1.79 pts | **+3.24 pts** |
+
+ST's slightly higher market coefficient is stronger favourite-longshot
+sharpening, and its larger edge over the favourite (and richer
+disagree-with-fav pocket, +14.5% ROI on n=47) is documented in
+[[performance/walkforward#sha-tin-st-second-venue-validated-2026-06-06]].
+
 ## Operational note
 
 The model did not get smarter at handicapping — it got smart enough to **trust

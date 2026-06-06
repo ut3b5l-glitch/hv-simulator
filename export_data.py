@@ -110,6 +110,7 @@ def merge_meeting(date: str) -> dict | None:
 
     return {
         "meeting_date": date,
+        "venue": preds.get("venue", "HV"),
         "fetched_at": preds.get("fetched_at"),
         "settled_at": (results or {}).get("settled_at"),
         "races": races_out,
@@ -148,6 +149,7 @@ def summarise_meeting(m: dict) -> dict:
 
     return {
         "meeting_date": m["meeting_date"],
+        "venue": m.get("venue", "HV"),
         "race_count": len(races),
         "has_results": m["has_results"],
         "top3_hits": total_top3_hits,
@@ -279,6 +281,24 @@ def compute_model_quality() -> dict | None:
         return None
 
 
+def load_win_edge() -> dict | None:
+    """Read the win-on-#1 edge stress test artifact (win_edge.json) if present.
+
+    Produced on demand by `edge_backtest.py --json` (per venue). This is the
+    leak-free, large-sample ROI of backing the model's #1 pick to WIN vs the
+    market favourite — the honest replacement for the tiny live-meeting figure.
+    Read-only and guarded: a missing/corrupt file just returns None.
+    """
+    p = ROOT / "win_edge.json"
+    if not p.exists():
+        return None
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except Exception as exc:  # noqa: BLE001 — never break the export
+        print(f"  · win_edge skipped: {type(exc).__name__}: {exc}")
+        return None
+
+
 def build_betting(dates: list[str]) -> dict | None:
     """Aggregate the betting-P&L (bet_report) across meetings for the PWA.
 
@@ -298,6 +318,10 @@ def build_betting(dates: list[str]) -> dict | None:
     for d in dates:
         data = bet_report.compute(d)
         if not data:
+            continue
+        # Skip meetings with no dividend data (e.g. backtest/demo meetings whose
+        # results JSON has no dividend table) — they'd add an empty zero row.
+        if sum(data["strategies"][k]["staked"] for k in keys) == 0:
             continue
         nets = {}
         for k in keys:
@@ -371,6 +395,7 @@ def main():
         summaries.append(summary)
         index.append({
             "date": date,
+            "venue": summary.get("venue", "HV"),
             "race_count": summary["race_count"],
             "has_results": summary["has_results"],
             "top3_precision": summary["top3_precision"],
@@ -397,6 +422,13 @@ def main():
         mq = perf["model_quality"]["metrics"]["blend"]
         print(f"  · model_quality: blend Brier {mq['brier']} · "
               f"logloss {mq['logloss']} (leak-free walk-forward)")
+    perf["win_edge"] = load_win_edge()
+    if perf["win_edge"]:
+        for v, r in perf["win_edge"].get("venues", {}).items():
+            b = r["rankers"]["blend"]
+            print(f"  · win_edge[{v}]: blend #1 ROI {b['roi_pct']:+.2f}% "
+                  f"vs market {r['rankers']['market']['roi_pct']:+.2f}% "
+                  f"({r['n_races']} races, gap {r['edge_gap_pts']:+.2f}pt)")
     jdump(OUT / "performance.json", perf)
 
     if DB_PATH.exists():

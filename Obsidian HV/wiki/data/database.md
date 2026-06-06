@@ -2,9 +2,23 @@
 
 **File:** `happy_valley.db` (project root)  
 **Engine:** SQLite3  
-**Stats as of May 13, 2026:** 596 races · 6,867 entries · 1,483 horses · 47 jockeys · 23 trainers
+**Stats as of June 6, 2026:** 1,921 races · 23,912 entries — **two venues (HV + ST)**
 
-Date range: 2024-01-10 → 2026-05-13. All venues: HV only.
+| Venue | Races | Entries | Date range | Odds coverage |
+|---|---|---|---|---|
+| HV (Happy Valley) | 614 | 7,079 | 2022-11-09 → 2026-06-03 | 100% |
+| **ST (Sha Tin)** | **1,307** | **16,833** | **2024-01-01 → 2026-05-31** | **98.5%** |
+
+ST was backfilled 2026-06-05/06 from the tianxi-database source (`tianxi_backfill.py`/`st_backfill`),
+1,091 races / 14,083 entries inserted in this run, zero errors (auto-resumed once after an
+overnight pause). All structural fields (barrier, jockey, trainer, weight) ~100% populated;
+`public_odds` 98.5% and `finish_position` 98.3% — high enough for the market-blend to run on ST.
+See [[performance/walkforward]] and [[model/market-blend]] for the ST validation results.
+
+> **ST is turf + all-weather.** Course configs include `AWT` (the Sha Tin all-weather dirt
+> track) alongside turf `A/B/C`, and distances extend to 2000m and 2400m — neither appears at
+> HV. The barrier-IV factor keys on `(distance_m, course_config, barrier)`, so it absorbs the
+> new track/distance combinations without code changes; stats are built per-venue.
 
 ---
 
@@ -17,7 +31,7 @@ track_surface, going, race_class, prize_money_hkd, field_size
 
 | Column | Notes |
 |---|---|
-| `venue` | Always `'HV'` |
+| `venue` | `'HV'` (Happy Valley) or `'ST'` (Sha Tin) |
 | `race_class` | Integer 1–5 (mostly Class 3–5) |
 | `going` | `'GOOD'` (370), `'GOOD TO FIRM'` (163), `'GOOD TO YIELDING'` (37), `''`/NULL (8) |
 | `course_config` | Track layout identifier (used in barrier IV key) |

@@ -1,0 +1,31 @@
+{
+  "venue": "ST",
+  "features": [
+    "log_mkt",
+    "log_jf",
+    "log_tf",
+    "log_hf",
+    "log_ff",
+    "log_biv",
+    "log_cf",
+    "log_wcf",
+    "log_rtf",
+    "log_df"
+  ],
+  "beta": [
+    1.116951,
+    -0.056,
+    -0.040919,
+    -0.012306,
+    -0.070952,
+    0.036463,
+    0.016295,
+    0.056519,
+    0.0,
+    0.0
+  ],
+  "l2": 25.0,
+  "n_races": 1306,
+  "trained": "2026-06-06",
+  "method": "race-grouped conditional logit (Newton, ridge\u2192market prior); de-vigged market + log-factors"
+}

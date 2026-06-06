@@ -20,6 +20,42 @@ The betting market supplies essentially all the signal; the factor tilt adds
 The tables below are the **pure factor model** (no market), kept as a baseline /
 regression guard (`walkforward_test.py`).
 
+---
+
+## Sha Tin (ST) — second venue, validated 2026-06-06
+
+After the ST historical backfill (1,307 races, 98.5% odds coverage — see
+[[data/database]]), the same engine was validated on Sha Tin with no factor
+changes. Stats are built per-venue; the barrier-IV factor absorbs ST's extra
+configs (`AWT` dirt) and distances (2000m/2400m) automatically.
+
+**Pure factor walk-forward** (`walkforward_test.py --venue ST`, 906 test races):
+
+| Metric | ST | HV (same script) |
+|---|---|---|
+| #1 win | 19.8% | 15.0% |
+| #1 place (top-3) | 45.3% | 39.7% |
+| Coverage | 43.2% | 36.4% |
+| Top-3 precision | 36.7% | 35.7% |
+| Random baseline | 23.4% | 25.7% |
+
+**Market-blend edge backtest** (`edge_backtest.py`, leak-free, WIN on #1 pick,
+flat $10) — the commercial test: does the blend beat backing the favourite?
+
+| Venue | Test races | Blend #1 ROI | Market #1 ROI | Edge gap | Verdict |
+|---|---|---|---|---|---|
+| HV | 214 / 25 mtgs | −7.98% | −9.77% | **+1.79 pts** | real edge |
+| **ST** | **716 / 69 mtgs** | **−12.28%** | **−15.52%** | **+3.24 pts** | **real edge** |
+
+ST shows a *larger* edge over the market than HV. The alpha lives in the
+disagree-with-favourite pocket: when the ST blend's #1 differs from the market
+favourite (n=47), ROI is **+14.5%** (HV: n=14, +8.6%). Both ROIs are negative in
+absolute terms because the −17.5% HKJC takeout is unbeatable on volume; the edge
+is *relative* to the favourite. ST blend coefficients: `blend_coef_ST.json`
+(`log_mkt` β=1.117). See [[model/market-blend]].
+
+---
+
 ## Cumulative Results by Phase
 
 | Phase | Key Change | Top-3 Prec | #1 Win% | #1 Place% | VB ROI | VBets | Notes |

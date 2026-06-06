@@ -11,9 +11,20 @@ A private Hong Kong horse racing prediction engine for **Happy Valley (HV) night
 
 ## Current Status
 
-**Phases complete:** A, B, 1, 2, 3, 4A, 4B, 4C, 4D, **5 (market blend — live)**  
+**Phases complete:** A, B, 1, 2, 3, 4A, 4B, 4C, 4D, **5 (market blend — live)**, **ST venue (Sha Tin — backtested & integrated 2026-06-06)**  
 **In progress:** Phase 4E (integration & final validation)  
 **Next major phase:** Phase 5 (ML) — not before November 2026
+
+### Second venue: Sha Tin (ST)
+
+The DB is now **two-venue** — 614 HV + 1,307 ST races (see [[data/database]]).
+The same engine validates on Sha Tin with a *larger* edge over the market than
+HV (#1-WIN ROI gap **+3.24 pts** vs +1.79; disagree-with-favourite pocket
+**+14.5%** ROI). Per-venue blend coefficients (`blend_coef_ST.json`) and the ST
+`win_edge` block are live in the PWA Win-Edge panel. ST historical predictions
+are backtested only — there is **no live ST racecard/odds automation yet**
+(weekend Sha Tin meetings are not on the Wednesday HV cron). See
+[[performance/walkforward#sha-tin-st-second-venue-validated-2026-06-06]].
 
 ---
 

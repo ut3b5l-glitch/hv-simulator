@@ -32,8 +32,10 @@ MAX_RACES = 11   # probe R1..R10, stop when a race 404s or has no card
 
 RACECARD_URL = (
     "https://racing.hkjc.com/racing/information/English/Racing/RaceCard.aspx"
-    "?RaceDate={date}&Racecourse=HV&RaceNo={race_no}"
+    "?RaceDate={date}&Racecourse={venue}&RaceNo={race_no}"
 )
+
+VENUE_NAMES = {"HV": "Happy Valley", "ST": "Sha Tin"}
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -46,17 +48,28 @@ def next_wednesday(from_date: date) -> date:
     return from_date + timedelta(days=days_ahead)
 
 
+def next_saturday(from_date: date) -> date:
+    """Return the nearest upcoming Saturday (today if today is Saturday).
+
+    A reasonable default target for Sha Tin, which races at weekends. In live
+    automation the date is always passed explicitly by hv_auto.sh, so this only
+    matters for manual no-date invocations.
+    """
+    days_ahead = (5 - from_date.weekday()) % 7   # Monday=0 … Saturday=5
+    return from_date + timedelta(days=days_ahead)
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Playwright fetch
 # ─────────────────────────────────────────────────────────────────────────────
 
-def fetch_racecard_html(page, race_date_str: str, race_no: int) -> str | None:
+def fetch_racecard_html(page, race_date_str: str, race_no: int, venue: str = VENUE) -> str | None:
     """
     Fetch a single HKJC racecard page using an already-open Playwright page.
     race_date_str: 'YYYY/MM/DD'
     Returns HTML string, or None if no racecard was found.
     """
-    url = RACECARD_URL.format(date=race_date_str, race_no=race_no)
+    url = RACECARD_URL.format(date=race_date_str, venue=venue, race_no=race_no)
     try:
         page.goto(url, wait_until="networkidle", timeout=30_000)
     except Exception as e:
@@ -80,11 +93,12 @@ def fetch_racecard_html(page, race_date_str: str, race_no: int) -> str | None:
 # GraphQL fallback — intercepts bet.hkjc.com internal API responses
 # ─────────────────────────────────────────────────────────────────────────────
 
-BET_HKJC_URL = "https://bet.hkjc.com/en/racing/wp/{date}/HV/1"
+BET_HKJC_URL = "https://bet.hkjc.com/en/racing/wp/{date}/{venue}/1"
 GRAPHQL_HOST = "info.cld.hkjc.com"
 
 
-def _parse_graphql_racecard(body: dict, expected_date: str | None = None) -> list:
+def _parse_graphql_racecard(body: dict, expected_date: str | None = None,
+                            venue: str = VENUE) -> list:
     """
     Parse a GraphQL raceMeetings response into the same list-of-race-dicts
     format that parse_racecard_html() returns, so insert_race_day() can consume it.
@@ -99,7 +113,7 @@ def _parse_graphql_racecard(body: dict, expected_date: str | None = None) -> lis
     for meeting in (data.get("raceMeetings") or []):
         if expected_date and meeting.get("date") != expected_date:
             continue
-        if meeting.get("venueCode") and meeting["venueCode"].upper() != "HV":
+        if meeting.get("venueCode") and meeting["venueCode"].upper() != venue:
             continue
         for race in (meeting.get("races") or []):
             try:
@@ -176,7 +190,7 @@ def _parse_graphql_racecard(body: dict, expected_date: str | None = None) -> lis
     return races_out
 
 
-def fetch_racecard_graphql(meeting_date: str) -> list:
+def fetch_racecard_graphql(meeting_date: str, venue: str = VENUE) -> list:
     """
     Navigate to bet.hkjc.com and intercept the GraphQL HTTP responses that
     contain data.raceMeetings[].races[].runners[]. Returns a list of race dicts
@@ -197,14 +211,14 @@ def fetch_racecard_graphql(meeting_date: str) -> list:
             body = response.json()
         except Exception:
             return
-        races = _parse_graphql_racecard(body, meeting_date)
+        races = _parse_graphql_racecard(body, meeting_date, venue)
         if races:
             # Keep the response with the most races
             if len(races) > len(captured):
                 captured.clear()
                 captured.extend(races)
 
-    url = BET_HKJC_URL.format(date=meeting_date)
+    url = BET_HKJC_URL.format(date=meeting_date, venue=venue)
     print(f"  [GraphQL fallback] Navigating to bet.hkjc.com …")
 
     with sync_playwright() as pw:
@@ -231,8 +245,8 @@ def fetch_racecard_graphql(meeting_date: str) -> list:
 # Predictions JSON
 # ─────────────────────────────────────────────────────────────────────────────
 
-def build_predictions(conn, meeting_date: str, inserted_races) -> dict:
-    stats = mc.build_stats(conn)   # no cutoff → full history (live mode)
+def build_predictions(conn, meeting_date: str, inserted_races, venue: str = VENUE) -> dict:
+    stats = mc.build_stats(conn, venue=venue)   # no cutoff → full history (live mode)
 
     races_out = []
     for race_id, pr in inserted_races:
@@ -295,15 +309,17 @@ def build_predictions(conn, meeting_date: str, inserted_races) -> dict:
 
     return {
         "meeting_date": meeting_date,
+        "venue":        venue,
         "fetched_at":   __import__("datetime").datetime.now().isoformat(timespec="seconds"),
         "races":        races_out,
     }
 
 
 def print_summary(predictions: dict):
+    venue_name = VENUE_NAMES.get(predictions.get("venue", VENUE), predictions.get("venue", VENUE)).upper()
     print()
     print(f"  {'─'*62}")
-    print(f"  HAPPY VALLEY  {predictions['meeting_date']}  ({len(predictions['races'])} races)")
+    print(f"  {venue_name}  {predictions['meeting_date']}  ({len(predictions['races'])} races)")
     print(f"  {'─'*62}")
     for race in predictions["races"]:
         top3_str = "  /  ".join(race["top3"])
@@ -318,13 +334,18 @@ def print_summary(predictions: dict):
 # ─────────────────────────────────────────────────────────────────────────────
 
 def main():
-    parser = argparse.ArgumentParser(description="Fetch HV Wednesday racecard and run model.")
-    parser.add_argument("--date", help="Meeting date YYYY-MM-DD (default: next Wednesday)")
+    parser = argparse.ArgumentParser(description="Fetch an HKJC racecard and run the model.")
+    parser.add_argument("--date", help="Meeting date YYYY-MM-DD (default: next Wednesday for HV)")
+    parser.add_argument("--venue", default=VENUE, choices=["HV", "ST"],
+                        help="Racecourse code (default: HV)")
     parser.add_argument("--dry-run", action="store_true",
                         help="Fetch and parse only — do not write to DB or predictions file")
     parser.add_argument("--retry", type=int, default=0, metavar="N",
                         help="Retry up to N times (1hr apart) if card not yet posted")
     args = parser.parse_args()
+
+    venue      = args.venue
+    venue_name = VENUE_NAMES.get(venue, venue)
 
     if args.date:
         try:
@@ -333,14 +354,15 @@ def main():
             print(f"ERROR: invalid date '{args.date}', expected YYYY-MM-DD")
             sys.exit(1)
     else:
-        meeting = next_wednesday(date.today())
+        # HV races on Wednesdays; ST on weekends — pick a sensible default target.
+        meeting = next_wednesday(date.today()) if venue == "HV" else next_saturday(date.today())
 
     meeting_str     = meeting.isoformat()          # 'YYYY-MM-DD'
     meeting_hkjc    = meeting.strftime("%Y/%m/%d") # 'YYYY/MM/DD'
     predictions_out = Path(__file__).parent / f"predictions_{meeting_str}.json"
 
     print(f"\n{'='*64}")
-    print(f"  HV Racecard Agent  →  {meeting_str}")
+    print(f"  {venue_name} Racecard Agent  →  {meeting_str}")
     print(f"{'='*64}")
 
     try:
@@ -360,7 +382,7 @@ def main():
 
         for race_no in range(1, MAX_RACES):
             print(f"  Fetching Race {race_no} …", end=" ", flush=True)
-            html = fetch_racecard_html(page, meeting_hkjc, race_no)
+            html = fetch_racecard_html(page, meeting_hkjc, race_no, venue)
 
             if html is None:
                 print("not found — stopping.")
@@ -381,7 +403,7 @@ def main():
 
     if not parsed_all:
         print("\n  Primary fetch yielded nothing — trying GraphQL fallback …")
-        parsed_all = fetch_racecard_graphql(meeting_str)
+        parsed_all = fetch_racecard_graphql(meeting_str, venue)
         if parsed_all:
             print(f"  GraphQL fallback returned {len(parsed_all)} race(s).")
             for r in parsed_all:
@@ -410,11 +432,11 @@ def main():
     # ── Insert into DB ────────────────────────────────────────────────────────
     print(f"\n  Writing to DB …")
     conn = sqlite3.connect(DB_PATH)
-    inserted = insert_race_day(conn, meeting_str, parsed_all)
+    inserted = insert_race_day(conn, meeting_str, parsed_all, venue)
 
     # ── Run model and build predictions ──────────────────────────────────────
     print(f"\n  Running model …")
-    predictions = build_predictions(conn, meeting_str, inserted)
+    predictions = build_predictions(conn, meeting_str, inserted, venue)
     conn.close()
 
     # ── Write predictions JSON ────────────────────────────────────────────────

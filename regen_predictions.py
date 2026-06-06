@@ -14,9 +14,9 @@ blend coefficients come from blend_coef.json (the live production model).
 Usage:
   python3 regen_predictions.py 2026-05-13 2026-05-27
 """
+import argparse
 import sqlite3
 import json
-import sys
 from datetime import datetime
 
 import model_core as mc
@@ -114,25 +114,76 @@ def regen(conn, meeting_date):
 
     return {
         "meeting_date": meeting_date,
+        "venue":        VENUE,
         "fetched_at":   datetime.now().isoformat(timespec="seconds"),
         "races":        races_out,
     }
 
 
+def build_results(conn, meeting_date):
+    """Synthesise results_<date>.json from DB finish positions (for settled
+    backtest/demo meetings). Same schema export_data.merge_meeting expects:
+    races[] with race_id, race_number, actual_top3, finishers[{horse_name, position}]."""
+    races = conn.execute("""
+        SELECT race_id, race_number FROM races
+        WHERE venue=? AND race_date=? ORDER BY race_number
+    """, (VENUE, meeting_date)).fetchall()
+    if not races:
+        return None
+    races_out = []
+    for race_id, rno in races:
+        fin = conn.execute("""
+            SELECT h.horse_name, e.finish_position
+            FROM race_entries e JOIN horses h ON h.horse_id = e.horse_id
+            WHERE e.race_id=? AND e.finish_position IS NOT NULL
+            ORDER BY e.finish_position
+        """, (race_id,)).fetchall()
+        if not fin:
+            continue
+        finishers = [{"horse_name": n, "position": p} for n, p in fin]
+        races_out.append({
+            "race_id": race_id,
+            "race_number": rno,
+            "actual_top3": [f["horse_name"] for f in finishers[:3]],
+            "finishers": finishers,
+        })
+    return {
+        "meeting_date": meeting_date,
+        "venue": VENUE,
+        "settled_at": datetime.now().isoformat(timespec="seconds"),
+        "races": races_out,
+    }
+
+
 def main():
-    dates = sys.argv[1:]
-    if not dates:
-        print("usage: python3 regen_predictions.py YYYY-MM-DD [YYYY-MM-DD ...]")
+    global VENUE
+    ap = argparse.ArgumentParser(description="Rebuild predictions_<date>.json with the blend.")
+    ap.add_argument("dates", nargs="*", help="meeting dates YYYY-MM-DD")
+    ap.add_argument("--venue", default="HV", choices=["HV", "ST"])
+    ap.add_argument("--with-results", action="store_true",
+                    help="also write results_<date>.json from DB finish positions "
+                         "(makes the meeting a settled backtest/demo)")
+    args = ap.parse_args()
+    VENUE = args.venue
+    if not args.dates:
+        print("usage: python3 regen_predictions.py YYYY-MM-DD [...] [--venue ST] [--with-results]")
         return
     conn = sqlite3.connect(DB)
-    for d in dates:
+    for d in args.dates:
         out = regen(conn, d)
         if out is None:
             continue
         path = f"predictions_{d}.json"
         with open(path, "w", encoding="utf-8") as f:
             json.dump(out, f, indent=2, ensure_ascii=False)
-        print(f"  {d}: wrote {path}  ({len(out['races'])} races, blended)")
+        print(f"  {d}: wrote {path}  ({len(out['races'])} races, {VENUE}, blended)")
+        if args.with_results:
+            res = build_results(conn, d)
+            if res:
+                rpath = f"results_{d}.json"
+                with open(rpath, "w", encoding="utf-8") as f:
+                    json.dump(res, f, indent=2, ensure_ascii=False)
+                print(f"  {d}: wrote {rpath}  ({len(res['races'])} races settled)")
     conn.close()
 
 

@@ -11,7 +11,7 @@ happy_valley.db
 predictions_*.json
 results_*.json
 bet_report_*.json
-agent.log
+*.log
 
 # Saved HTML race cards and documents
 *.html

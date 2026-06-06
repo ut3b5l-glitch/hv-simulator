@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-05T22:59:53",
+  "generated_at": "2026-06-06T14:54:13",
   "meetings_total": 4,
   "meetings_settled": 4,
   "top3_precision": 54.054054054054056,
@@ -149,7 +149,7 @@
     ]
   },
   "model_quality": {
-    "generated_at": "2026-06-05T14:59:57+00:00",
+    "generated_at": "2026-06-06T06:54:18+00:00",
     "n_races": 213,
     "n_meetings": 25,
     "window": "leak-free walk-forward, test races 400+",
@@ -339,9 +339,69 @@
             "roi_pct": 8.57
           }
         },
-        "generated_at": "2026-06-05T11:04:33+00:00"
+        "generated_at": "2026-06-06T06:50:49+00:00"
+      },
+      "ST": {
+        "venue": "ST",
+        "stake": 10.0,
+        "best_l2": 40.0,
+        "n_races": 716,
+        "n_meetings": 69,
+        "from_date": "2025-02-16",
+        "rankers": {
+          "blend": {
+            "bets": 716,
+            "wins": 232,
+            "win_pct": 32.4,
+            "staked": 7160.0,
+            "returned": 6281.0,
+            "profit": -879.0,
+            "roi_pct": -12.28
+          },
+          "market": {
+            "bets": 716,
+            "wins": 226,
+            "win_pct": 31.6,
+            "staked": 7160.0,
+            "returned": 6049.0,
+            "profit": -1111.0,
+            "roi_pct": -15.52
+          },
+          "model": {
+            "bets": 716,
+            "wins": 157,
+            "win_pct": 21.9,
+            "staked": 7160.0,
+            "returned": 5738.0,
+            "profit": -1422.0,
+            "roi_pct": -19.86
+          }
+        },
+        "edge_gap_pts": 3.24,
+        "verdict": "real_edge",
+        "selective": {
+          "agree": {
+            "bets": 669,
+            "wins": 219,
+            "win_pct": 32.7,
+            "staked": 6690.0,
+            "returned": 5743.0,
+            "profit": -947.0,
+            "roi_pct": -14.16
+          },
+          "disagree": {
+            "bets": 47,
+            "wins": 13,
+            "win_pct": 27.7,
+            "staked": 470.0,
+            "returned": 538.0,
+            "profit": 68.0,
+            "roi_pct": 14.47
+          }
+        },
+        "generated_at": "2026-06-06T06:50:44+00:00"
       }
     },
-    "generated_at": "2026-06-05T11:04:33+00:00"
+    "generated_at": "2026-06-06T06:50:49+00:00"
   }
 }

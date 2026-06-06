@@ -304,17 +304,61 @@ def page_paper_trades():
 # Page: Model Health
 # ─────────────────────────────────────────────────────────────────────────────
 
+def _render_win_edge():
+    """Win-Edge stress test (reads win_edge.json from edge_backtest.py)."""
+    st.subheader("Win-Edge Stress Test")
+    st.caption("Flat HK$10 to WIN on the model's #1 pick, every race, leak-free "
+               "walk-forward over all history. Does the model beat the favourite?")
+    path = Path(__file__).parent / "win_edge.json"
+    if not path.exists():
+        st.info("No win_edge.json yet — run `python3 edge_backtest.py --venue HV --json` "
+                "(and `--venue ST`).")
+        return
+    try:
+        blob = json.loads(path.read_text())
+    except Exception as exc:  # noqa: BLE001
+        st.warning(f"Could not read win_edge.json: {exc}")
+        return
+    names = {"HV": "Happy Valley", "ST": "Sha Tin"}
+    verdicts = {"real_edge": "✅ beats the favourite",
+                "rides_market": "➖ rides the favourite",
+                "worse_than_market": "❌ worse than the favourite"}
+    for v, res in sorted(blob.get("venues", {}).items()):
+        rk = res["rankers"]
+        st.markdown(f"**{names.get(v, v)}** — {res['n_races']} races · "
+                    f"{res['n_meetings']} meetings · from {res['from_date']}")
+        rows = [{"Ranker": lbl,
+                 "Win %": f"{rk[k]['win_pct']:.1f}",
+                 "ROI": f"{rk[k]['roi_pct']:+.2f}%",
+                 "Profit (HK$)": f"{rk[k]['profit']:+.0f}"}
+                for k, lbl in (("blend", "Model #1 (blend)"),
+                               ("market", "Market favourite"),
+                               ("model", "Pure factors"))]
+        st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
+        gap = res.get("edge_gap_pts")
+        if gap is not None:
+            st.caption(f"{verdicts.get(res.get('verdict'), '')} — blend vs market "
+                       f"ROI gap {gap:+.2f} pts. No system beats the ~17.5% win-pool takeout.")
+
+
 def page_model_health():
     st.header("Model Health")
 
     conn = get_conn()
 
+    venues = [r[0] for r in conn.execute(
+        "SELECT DISTINCT venue FROM races ORDER BY venue").fetchall()] or ["HV"]
+    venue = st.radio("Venue", venues, horizontal=True,
+                     index=venues.index("HV") if "HV" in venues else 0)
+
+    _render_win_edge()
+
     # Rolling precision: for each race date, compute top-3 precision
     race_dates = conn.execute("""
         SELECT DISTINCT race_date FROM races
-        WHERE venue='HV'
+        WHERE venue=?
         ORDER BY race_date
-    """).fetchall()
+    """, (venue,)).fetchall()
     race_dates = [r[0] for r in race_dates]
 
     if len(race_dates) < 5:
@@ -328,7 +372,7 @@ def page_model_health():
     precision_data = []
     for date in race_dates:
         races = get_races_for_date(conn, date)
-        stats = mc.build_stats(conn, before_date=date, venue="HV")
+        stats = mc.build_stats(conn, before_date=date, venue=venue)
         correct = 0
         total = 0
         for race_id, race_no, dist, cfg, race_class, going, field_size in races:
@@ -400,13 +444,13 @@ def page_model_health():
         FROM race_entries e
         JOIN races r ON e.race_id = r.race_id
         JOIN jockeys j ON e.jockey_id = j.jockey_id
-        WHERE r.venue = 'HV'
-          AND r.race_date >= date((SELECT MAX(race_date) FROM races WHERE venue='HV'), '-60 days')
+        WHERE r.venue = ?
+          AND r.race_date >= date((SELECT MAX(race_date) FROM races WHERE venue=?), '-60 days')
           AND e.finish_position IS NOT NULL
         GROUP BY j.jockey_id
         HAVING rides >= 5
         ORDER BY wins * 1.0 / rides DESC
-    """).fetchall()
+    """, (venue, venue)).fetchall()
 
     if jockey_data:
         jdf = pd.DataFrame(jockey_data, columns=["Jockey", "ID", "Wins", "Places", "Rides"])
@@ -425,13 +469,13 @@ def page_model_health():
         FROM race_entries e
         JOIN races r ON e.race_id = r.race_id
         JOIN trainers t ON e.trainer_id = t.trainer_id
-        WHERE r.venue = 'HV'
-          AND r.race_date >= date((SELECT MAX(race_date) FROM races WHERE venue='HV'), '-60 days')
+        WHERE r.venue = ?
+          AND r.race_date >= date((SELECT MAX(race_date) FROM races WHERE venue=?), '-60 days')
           AND e.finish_position IS NOT NULL
         GROUP BY t.trainer_id
         HAVING rides >= 3
         ORDER BY wins * 1.0 / rides DESC
-    """).fetchall()
+    """, (venue, venue)).fetchall()
 
     if trainer_data:
         tdf = pd.DataFrame(trainer_data, columns=["Trainer", "ID", "Wins", "Places", "Rides"])
