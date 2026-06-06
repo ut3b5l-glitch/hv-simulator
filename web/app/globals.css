@@ -21,16 +21,16 @@
   --c-navy: 27 64 91;     /* #1B405B */
   --c-mint: 223 243 235;  /* #DFF3EB */
 
-  /* Functional accents, retuned into the navy+mint family and kept deep
-     enough to stay legible on frosted near-white glass. Semantics hold:
-     gold = value pick, green = win/positive, red = loss/negative. */
-  --c-gold: 178 122 28;   /* honey / amber  (#B27A1C) — value */
-  --c-green: 13 138 101;  /* sea green      (#0D8A65) — win  */
+  /* Functional accents — finalized to the official Zokki brand palette
+     (kit p.06). Semantics hold: gold = value pick, green = win/positive,
+     red = loss/negative. */
+  --c-gold: 200 132 31;   /* amber          (#C8841F) — value */
+  --c-green: 62 157 110;  /* green          (#3E9D6E) — win  */
   --c-red: 209 84 63;     /* coral          (#D1543F) — loss */
-  --c-blue: 28 110 140;   /* teal-blue      (#1C6E8C) */
+  --c-blue: 44 110 107;   /* brand teal     (#2C6E6B) */
   --c-purple: 90 112 150; /* muted slate-teal (#5A7096) */
   --c-indigo: 27 64 91;   /* brand navy     (#1B405B) */
-  --c-cyan: 35 150 150;   /* mint-teal      (#239696) */
+  --c-cyan: 44 110 107;   /* brand teal     (#2C6E6B) */
 
   /* Frosted near-white glass on the pale mint gradient. */
   --glass-bg: rgba(255, 255, 255, 0.66);

@@ -98,8 +98,8 @@ const config: Config = {
         glass: "0 8px 30px -6px rgba(22,49,68,0.14), inset 0 1px 0 rgba(255,255,255,0.7)",
         glassHover:
           "0 18px 50px -10px rgba(22,49,68,0.2), inset 0 1px 0 rgba(255,255,255,0.85)",
-        "glow-gold": "0 0 0 1px rgba(178,122,28,0.28), 0 6px 24px -6px rgba(178,122,28,0.3)",
-        "glow-green": "0 0 0 1px rgba(13,138,101,0.26), 0 6px 24px -8px rgba(13,138,101,0.28)",
+        "glow-gold": "0 0 0 1px rgba(200,132,31,0.28), 0 6px 24px -6px rgba(200,132,31,0.3)",
+        "glow-green": "0 0 0 1px rgba(62,157,110,0.26), 0 6px 24px -8px rgba(62,157,110,0.28)",
         "glow-indigo": "0 8px 28px -8px rgba(27,64,91,0.4)",
       },
       transitionTimingFunction: {
