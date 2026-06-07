@@ -3225,10 +3225,10 @@
       "id": 7474,
       "name": "CHILL EASY",
       "runs": 6,
-      "wins": 0,
-      "places": 2,
-      "win_pct": 0.0,
-      "place_pct": 33.33333333333333,
+      "wins": 1,
+      "places": 3,
+      "win_pct": 16.666666666666664,
+      "place_pct": 50.0,
       "last_run": null
     },
     {
@@ -10656,9 +10656,9 @@
       "name": "KING EQUINE",
       "runs": 2,
       "wins": 0,
-      "places": 0,
+      "places": 1,
       "win_pct": 0.0,
-      "place_pct": 0.0,
+      "place_pct": 50.0,
       "last_run": null
     },
     {
@@ -16826,9 +16826,9 @@
       "name": "RUN RUN SMART",
       "runs": 19,
       "wins": 2,
-      "places": 6,
+      "places": 7,
       "win_pct": 10.526315789473683,
-      "place_pct": 31.57894736842105,
+      "place_pct": 36.84210526315789,
       "last_run": "2026-01-07"
     },
     {
@@ -23144,9 +23144,9 @@
       "name": "H Bowman",
       "runs": 1330,
       "wins": 155,
-      "places": 446,
+      "places": 447,
       "win_pct": 11.654135338345863,
-      "place_pct": 33.53383458646616,
+      "place_pct": 33.609022556390975,
       "trail60": {
         "rides": 31,
         "wins": 3,
@@ -23255,10 +23255,10 @@
       "id": 15,
       "name": "C L Chau",
       "runs": 973,
-      "wins": 78,
-      "places": 201,
-      "win_pct": 8.016443987667008,
-      "place_pct": 20.65775950668037,
+      "wins": 79,
+      "places": 202,
+      "win_pct": 8.119218910585817,
+      "place_pct": 20.76053442959918,
       "trail60": {
         "rides": 31,
         "wins": 3,
@@ -23534,9 +23534,9 @@
       "name": "H Y Yuen",
       "runs": 81,
       "wins": 9,
-      "places": 24,
+      "places": 25,
       "win_pct": 11.11111111111111,
-      "place_pct": 29.629629629629626
+      "place_pct": 30.864197530864196
     },
     {
       "id": 3199,
@@ -24111,10 +24111,10 @@
       "id": 6,
       "name": "P F Yiu",
       "runs": 1215,
-      "wins": 116,
-      "places": 359,
-      "win_pct": 9.54732510288066,
-      "place_pct": 29.547325102880656,
+      "wins": 117,
+      "places": 360,
+      "win_pct": 9.62962962962963,
+      "place_pct": 29.629629629629626,
       "trail60": {
         "rides": 26,
         "wins": 1,
@@ -24160,9 +24160,9 @@
       "name": "C S Shum",
       "runs": 1154,
       "wins": 111,
-      "places": 270,
+      "places": 271,
       "win_pct": 9.618717504332755,
-      "place_pct": 23.39688041594454,
+      "place_pct": 23.483535528596185,
       "trail60": {
         "rides": 35,
         "wins": 8,
@@ -24176,9 +24176,9 @@
       "name": "F C Lor",
       "runs": 1299,
       "wins": 103,
-      "places": 322,
+      "places": 323,
       "win_pct": 7.929176289453426,
-      "place_pct": 24.788298691301,
+      "place_pct": 24.865280985373364,
       "trail60": {
         "rides": 20,
         "wins": 1,

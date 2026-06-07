@@ -2,7 +2,7 @@
   "meeting_date": "2026-06-07",
   "venue": "HV",
   "fetched_at": "2026-06-07T19:46:33",
-  "settled_at": "2026-06-07T21:33:39",
+  "settled_at": "2026-06-07T21:35:39",
   "races": [
     {
       "race_id": 1940,
@@ -4962,7 +4962,7 @@
             "rating": 1.119,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 7
         },
         {
           "rank": 2,
@@ -4993,7 +4993,7 @@
             "rating": 1.142,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 12
         },
         {
           "rank": 3,
@@ -5024,7 +5024,7 @@
             "rating": 0.973,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 14
         },
         {
           "rank": 4,
@@ -5055,7 +5055,7 @@
             "rating": 1.033,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 2
         },
         {
           "rank": 5,
@@ -5086,7 +5086,7 @@
             "rating": 0.935,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 13
         },
         {
           "rank": 6,
@@ -5117,7 +5117,7 @@
             "rating": 1.013,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 3
         },
         {
           "rank": 7,
@@ -5148,7 +5148,7 @@
             "rating": 1.013,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 1
         },
         {
           "rank": 8,
@@ -5179,7 +5179,7 @@
             "rating": 0.917,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 9
         },
         {
           "rank": 9,
@@ -5210,7 +5210,7 @@
             "rating": 1.033,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 5
         },
         {
           "rank": 10,
@@ -5241,7 +5241,7 @@
             "rating": 1.054,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 11
         },
         {
           "rank": 11,
@@ -5272,7 +5272,7 @@
             "rating": 0.863,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 8
         },
         {
           "rank": 12,
@@ -5303,7 +5303,7 @@
             "rating": 0.863,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 4
         },
         {
           "rank": 13,
@@ -5334,7 +5334,7 @@
             "rating": 1.165,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 6
         },
         {
           "rank": 14,
@@ -5365,14 +5365,89 @@
             "rating": 0.935,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 10
         }
       ],
-      "actual_top3": [],
-      "finishers": [],
+      "actual_top3": [
+        "CHILL EASY",
+        "RUN RUN SMART",
+        "KING EQUINE"
+      ],
+      "finishers": [
+        {
+          "position": 1,
+          "horse_name": "CHILL EASY",
+          "horse_no": 7
+        },
+        {
+          "position": 2,
+          "horse_name": "RUN RUN SMART",
+          "horse_no": 5
+        },
+        {
+          "position": 3,
+          "horse_name": "KING EQUINE",
+          "horse_no": 8
+        },
+        {
+          "position": 4,
+          "horse_name": "M M CONCORD",
+          "horse_no": 13
+        },
+        {
+          "position": 5,
+          "horse_name": "THE UNIQUE STAR",
+          "horse_no": 6
+        },
+        {
+          "position": 6,
+          "horse_name": "CHIU CHOW SPIRIT",
+          "horse_no": 1
+        },
+        {
+          "position": 7,
+          "horse_name": "FIT FOR BEAUTY",
+          "horse_no": 3
+        },
+        {
+          "position": 8,
+          "horse_name": "RISING FROM ASHES",
+          "horse_no": 14
+        },
+        {
+          "position": 9,
+          "horse_name": "KEMPES",
+          "horse_no": 12
+        },
+        {
+          "position": 10,
+          "horse_name": "THUNDER ACTION",
+          "horse_no": 10
+        },
+        {
+          "position": 11,
+          "horse_name": "THUNDER KIT",
+          "horse_no": 4
+        },
+        {
+          "position": 12,
+          "horse_name": "MAKE YOU SMILE",
+          "horse_no": 2
+        },
+        {
+          "position": 13,
+          "horse_name": "WELL ENOUGH",
+          "horse_no": 11
+        },
+        {
+          "position": 14,
+          "horse_name": "TRUE BROTHERS",
+          "horse_no": 9
+        }
+      ],
       "top3_hits": 0,
       "top_pick_hit": false,
-      "has_results": false
+      "has_results": true
     }
   ],
   "has_results": true
