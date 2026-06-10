@@ -2,7 +2,7 @@
   "meeting_date": "2026-06-10",
   "venue": "HV",
   "fetched_at": "2026-06-10T17:31:29",
-  "settled_at": "2026-06-10T23:00:44",
+  "settled_at": "2026-06-10T23:03:43",
   "races": [
     {
       "race_id": 1951,
@@ -3679,7 +3679,7 @@
             "rating": 0.937,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 1
         },
         {
           "rank": 2,
@@ -3710,7 +3710,7 @@
             "rating": 1.015,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 4
         },
         {
           "rank": 3,
@@ -3741,7 +3741,7 @@
             "rating": 1.191,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 2
         },
         {
           "rank": 4,
@@ -3772,7 +3772,7 @@
             "rating": 0.882,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 5
         },
         {
           "rank": 5,
@@ -3803,7 +3803,7 @@
             "rating": 1.057,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 7
         },
         {
           "rank": 6,
@@ -3834,7 +3834,7 @@
             "rating": 1.015,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 9
         },
         {
           "rank": 7,
@@ -3865,7 +3865,7 @@
             "rating": 1.015,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 3
         },
         {
           "rank": 8,
@@ -3896,7 +3896,7 @@
             "rating": 1.036,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 6
         },
         {
           "rank": 9,
@@ -3927,7 +3927,7 @@
             "rating": 0.995,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 12
         },
         {
           "rank": 10,
@@ -3958,7 +3958,7 @@
             "rating": 0.975,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 8
         },
         {
           "rank": 11,
@@ -3989,7 +3989,7 @@
             "rating": 0.956,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 11
         },
         {
           "rank": 12,
@@ -4020,14 +4020,79 @@
             "rating": 0.956,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 10
         }
       ],
-      "actual_top3": [],
-      "finishers": [],
-      "top3_hits": 0,
-      "top_pick_hit": false,
-      "has_results": false
+      "actual_top3": [
+        "TARGET AUDIENCE",
+        "FLYING WROTE",
+        "MOTOR"
+      ],
+      "finishers": [
+        {
+          "position": 1,
+          "horse_name": "TARGET AUDIENCE",
+          "horse_no": 11
+        },
+        {
+          "position": 2,
+          "horse_name": "FLYING WROTE",
+          "horse_no": 1
+        },
+        {
+          "position": 3,
+          "horse_name": "MOTOR",
+          "horse_no": 4
+        },
+        {
+          "position": 4,
+          "horse_name": "STORMING DRAGON",
+          "horse_no": 6
+        },
+        {
+          "position": 5,
+          "horse_name": "ARGENTO OCEAN",
+          "horse_no": 12
+        },
+        {
+          "position": 6,
+          "horse_name": "NORTHERN FIRE BALL",
+          "horse_no": 3
+        },
+        {
+          "position": 7,
+          "horse_name": "LIFELINE EXPRESS",
+          "horse_no": 2
+        },
+        {
+          "position": 8,
+          "horse_name": "SUGAR GOODSON",
+          "horse_no": 8
+        },
+        {
+          "position": 9,
+          "horse_name": "EVER LUCK",
+          "horse_no": 5
+        },
+        {
+          "position": 10,
+          "horse_name": "VIGOR HAPPINESS",
+          "horse_no": 10
+        },
+        {
+          "position": 11,
+          "horse_name": "KANSAS",
+          "horse_no": 9
+        },
+        {
+          "position": 12,
+          "horse_name": "DASHING BASICS",
+          "horse_no": 7
+        }
+      ],
+      "top3_hits": 2,
+      "top_pick_hit": true,
+      "has_results": true
     }
   ],
   "has_results": true
