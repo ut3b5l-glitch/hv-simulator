@@ -29,7 +29,7 @@ const en = {
     h1: "Read every race in ten seconds.",
     tagline: "快、清楚、誠實 — 每場賽事，一眼看懂。",
     sub: "Zokki turns the form, the draw, the odds and the jockeys into one clear read per race — a plain-English preview, a model-ranked shortlist, and an honest scorecard you can check. Information and entertainment only. We never tell you to bet.",
-    note: "Beta access · HKD $48/mo · cancel anytime · no betting, ever.",
+    note: "Beta access · HK$12 day pass · HK$48/mo unlimited · cancel anytime · no betting, ever.",
     social: (n: number) => `${n} racing fans already on the list`,
   },
   form: {
@@ -81,18 +81,31 @@ const en = {
   },
   pricing: {
     eyebrow: "Pricing",
-    h: "Start free. Upgrade when you’re ready.",
+    h: "Race night for the price of a coffee.",
     perMo: "/mo",
+    perDay: "/race day",
     beta: "Beta",
+    popular: "Most popular",
     free: {
       name: "Free",
       price: "HK$0",
       tagline: "Get a feel for the read, and check our record any time.",
       features: ["One featured race each meeting", "The full public scorecard", "Happy Valley & Sha Tin"],
     },
+    dayPass: {
+      name: "Day Pass",
+      price: "HK$12",
+      tagline: "One meeting, the whole card — buy it on race day, no subscription.",
+      features: [
+        "Every race on the night’s card",
+        "Verdicts, previews & standout signals",
+        "Full shortlist & race simulator",
+        "Valid for the entire meeting",
+      ],
+    },
     starter: {
       name: "Starter",
-      price: "HKD $48",
+      price: "HK$48",
       tagline: "The whole card, every meeting — the fast, clear race companion.",
       features: [
         "Every race, every meeting",
@@ -112,12 +125,12 @@ const en = {
         "Exportable history",
       ],
     },
-    foot: "A single race-day pass for one meeting is planned too. Prices in HKD; final tiers confirmed at launch.",
+    foot: "Day Pass covers one full meeting at Happy Valley or Sha Tin. Prices in HKD; final tiers confirmed at launch.",
   },
   cta: {
     h: "Be first through the gates.",
     body: (p: { price: string }) =>
-      `Join the beta waitlist and we’ll bring you in before launch — starting at ${p.price}/mo, cancel any time.`,
+      `Join the beta waitlist and we’ll bring you in before launch — race-day passes from ${p.price}, no subscription needed.`,
   },
   footer: {
     compliance:
@@ -145,7 +158,7 @@ const zh: Dict = {
     h1: "十秒，睇通每場賽事。",
     tagline: "Fast. Clear. Honest.",
     sub: "Zokki 把往績、檔位、賠率和騎練資料，整合成每場賽事的一個清晰解讀 —— 淺白的賽前分析、由模型排名的首選名單，以及一份你可以親自查證的誠實成績單。純粹資訊與娛樂用途，我們從不叫你投注。",
-    note: "Beta 搶先體驗 · 每月 HKD $48 · 隨時取消 · 絕不涉及投注。",
+    note: "Beta 搶先體驗 · 即日通行證 HK$12 · 無限暢用每月 HK$48 · 隨時取消 · 絕不涉及投注。",
     social: (n: number) => `已有 ${n} 位馬迷登記預約`,
   },
   form: {
@@ -197,18 +210,26 @@ const zh: Dict = {
   },
   pricing: {
     eyebrow: "收費",
-    h: "免費開始，準備好再升級。",
+    h: "一杯咖啡的價錢，睇通成晚賽事。",
     perMo: "/月",
+    perDay: "/賽日",
     beta: "Beta",
+    popular: "最受歡迎",
     free: {
       name: "免費",
       price: "HK$0",
       tagline: "先感受解讀，隨時查看我們的成績。",
       features: ["每個賽期一場精選賽事", "完整公開成績單", "跑馬地與沙田"],
     },
+    dayPass: {
+      name: "即日通行證",
+      price: "HK$12",
+      tagline: "單一賽期、全晚賽事 —— 賽日即買即用，毋須訂閱。",
+      features: ["當晚每一場賽事", "評級、賽前分析與亮點訊號", "完整首選名單與賽事模擬器", "全個賽期有效"],
+    },
     starter: {
       name: "入門",
-      price: "HKD $48",
+      price: "HK$48",
       tagline: "全場賽事、每個賽期 —— 又快又清的睇馬好夥伴。",
       features: ["每場賽事、每個賽期", "評級、賽前分析與亮點訊號", "完整首選名單與賽事模擬器", "完整往績記錄"],
     },
@@ -218,12 +239,12 @@ const zh: Dict = {
       tagline: "為認真鑽研的馬迷而設，盡覽引擎內裡乾坤。",
       features: ["完整模型內部與因子檢視", "校準與價值指標", "投注回報分析", "可匯出歷史記錄"],
     },
-    foot: "亦計劃推出單一賽期的即日通行證。價格以港幣計；最終級別於推出時確認。",
+    foot: "即日通行證適用於跑馬地或沙田的單一賽期。價格以港幣計；最終級別於推出時確認。",
   },
   cta: {
     h: "搶先入場。",
     body: (p: { price: string }) =>
-      `加入 Beta 候補名單，我們會在推出前邀請你 —— 每月 ${p.price} 起，隨時取消。`,
+      `加入 Beta 候補名單，我們會在推出前邀請你 —— 即日通行證 ${p.price} 起，毋須訂閱。`,
   },
   footer: {
     compliance:

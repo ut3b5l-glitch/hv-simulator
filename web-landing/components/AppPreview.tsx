@@ -17,16 +17,16 @@ function RunnerLine({
 }) {
   const fill =
     tone === "win"
-      ? "bg-gradient-to-r from-accent-green to-accent-cyan"
+      ? "bg-gradient-to-r from-accent-green to-accent-yellow"
       : tone === "place"
-        ? "bg-gradient-to-r from-accent-blue to-accent-cyan"
-        : "bg-[rgba(22,49,68,0.22)]";
+        ? "bg-gradient-to-r from-accent-gold to-accent-yellow"
+        : "bg-[rgba(255,255,255,0.24)]";
   const chip =
     tone === "win"
-      ? "bg-accent-green/15 text-accent-green"
+      ? "bg-accent-green/20 text-accent-green"
       : tone === "place"
-        ? "bg-accent-red/12 text-accent-red"
-        : "bg-[rgba(22,49,68,0.08)] text-ink-60";
+        ? "bg-accent-yellow/15 text-accent-yellow"
+        : "bg-[rgba(255,255,255,0.1)] text-ink-60";
   return (
     <div className="flex items-center gap-2.5">
       <span
@@ -42,7 +42,7 @@ function RunnerLine({
             <span className="text-micro font-semibold text-ink-70">%</span>
           </span>
         </div>
-        <div className="mt-1 h-1 overflow-hidden rounded-pill bg-[rgba(22,49,68,0.06)]">
+        <div className="mt-1 h-1 overflow-hidden rounded-pill bg-[rgba(255,255,255,0.08)]">
           <div className={`h-full rounded-pill ${fill}`} style={{ width: `${width}%` }} />
         </div>
       </div>
@@ -58,8 +58,8 @@ function RunnerLine({
 export default function AppPreview({ t }: { t: Dict["preview"] }) {
   return (
     <div className="mx-auto w-[270px] sm:w-[286px]">
-      <div className="rounded-[2.5rem] border border-[rgba(22,49,68,0.16)] bg-[#0c1f2e] p-2.5 shadow-[0_44px_100px_-34px_rgba(22,49,68,0.6)]">
-        <div className="overflow-hidden rounded-[2rem] bg-[#eaf2ef]">
+      <div className="rounded-[2.5rem] border border-[rgba(255,255,255,0.16)] bg-[#0d0d0c] p-2.5 shadow-[0_44px_100px_-34px_rgba(0,0,0,0.85)]">
+        <div className="overflow-hidden rounded-[2rem] bg-[#22211e]">
           {/* App hero */}
           <div className="hero-grad px-4 pb-4 pt-4">
             <Wordmark tone="light" className="origin-left scale-90" />
@@ -88,8 +88,8 @@ export default function AppPreview({ t }: { t: Dict["preview"] }) {
             </div>
             <div className="mt-2 flex items-center justify-center gap-1.5 pb-1">
               <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-accent-green" />
-              <span className="h-1.5 w-1.5 rounded-full bg-[rgba(22,49,68,0.2)]" />
-              <span className="h-1.5 w-1.5 rounded-full bg-[rgba(22,49,68,0.2)]" />
+              <span className="h-1.5 w-1.5 rounded-full bg-[rgba(255,255,255,0.22)]" />
+              <span className="h-1.5 w-1.5 rounded-full bg-[rgba(255,255,255,0.22)]" />
             </div>
           </div>
         </div>

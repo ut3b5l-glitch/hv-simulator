@@ -24,7 +24,8 @@ const PROOF = {
   rangeZh: "2026年5月13日至6月3日",
 };
 
-const PRICE = "HKD $48";
+// Day Pass — the default offering quoted in CTAs.
+const PRICE = "HK$12";
 
 // Feature-card icons (not localised) — paired by index with t.does.cards.
 const FEATURE_ICONS = [
@@ -38,7 +39,7 @@ function Eyebrow({ children, tone = "dark" }: { children: React.ReactNode; tone?
   return (
     <div
       className={`text-micro font-semibold uppercase tracking-eyebrow ${
-        tone === "light" ? "text-mint/70" : "text-accent-gold"
+        tone === "light" ? "text-accent-yellow/80" : "text-accent-gold"
       }`}
     >
       {children}
@@ -48,7 +49,7 @@ function Eyebrow({ children, tone = "dark" }: { children: React.ReactNode; tone?
 
 function IconBadge({ path }: { path: string }) {
   return (
-    <div className="grid h-11 w-11 place-items-center rounded-tile bg-navy/8 text-navy">
+    <div className="grid h-11 w-11 place-items-center rounded-tile bg-white/10 text-accent-yellow">
       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
         <path d={path} />
       </svg>
@@ -66,14 +67,24 @@ function FeatureCard({ icon, title, body }: { icon: string; title: string; body:
   );
 }
 
-function Check() {
+function Check({ onButter = false }: { onButter?: boolean }) {
   return (
-    <svg viewBox="0 0 24 24" className="mt-0.5 h-4 w-4 shrink-0 text-accent-green" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      viewBox="0 0 24 24"
+      className={`mt-0.5 h-4 w-4 shrink-0 ${onButter ? "text-[#121212]" : "text-accent-green"}`}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2.2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <path d="M20 6 9 17l-5-5" />
     </svg>
   );
 }
 
+/* `highlight` swaps the smoked glass for the signature butter panel — pale
+   yellow surface, coal type — reserved for the default (Day Pass) plan. */
 function PlanCard({
   name,
   price,
@@ -94,27 +105,27 @@ function PlanCard({
   return (
     <div
       className={`glass-lift relative flex h-full flex-col rounded-card p-6 ${
-        highlight ? "hero-grad text-mint shadow-glow-indigo" : "glass"
+        highlight ? "butter-panel" : "glass"
       }`}
     >
       {badge && (
-        <span className="absolute -top-2.5 right-5 rounded-pill bg-accent-gold px-2.5 py-0.5 text-micro2 font-bold uppercase tracking-wide text-navy shadow-glow-gold">
+        <span className="absolute -top-2.5 right-5 rounded-pill bg-[#121212] px-2.5 py-0.5 text-micro2 font-bold uppercase tracking-wide text-accent-yellow shadow-glass-2">
           {badge}
         </span>
       )}
-      <div className={`text-caption font-semibold uppercase tracking-eyebrow ${highlight ? "text-mint/70" : "text-ink-70"}`}>
+      <div className={`text-caption font-semibold uppercase tracking-eyebrow ${highlight ? "text-[#121212]/60" : "text-ink-70"}`}>
         {name}
       </div>
       <div className="mt-2 flex items-baseline gap-1">
-        <span className={`num text-stat font-bold ${highlight ? "text-mint" : "text-ink-50"}`}>{price}</span>
-        {cadence && <span className={`text-callout ${highlight ? "text-mint/65" : "text-ink-70"}`}>{cadence}</span>}
+        <span className={`num text-stat font-bold ${highlight ? "text-[#121212]" : "text-ink-50"}`}>{price}</span>
+        {cadence && <span className={`text-callout ${highlight ? "text-[#121212]/65" : "text-ink-70"}`}>{cadence}</span>}
       </div>
-      <p className={`mt-1.5 text-callout leading-relaxed ${highlight ? "text-mint/80" : "text-ink-60"}`}>{tagline}</p>
+      <p className={`mt-1.5 text-callout leading-relaxed ${highlight ? "text-[#121212]/80" : "text-ink-60"}`}>{tagline}</p>
       <ul className="mt-4 space-y-2.5">
         {features.map((f) => (
           <li key={f} className="flex gap-2.5">
-            <Check />
-            <span className={`text-callout leading-snug ${highlight ? "text-mint/90" : "text-ink-50"}`}>{f}</span>
+            <Check onButter={highlight} />
+            <span className={`text-callout leading-snug ${highlight ? "text-[#121212]/90" : "text-ink-50"}`}>{f}</span>
           </li>
         ))}
       </ul>
@@ -142,7 +153,7 @@ export default async function LandingPage() {
               <Reveal>
                 <Eyebrow tone="light">{t.hero.eyebrow}</Eyebrow>
               </Reveal>
-              <h1 className="mt-3 text-[2.1rem] font-bold leading-[1.05] tracking-tight text-mint sm:text-[2.7rem] lg:text-[3rem]">
+              <h1 className="mt-3 text-[2.2rem] font-medium leading-[1.05] tracking-tight text-mint sm:text-[2.8rem] lg:text-[3.15rem]">
                 <WordReveal text={t.hero.h1} />
               </h1>
               <Reveal delay={140}>
@@ -181,7 +192,7 @@ export default async function LandingPage() {
         <div className="max-w-3xl">
           <Reveal>
             <Eyebrow>{t.problem.eyebrow}</Eyebrow>
-            <h2 className="mt-3 text-title font-bold leading-tight text-ink-50 sm:text-display">{t.problem.h}</h2>
+            <h2 className="mt-3 text-title font-medium leading-tight text-ink-50 sm:text-display">{t.problem.h}</h2>
           </Reveal>
           <Reveal delay={120}>
             <p className="mt-4 text-body leading-relaxed text-ink-60">{t.problem.body}</p>
@@ -195,7 +206,7 @@ export default async function LandingPage() {
       <section className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
         <Reveal>
           <Eyebrow>{t.does.eyebrow}</Eyebrow>
-          <h2 className="mt-3 max-w-2xl text-title font-bold leading-tight text-ink-50 sm:text-display">{t.does.h}</h2>
+          <h2 className="mt-3 max-w-2xl text-title font-medium leading-tight text-ink-50 sm:text-display">{t.does.h}</h2>
         </Reveal>
         <div className="mt-8 grid gap-4 sm:grid-cols-3">
           {t.does.cards.map((c, i) => (
@@ -214,7 +225,7 @@ export default async function LandingPage() {
           <div>
             <Reveal>
               <Eyebrow>{t.receipts.eyebrow}</Eyebrow>
-              <h2 className="mt-3 text-title font-bold leading-tight text-ink-50 sm:text-display">{t.receipts.h}</h2>
+              <h2 className="mt-3 text-title font-medium leading-tight text-ink-50 sm:text-display">{t.receipts.h}</h2>
             </Reveal>
             <Reveal delay={120}>
               <p className="mt-4 text-body leading-relaxed text-ink-60">
@@ -248,9 +259,9 @@ export default async function LandingPage() {
       <section className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
         <Reveal>
           <Eyebrow>{t.pricing.eyebrow}</Eyebrow>
-          <h2 className="mt-3 max-w-2xl text-title font-bold leading-tight text-ink-50 sm:text-display">{t.pricing.h}</h2>
+          <h2 className="mt-3 max-w-2xl text-title font-medium leading-tight text-ink-50 sm:text-display">{t.pricing.h}</h2>
         </Reveal>
-        <div className="mt-8 grid items-start gap-4 md:grid-cols-3">
+        <div className="mt-8 grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Reveal>
             <PlanCard
               name={t.pricing.free.name}
@@ -261,16 +272,26 @@ export default async function LandingPage() {
           </Reveal>
           <Reveal delay={90}>
             <PlanCard
+              name={t.pricing.dayPass.name}
+              price={t.pricing.dayPass.price}
+              cadence={t.pricing.perDay}
+              tagline={t.pricing.dayPass.tagline}
+              highlight
+              badge={t.pricing.popular}
+              features={t.pricing.dayPass.features}
+            />
+          </Reveal>
+          <Reveal delay={180}>
+            <PlanCard
               name={t.pricing.starter.name}
               price={t.pricing.starter.price}
               cadence={t.pricing.perMo}
               tagline={t.pricing.starter.tagline}
-              highlight
               badge={t.pricing.beta}
               features={t.pricing.starter.features}
             />
           </Reveal>
-          <Reveal delay={180}>
+          <Reveal delay={270}>
             <PlanCard
               name={t.pricing.pro.name}
               price={t.pricing.pro.price}
@@ -288,7 +309,7 @@ export default async function LandingPage() {
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
         <Reveal>
           <div className="hero-grad overflow-hidden rounded-squircle px-6 py-12 text-center sm:px-10">
-            <h2 className="mx-auto max-w-2xl text-title font-bold leading-tight text-mint sm:text-display">{t.cta.h}</h2>
+            <h2 className="mx-auto max-w-2xl text-title font-medium leading-tight text-mint sm:text-display">{t.cta.h}</h2>
             <p className="mx-auto mt-3 max-w-xl text-body text-mint/80">{t.cta.body({ price: PRICE })}</p>
             <div className="mx-auto mt-7 max-w-lg">
               <WaitlistForm labels={t.form} source="footer" />

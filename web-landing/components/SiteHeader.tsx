@@ -35,7 +35,7 @@ export default function SiteHeader({
           <LangToggle locale={locale} />
           <a
             href="#join"
-            className="btn-sheen tap rounded-pill bg-navy px-4 py-2 text-callout font-semibold text-mint shadow-glow-indigo"
+            className="btn-sheen tap butter-panel rounded-pill px-4 py-2 text-callout font-semibold"
           >
             {reserveLabel}
           </a>

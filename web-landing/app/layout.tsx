@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#eef5f2",
+  themeColor: "#2c2a27",
   width: "device-width",
   initialScale: 1,
 };
@@ -47,7 +47,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const lang = getDict(getLocale()).htmlLang;
   return (
-    <html lang={lang} data-theme="light" className={urbanist.variable}>
+    <html lang={lang} data-theme="dark" className={urbanist.variable}>
       <body className="min-h-screen antialiased">
         {/* Without JS the scroll observer never fires, so force every reveal to
             its visible state — no-JS visitors and crawlers see the full page. */}

@@ -7,12 +7,10 @@ type Status = "idle" | "loading" | "done" | "error";
 
 /**
  * Email capture for the waitlist. Posts to /api/waitlist (Vercel KV in prod,
- * local file in dev). One visual style works on both the dark hero and the
- * light closing section: a true-white input pill + an amber submit.
+ * local file in dev). One visual style works everywhere on the dark theme:
+ * a smoked-glass input pill + the signature butter submit.
  *
  * All user-facing copy comes in via `labels` (localised in lib/i18n).
- * NB: in this theme `bg-white` is routed to navy via the --fg token, so the
- * input uses an explicit white (`bg-[#ffffff]`).
  */
 export default function WaitlistForm({
   labels,
@@ -80,12 +78,12 @@ export default function WaitlistForm({
           onChange={(e) => setEmail(e.target.value)}
           placeholder={labels.placeholder}
           aria-label={labels.aria}
-          className="min-w-0 flex-1 rounded-pill border border-[rgba(22,49,68,0.18)] bg-[#ffffff] px-5 py-3.5 text-body text-ink-50 shadow-glass-1 outline-none transition placeholder:text-ink-80 focus:border-accent-gold/60 focus:ring-2 focus:ring-accent-gold/25"
+          className="min-w-0 flex-1 rounded-pill border border-[rgba(255,255,255,0.18)] bg-[rgba(255,255,255,0.09)] px-5 py-3.5 text-body text-ink-50 shadow-glass-1 outline-none backdrop-blur-md transition placeholder:text-ink-80 focus:border-accent-yellow/60 focus:ring-2 focus:ring-accent-yellow/25"
         />
         <button
           type="submit"
           disabled={status === "loading"}
-          className="btn-sheen tap shrink-0 rounded-pill bg-accent-gold px-6 py-3.5 text-body font-bold text-navy shadow-glow-gold transition disabled:opacity-70"
+          className="btn-sheen tap butter-panel shrink-0 rounded-pill px-6 py-3.5 text-body font-bold transition disabled:opacity-70"
         >
           {status === "loading" ? labels.reserving : labels.button}
         </button>

@@ -64,9 +64,9 @@ export default function CompareBar({
           {display}%
         </span>
       </div>
-      <div className="h-2.5 overflow-hidden rounded-pill bg-[rgba(22,49,68,0.07)]">
+      <div className="h-2.5 overflow-hidden rounded-pill bg-[rgba(255,255,255,0.09)]">
         <div
-          className={`h-full rounded-pill ${strong ? "bg-gradient-to-r from-accent-green to-accent-cyan" : "bg-[rgba(22,49,68,0.28)]"}`}
+          className={`h-full rounded-pill ${strong ? "bg-gradient-to-r from-accent-green to-accent-yellow" : "bg-[rgba(255,255,255,0.3)]"}`}
           style={{
             width: visible ? `${value}%` : "0%",
             transition: "width 0.9s cubic-bezier(0.16, 1, 0.3, 1)",

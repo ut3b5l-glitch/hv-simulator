@@ -17,14 +17,14 @@ export default function LangToggle({ locale }: { locale: Locale }) {
   }
 
   const base = "rounded-pill px-2.5 py-1 transition";
-  const on = "bg-navy text-mint";
+  const on = "bg-[rgba(255,255,255,0.92)] text-navy";
   const off = "text-ink-60";
 
   return (
     <div
       role="group"
       aria-label="Language"
-      className="inline-flex items-center rounded-pill border border-[rgba(22,49,68,0.14)] bg-[#ffffff]/70 p-0.5 text-caption font-semibold shadow-glass-1"
+      className="inline-flex items-center rounded-pill border border-[rgba(255,255,255,0.16)] bg-[rgba(255,255,255,0.08)] p-0.5 text-caption font-semibold shadow-glass-1 backdrop-blur-md"
     >
       <button type="button" onClick={() => set("en")} className={`${base} ${locale === "en" ? on : off}`}>
         EN
