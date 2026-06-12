@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { Meeting, Race, Runner } from "@/lib/types";
 import ProbBar from "./ProbBar";
 import FinishDistribution from "./FinishDistribution";
+import RaceBroadcast from "./RaceBroadcast";
 
 // ── Plackett–Luce Monte Carlo ───────────────────────────────────────────────
 // Sample a full finishing order each iteration by repeatedly drawing the next
@@ -265,6 +266,15 @@ export default function Simulator({ meetings }: { meetings: Meeting[] }) {
             {race.going ? ` · ${race.going}` : ""} · {runners.length} runners
           </p>
         </div>
+      )}
+
+      {/* Broadcast — watch one sampled running of the race */}
+      {race && (
+        <RaceBroadcast
+          key={`${meetingDate}-${race.race_number}`}
+          race={race}
+          venue={meeting?.venue}
+        />
       )}
 
       {/* Controls */}

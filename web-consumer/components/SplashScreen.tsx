@@ -50,7 +50,10 @@ export default function SplashScreen() {
       className="fixed inset-0 z-[200] flex flex-col items-center justify-center transition-opacity duration-500"
       style={{
         opacity: visible ? 1 : 0,
-        background: "linear-gradient(150deg,#3b3935 0%,#272522 55%,#161513 100%)",
+        // The app's own backdrop tokens, so the splash dissolves seamlessly
+        // into the page behind it.
+        background: "var(--page-grad)",
+        backgroundColor: "#161513",
       }}
     >
       {/* warm glow echoing the icon */}
@@ -58,7 +61,16 @@ export default function SplashScreen() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(60% 40% at 50% 62%, rgba(249,239,152,0.22), transparent 70%)",
+            "radial-gradient(60% 40% at 50% 62%, rgba(249,239,152,0.18), transparent 70%)",
+        }}
+      />
+      {/* photographic grain, same recipe as the page backdrop */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          opacity: "var(--grain-opacity)",
+          backgroundImage:
+            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
         }}
       />
       <div
@@ -66,7 +78,12 @@ export default function SplashScreen() {
           visible ? "translate-y-0 scale-100 opacity-100" : "translate-y-2 scale-95 opacity-0"
         }`}
       >
-        <ZokkiMark className="h-20 w-20 drop-shadow-[0_10px_30px_rgba(0,0,0,0.45)]" />
+        {/* Bgless glyph — the navy app-icon tile belongs to the old theme. */}
+        <ZokkiMark
+          glyph
+          tone="light"
+          className="h-20 w-auto drop-shadow-[0_10px_30px_rgba(0,0,0,0.45)]"
+        />
         <div className="mt-5 inline-flex items-end leading-none">
           <span className="text-[2rem] font-extrabold lowercase tracking-tight text-mint">
             zokki
