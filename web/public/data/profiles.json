@@ -8766,9 +8766,9 @@
       "name": "HAPPY SHOOTER",
       "runs": 12,
       "wins": 1,
-      "places": 4,
+      "places": 5,
       "win_pct": 8.333333333333332,
-      "place_pct": 33.33333333333333,
+      "place_pct": 41.66666666666667,
       "last_run": "2026-05-27"
     },
     {
@@ -13075,10 +13075,10 @@
       "id": 7551,
       "name": "MEGA CAPTAIN",
       "runs": 4,
-      "wins": 0,
-      "places": 1,
-      "win_pct": 0.0,
-      "place_pct": 25.0,
+      "wins": 1,
+      "places": 2,
+      "win_pct": 25.0,
+      "place_pct": 50.0,
       "last_run": null
     },
     {
@@ -15116,9 +15116,9 @@
       "name": "PEJIBAYE",
       "runs": 8,
       "wins": 1,
-      "places": 4,
+      "places": 5,
       "win_pct": 12.5,
-      "place_pct": 50.0,
+      "place_pct": 62.5,
       "last_run": "2025-11-12"
     },
     {
@@ -23247,10 +23247,10 @@
       "id": 2,
       "name": "Z Purton",
       "runs": 1505,
-      "wins": 319,
-      "places": 727,
-      "win_pct": 21.196013289036543,
-      "place_pct": 48.30564784053156,
+      "wins": 320,
+      "places": 728,
+      "win_pct": 21.262458471760798,
+      "place_pct": 48.372093023255815,
       "trail60": {
         "rides": 42,
         "wins": 11,
@@ -23424,9 +23424,9 @@
       "name": "L Hewitson",
       "runs": 1150,
       "wins": 69,
-      "places": 253,
+      "places": 254,
       "win_pct": 6.0,
-      "place_pct": 22.0,
+      "place_pct": 22.086956521739133,
       "trail60": {
         "rides": 31,
         "wins": 1,
@@ -23529,9 +23529,9 @@
       "name": "J Orman",
       "runs": 597,
       "wins": 36,
-      "places": 133,
+      "places": 134,
       "win_pct": 6.030150753768844,
-      "place_pct": 22.278056951423785,
+      "place_pct": 22.445561139028474,
       "trail60": {
         "rides": 30,
         "wins": 1,
@@ -24248,9 +24248,9 @@
       "name": "C Fownes",
       "runs": 1243,
       "wins": 116,
-      "places": 321,
+      "places": 322,
       "win_pct": 9.332260659694288,
-      "place_pct": 25.82461786001609,
+      "place_pct": 25.905068382944492,
       "trail60": {
         "rides": 42,
         "wins": 6,
@@ -24280,9 +24280,9 @@
       "name": "C S Shum",
       "runs": 1168,
       "wins": 112,
-      "places": 273,
+      "places": 274,
       "win_pct": 9.58904109589041,
-      "place_pct": 23.373287671232877,
+      "place_pct": 23.458904109589042,
       "trail60": {
         "rides": 42,
         "wins": 8,
@@ -24388,6 +24388,22 @@
       }
     },
     {
+      "id": 22,
+      "name": "C H Yip",
+      "runs": 948,
+      "wins": 64,
+      "places": 165,
+      "win_pct": 6.751054852320674,
+      "place_pct": 17.405063291139243,
+      "trail60": {
+        "rides": 30,
+        "wins": 0,
+        "places": 3,
+        "win_pct": 0.0,
+        "place_pct": 10.0
+      }
+    },
+    {
       "id": 12,
       "name": "J Richards",
       "runs": 948,
@@ -24417,22 +24433,6 @@
         "places": 7,
         "win_pct": 18.75,
         "place_pct": 21.875
-      }
-    },
-    {
-      "id": 22,
-      "name": "C H Yip",
-      "runs": 948,
-      "wins": 63,
-      "places": 164,
-      "win_pct": 6.645569620253164,
-      "place_pct": 17.29957805907173,
-      "trail60": {
-        "rides": 30,
-        "wins": 0,
-        "places": 3,
-        "win_pct": 0.0,
-        "place_pct": 10.0
       }
     },
     {
