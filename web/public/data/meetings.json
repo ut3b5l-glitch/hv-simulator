@@ -1,12 +1,21 @@
 {
-  "generated_at": "2026-06-13T18:30:46",
+  "generated_at": "2026-06-24T11:01:35",
   "meetings": [
+    {
+      "date": "2026-06-24",
+      "venue": "HV",
+      "race_count": 9,
+      "has_results": false,
+      "top3_precision": null,
+      "value_bet_count": 0,
+      "value_bet_roi": null
+    },
     {
       "date": "2026-06-13",
       "venue": "ST",
       "race_count": 11,
       "has_results": true,
-      "top3_precision": 53.333333333333336,
+      "top3_precision": 54.54545454545454,
       "value_bet_count": 0,
       "value_bet_roi": null
     },
@@ -24,7 +33,7 @@
       "venue": "ST",
       "race_count": 11,
       "has_results": true,
-      "top3_precision": 45.45454545454545,
+      "top3_precision": 36.36363636363637,
       "value_bet_count": 0,
       "value_bet_roi": null
     },
@@ -51,7 +60,7 @@
       "venue": "HV",
       "race_count": 9,
       "has_results": true,
-      "top3_precision": 40.74074074074074,
+      "top3_precision": 22.22222222222222,
       "value_bet_count": 0,
       "value_bet_roi": null
     },
@@ -60,7 +69,7 @@
       "venue": "HV",
       "race_count": 9,
       "has_results": true,
-      "top3_precision": 59.25925925925925,
+      "top3_precision": 51.85185185185185,
       "value_bet_count": 0,
       "value_bet_roi": null
     },
