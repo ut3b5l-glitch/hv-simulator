@@ -1,29 +1,53 @@
 {
-  "generated_at": "2026-06-07T22:07:18",
+  "generated_at": "2026-06-24T23:17:06",
   "headline": {
-    "meetings": 4,
-    "races": 38,
+    "meetings": 7,
+    "races": 67,
     "date_from": "2026-05-13",
-    "date_to": "2026-06-07",
-    "top3_precision": 49.122807017543856,
-    "top3_hits": 56,
-    "top3_attempts": 114,
-    "top_pick_rate": 60.526315789473685,
-    "top_pick_hits": 23,
-    "top_pick_attempts": 38,
-    "baseline_fav_rate": 65.78947368421053,
-    "baseline_fav_hits": 25,
-    "baseline_fav_attempts": 38,
-    "baseline_random_rate": 25.185691501480978
+    "date_to": "2026-06-24",
+    "top3_precision": 44.27860696517413,
+    "top3_hits": 89,
+    "top3_attempts": 201,
+    "top_pick_rate": 50.74626865671642,
+    "top_pick_hits": 34,
+    "top_pick_attempts": 67,
+    "baseline_fav_rate": 61.19402985074627,
+    "baseline_fav_hits": 41,
+    "baseline_fav_attempts": 67,
+    "baseline_random_rate": 25.263616980034886
   },
   "meetings": [
+    {
+      "date": "2026-06-24",
+      "venue": "HV",
+      "race_count": 9,
+      "demo": false,
+      "top3_precision": 44.44444444444444,
+      "top_pick_rate": 44.44444444444444
+    },
+    {
+      "date": "2026-06-13",
+      "venue": "ST",
+      "race_count": 11,
+      "demo": false,
+      "top3_precision": 54.54545454545454,
+      "top_pick_rate": 54.54545454545454
+    },
+    {
+      "date": "2026-06-10",
+      "venue": "HV",
+      "race_count": 9,
+      "demo": false,
+      "top3_precision": 48.148148148148145,
+      "top_pick_rate": 55.55555555555556
+    },
     {
       "date": "2026-06-07",
       "venue": "ST",
       "race_count": 11,
       "demo": false,
-      "top3_precision": 45.45454545454545,
-      "top_pick_rate": 54.54545454545454
+      "top3_precision": 36.36363636363637,
+      "top_pick_rate": 45.45454545454545
     },
     {
       "date": "2026-06-03",
@@ -46,15 +70,15 @@
       "venue": "HV",
       "race_count": 9,
       "demo": false,
-      "top3_precision": 40.74074074074074,
-      "top_pick_rate": 66.66666666666666
+      "top3_precision": 22.22222222222222,
+      "top_pick_rate": 33.33333333333333
     },
     {
       "date": "2026-05-13",
       "venue": "HV",
       "race_count": 9,
       "demo": false,
-      "top3_precision": 59.25925925925925,
+      "top3_precision": 51.85185185185185,
       "top_pick_rate": 66.66666666666666
     },
     {

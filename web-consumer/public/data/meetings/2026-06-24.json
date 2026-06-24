@@ -461,7 +461,13 @@
       ],
       "top3_hits": 1,
       "top_pick_hit": true,
-      "has_results": true
+      "has_results": true,
+      "verdict": {
+        "label": "Competitive",
+        "detail": "3 genuine chances",
+        "tone": "competitive"
+      },
+      "narrative": "We just edge ROSEWOOD FLEETFOOT to the front of a competitive race \u2014 placed 2 of its last 6, though the market is even keener than we are. CARRYON SMILING looks the main danger, with PERFECT PAIRING next on the list. A race to watch unfold rather than one to read too much into."
     },
     {
       "race_id": 1972,
@@ -920,7 +926,13 @@
       ],
       "top3_hits": 2,
       "top_pick_hit": true,
-      "has_results": true
+      "has_results": true,
+      "verdict": {
+        "label": "Competitive",
+        "detail": "3 genuine chances",
+        "tone": "competitive"
+      },
+      "narrative": "We just edge ALL ARE MINE to the front of a competitive race \u2014 placed 2 of its last 6, though the market is even keener than we are. ORIENTAL SURPRISE looks the main danger, with WINDICATOR FAMILY next on the list. A race to watch unfold rather than one to read too much into."
     },
     {
       "race_id": 1973,
@@ -1379,7 +1391,13 @@
       ],
       "top3_hits": 1,
       "top_pick_hit": false,
-      "has_results": true
+      "has_results": true,
+      "verdict": {
+        "label": "Standout",
+        "detail": "NOBLE PURSUIT is a clear top pick",
+        "tone": "standout"
+      },
+      "narrative": "NOBLE PURSUIT stands clearly above this field \u2014 still searching for its best recent form, and our model rates it more generously than the market. TAKE ACTION looks the main danger, with FLYING FORTUNE next on the list. If it runs to form, the placings should fall in behind it."
     },
     {
       "race_id": 1974,
@@ -1838,7 +1856,13 @@
       ],
       "top3_hits": 2,
       "top_pick_hit": true,
-      "has_results": true
+      "has_results": true,
+      "verdict": {
+        "label": "Standout",
+        "detail": "VIVACIOUS WIN is a clear top pick",
+        "tone": "standout"
+      },
+      "narrative": "VIVACIOUS WIN stands clearly above this field \u2014 in the frame 4 of its last 6 starts, and our model rates it more generously than the market. CHARMING LEGEND looks the main danger, with EXCEED THE LIMIT next on the list. If it runs to form, the placings should fall in behind it."
     },
     {
       "race_id": 1975,
@@ -2297,7 +2321,13 @@
       ],
       "top3_hits": 2,
       "top_pick_hit": false,
-      "has_results": true
+      "has_results": true,
+      "verdict": {
+        "label": "Confident",
+        "detail": "QUARTZ LEGEND the one to beat",
+        "tone": "confident"
+      },
+      "narrative": "QUARTZ LEGEND is our pick to beat \u2014 still searching for its best recent form, and our model rates it more generously than the market. GAMEPLAYER ELITE looks the main danger, with GRATIFIDE next on the list. Expect the frame to come from the top of our order."
     },
     {
       "race_id": 1976,
@@ -2756,7 +2786,13 @@
       ],
       "top3_hits": 1,
       "top_pick_hit": false,
-      "has_results": true
+      "has_results": true,
+      "verdict": {
+        "label": "Confident",
+        "detail": "SPIRIT OF PEACE the one to beat",
+        "tone": "confident"
+      },
+      "narrative": "SPIRIT OF PEACE is our pick to beat \u2014 placed 2 of its last 6, and our model rates it more generously than the market. GEORGIAN SIGMA looks the main danger, with GOOD LUCK HAPPY next on the list. Expect the frame to come from the top of our order."
     },
     {
       "race_id": 1977,
@@ -3215,7 +3251,13 @@
       ],
       "top3_hits": 1,
       "top_pick_hit": true,
-      "has_results": true
+      "has_results": true,
+      "verdict": {
+        "label": "Standout",
+        "detail": "SKY CAP is a clear top pick",
+        "tone": "standout"
+      },
+      "narrative": "SKY CAP stands clearly above this field \u2014 a winner 2 times in its last 6, and our model rates it more generously than the market. ROBOT LUCKY STAR looks the main danger, with CENTRAL BANK next on the list. If it runs to form, the placings should fall in behind it."
     },
     {
       "race_id": 1978,
@@ -3675,7 +3717,13 @@
       ],
       "top3_hits": 1,
       "top_pick_hit": false,
-      "has_results": true
+      "has_results": true,
+      "verdict": {
+        "label": "Confident",
+        "detail": "DO YOU JUST the one to beat",
+        "tone": "confident"
+      },
+      "narrative": "DO YOU JUST is our pick to beat \u2014 placed 1 of its last 6, and our model rates it more generously than the market. THE HEIR looks the main danger, with SYMBOL OF STRENGTH next on the list. Expect the frame to come from the top of our order."
     },
     {
       "race_id": 1979,
@@ -4129,8 +4177,15 @@
       ],
       "top3_hits": 1,
       "top_pick_hit": false,
-      "has_results": true
+      "has_results": true,
+      "verdict": {
+        "label": "Standout",
+        "detail": "MIGHTY COMMANDER is a clear top pick",
+        "tone": "standout"
+      },
+      "narrative": "MIGHTY COMMANDER stands clearly above this field \u2014 a winner 2 times in its last 6, and our model rates it more generously than the market. ROMANTIC GLADIATOR looks the main danger, with LEGEND WINNER next on the list. If it runs to form, the placings should fall in behind it."
     }
   ],
-  "has_results": true
+  "has_results": true,
+  "demo": false
 }

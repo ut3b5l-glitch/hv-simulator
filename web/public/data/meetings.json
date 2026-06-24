@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-24T23:00:46",
+  "generated_at": "2026-06-24T23:15:29",
   "meetings": [
     {
       "date": "2026-06-24",
       "venue": "HV",
       "race_count": 9,
       "has_results": true,
-      "top3_precision": 45.83333333333333,
+      "top3_precision": 44.44444444444444,
       "value_bet_count": 0,
       "value_bet_roi": null
     },
