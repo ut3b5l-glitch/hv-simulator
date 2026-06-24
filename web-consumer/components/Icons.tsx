@@ -31,6 +31,19 @@ export function DieIcon({ className }: IconProps) {
   );
 }
 
+/** Results — a winner's trophy on its plinth. */
+export function TrophyIcon({ className }: IconProps) {
+  return (
+    <svg className={className} {...base}>
+      <path d="M7 4h10v4a5 5 0 0 1-10 0V4z" />
+      <path d="M7 5H4.3v1.8A2.7 2.7 0 0 0 7 9.5" />
+      <path d="M17 5h2.7v1.8A2.7 2.7 0 0 1 17 9.5" />
+      <path d="M12 13v3.2" />
+      <path d="M9 20h6l-1-3.8h-4z" />
+    </svg>
+  );
+}
+
 /** Performance — an upward line over an axis. */
 export function ChartIcon({ className }: IconProps) {
   return (
@@ -56,6 +69,15 @@ export function StarIcon({ className }: IconProps) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
       <path d="M12 2.6l2.74 5.86 6.26.78-4.6 4.36 1.2 6.34L12 17.9l-5.6 3.04 1.2-6.34-4.6-4.36 6.26-.78z" />
+    </svg>
+  );
+}
+
+/** Check — marks a finisher our model also tipped. */
+export function CheckIcon({ className }: IconProps) {
+  return (
+    <svg className={className} {...base}>
+      <path d="M5 12.5 10 17.5 19 6.5" />
     </svg>
   );
 }

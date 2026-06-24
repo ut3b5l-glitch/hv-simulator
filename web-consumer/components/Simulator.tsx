@@ -2,9 +2,25 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { Meeting, Race, Runner } from "@/lib/types";
+import { formatDate } from "@/lib/format";
 import ProbBar from "./ProbBar";
 import FinishDistribution from "./FinishDistribution";
 import RaceBroadcast from "./RaceBroadcast";
+import PickerMenu from "./PickerMenu";
+
+function VenueTag({ venue }: { venue?: string }) {
+  return (
+    <span
+      className={`rounded px-1.5 py-0.5 text-[0.5625rem] font-semibold uppercase tracking-wide ${
+        venue === "ST"
+          ? "bg-accent-cyan/15 text-accent-cyan"
+          : "bg-accent-gold/15 text-accent-gold"
+      }`}
+    >
+      {venue === "ST" ? "ST" : "HV"}
+    </span>
+  );
+}
 
 // ── Plackett–Luce Monte Carlo ───────────────────────────────────────────────
 // Sample a full finishing order each iteration by repeatedly drawing the next
@@ -198,38 +214,45 @@ export default function Simulator({ meetings }: { meetings: Meeting[] }) {
 
   return (
     <div className="space-y-4">
-      {/* Meeting chips */}
-      <div className="no-scrollbar -mx-1 flex gap-2 overflow-x-auto px-1">
-        {meetings.map((m) => {
-          const on = m.meeting_date === meetingDate;
-          return (
-            <button
-              key={m.meeting_date}
-              onClick={() => {
-                setMeetingDate(m.meeting_date);
-                setRaceNo(m.races[0]?.race_number ?? 1);
-              }}
-              className={`tap num shrink-0 rounded-pill px-3.5 py-1.5 text-caption font-semibold transition ${
-                on
-                  ? "bg-navy text-mint shadow-glow-indigo"
-                  : "glass text-ink-60"
-              }`}
-            >
-              <span
-                className={`mr-1.5 text-[0.625rem] font-bold ${
-                  m.venue === "ST"
-                    ? on ? "text-mint/70" : "text-accent-cyan"
-                    : on
-                      ? "text-mint/70"
-                      : "text-accent-gold"
-                }`}
-              >
-                {m.venue === "ST" ? "ST" : "HV"}
-              </span>
-              {m.meeting_date}
-            </button>
-          );
-        })}
+      {/* Meeting selector — same dropdown idiom as the Picks tab */}
+      <div className="flex items-center justify-between gap-3">
+        <div className="eyebrow">Meeting</div>
+        <PickerMenu
+          menuLabel="Choose a meeting"
+          label={
+            <span className="flex items-center gap-2">
+              <VenueTag venue={meeting?.venue} />
+              {formatDate(meetingDate)}
+            </span>
+          }
+        >
+          {(close) =>
+            meetings.map((m) => {
+              const on = m.meeting_date === meetingDate;
+              return (
+                <button
+                  key={m.meeting_date}
+                  role="menuitemradio"
+                  aria-checked={on}
+                  onClick={() => {
+                    setMeetingDate(m.meeting_date);
+                    setRaceNo(m.races[0]?.race_number ?? 1);
+                    close();
+                  }}
+                  className={`flex w-full items-center justify-between gap-2 px-4 py-3 text-left text-callout transition-colors ${
+                    on ? "bg-white/10 text-white" : "text-ink-60 hover:bg-white/5"
+                  }`}
+                >
+                  <span className="flex items-center gap-2">
+                    <VenueTag venue={m.venue} />
+                    {formatDate(m.meeting_date)}
+                  </span>
+                  <span className="num text-micro text-ink-80">{m.races.length} races</span>
+                </button>
+              );
+            })
+          }
+        </PickerMenu>
       </div>
 
       {/* Race chips */}

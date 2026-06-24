@@ -50,7 +50,7 @@ export type Race = {
   top3: string[];
   runners: Runner[];
   actual_top3: string[];
-  finishers: { position: number; horse_name: string }[];
+  finishers: { position: number; horse_name: string; horse_no?: number | null }[];
   top3_hits: number;
   top_pick_hit: boolean;
   has_results: boolean;

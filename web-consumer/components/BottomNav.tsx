@@ -2,13 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FlagIcon, DieIcon, ChartIcon } from "./Icons";
+import { FlagIcon, DieIcon, TrophyIcon, ChartIcon } from "./Icons";
 
-// Three tabs, three jobs: tonight's picks, play the race, proof we're honest.
+// Four tabs, four jobs, in the order of a race night: what we forecast, play the
+// race, what actually happened tonight, and the long-run proof we're honest.
 // (Profiles stays routable at /profiles — it's an enthusiast page, not a tab.)
 const ITEMS = [
-  { href: "/", label: "Races", Icon: FlagIcon },
+  { href: "/", label: "Picks", Icon: FlagIcon },
   { href: "/simulator", label: "Simulator", Icon: DieIcon },
+  { href: "/results", label: "Results", Icon: TrophyIcon },
   { href: "/performance", label: "Track Record", Icon: ChartIcon },
 ] as const;
 
