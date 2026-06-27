@@ -2206,9 +2206,9 @@
       "name": "BULL ATTITUDE",
       "runs": 20,
       "wins": 1,
-      "places": 4,
+      "places": 5,
       "win_pct": 5.0,
-      "place_pct": 20.0,
+      "place_pct": 25.0,
       "last_run": "2026-01-07"
     },
     {
@@ -3246,9 +3246,9 @@
       "name": "CHILL KAKA",
       "runs": 20,
       "wins": 2,
-      "places": 8,
+      "places": 9,
       "win_pct": 10.0,
-      "place_pct": 40.0,
+      "place_pct": 45.0,
       "last_run": "2026-03-04"
     },
     {
@@ -14185,10 +14185,10 @@
       "id": 687,
       "name": "NIGHT PUROSANGUE",
       "runs": 21,
-      "wins": 2,
-      "places": 5,
-      "win_pct": 9.523809523809524,
-      "place_pct": 23.809523809523807,
+      "wins": 3,
+      "places": 6,
+      "win_pct": 14.285714285714285,
+      "place_pct": 28.57142857142857,
       "last_run": "2026-02-25"
     },
     {
@@ -23360,6 +23360,22 @@
       }
     },
     {
+      "id": 22,
+      "name": "A Badel",
+      "runs": 1221,
+      "wins": 83,
+      "places": 282,
+      "win_pct": 6.797706797706797,
+      "place_pct": 23.095823095823096,
+      "trail60": {
+        "rides": 31,
+        "wins": 3,
+        "places": 8,
+        "win_pct": 9.67741935483871,
+        "place_pct": 25.806451612903224
+      }
+    },
+    {
       "id": 35,
       "name": "B Avdulla",
       "runs": 1123,
@@ -23373,22 +23389,6 @@
         "places": 4,
         "win_pct": 14.285714285714285,
         "place_pct": 19.047619047619047
-      }
-    },
-    {
-      "id": 22,
-      "name": "A Badel",
-      "runs": 1221,
-      "wins": 82,
-      "places": 281,
-      "win_pct": 6.715806715806716,
-      "place_pct": 23.013923013923012,
-      "trail60": {
-        "rides": 31,
-        "wins": 3,
-        "places": 8,
-        "win_pct": 9.67741935483871,
-        "place_pct": 25.806451612903224
       }
     },
     {
@@ -23460,9 +23460,9 @@
       "name": "L Hewitson",
       "runs": 1166,
       "wins": 69,
-      "places": 256,
+      "places": 257,
       "win_pct": 5.917667238421955,
-      "place_pct": 21.955403087478558,
+      "place_pct": 22.041166380789022,
       "trail60": {
         "rides": 30,
         "wins": 1,
@@ -23615,9 +23615,9 @@
       "name": "R Kingscote",
       "runs": 398,
       "wins": 15,
-      "places": 72,
+      "places": 73,
       "win_pct": 3.7688442211055273,
-      "place_pct": 18.090452261306535,
+      "place_pct": 18.341708542713565,
       "trail60": {
         "rides": 12,
         "wins": 0,
@@ -24252,9 +24252,9 @@
       "name": "P F Yiu",
       "runs": 1234,
       "wins": 118,
-      "places": 365,
+      "places": 366,
       "win_pct": 9.562398703403566,
-      "place_pct": 29.578606158833065,
+      "place_pct": 29.65964343598055,
       "trail60": {
         "rides": 23,
         "wins": 2,
@@ -24284,9 +24284,9 @@
       "name": "M Newnham",
       "runs": 1152,
       "wins": 115,
-      "places": 325,
+      "places": 326,
       "win_pct": 9.98263888888889,
-      "place_pct": 28.211805555555557,
+      "place_pct": 28.29861111111111,
       "trail60": {
         "rides": 32,
         "wins": 3,
@@ -24507,10 +24507,10 @@
       "id": 8,
       "name": "Y S Tsui",
       "runs": 761,
-      "wins": 38,
-      "places": 130,
-      "win_pct": 4.993429697766097,
-      "place_pct": 17.082785808147175,
+      "wins": 39,
+      "places": 131,
+      "win_pct": 5.124835742444152,
+      "place_pct": 17.21419185282523,
       "trail60": {
         "rides": 21,
         "wins": 1,
