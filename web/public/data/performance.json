@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-27T12:30:35",
+  "generated_at": "2026-06-27T15:00:36",
   "meetings_total": 10,
   "meetings_settled": 9,
   "top3_precision": 46.21212121212121,
@@ -278,7 +278,7 @@
     ]
   },
   "model_quality": {
-    "generated_at": "2026-06-27T04:30:46+00:00",
+    "generated_at": "2026-06-27T07:00:47+00:00",
     "n_races": 231,
     "n_meetings": 27,
     "window": "leak-free walk-forward, test races 400+",
