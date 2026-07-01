@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-01T19:30:39",
+  "generated_at": "2026-07-01T23:03:05",
   "meetings_total": 11,
-  "meetings_settled": 10,
-  "top3_precision": 45.878136200716845,
-  "top3_hits": 128,
-  "top3_attempts": 279,
-  "top_pick_rate": 54.83870967741935,
-  "top_pick_hits": 51,
-  "top_pick_attempts": 93,
+  "meetings_settled": 11,
+  "top3_precision": 45.19230769230769,
+  "top3_hits": 141,
+  "top3_attempts": 312,
+  "top_pick_rate": 53.84615384615385,
+  "top_pick_hits": 56,
+  "top_pick_attempts": 104,
   "value_bet_staked": 2,
   "value_bet_wins": 0,
   "value_bet_pnl": -2,
@@ -15,15 +15,15 @@
   "meetings": [
     {
       "meeting_date": "2026-07-01",
-      "venue": "HV",
+      "venue": "ST",
       "race_count": 11,
-      "has_results": false,
-      "top3_hits": 0,
-      "top3_attempts": 0,
-      "top3_precision": null,
-      "top_pick_hits": 0,
-      "top_pick_attempts": 0,
-      "top_pick_rate": null,
+      "has_results": true,
+      "top3_hits": 13,
+      "top3_attempts": 33,
+      "top3_precision": 39.39393939393939,
+      "top_pick_hits": 5,
+      "top_pick_attempts": 11,
+      "top_pick_rate": 45.45454545454545,
       "value_bet_count": 0,
       "value_bet_settled": 0,
       "value_bet_wins": 0,
@@ -207,37 +207,46 @@
       {
         "key": "win_top1",
         "label": "WIN on #1 pick",
-        "staked": 610.0,
-        "returned": 645.5,
-        "net": 35.5,
-        "roi_pct": 5.8
+        "staked": 720.0,
+        "returned": 676.0,
+        "net": -44.0,
+        "roi_pct": -6.1
       },
       {
         "key": "place_box3",
         "label": "PLACE \u2014 all 3 picks",
-        "staked": 1830.0,
-        "returned": 1517.5,
-        "net": -312.5,
-        "roi_pct": -17.1
+        "staked": 2160.0,
+        "returned": 1807.0,
+        "net": -353.0,
+        "roi_pct": -16.3
       },
       {
         "key": "quinella_place_box3",
         "label": "QUINELLA PLACE box (3 picks)",
-        "staked": 1830.0,
-        "returned": 1567.5,
-        "net": -262.5,
-        "roi_pct": -14.3
+        "staked": 2160.0,
+        "returned": 1774.5,
+        "net": -385.5,
+        "roi_pct": -17.8
       },
       {
         "key": "quinella_box3",
         "label": "QUINELLA box (3 picks)",
-        "staked": 1830.0,
-        "returned": 1209.0,
-        "net": -621.0,
-        "roi_pct": -33.9
+        "staked": 2160.0,
+        "returned": 1521.0,
+        "net": -639.0,
+        "roi_pct": -29.6
       }
     ],
     "per_meeting": [
+      {
+        "date": "2026-07-01",
+        "nets": {
+          "win_top1": -79.5,
+          "place_box3": -40.5,
+          "quinella_place_box3": -123.0,
+          "quinella_box3": -18.0
+        }
+      },
       {
         "date": "2026-06-27",
         "nets": {
@@ -304,7 +313,7 @@
     ]
   },
   "model_quality": {
-    "generated_at": "2026-07-01T11:30:50+00:00",
+    "generated_at": "2026-07-01T15:03:17+00:00",
     "n_races": 231,
     "n_meetings": 27,
     "window": "leak-free walk-forward, test races 400+",
