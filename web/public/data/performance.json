@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-27T18:33:50",
-  "meetings_total": 10,
+  "generated_at": "2026-07-01T17:31:27",
+  "meetings_total": 11,
   "meetings_settled": 10,
   "top3_precision": 45.878136200716845,
   "top3_hits": 128,
@@ -13,6 +13,23 @@
   "value_bet_pnl": -2,
   "value_bet_roi": -100.0,
   "meetings": [
+    {
+      "meeting_date": "2026-07-01",
+      "venue": "HV",
+      "race_count": 11,
+      "has_results": false,
+      "top3_hits": 0,
+      "top3_attempts": 0,
+      "top3_precision": null,
+      "top_pick_hits": 0,
+      "top_pick_attempts": 0,
+      "top_pick_rate": null,
+      "value_bet_count": 0,
+      "value_bet_settled": 0,
+      "value_bet_wins": 0,
+      "value_bet_pnl": null,
+      "value_bet_roi": null
+    },
     {
       "meeting_date": "2026-06-27",
       "venue": "ST",
@@ -287,7 +304,7 @@
     ]
   },
   "model_quality": {
-    "generated_at": "2026-06-27T10:34:03+00:00",
+    "generated_at": "2026-07-01T09:31:39+00:00",
     "n_races": 231,
     "n_meetings": 27,
     "window": "leak-free walk-forward, test races 400+",
