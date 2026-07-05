@@ -3,6 +3,8 @@ import { Urbanist } from "next/font/google";
 import "./globals.css";
 import { getDict, getLocale } from "@/lib/i18n";
 import CursorGlow from "@/components/CursorGlow";
+import SmoothScroll from "@/components/SmoothScroll";
+import ScrollProgress from "@/components/ScrollProgress";
 
 // Urbanist — geometric, rounded sans that anchors the Zokki visual identity.
 const urbanist = Urbanist({
@@ -57,6 +59,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Ambient depth layers — fixed, behind the z-10 page content. */}
         <div className="aurora" aria-hidden />
         <CursorGlow />
+        {/* Buttery inertia scrolling + the reading-progress hairline. */}
+        <SmoothScroll />
+        <ScrollProgress />
         {children}
       </body>
     </html>

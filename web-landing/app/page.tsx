@@ -1,11 +1,11 @@
 import Wordmark from "@/components/Wordmark";
 import WaitlistForm from "@/components/WaitlistForm";
-import AppPreview from "@/components/AppPreview";
 import SiteHeader from "@/components/SiteHeader";
 import Reveal from "@/components/Reveal";
-import WordReveal from "@/components/WordReveal";
-import TiltCard from "@/components/TiltCard";
+import Hero from "@/components/Hero";
+import Showcase from "@/components/Showcase";
 import CompareBar from "@/components/CompareBar";
+import MagneticButton from "@/components/MagneticButton";
 import { signupCount } from "@/lib/waitlist";
 import { getDict, getLocale } from "@/lib/i18n";
 
@@ -13,28 +13,20 @@ export const dynamic = "force-dynamic";
 
 // Live receipts. Sourced from the consumer Track Record (export_consumer.py
 // headline) — refresh after each meeting.
-// TODO(post-Tuesday): wire to the live performance feed instead of constants.
+// TODO: wire to the live performance feed instead of constants.
 const PROOF = {
-  topPick: 63,
-  favourite: 67,
-  random: 26,
-  races: 27,
-  meetings: 3,
-  range: "13 May – 3 Jun 2026",
-  rangeZh: "2026年5月13日至6月3日",
+  topPick: 51,
+  favourite: 61,
+  random: 25,
+  races: 67,
+  meetings: 7,
+  range: "13 May – 24 Jun 2026",
+  rangeZh: "2026年5月13日至6月24日",
 };
 
 // Day Pass — the default offering quoted in CTAs.
 const PRICE = "HK$12";
 
-// Feature-card icons (not localised) — paired by index with t.does.cards.
-const FEATURE_ICONS = [
-  "M4 5h16M4 12h10M4 19h7",
-  "M12 3l2.2 5.6L20 9l-4.4 3.6L17 18l-5-3-5 3 1.4-5.4L4 9l5.8-.4z",
-  "M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11",
-];
-
-// ── Small presentational helpers ────────────────────────────────────
 function Eyebrow({ children, tone = "dark" }: { children: React.ReactNode; tone?: "dark" | "light" }) {
   return (
     <div
@@ -43,26 +35,6 @@ function Eyebrow({ children, tone = "dark" }: { children: React.ReactNode; tone?
       }`}
     >
       {children}
-    </div>
-  );
-}
-
-function IconBadge({ path }: { path: string }) {
-  return (
-    <div className="grid h-11 w-11 place-items-center rounded-tile bg-white/10 text-accent-yellow">
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
-        <path d={path} />
-      </svg>
-    </div>
-  );
-}
-
-function FeatureCard({ icon, title, body }: { icon: string; title: string; body: string }) {
-  return (
-    <div className="glass glass-lift h-full rounded-card p-5">
-      <IconBadge path={icon} />
-      <h3 className="mt-3.5 text-headline font-bold text-ink-50">{title}</h3>
-      <p className="mt-1.5 text-callout leading-relaxed text-ink-60">{body}</p>
     </div>
   );
 }
@@ -145,47 +117,21 @@ export default async function LandingPage() {
       {/* Top bar — sticky, frosts into glass on scroll */}
       <SiteHeader locale={locale} reserveLabel={t.nav.reserve} />
 
-      {/* Hero */}
-      <section className="mx-auto max-w-6xl px-4 pt-2 sm:px-6">
-        <div className="hero-grad overflow-hidden rounded-squircle px-6 py-10 sm:px-10 sm:py-12">
-          <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-            <div>
-              <Reveal>
-                <Eyebrow tone="light">{t.hero.eyebrow}</Eyebrow>
-              </Reveal>
-              <h1 className="mt-3 text-[2.2rem] font-medium leading-[1.05] tracking-tight text-mint sm:text-[2.8rem] lg:text-[3.15rem]">
-                <WordReveal text={t.hero.h1} />
-              </h1>
-              <Reveal delay={140}>
-                <p className="mt-2 text-headline font-medium text-mint/70">{t.hero.tagline}</p>
-              </Reveal>
-              <Reveal delay={200}>
-                <p className="mt-4 max-w-xl text-body leading-relaxed text-mint/80">{t.hero.sub}</p>
-              </Reveal>
-
-              <Reveal delay={280}>
-                <div id="join" className="mt-7 max-w-lg scroll-mt-24">
-                  <WaitlistForm labels={t.form} source="hero" note={t.hero.note} />
-                  {social && (
-                    <p className="num mt-3 text-caption font-medium text-mint/70">
-                      <span className="pulse-dot mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-accent-green align-middle" />
-                      {social}
-                    </p>
-                  )}
-                </div>
-              </Reveal>
-            </div>
-
-            <div className="lg:pl-4">
-              <Reveal delay={180}>
-                <TiltCard className="mx-auto w-fit">
-                  <AppPreview t={t.preview} />
-                </TiltCard>
-              </Reveal>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Hero — full-viewport, 3D floodlit oval behind the headline */}
+      <Hero
+        copy={{
+          eyebrow: t.hero.eyebrow,
+          h1: t.hero.h1,
+          tagline: t.hero.tagline,
+          sub: t.hero.sub,
+          proofs: t.hero.proofs,
+          ctaPrimary: t.hero.ctaPrimary,
+          ctaSecondary: t.hero.ctaSecondary,
+          note: t.hero.note,
+          scrollCue: t.hero.scrollCue,
+          social,
+        }}
+      />
 
       {/* Problem */}
       <section className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
@@ -200,24 +146,13 @@ export default async function LandingPage() {
         </div>
       </section>
 
-      <div className="section-divider mx-auto max-w-5xl" />
+      {/* The pinned showcase — the app's four superpowers, scrubbed by scroll */}
+      <Showcase
+        copy={t.showcase}
+        proof={{ ours: PROOF.topPick, fav: PROOF.favourite, rand: PROOF.random }}
+      />
 
-      {/* What Zokki does */}
-      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
-        <Reveal>
-          <Eyebrow>{t.does.eyebrow}</Eyebrow>
-          <h2 className="mt-3 max-w-2xl text-title font-medium leading-tight text-ink-50 sm:text-display">{t.does.h}</h2>
-        </Reveal>
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
-          {t.does.cards.map((c, i) => (
-            <Reveal key={c.title} delay={i * 90}>
-              <FeatureCard icon={FEATURE_ICONS[i]} title={c.title} body={c.body} />
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <div className="section-divider mx-auto max-w-5xl" />
+      <div className="section-divider mx-auto mt-16 max-w-5xl sm:mt-20" />
 
       {/* Proof / receipts */}
       <section className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
@@ -305,14 +240,54 @@ export default async function LandingPage() {
         </Reveal>
       </section>
 
-      {/* Closing CTA */}
+      {/* Closing CTA — the conversion moment */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
         <Reveal>
-          <div className="hero-grad overflow-hidden rounded-squircle px-6 py-12 text-center sm:px-10">
-            <h2 className="mx-auto max-w-2xl text-title font-medium leading-tight text-mint sm:text-display">{t.cta.h}</h2>
-            <p className="mx-auto mt-3 max-w-xl text-body text-mint/80">{t.cta.body({ price: PRICE })}</p>
-            <div className="mx-auto mt-7 max-w-lg">
-              <WaitlistForm labels={t.form} source="footer" />
+          <div className="hero-grad relative overflow-hidden rounded-squircle px-6 py-14 text-center sm:px-10">
+            {/* butter bloom accents */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(420px 260px at 18% 110%, rgba(107,195,75,0.10), transparent 65%), radial-gradient(520px 300px at 85% -10%, rgba(249,239,152,0.12), transparent 60%)",
+              }}
+            />
+            <div className="relative">
+              <Eyebrow tone="light">{t.cta.eyebrow}</Eyebrow>
+              <h2 className="mx-auto mt-3 max-w-2xl text-[1.9rem] font-medium leading-tight text-mint sm:text-[2.6rem]">
+                {t.cta.h}
+              </h2>
+              <p className="mx-auto mt-3 max-w-xl text-body text-mint/80">{t.cta.body({ price: PRICE })}</p>
+
+              <div className="mx-auto mt-6 flex max-w-2xl flex-wrap items-center justify-center gap-x-6 gap-y-2">
+                {t.cta.points.map((p) => (
+                  <span key={p} className="flex items-center gap-2 text-caption font-medium text-mint/75">
+                    <Check />
+                    {p}
+                  </span>
+                ))}
+              </div>
+
+              <div id="join" className="mx-auto mt-8 max-w-lg scroll-mt-28">
+                <WaitlistForm labels={t.form} source="footer" note={t.hero.note} />
+                {social && (
+                  <p className="num mt-3 text-caption font-medium text-mint/70">
+                    <span className="pulse-dot mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-accent-green align-middle" />
+                    {social}
+                  </p>
+                )}
+              </div>
+
+              <div className="mt-8">
+                <MagneticButton
+                  href="#showcase"
+                  strength={0.2}
+                  className="tap rounded-pill border border-white/20 bg-white/5 px-6 py-3 text-caption font-semibold text-mint/85 backdrop-blur"
+                >
+                  ↑ {t.hero.ctaSecondary}
+                </MagneticButton>
+              </div>
             </div>
           </div>
         </Reveal>

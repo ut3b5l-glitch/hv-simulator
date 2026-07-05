@@ -31,6 +31,10 @@ const en = {
     sub: "Zokki turns the form, the draw, the odds and the jockeys into one clear read per race — a plain-English preview, a model-ranked shortlist, and an honest scorecard you can check. Information and entertainment only. We never tell you to bet.",
     note: "Beta access · HK$12 day pass · HK$48/mo unlimited · cancel anytime · no betting, ever.",
     social: (n: number) => `${n} racing fans already on the list`,
+    proofs: ["Every pick on public record", "An AI analyst that shows its work", "Not a tipping service"],
+    ctaPrimary: "Reserve beta access",
+    ctaSecondary: "See the app",
+    scrollCue: "Scroll",
   },
   form: {
     placeholder: "you@email.com",
@@ -66,11 +70,40 @@ const en = {
       },
     ],
   },
+  showcase: {
+    eyebrow: "Inside the app",
+    titleA: "One night at the races,",
+    titleB: "four superpowers.",
+    subtitle:
+      "Zokki is a race-night companion, not a wall of numbers. Scroll through what it puts in your pocket.",
+    stages: [
+      {
+        eyebrow: "Tonight’s picks",
+        title: "The whole card, read for you.",
+        desc: "Every race gets a model-ranked podium, win probabilities and a plain-English preview — the pick, the danger, and how open it really is.",
+      },
+      {
+        eyebrow: "Zokki AI · Deep dive",
+        title: "An analyst briefing on demand.",
+        desc: "One tap and the AI analyst argues the race from our own numbers — the case for the pick, the value angle, and the honest caveat. Tuned to how you play.",
+      },
+      {
+        eyebrow: "Ask Zokki",
+        title: "Interrogate the model.",
+        desc: "Ask anything about tonight’s card — safest race, value against the market, our recent form. It only answers from the live data, and it never tells you to bet.",
+      },
+      {
+        eyebrow: "Track record",
+        title: "Honesty is the feature.",
+        desc: "Every published pick stays on the books — wins, misses, and the baselines beside them. Check our score before you trust a word we say.",
+      },
+    ],
+  },
   receipts: {
     eyebrow: "The receipts",
     h: "We keep score in public.",
     body: (p: { races: number; range: string; topPick: number }) =>
-      `Across ${p.races} live races (${p.range}), our single top-rated pick finished in the top three ${p.topPick}% of the time — far above guesswork, and neck-and-neck with simply backing the market favourite. We don’t sell a secret edge. We make the smart read fast and clear, and we never hide a result.`,
+      `Across ${p.races} live races (${p.range}), our single top-rated pick finished in the top three ${p.topPick}% of the time — double a random pick. On this sample the market favourite is still ahead of us, and we publish that comparison anyway. We don’t sell a secret edge. We make the smart read fast and clear, and we never hide a result.`,
     note: (p: { races: number }) =>
       `Same ${p.races} races for every line below. Live meetings only; scratched and abandoned races excluded.`,
     ours: "Our top pick",
@@ -128,9 +161,11 @@ const en = {
     foot: "Day Pass covers one full meeting at Happy Valley or Sha Tin. Prices in HKD; final tiers confirmed at launch.",
   },
   cta: {
+    eyebrow: "The gates are opening",
     h: "Be first through the gates.",
     body: (p: { price: string }) =>
       `Join the beta waitlist and we’ll bring you in before launch — race-day passes from ${p.price}, no subscription needed.`,
+    points: ["Full card + AI analyst on race night", "Cancel anytime, no subscription needed", "Your record is our record — public, always"],
   },
   footer: {
     compliance:
@@ -160,6 +195,10 @@ const zh: Dict = {
     sub: "Zokki 把往績、檔位、賠率和騎練資料，整合成每場賽事的一個清晰解讀 —— 淺白的賽前分析、由模型排名的首選名單，以及一份你可以親自查證的誠實成績單。純粹資訊與娛樂用途，我們從不叫你投注。",
     note: "Beta 搶先體驗 · 即日通行證 HK$12 · 無限暢用每月 HK$48 · 隨時取消 · 絕不涉及投注。",
     social: (n: number) => `已有 ${n} 位馬迷登記預約`,
+    proofs: ["每個首選公開記錄", "AI 分析員有數有據", "不是貼士服務"],
+    ctaPrimary: "預約 Beta 體驗",
+    ctaSecondary: "睇睇個 App",
+    scrollCue: "向下滾動",
   },
   form: {
     placeholder: "你的電郵地址",
@@ -195,11 +234,39 @@ const zh: Dict = {
       },
     ],
   },
+  showcase: {
+    eyebrow: "App 內乾坤",
+    titleA: "一晚賽事，",
+    titleB: "四種超能力。",
+    subtitle: "Zokki 是你的賽夜好拍檔，不是一堵數字牆。往下滾動，看看它放進你口袋的東西。",
+    stages: [
+      {
+        eyebrow: "今晚首選",
+        title: "全晚賽事，替你讀通。",
+        desc: "每場賽事都有模型排名的三甲、勝出機率，以及淺白的賽前分析 —— 首選是誰、威脅在哪、賽事有多開放。",
+      },
+      {
+        eyebrow: "Zokki AI · 深度分析",
+        title: "隨傳隨到的分析員簡報。",
+        desc: "一按之下，AI 分析員就用我們自己的數據拆解賽事 —— 首選的理據、價值所在，以及誠實的風險提示。更會按你的睇馬風格調整。",
+      },
+      {
+        eyebrow: "問 Zokki",
+        title: "向模型盤問到底。",
+        desc: "今晚賽事任你問 —— 邊場最穩陣、同市場邊度有分歧、我們近況如何。它只依據實時數據回答，而且絕不叫你投注。",
+      },
+      {
+        eyebrow: "往績記錄",
+        title: "誠實，本身就是功能。",
+        desc: "每個公開發佈的首選都記錄在案 —— 命中與失手，連同對照基準一併展示。信我們之前，先查我們的分數。",
+      },
+    ],
+  },
   receipts: {
     eyebrow: "成績單",
     h: "公開計分，絕不隱藏。",
     body: (p: { races: number; range: string; topPick: number }) =>
-      `在 ${p.races} 場真實賽事中（${p.range}），我們的單一首選有 ${p.topPick}% 落入前三名 —— 遠勝亂猜，與單純跟熱門亦叮噹馬頭。我們不賣甚麼獨家秘訣，只把聰明的解讀做到又快又清楚，而且從不隱瞞結果。`,
+      `在 ${p.races} 場真實賽事中（${p.range}），我們的單一首選有 ${p.topPick}% 落入前三名 —— 是亂猜的兩倍。在這個樣本裡，單純跟熱門暫時仍領先我們 —— 但我們照樣把這個對比公開。我們不賣甚麼獨家秘訣，只把聰明的解讀做到又快又清楚，而且從不隱瞞結果。`,
     note: (p: { races: number }) =>
       `以下每一行都用同一批 ${p.races} 場賽事計算。只計真實賽期；退出及取消的賽事不計在內。`,
     ours: "我們的首選",
@@ -242,9 +309,11 @@ const zh: Dict = {
     foot: "即日通行證適用於跑馬地或沙田的單一賽期。價格以港幣計；最終級別於推出時確認。",
   },
   cta: {
+    eyebrow: "閘門即將打開",
     h: "搶先入場。",
     body: (p: { price: string }) =>
       `加入 Beta 候補名單，我們會在推出前邀請你 —— 即日通行證 ${p.price} 起，毋須訂閱。`,
+    points: ["賽夜全卡 + AI 分析員", "隨時取消，毋須訂閱", "我們的成績單永遠公開"],
   },
   footer: {
     compliance:
