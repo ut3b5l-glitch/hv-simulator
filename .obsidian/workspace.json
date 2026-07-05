@@ -178,6 +178,11 @@
   },
   "active": "5c43e3f1377f4d81",
   "lastOpenFiles": [
+    "happy_valley.db-shm",
+    "happy_valley.db-wal",
+    "ablation_test.py",
+    "Obsidian HV/wiki/model/architecture.md",
+    "Obsidian HV/wiki/model/factors/barrier.md",
     "CLAUDE.md",
     "Obsidian HV/wiki/model/factors/rating-days.md",
     "Obsidian HV/wiki/model/factors/weight-change.md",
@@ -186,11 +191,9 @@
     "Obsidian HV/wiki/model/factors/form.md",
     "Obsidian HV/wiki/model/factors/going.md",
     "Obsidian HV/wiki/model/factors/class.md",
-    "Obsidian HV/wiki/model/factors/barrier.md",
     "Obsidian HV/wiki/performance/live-meetings.md",
     "Obsidian HV/wiki/workflow/operations.md",
     "Obsidian HV/wiki/performance/walkforward.md",
-    "Obsidian HV/wiki/model/architecture.md",
     "Obsidian HV/wiki/model/factors",
     "Obsidian HV/wiki/issues/known-issues.md",
     "Obsidian HV/wiki/data/database.md",
@@ -210,9 +213,6 @@
     "wiki/model/factors/jockey-trainer.md",
     "wiki/model/factors/horse.md",
     "wiki/model/factors/going.md",
-    "wiki/model/factors/form.md",
-    "wiki/model/factors/class.md",
-    "wiki/model/factors",
-    "wiki/workflow"
+    "wiki/model/factors/form.md"
   ]
 }

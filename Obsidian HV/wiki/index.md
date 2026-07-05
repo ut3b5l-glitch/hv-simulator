@@ -54,4 +54,12 @@ Master catalog of all pages. Updated on every ingest, experiment, or new page cr
 | Page | Summary |
 |---|---|
 | [[web/pwa]] | Mobile Progressive Web App (hv-simulator.vercel.app) — Next.js, glass design, JSON-snapshot driven |
+| [[web/landing]] | Marketing landing page + Vercel-KV waitlist (`web-landing/`, port 3002) — the $48 willingness-to-pay experiment |
 | [[web/dynamic-pull-plan]] | PLAN — race-day on-demand pull button + 11pm auto-reconcile via a Mac-backend FastAPI service over Tailscale |
+
+## Strategy
+
+| Page | Summary |
+|---|---|
+| [[strategy/market-validation-2026-06]] | Commercial strategy off the June 2026 market-demand report — tiering (consumer=Starter / analytic=Pro), PWA-as-compliance-moat, data-rights legal risk, sample-size credibility, Tuesday deliverables |
+| [[strategy/competitive-positioning-2026-06]] | Counter-positioning vs NowTV「AI神數」competitor + two `/roast` council verdicts — "honest-with-a-wink" anti-神棍 brand, HK$12 hero price, split (don't weld) the 紫微斗數 engine from betting, 48-hr tests |

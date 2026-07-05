@@ -28,7 +28,7 @@ from bs4 import BeautifulSoup
 
 DB_PATH   = Path(__file__).parent / "happy_valley.db"
 VENUE     = "HV"
-MAX_RACES = 11  # probe R1..R10, stop on first miss
+MAX_RACES = 11  # hard cap on card size (HV ~9, ST up to 11); fallback bound when predictions JSON is absent
 
 RESULTS_URL = (
     "https://racing.hkjc.com/en-us/local/information/localresults"
@@ -515,7 +515,22 @@ def main():
         print("ERROR: playwright not installed. Run:  pip3 install playwright && playwright install chromium")
         sys.exit(1)
 
-    race_results = []   # [{race_no, finishers}]
+    # Card size — the predictions JSON records the true race count. Probe the
+    # whole card and *skip* (never break on) a race that hasn't posted yet, so a
+    # late-settling final race can't truncate the card and silently hide postable
+    # races after it. Gaps are backfilled by a later reconcile run — re-runs are
+    # idempotent (DB writes are UPDATEs; settlement is guarded on result IS NULL,
+    # so nothing double-counts). See known-issues {#reconcile-before-last-race-posts}.
+    predictions = load_predictions(meeting_str)
+    if predictions and predictions.get("races"):
+        card_size = min(max(r["race_number"] for r in predictions["races"]), MAX_RACES)
+        print(f"  Card size from predictions: {card_size} race(s).")
+    else:
+        card_size = MAX_RACES
+        print(f"  No predictions file — probing up to MAX_RACES={MAX_RACES}.")
+
+    race_results = []   # [{race_no, finishers}]  — races postable this run
+    missing      = []   # races on the card not yet posted / unparseable this run
     with sync_playwright() as pw:
         browser = pw.chromium.launch(headless=True)
         context = browser.new_context(
@@ -524,17 +539,19 @@ def main():
         )
         page = context.new_page()
 
-        for race_no in range(1, MAX_RACES):
+        for race_no in range(1, card_size + 1):
             print(f"  Fetching R{race_no} results …", end=" ", flush=True)
             html = fetch_results_html(page, meeting_hkjc, race_no, venue)
 
             if html is None:
-                print("not found — stopping.")
-                break
+                print("not posted yet — skipping (backfills on a later run).")
+                missing.append(race_no)
+                continue
 
             finishers = parse_results_html(html)
             if not finishers:
                 print("parse failed — skipping.")
+                missing.append(race_no)
                 continue
 
             ranked = [f for f in finishers if f["position"] is not None]
@@ -548,6 +565,12 @@ def main():
             time.sleep(1.0)
 
         browser.close()
+
+    if missing:
+        miss_str = ", ".join(f"R{n}" for n in missing)
+        print(f"\n  ⚠ {len(missing)} of {card_size} race(s) not yet posted: {miss_str}"
+              f"\n    Re-run after they post to backfill: "
+              f"python3 results_agent.py --venue {venue} --date {meeting_str}")
 
     if not race_results:
         print("\nNo results found. Meeting may not have run yet.")
@@ -582,8 +605,7 @@ def main():
 
     # ── Build results JSON ────────────────────────────────────────────────────
     results_data = build_results_json(conn, meeting_str, race_results, venue)
-    predictions  = load_predictions(meeting_str)
-    accuracy     = compute_accuracy(results_data, predictions)
+    accuracy     = compute_accuracy(results_data, predictions)  # predictions loaded above
     results_data["accuracy"] = accuracy
     results_data["settlements"] = settlements
 

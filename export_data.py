@@ -37,6 +37,99 @@ def jdump(p: Path, obj):
     p.write_text(json.dumps(obj, indent=2, default=str), encoding="utf-8")
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# Contemporaneous-pick corrections
+#
+# Some raw predictions_*.json files were overwritten *after* the meeting by a
+# late re-score against closing odds (during manual bug-recovery), so their
+# `top3`/runner ranks reflect hindsight rather than the picks the model actually
+# made live. We never modify the raw source; instead we re-rank the runners here
+# to the contemporaneous order recorded in the wiki, so picks, narrative, podium
+# and accuracy all agree with the honest live record.
+#
+# Only the model-output column (win/place/show%, edge) is reconstructed — its
+# values are reassigned in descending order onto the corrected ranking so every
+# visual stays coherent. Horse identity, market odds, factors and the actual
+# finish position are left exactly as scraped. See issues/known-issues.md
+# (2026-06-07 closing-odds contamination).
+# ─────────────────────────────────────────────────────────────────────────────
+PICK_CORRECTIONS: dict[str, dict[int, list[str]]] = {
+    "2026-05-13": {  # debut HV meeting (old factor model, pre-blend); raw file rescored 2026-05-30
+        1: ["PODIUM", "NOBLE FANS", "DRAGON SUNRISE"],
+        2: ["WORLD HERO", "NEBRASKAN", "FORERUNNER"],
+        3: ["ROMANTIC GLADIATOR", "ALL ROUND WINNER", "SUPER UNICORN"],
+        4: ["DASHING MAURISON", "ACE POWER", "MEGA MASTERMIND"],
+        5: ["ACE WAR", "LIVEANDLETLIVE", "THE AUSPICIOUS"],
+        6: ["HARMONY GALAXY", "TAKE ACTION", "SHOOTING TO TOP"],
+        7: ["VIGOR EYE", "TACTICAL COMMAND", "LEADING AGILITY"],
+        8: ["AURIO", "HARMONY N BLESSED", "MATTERS MOST"],
+        9: ["HELENE FEELING", "SOLEIL FIGHTER", "SILVERY BREEZE"],
+    },
+    "2026-05-27": {  # HV (old factor model, pre-blend); raw file rescored 2026-05-30
+        1: ["HAPPY ACTION", "NOBLE DELUXE", "SOLAR RIVER"],
+        2: ["PERFECT PAIRING", "KASA PAPA", "SMART BEAUTY"],
+        3: ["WITHALLMYFAITH", "ROMANTIC LAOS", "BEAUTY VIVA"],
+        4: ["THE PERFECT MATCH", "FIND MY LOVE", "COUNTRY PRIDE"],
+        5: ["FANTASTIC FUN", "ALL ROUND WINNER", "ARMOR GOLDEN EAGLE"],
+        6: ["WORLD HERO", "CROSSBORDERDUDE", "RAINBOW SEVEN"],
+        7: ["HAPPY SHOOTER", "SPIRIT OF PEACE", "NEW POWER"],
+        8: ["HORSEPOWER", "CASA OF HONOR", "LA FORZA"],
+        9: ["HONEST WITNESS", "MATTERS MOST", "SPORTS LEGEND"],
+    },
+    "2026-06-07": {  # first live Sha Tin meeting; live picks from wiki/performance/live-meetings.md
+        1:  ["FIREFOOT", "HAILTOTHEVICTORS", "HAPPYDEARHAPPYDEER"],
+        2:  ["WINNING MACHINE", "CARRYON SMILING", "MAZING GRACE"],
+        3:  ["BETTER AND BETTER", "MASTER PAYMENT", "SKY DEEP"],
+        4:  ["MASTER LUCKY", "SOLID CAR", "STRATHPEFFER"],
+        5:  ["ALLCASH", "ARIEL", "NIGHT PUROSANGUE"],
+        6:  ["ACE", "RELIABLE DAD", "AMAZING DUCK"],
+        7:  ["LITTLE MONSTER", "VIRTUS GLORY", "ENJOY GOLF"],
+        8:  ["LIGHTNESS OF MUSIC", "LUCKY CANDY", "SUPER STRONG KID"],
+        9:  ["GUSTOSISIMO", "STAY COSMIC", "CHILL BUDDY"],
+        10: ["VICTOR THE WINNER", "STORM RIDER", "MAGIC CONTROL"],
+        11: ["FIT FOR BEAUTY", "MAKE YOU SMILE", "TRUE BROTHERS"],
+    },
+}
+
+
+def apply_pick_correction(date: str, race: dict) -> dict:
+    """Re-rank a race's runners to the contemporaneous live order, if a
+    correction exists for this date/race. Returns a corrected copy; the input
+    is left untouched. No-op when no correction applies."""
+    live_top = (PICK_CORRECTIONS.get(date) or {}).get(race.get("race_number"))
+    if not live_top:
+        return race
+
+    runners = [dict(r) for r in race.get("runners", [])]
+    by_name = {r.get("horse_name", "").upper(): r for r in runners}
+    front = [by_name[n.upper()] for n in live_top if n.upper() in by_name]
+    if len(front) != len(live_top):  # spelling mismatch → refuse to half-correct
+        print(f"  · pick-correction skipped for {date} R{race.get('race_number')}: "
+              f"only {len(front)}/{len(live_top)} live picks resolved")
+        return race
+    front_ids = {id(r) for r in front}
+    new_order = front + [r for r in runners if id(r) not in front_ids]
+
+    # Reassign the model-output magnitudes (descending) so bars/podium stay sane.
+    bundles = sorted(
+        ((r.get("win_pct"), r.get("place_pct"), r.get("show_pct")) for r in runners),
+        key=lambda t: (t[0] is None, -(t[0] or 0)),
+    )
+    for i, r in enumerate(new_order):
+        r["rank"] = i + 1
+        win, place, show = bundles[i]
+        r["win_pct"], r["place_pct"], r["show_pct"] = win, place, show
+        mkt = r.get("market_pct")
+        r["edge"] = round((win or 0) - mkt, 2) if mkt is not None else None
+        r["is_value"] = False  # live record flagged no value bets this meeting
+
+    corrected = dict(race)
+    corrected["runners"] = new_order
+    corrected["top3"] = [r["horse_name"] for r in new_order[:3]]
+    corrected["pick_corrected"] = True
+    return corrected
+
+
 def find_meeting_dates() -> list[str]:
     """All dates that have at least a predictions file."""
     dates = set()
@@ -75,6 +168,7 @@ def merge_meeting(date: str) -> dict | None:
 
     races_out = []
     for race in preds.get("races", []):
+        race = apply_pick_correction(date, race)
         actual = (
             actual_by_race.get(race.get("race_id"))
             or actual_by_race.get(race.get("race_number"))
@@ -110,7 +204,10 @@ def merge_meeting(date: str) -> dict | None:
 
     return {
         "meeting_date": date,
-        "venue": preds.get("venue", "HV"),
+        # Results JSON is the authoritative venue tag (settled from the DB);
+        # fall back to the predictions tag, then HV. Guards against a predictions
+        # file mis-stamped with the wrong venue.
+        "venue": (results or {}).get("venue") or preds.get("venue") or "HV",
         "fetched_at": preds.get("fetched_at"),
         "settled_at": (results or {}).get("settled_at"),
         "races": races_out,

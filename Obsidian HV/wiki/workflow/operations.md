@@ -15,8 +15,9 @@ one venue produces a card; the rest no-op.
 0 11 * * 3   hv_auto.sh pull       # catch the card early / detect special meetings
 30 17 * * 3  hv_auto.sh pull       # pre-track: predictions + live odds in the app
 30 19 * * 3  hv_auto.sh pull       # mid-card odds refresh
-0 23 * * 3   hv_auto.sh reconcile
+0 23 * * 3   hv_auto.sh reconcile  # first settle pass (early races)
 30 23 * * 3  hv_auto.sh reconcile  # catches the late nightcap (R9)
+15 0 * * 4   hv_auto.sh reconcile  # safety net — final race posting after 23:30 (Thu 00:15 HKT)
 
 # ── Sha Tin — weekend afternoons (Sat=6, Sun=0; first race ~13:00, last ~17:30) ──
 0 9 * * 6,0    hv_auto.sh pull       # card early
@@ -42,7 +43,7 @@ for those. A crontab backup is in `/tmp/zokki_brand/crontab_backup_*.txt`.
 - **Mac must be awake** at those times (set to never sleep, incl. lid closed). Cron does not wake a sleeping Mac.
 - `vercel` is a Node CLI under nvm — `hv_auto.sh` puts `~/.nvm/.../bin` on PATH and uses absolute paths for `python3`/`git`. Vercel CLI must stay logged in (GitHub→Vercel auto-deploy is NOT connected).
 
-**Why the old crons were replaced:** the 7am racecard cron **failed silently** on the 2026-06-03 special meeting, and the 11pm results cron only ran `results_agent.py` (it never refreshed/deployed the PWA). History: results cron was earlier fixed from `0 15 * * 3` to `0 23 * * 3` on 2026-05-06.
+**Why the old crons were replaced:** the 7am racecard cron **failed silently** on the 2026-06-03 special meeting, and the 11pm results cron only ran `results_agent.py` (it never refreshed/deployed the PWA). History: results cron was earlier fixed from `0 15 * * 3` to `0 23 * * 3` on 2026-05-06. The **00:15 Thu** HV reconcile slot was added 2026-06-25 as a safety net for a final race that posts after the 23:30 fire — HKJC settled HV cards progressively and the last race truncated three meetings in a row (2026-06-10/06-13/06-24). Paired with the `results_agent.py` probe fix that no longer breaks on the first not-yet-posted race, so each reconcile run backfills the full card idempotently. See [[issues/known-issues]] `{#reconcile-before-last-race-posts}`.
 
 **Manual / on-demand** (special meeting, or backup if the Mac was asleep):
 ```bash

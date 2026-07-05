@@ -85,7 +85,7 @@ case "$MODE" in
   pull)
     log "── start pull for $DATE (venues: $VENUES) ──"
     MEETING_VENUE=""
-    for V in $VENUES; do
+    for V in ${=VENUES}; do   # ${=…} forces zsh word-splitting (off by default)
       "$PY" wednesday_agent.py --venue "$V" --date "$DATE" --retry 0 >> "$LOG" 2>&1
       if file_is_venue "predictions_$DATE.json" "$V"; then
         "$PY" hkjc_odds.py --venue "$V" --date "$DATE" >> "$LOG" 2>&1
@@ -104,7 +104,7 @@ case "$MODE" in
   reconcile)
     log "── start reconcile for $DATE (venues: $VENUES) ──"
     MEETING_VENUE=""
-    for V in $VENUES; do
+    for V in ${=VENUES}; do   # ${=…} forces zsh word-splitting (off by default)
       "$PY" results_agent.py --venue "$V" --date "$DATE" >> "$LOG" 2>&1
       if file_is_venue "results_$DATE.json" "$V"; then
         MEETING_VENUE="$V"
