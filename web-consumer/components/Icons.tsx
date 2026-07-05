@@ -130,3 +130,23 @@ export function SunIcon({ className }: IconProps) {
     </svg>
   );
 }
+
+/** Zokki AI — a four-point spark. */
+export function SparkIcon({ className }: IconProps) {
+  return (
+    <svg className={className} {...base}>
+      <path d="M12 3.5c.7 3.9 2.3 5.5 6.2 6.2-3.9.7-5.5 2.3-6.2 6.2-.7-3.9-2.3-5.5-6.2-6.2 3.9-.7 5.5-2.3 6.2-6.2Z" />
+      <path d="M18.6 15.4c.35 1.95 1.15 2.75 3.1 3.1-1.95.35-2.75 1.15-3.1 3.1-.35-1.95-1.15-2.75-3.1-3.1 1.95-.35 2.75-1.15 3.1-3.1Z" />
+    </svg>
+  );
+}
+
+/** Send — a paper plane. */
+export function SendIcon({ className }: IconProps) {
+  return (
+    <svg className={className} {...base}>
+      <path d="M4.5 11.2 19.5 4.6c.5-.22 1 .28.8.78l-6.1 15.2c-.22.55-1.02.5-1.17-.07l-1.75-6.5-6.72-1.63c-.58-.14-.64-.94-.06-1.18Z" />
+      <path d="m11.3 13.9 4.6-4.6" />
+    </svg>
+  );
+}

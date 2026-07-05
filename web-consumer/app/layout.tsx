@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Urbanist } from "next/font/google";
 import "./globals.css";
 import BottomNav from "@/components/BottomNav";
+import OnboardingGate from "@/components/OnboardingGate";
 import PullToRefresh from "@/components/PullToRefresh";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 import SplashScreen from "@/components/SplashScreen";
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <PullToRefresh>{children}</PullToRefresh>
         </main>
         <BottomNav />
+        <OnboardingGate />
         <ServiceWorkerRegister />
         <SplashScreen />
       </body>

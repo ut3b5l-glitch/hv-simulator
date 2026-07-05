@@ -2,20 +2,24 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FlagIcon, DieIcon, TrophyIcon, ChartIcon } from "./Icons";
+import { FlagIcon, DieIcon, TrophyIcon, ChartIcon, SparkIcon } from "./Icons";
 
-// Four tabs, four jobs, in the order of a race night: what we forecast, play the
-// race, what actually happened tonight, and the long-run proof we're honest.
-// (Profiles stays routable at /profiles — it's an enthusiast page, not a tab.)
+// Five tabs, five jobs, in the order of a race night: what we forecast, ask
+// the analyst, play the race, what actually happened tonight, and the
+// long-run proof we're honest. (Profiles stays routable at /profiles — it's
+// an enthusiast page, not a tab.)
 const ITEMS = [
   { href: "/", label: "Picks", Icon: FlagIcon },
+  { href: "/ask", label: "Ask", Icon: SparkIcon },
   { href: "/simulator", label: "Simulator", Icon: DieIcon },
   { href: "/results", label: "Results", Icon: TrophyIcon },
-  { href: "/performance", label: "Track Record", Icon: ChartIcon },
+  { href: "/performance", label: "Record", Icon: ChartIcon },
 ] as const;
 
 export default function BottomNav() {
   const pathname = usePathname();
+  // The onboarding flow owns the whole screen — no nav until you're in.
+  if (pathname.startsWith("/onboarding")) return null;
   return (
     <nav
       className="fixed inset-x-0 bottom-0 z-50"

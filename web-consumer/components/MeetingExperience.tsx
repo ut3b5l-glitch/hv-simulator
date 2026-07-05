@@ -7,6 +7,7 @@ import BankerStrip from "./BankerStrip";
 import PickPodium, { type Career } from "./PickPodium";
 import PayoutCalc from "./PayoutCalc";
 import FullField from "./FullField";
+import RaceIntel from "./RaceIntel";
 
 /**
  * MeetingExperience — the whole race night on one thumb.
@@ -56,6 +57,7 @@ export default function MeetingExperience({
             </p>
           </section>
         )}
+        <RaceIntel date={meeting.meeting_date} raceNumber={race.race_number} />
         <FullField race={race} careers={careers} />
       </div>
     </div>
