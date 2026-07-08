@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-08T23:00:42",
+  "generated_at": "2026-07-08T23:30:37",
   "meetings_total": 13,
   "meetings_settled": 13,
-  "top3_precision": 44.252873563218394,
-  "top3_hits": 154,
-  "top3_attempts": 348,
-  "top_pick_rate": 54.310344827586206,
-  "top_pick_hits": 63,
-  "top_pick_attempts": 116,
+  "top3_precision": 44.15954415954416,
+  "top3_hits": 155,
+  "top3_attempts": 351,
+  "top_pick_rate": 54.700854700854705,
+  "top_pick_hits": 64,
+  "top_pick_attempts": 117,
   "value_bet_staked": 2,
   "value_bet_wins": 0,
   "value_bet_pnl": -2,
@@ -18,12 +18,12 @@
       "venue": "HV",
       "race_count": 9,
       "has_results": true,
-      "top3_hits": 8,
-      "top3_attempts": 24,
+      "top3_hits": 9,
+      "top3_attempts": 27,
       "top3_precision": 33.33333333333333,
-      "top_pick_hits": 4,
-      "top_pick_attempts": 8,
-      "top_pick_rate": 50.0,
+      "top_pick_hits": 5,
+      "top_pick_attempts": 9,
+      "top_pick_rate": 55.55555555555556,
       "value_bet_count": 0,
       "value_bet_settled": 0,
       "value_bet_wins": 0,
@@ -241,44 +241,44 @@
       {
         "key": "win_top1",
         "label": "WIN on #1 pick",
-        "staked": 840.0,
+        "staked": 850.0,
         "returned": 788.5,
-        "net": -51.5,
-        "roi_pct": -6.1
+        "net": -61.5,
+        "roi_pct": -7.2
       },
       {
         "key": "place_box3",
         "label": "PLACE \u2014 all 3 picks",
-        "staked": 2520.0,
-        "returned": 2003.7,
-        "net": -516.3,
-        "roi_pct": -20.5
+        "staked": 2550.0,
+        "returned": 2021.7,
+        "net": -528.3,
+        "roi_pct": -20.7
       },
       {
         "key": "quinella_place_box3",
         "label": "QUINELLA PLACE box (3 picks)",
-        "staked": 2520.0,
+        "staked": 2550.0,
         "returned": 1874.0,
-        "net": -646.0,
-        "roi_pct": -25.6
+        "net": -676.0,
+        "roi_pct": -26.5
       },
       {
         "key": "quinella_box3",
         "label": "QUINELLA box (3 picks)",
-        "staked": 2520.0,
+        "staked": 2550.0,
         "returned": 1789.0,
-        "net": -731.0,
-        "roi_pct": -29.0
+        "net": -761.0,
+        "roi_pct": -29.8
       }
     ],
     "per_meeting": [
       {
         "date": "2026-07-08",
         "nets": {
-          "win_top1": 9.5,
-          "place_box3": -103.5,
-          "quinella_place_box3": -154.0,
-          "quinella_box3": 6.0
+          "win_top1": -0.5,
+          "place_box3": -115.5,
+          "quinella_place_box3": -184.0,
+          "quinella_box3": -24.0
         }
       },
       {
@@ -365,26 +365,26 @@
     ]
   },
   "model_quality": {
-    "generated_at": "2026-07-08T15:00:55+00:00",
-    "n_races": 239,
+    "generated_at": "2026-07-08T15:30:50+00:00",
+    "n_races": 240,
     "n_meetings": 28,
     "window": "leak-free walk-forward, test races 400+",
     "best_l2": 40.0,
     "metrics": {
       "blend": {
         "brier": 0.0717,
-        "logloss": 0.2558,
-        "race_logloss": 2.0773
+        "logloss": 0.2556,
+        "race_logloss": 2.0762
       },
       "market": {
         "brier": 0.0716,
-        "logloss": 0.2552,
-        "race_logloss": 2.0719
+        "logloss": 0.2551,
+        "race_logloss": 2.0709
       },
       "model": {
-        "brier": 0.0878,
+        "brier": 0.0879,
         "logloss": 0.3371,
-        "race_logloss": 2.8847
+        "race_logloss": 2.8849
       }
     },
     "reference": {
@@ -396,21 +396,21 @@
       {
         "lo": 0,
         "hi": 2,
-        "n": 525,
+        "n": 527,
         "pred": 1.2,
-        "actual": 1.0
+        "actual": 0.9
       },
       {
         "lo": 2,
         "hi": 5,
-        "n": 677,
+        "n": 682,
         "pred": 3.4,
         "actual": 3.5
       },
       {
         "lo": 5,
         "hi": 10,
-        "n": 753,
+        "n": 754,
         "pred": 7.3,
         "actual": 7.3
       },
@@ -424,9 +424,9 @@
       {
         "lo": 15,
         "hi": 25,
-        "n": 336,
+        "n": 340,
         "pred": 19.2,
-        "actual": 19.9
+        "actual": 20.0
       },
       {
         "lo": 25,
@@ -447,23 +447,23 @@
       {
         "lo": 0,
         "hi": 2,
-        "n": 481,
+        "n": 483,
         "pred": 1.2,
         "actual": 1.2
       },
       {
         "lo": 2,
         "hi": 5,
-        "n": 675,
+        "n": 680,
         "pred": 3.3,
         "actual": 3.1
       },
       {
         "lo": 5,
         "hi": 10,
-        "n": 793,
+        "n": 794,
         "pred": 7.3,
-        "actual": 6.6
+        "actual": 6.5
       },
       {
         "lo": 10,
@@ -475,9 +475,9 @@
       {
         "lo": 15,
         "hi": 25,
-        "n": 328,
-        "pred": 19.4,
-        "actual": 20.1
+        "n": 332,
+        "pred": 19.3,
+        "actual": 20.2
       },
       {
         "lo": 25,
