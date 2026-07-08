@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-08T19:30:50",
+  "generated_at": "2026-07-08T23:00:42",
   "meetings_total": 13,
-  "meetings_settled": 12,
-  "top3_precision": 45.06172839506173,
-  "top3_hits": 146,
-  "top3_attempts": 324,
-  "top_pick_rate": 54.629629629629626,
-  "top_pick_hits": 59,
-  "top_pick_attempts": 108,
+  "meetings_settled": 13,
+  "top3_precision": 44.252873563218394,
+  "top3_hits": 154,
+  "top3_attempts": 348,
+  "top_pick_rate": 54.310344827586206,
+  "top_pick_hits": 63,
+  "top_pick_attempts": 116,
   "value_bet_staked": 2,
   "value_bet_wins": 0,
   "value_bet_pnl": -2,
@@ -17,13 +17,13 @@
       "meeting_date": "2026-07-08",
       "venue": "HV",
       "race_count": 9,
-      "has_results": false,
-      "top3_hits": 0,
-      "top3_attempts": 0,
-      "top3_precision": null,
-      "top_pick_hits": 0,
-      "top_pick_attempts": 0,
-      "top_pick_rate": null,
+      "has_results": true,
+      "top3_hits": 8,
+      "top3_attempts": 24,
+      "top3_precision": 33.33333333333333,
+      "top_pick_hits": 4,
+      "top_pick_attempts": 8,
+      "top_pick_rate": 50.0,
       "value_bet_count": 0,
       "value_bet_settled": 0,
       "value_bet_wins": 0,
@@ -241,37 +241,46 @@
       {
         "key": "win_top1",
         "label": "WIN on #1 pick",
-        "staked": 760.0,
-        "returned": 699.0,
-        "net": -61.0,
-        "roi_pct": -8.0
+        "staked": 840.0,
+        "returned": 788.5,
+        "net": -51.5,
+        "roi_pct": -6.1
       },
       {
         "key": "place_box3",
         "label": "PLACE \u2014 all 3 picks",
-        "staked": 2280.0,
-        "returned": 1867.2,
-        "net": -412.8,
-        "roi_pct": -18.1
+        "staked": 2520.0,
+        "returned": 2003.7,
+        "net": -516.3,
+        "roi_pct": -20.5
       },
       {
         "key": "quinella_place_box3",
         "label": "QUINELLA PLACE box (3 picks)",
-        "staked": 2280.0,
-        "returned": 1788.0,
-        "net": -492.0,
-        "roi_pct": -21.6
+        "staked": 2520.0,
+        "returned": 1874.0,
+        "net": -646.0,
+        "roi_pct": -25.6
       },
       {
         "key": "quinella_box3",
         "label": "QUINELLA box (3 picks)",
-        "staked": 2280.0,
-        "returned": 1543.0,
-        "net": -737.0,
-        "roi_pct": -32.3
+        "staked": 2520.0,
+        "returned": 1789.0,
+        "net": -731.0,
+        "roi_pct": -29.0
       }
     ],
     "per_meeting": [
+      {
+        "date": "2026-07-08",
+        "nets": {
+          "win_top1": 9.5,
+          "place_box3": -103.5,
+          "quinella_place_box3": -154.0,
+          "quinella_box3": 6.0
+        }
+      },
       {
         "date": "2026-07-04",
         "nets": {
@@ -356,26 +365,26 @@
     ]
   },
   "model_quality": {
-    "generated_at": "2026-07-08T11:31:01+00:00",
-    "n_races": 231,
-    "n_meetings": 27,
+    "generated_at": "2026-07-08T15:00:55+00:00",
+    "n_races": 239,
+    "n_meetings": 28,
     "window": "leak-free walk-forward, test races 400+",
     "best_l2": 40.0,
     "metrics": {
       "blend": {
-        "brier": 0.0719,
-        "logloss": 0.2566,
-        "race_logloss": 2.0878
+        "brier": 0.0717,
+        "logloss": 0.2558,
+        "race_logloss": 2.0773
       },
       "market": {
-        "brier": 0.0718,
-        "logloss": 0.256,
-        "race_logloss": 2.082
+        "brier": 0.0716,
+        "logloss": 0.2552,
+        "race_logloss": 2.0719
       },
       "model": {
-        "brier": 0.0883,
-        "logloss": 0.339,
-        "race_logloss": 2.9052
+        "brier": 0.0878,
+        "logloss": 0.3371,
+        "race_logloss": 2.8847
       }
     },
     "reference": {
@@ -387,102 +396,102 @@
       {
         "lo": 0,
         "hi": 2,
-        "n": 503,
+        "n": 525,
         "pred": 1.2,
         "actual": 1.0
       },
       {
         "lo": 2,
         "hi": 5,
-        "n": 659,
+        "n": 677,
         "pred": 3.4,
         "actual": 3.5
       },
       {
         "lo": 5,
         "hi": 10,
-        "n": 728,
+        "n": 753,
         "pred": 7.3,
         "actual": 7.3
       },
       {
         "lo": 10,
         "hi": 15,
-        "n": 355,
+        "n": 365,
         "pred": 12.3,
-        "actual": 12.7
+        "actual": 12.3
       },
       {
         "lo": 15,
         "hi": 25,
-        "n": 328,
+        "n": 336,
         "pred": 19.2,
-        "actual": 20.1
+        "actual": 19.9
       },
       {
         "lo": 25,
         "hi": 40,
-        "n": 109,
-        "pred": 30.5,
-        "actual": 28.4
+        "n": 116,
+        "pred": 30.3,
+        "actual": 29.3
       },
       {
         "lo": 40,
         "hi": 101,
-        "n": 20,
-        "pred": 46.3,
-        "actual": 40.0
+        "n": 21,
+        "pred": 46.6,
+        "actual": 42.9
       }
     ],
     "calibration_market": [
       {
         "lo": 0,
         "hi": 2,
-        "n": 460,
+        "n": 481,
         "pred": 1.2,
-        "actual": 1.3
+        "actual": 1.2
       },
       {
         "lo": 2,
         "hi": 5,
-        "n": 659,
+        "n": 675,
         "pred": 3.3,
-        "actual": 3.0
+        "actual": 3.1
       },
       {
         "lo": 5,
         "hi": 10,
-        "n": 764,
+        "n": 793,
         "pred": 7.3,
-        "actual": 6.5
+        "actual": 6.6
       },
       {
         "lo": 10,
         "hi": 15,
-        "n": 382,
+        "n": 391,
         "pred": 12.4,
-        "actual": 13.1
+        "actual": 12.8
       },
       {
         "lo": 15,
         "hi": 25,
-        "n": 319,
-        "pred": 19.3,
-        "actual": 20.4
+        "n": 328,
+        "pred": 19.4,
+        "actual": 20.1
       },
       {
         "lo": 25,
         "hi": 40,
-        "n": 100,
-        "pred": 30.4,
-        "actual": 32.0
+        "n": 106,
+        "pred": 30.3,
+        "actual": 33.0
       },
       {
         "lo": 40,
         "hi": 101,
-        "n": 18,
-        "pred": 44.9,
-        "actual": 44.4
+        "n": 19,
+        "pred": 45.1,
+        "actual": 47.4
       }
     ]
   },
