@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-07-12T18:05:20",
+  "generated_at": "2026-07-12T18:34:18",
   "meetings": [
     {
       "date": "2026-07-12",
       "venue": "ST",
       "race_count": 11,
       "has_results": true,
-      "top3_precision": 58.333333333333336,
+      "top3_precision": 53.333333333333336,
       "value_bet_count": 0,
       "value_bet_roi": null
     },
