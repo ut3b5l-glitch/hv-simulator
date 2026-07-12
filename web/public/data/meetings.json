@@ -1,6 +1,15 @@
 {
-  "generated_at": "2026-07-08T23:30:37",
+  "generated_at": "2026-07-12T09:01:39",
   "meetings": [
+    {
+      "date": "2026-07-12",
+      "venue": "HV",
+      "race_count": 11,
+      "has_results": false,
+      "top3_precision": null,
+      "value_bet_count": 0,
+      "value_bet_roi": null
+    },
     {
       "date": "2026-07-08",
       "venue": "HV",
