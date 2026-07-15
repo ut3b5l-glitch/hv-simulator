@@ -2,7 +2,7 @@
   "meeting_date": "2026-07-15",
   "venue": "HV",
   "fetched_at": "2026-07-15T19:30:49",
-  "settled_at": "2026-07-15T23:00:42",
+  "settled_at": "2026-07-15T23:30:35",
   "races": [
     {
       "race_id": 2033,
@@ -3684,7 +3684,7 @@
             "rating": 1.16,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 4
         },
         {
           "rank": 2,
@@ -3715,7 +3715,7 @@
             "rating": 0.931,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 5
         },
         {
           "rank": 3,
@@ -3746,7 +3746,7 @@
             "rating": 1.183,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 9
         },
         {
           "rank": 4,
@@ -3777,7 +3777,7 @@
             "rating": 0.894,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 2
         },
         {
           "rank": 5,
@@ -3808,7 +3808,7 @@
             "rating": 0.912,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 7
         },
         {
           "rank": 6,
@@ -3839,7 +3839,7 @@
             "rating": 1.071,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 3
         },
         {
           "rank": 7,
@@ -3870,7 +3870,7 @@
             "rating": 0.969,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 8
         },
         {
           "rank": 8,
@@ -3901,7 +3901,7 @@
             "rating": 0.95,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 12
         },
         {
           "rank": 9,
@@ -3932,7 +3932,7 @@
             "rating": 1.092,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 1
         },
         {
           "rank": 10,
@@ -3963,7 +3963,7 @@
             "rating": 1.05,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 10
         },
         {
           "rank": 11,
@@ -3994,7 +3994,7 @@
             "rating": 0.95,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 11
         },
         {
           "rank": 12,
@@ -4025,14 +4025,79 @@
             "rating": 0.894,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 6
         }
       ],
-      "actual_top3": [],
-      "finishers": [],
+      "actual_top3": [
+        "HARMONY N BLESSED",
+        "DANICA'S CHOICE",
+        "THUNDER KIT"
+      ],
+      "finishers": [
+        {
+          "position": 1,
+          "horse_name": "HARMONY N BLESSED",
+          "horse_no": 3
+        },
+        {
+          "position": 2,
+          "horse_name": "DANICA'S CHOICE",
+          "horse_no": 11
+        },
+        {
+          "position": 3,
+          "horse_name": "THUNDER KIT",
+          "horse_no": 4
+        },
+        {
+          "position": 4,
+          "horse_name": "YOUNG EMPEROR",
+          "horse_no": 2
+        },
+        {
+          "position": 5,
+          "horse_name": "FLYING KNIGHT",
+          "horse_no": 9
+        },
+        {
+          "position": 6,
+          "horse_name": "MASTER OF ALL",
+          "horse_no": 12
+        },
+        {
+          "position": 7,
+          "horse_name": "KING OF FIGHTERS",
+          "horse_no": 10
+        },
+        {
+          "position": 8,
+          "horse_name": "DARYL FLASH",
+          "horse_no": 6
+        },
+        {
+          "position": 9,
+          "horse_name": "FLYING WROTE",
+          "horse_no": 1
+        },
+        {
+          "position": 10,
+          "horse_name": "CITY GOLD BANNER",
+          "horse_no": 5
+        },
+        {
+          "position": 11,
+          "horse_name": "MORGAN SUCCESS",
+          "horse_no": 8
+        },
+        {
+          "position": 12,
+          "horse_name": "ENDURANCE EXPRESS",
+          "horse_no": 7
+        }
+      ],
       "top3_hits": 0,
       "top_pick_hit": false,
-      "has_results": false
+      "has_results": true
     }
   ],
   "has_results": true
