@@ -2,7 +2,7 @@
   "meeting_date": "2026-07-15",
   "venue": "HV",
   "fetched_at": "2026-07-15T19:30:49",
-  "settled_at": null,
+  "settled_at": "2026-07-15T23:00:42",
   "races": [
     {
       "race_id": 2033,
@@ -48,7 +48,7 @@
             "rating": 0.923,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 3
         },
         {
           "rank": 2,
@@ -79,7 +79,7 @@
             "rating": 0.923,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 2
         },
         {
           "rank": 3,
@@ -110,7 +110,7 @@
             "rating": 1.062,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 12
         },
         {
           "rank": 4,
@@ -141,7 +141,7 @@
             "rating": 0.787,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 4
         },
         {
           "rank": 5,
@@ -172,7 +172,7 @@
             "rating": 0.942,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 5
         },
         {
           "rank": 6,
@@ -203,7 +203,7 @@
             "rating": 1.062,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 1
         },
         {
           "rank": 7,
@@ -234,7 +234,7 @@
             "rating": 1.062,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 6
         },
         {
           "rank": 8,
@@ -265,7 +265,7 @@
             "rating": 1.062,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 11
         },
         {
           "rank": 9,
@@ -296,7 +296,7 @@
             "rating": 1.062,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 7
         },
         {
           "rank": 10,
@@ -327,7 +327,7 @@
             "rating": 1.062,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 9
         },
         {
           "rank": 11,
@@ -358,7 +358,7 @@
             "rating": 1.0,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 8
         },
         {
           "rank": 12,
@@ -389,14 +389,79 @@
             "rating": 1.105,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 10
         }
       ],
-      "actual_top3": [],
-      "finishers": [],
-      "top3_hits": 0,
-      "top_pick_hit": false,
-      "has_results": false
+      "actual_top3": [
+        "FASHION LEGEND",
+        "TELECOM POWER",
+        "LUCKY BLESSING"
+      ],
+      "finishers": [
+        {
+          "position": 1,
+          "horse_name": "FASHION LEGEND",
+          "horse_no": 3
+        },
+        {
+          "position": 2,
+          "horse_name": "TELECOM POWER",
+          "horse_no": 11
+        },
+        {
+          "position": 3,
+          "horse_name": "LUCKY BLESSING",
+          "horse_no": 10
+        },
+        {
+          "position": 4,
+          "horse_name": "PERFECTO MOMENTS",
+          "horse_no": 12
+        },
+        {
+          "position": 5,
+          "horse_name": "KASA PAPA",
+          "horse_no": 9
+        },
+        {
+          "position": 6,
+          "horse_name": "CONRAD THE GREAT",
+          "horse_no": 2
+        },
+        {
+          "position": 7,
+          "horse_name": "SETANTA",
+          "horse_no": 5
+        },
+        {
+          "position": 8,
+          "horse_name": "CELESTIAL HARMONY",
+          "horse_no": 8
+        },
+        {
+          "position": 9,
+          "horse_name": "TO INFINITY",
+          "horse_no": 6
+        },
+        {
+          "position": 10,
+          "horse_name": "EMERGING STAR",
+          "horse_no": 1
+        },
+        {
+          "position": 11,
+          "horse_name": "OUR LUCKY GLORY",
+          "horse_no": 4
+        },
+        {
+          "position": 12,
+          "horse_name": "VIVA BOSS",
+          "horse_no": 7
+        }
+      ],
+      "top3_hits": 2,
+      "top_pick_hit": true,
+      "has_results": true
     },
     {
       "race_id": 2034,
@@ -442,7 +507,7 @@
             "rating": 0.931,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 2
         },
         {
           "rank": 2,
@@ -473,7 +538,7 @@
             "rating": 1.05,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 3
         },
         {
           "rank": 3,
@@ -504,7 +569,7 @@
             "rating": 1.137,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 4
         },
         {
           "rank": 4,
@@ -535,7 +600,7 @@
             "rating": 0.877,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 6
         },
         {
           "rank": 5,
@@ -566,7 +631,7 @@
             "rating": 1.232,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 8
         },
         {
           "rank": 6,
@@ -597,7 +662,7 @@
             "rating": 0.95,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 5
         },
         {
           "rank": 7,
@@ -628,7 +693,7 @@
             "rating": 1.029,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 7
         },
         {
           "rank": 8,
@@ -659,7 +724,7 @@
             "rating": 0.894,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 9
         },
         {
           "rank": 9,
@@ -690,7 +755,7 @@
             "rating": 0.912,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 1
         },
         {
           "rank": 10,
@@ -721,7 +786,7 @@
             "rating": 0.95,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 10
         },
         {
           "rank": 11,
@@ -752,7 +817,7 @@
             "rating": 1.071,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 11
         },
         {
           "rank": 12,
@@ -783,14 +848,79 @@
             "rating": 1.029,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 12
         }
       ],
-      "actual_top3": [],
-      "finishers": [],
-      "top3_hits": 0,
-      "top_pick_hit": false,
-      "has_results": false
+      "actual_top3": [
+        "STARRY SHOW",
+        "LOVING VIBES",
+        "GENIUS BABY"
+      ],
+      "finishers": [
+        {
+          "position": 1,
+          "horse_name": "STARRY SHOW",
+          "horse_no": 10
+        },
+        {
+          "position": 2,
+          "horse_name": "LOVING VIBES",
+          "horse_no": 9
+        },
+        {
+          "position": 3,
+          "horse_name": "GENIUS BABY",
+          "horse_no": 4
+        },
+        {
+          "position": 4,
+          "horse_name": "WINNING MONEY",
+          "horse_no": 2
+        },
+        {
+          "position": 5,
+          "horse_name": "LUCK IS BACK",
+          "horse_no": 8
+        },
+        {
+          "position": 6,
+          "horse_name": "LEAN MASTER",
+          "horse_no": 12
+        },
+        {
+          "position": 7,
+          "horse_name": "I AM BACK",
+          "horse_no": 6
+        },
+        {
+          "position": 8,
+          "horse_name": "FIND MY LOVE",
+          "horse_no": 1
+        },
+        {
+          "position": 9,
+          "horse_name": "JOLLY COMPANION",
+          "horse_no": 11
+        },
+        {
+          "position": 10,
+          "horse_name": "FREE PONY",
+          "horse_no": 7
+        },
+        {
+          "position": 11,
+          "horse_name": "JOLLY BONUS",
+          "horse_no": 3
+        },
+        {
+          "position": 12,
+          "horse_name": "EXCEPTIONAL SANTOS",
+          "horse_no": 5
+        }
+      ],
+      "top3_hits": 2,
+      "top_pick_hit": true,
+      "has_results": true
     },
     {
       "race_id": 2035,
@@ -836,7 +966,7 @@
             "rating": 0.932,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 1
         },
         {
           "rank": 2,
@@ -867,7 +997,7 @@
             "rating": 1.185,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 11
         },
         {
           "rank": 3,
@@ -898,7 +1028,7 @@
             "rating": 1.03,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 2
         },
         {
           "rank": 4,
@@ -929,7 +1059,7 @@
             "rating": 0.878,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 8
         },
         {
           "rank": 5,
@@ -960,7 +1090,7 @@
             "rating": 0.951,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 7
         },
         {
           "rank": 6,
@@ -991,7 +1121,7 @@
             "rating": 0.99,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 9
         },
         {
           "rank": 7,
@@ -1022,7 +1152,7 @@
             "rating": 1.139,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 4
         },
         {
           "rank": 8,
@@ -1053,7 +1183,7 @@
             "rating": 1.051,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 10
         },
         {
           "rank": 9,
@@ -1084,7 +1214,7 @@
             "rating": 1.03,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 3
         },
         {
           "rank": 10,
@@ -1115,7 +1245,7 @@
             "rating": 0.951,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 5
         },
         {
           "rank": 11,
@@ -1146,7 +1276,7 @@
             "rating": 0.878,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 12
         },
         {
           "rank": 12,
@@ -1177,14 +1307,79 @@
             "rating": 1.03,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 6
         }
       ],
-      "actual_top3": [],
-      "finishers": [],
-      "top3_hits": 0,
-      "top_pick_hit": false,
-      "has_results": false
+      "actual_top3": [
+        "KYRUS TREASURE",
+        "ROMANTIC LAOS",
+        "SERANGOON"
+      ],
+      "finishers": [
+        {
+          "position": 1,
+          "horse_name": "KYRUS TREASURE",
+          "horse_no": 10
+        },
+        {
+          "position": 2,
+          "horse_name": "ROMANTIC LAOS",
+          "horse_no": 4
+        },
+        {
+          "position": 3,
+          "horse_name": "SERANGOON",
+          "horse_no": 5
+        },
+        {
+          "position": 4,
+          "horse_name": "CASA ROCHESTER",
+          "horse_no": 2
+        },
+        {
+          "position": 5,
+          "horse_name": "FIREFOOT",
+          "horse_no": 8
+        },
+        {
+          "position": 6,
+          "horse_name": "STORM RUNNER",
+          "horse_no": 6
+        },
+        {
+          "position": 7,
+          "horse_name": "NOBLE PURSUIT",
+          "horse_no": 9
+        },
+        {
+          "position": 8,
+          "horse_name": "OCEAN IMPACT",
+          "horse_no": 12
+        },
+        {
+          "position": 9,
+          "horse_name": "FAST SPEED",
+          "horse_no": 7
+        },
+        {
+          "position": 10,
+          "horse_name": "VOLCANIC SPARK",
+          "horse_no": 3
+        },
+        {
+          "position": 11,
+          "horse_name": "HARMONY GALAXY",
+          "horse_no": 1
+        },
+        {
+          "position": 12,
+          "horse_name": "NORTHERN BEAST",
+          "horse_no": 11
+        }
+      ],
+      "top3_hits": 2,
+      "top_pick_hit": true,
+      "has_results": true
     },
     {
       "race_id": 2036,
@@ -1230,7 +1425,7 @@
             "rating": 1.17,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 2
         },
         {
           "rank": 2,
@@ -1261,7 +1456,7 @@
             "rating": 1.08,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 4
         },
         {
           "rank": 3,
@@ -1292,7 +1487,7 @@
             "rating": 0.939,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 8
         },
         {
           "rank": 4,
@@ -1323,7 +1518,7 @@
             "rating": 1.08,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 9
         },
         {
           "rank": 5,
@@ -1354,7 +1549,7 @@
             "rating": 0.902,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 3
         },
         {
           "rank": 6,
@@ -1385,7 +1580,7 @@
             "rating": 1.124,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 10
         },
         {
           "rank": 7,
@@ -1416,7 +1611,7 @@
             "rating": 1.08,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 11
         },
         {
           "rank": 8,
@@ -1447,7 +1642,7 @@
             "rating": 1.058,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 1
         },
         {
           "rank": 9,
@@ -1478,7 +1673,7 @@
             "rating": 1.017,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 5
         },
         {
           "rank": 10,
@@ -1509,7 +1704,7 @@
             "rating": 0.884,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 6
         },
         {
           "rank": 11,
@@ -1540,7 +1735,7 @@
             "rating": 0.849,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 7
         },
         {
           "rank": 12,
@@ -1571,14 +1766,79 @@
             "rating": 0.884,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 12
         }
       ],
-      "actual_top3": [],
-      "finishers": [],
-      "top3_hits": 0,
-      "top_pick_hit": false,
-      "has_results": false
+      "actual_top3": [
+        "SHAMZ",
+        "SKY DEEP",
+        "PRESTIGE RICKY"
+      ],
+      "finishers": [
+        {
+          "position": 1,
+          "horse_name": "SHAMZ",
+          "horse_no": 6
+        },
+        {
+          "position": 2,
+          "horse_name": "SKY DEEP",
+          "horse_no": 1
+        },
+        {
+          "position": 3,
+          "horse_name": "PRESTIGE RICKY",
+          "horse_no": 9
+        },
+        {
+          "position": 4,
+          "horse_name": "TAKE ACTION",
+          "horse_no": 4
+        },
+        {
+          "position": 5,
+          "horse_name": "LUCKY TOGETHER",
+          "horse_no": 7
+        },
+        {
+          "position": 6,
+          "horse_name": "GAZELEY",
+          "horse_no": 10
+        },
+        {
+          "position": 7,
+          "horse_name": "WHOWROTETHATSONG",
+          "horse_no": 12
+        },
+        {
+          "position": 8,
+          "horse_name": "GORGEOUS VICTORY",
+          "horse_no": 8
+        },
+        {
+          "position": 9,
+          "horse_name": "LIGHT YEARS GLORY",
+          "horse_no": 3
+        },
+        {
+          "position": 10,
+          "horse_name": "IVY LEAGUE",
+          "horse_no": 2
+        },
+        {
+          "position": 11,
+          "horse_name": "VERY GRATEFUL",
+          "horse_no": 5
+        },
+        {
+          "position": 12,
+          "horse_name": "PRESTIGE SUPERIOR",
+          "horse_no": 11
+        }
+      ],
+      "top3_hits": 1,
+      "top_pick_hit": true,
+      "has_results": true
     },
     {
       "race_id": 2037,
@@ -1624,7 +1884,7 @@
             "rating": 1.234,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 3
         },
         {
           "rank": 2,
@@ -1655,7 +1915,7 @@
             "rating": 1.139,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 9
         },
         {
           "rank": 3,
@@ -1686,7 +1946,7 @@
             "rating": 1.051,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 4
         },
         {
           "rank": 4,
@@ -1717,7 +1977,7 @@
             "rating": 0.932,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 6
         },
         {
           "rank": 5,
@@ -1748,7 +2008,7 @@
             "rating": 0.932,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 8
         },
         {
           "rank": 6,
@@ -1779,7 +2039,7 @@
             "rating": 1.01,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 7
         },
         {
           "rank": 7,
@@ -1810,7 +2070,7 @@
             "rating": 0.844,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 1
         },
         {
           "rank": 8,
@@ -1841,7 +2101,7 @@
             "rating": 1.01,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 5
         },
         {
           "rank": 9,
@@ -1872,7 +2132,7 @@
             "rating": 0.951,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 11
         },
         {
           "rank": 10,
@@ -1903,7 +2163,7 @@
             "rating": 1.01,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 10
         },
         {
           "rank": 11,
@@ -1934,7 +2194,7 @@
             "rating": 0.932,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 2
         },
         {
           "rank": 12,
@@ -1965,14 +2225,79 @@
             "rating": 1.01,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 12
         }
       ],
-      "actual_top3": [],
-      "finishers": [],
-      "top3_hits": 0,
-      "top_pick_hit": false,
-      "has_results": false
+      "actual_top3": [
+        "WINNING CHAMPION",
+        "PHOENIX LIGHT",
+        "PEJIBAYE"
+      ],
+      "finishers": [
+        {
+          "position": 1,
+          "horse_name": "WINNING CHAMPION",
+          "horse_no": 12
+        },
+        {
+          "position": 2,
+          "horse_name": "PHOENIX LIGHT",
+          "horse_no": 9
+        },
+        {
+          "position": 3,
+          "horse_name": "PEJIBAYE",
+          "horse_no": 1
+        },
+        {
+          "position": 4,
+          "horse_name": "CLOUD NINE",
+          "horse_no": 3
+        },
+        {
+          "position": 5,
+          "horse_name": "POET'S REIGN",
+          "horse_no": 5
+        },
+        {
+          "position": 6,
+          "horse_name": "STAR SATYR",
+          "horse_no": 11
+        },
+        {
+          "position": 7,
+          "horse_name": "SHOTGUN",
+          "horse_no": 6
+        },
+        {
+          "position": 8,
+          "horse_name": "SMILING CHAMPION",
+          "horse_no": 10
+        },
+        {
+          "position": 9,
+          "horse_name": "BEAUTY THUNDER",
+          "horse_no": 2
+        },
+        {
+          "position": 10,
+          "horse_name": "LUCKY BID",
+          "horse_no": 4
+        },
+        {
+          "position": 11,
+          "horse_name": "MY TRIUMPH",
+          "horse_no": 8
+        },
+        {
+          "position": 12,
+          "horse_name": "WINALOT",
+          "horse_no": 7
+        }
+      ],
+      "top3_hits": 1,
+      "top_pick_hit": true,
+      "has_results": true
     },
     {
       "race_id": 2038,
@@ -2018,7 +2343,7 @@
             "rating": 0.977,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 11
         },
         {
           "rank": 2,
@@ -2049,7 +2374,7 @@
             "rating": 0.866,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 3
         },
         {
           "rank": 3,
@@ -2080,7 +2405,7 @@
             "rating": 1.058,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 1
         },
         {
           "rank": 4,
@@ -2111,7 +2436,7 @@
             "rating": 1.017,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 10
         },
         {
           "rank": 5,
@@ -2142,7 +2467,7 @@
             "rating": 0.832,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 2
         },
         {
           "rank": 6,
@@ -2173,7 +2498,7 @@
             "rating": 1.17,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 4
         },
         {
           "rank": 7,
@@ -2204,7 +2529,7 @@
             "rating": 1.146,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 7
         },
         {
           "rank": 8,
@@ -2235,7 +2560,7 @@
             "rating": 1.124,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 5
         },
         {
           "rank": 9,
@@ -2266,7 +2591,7 @@
             "rating": 1.08,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 9
         },
         {
           "rank": 10,
@@ -2297,7 +2622,7 @@
             "rating": 1.146,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 12
         },
         {
           "rank": 11,
@@ -2328,7 +2653,7 @@
             "rating": 0.849,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 6
         },
         {
           "rank": 12,
@@ -2359,14 +2684,79 @@
             "rating": 0.832,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 8
         }
       ],
-      "actual_top3": [],
-      "finishers": [],
-      "top3_hits": 0,
+      "actual_top3": [
+        "GRATIFIDE",
+        "FORZA LEADER",
+        "PERFECT TRIUMPH"
+      ],
+      "finishers": [
+        {
+          "position": 1,
+          "horse_name": "GRATIFIDE",
+          "horse_no": 6
+        },
+        {
+          "position": 2,
+          "horse_name": "FORZA LEADER",
+          "horse_no": 11
+        },
+        {
+          "position": 3,
+          "horse_name": "PERFECT TRIUMPH",
+          "horse_no": 9
+        },
+        {
+          "position": 4,
+          "horse_name": "ARMOUR WAR EAGLE",
+          "horse_no": 1
+        },
+        {
+          "position": 5,
+          "horse_name": "COPARTNER FLEET",
+          "horse_no": 4
+        },
+        {
+          "position": 6,
+          "horse_name": "MARVEL AND GOLD",
+          "horse_no": 10
+        },
+        {
+          "position": 7,
+          "horse_name": "HEALTHY HEALTHY",
+          "horse_no": 2
+        },
+        {
+          "position": 8,
+          "horse_name": "STORMY KNIGHT",
+          "horse_no": 12
+        },
+        {
+          "position": 9,
+          "horse_name": "GIANT LEAP",
+          "horse_no": 5
+        },
+        {
+          "position": 10,
+          "horse_name": "DOUBLE ALPHA",
+          "horse_no": 7
+        },
+        {
+          "position": 11,
+          "horse_name": "LITTLE MONSTER",
+          "horse_no": 8
+        },
+        {
+          "position": 12,
+          "horse_name": "REAL GENTLEMAN",
+          "horse_no": 3
+        }
+      ],
+      "top3_hits": 2,
       "top_pick_hit": false,
-      "has_results": false
+      "has_results": true
     },
     {
       "race_id": 2039,
@@ -2412,7 +2802,7 @@
             "rating": 0.925,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 5
         },
         {
           "rank": 2,
@@ -2443,7 +2833,7 @@
             "rating": 0.982,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 11
         },
         {
           "rank": 3,
@@ -2474,7 +2864,7 @@
             "rating": 1.043,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 2
         },
         {
           "rank": 4,
@@ -2505,7 +2895,7 @@
             "rating": 1.223,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 4
         },
         {
           "rank": 5,
@@ -2536,7 +2926,7 @@
             "rating": 0.925,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 9
         },
         {
           "rank": 6,
@@ -2567,7 +2957,7 @@
             "rating": 1.002,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 12
         },
         {
           "rank": 7,
@@ -2598,7 +2988,7 @@
             "rating": 0.943,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 3
         },
         {
           "rank": 8,
@@ -2629,7 +3019,7 @@
             "rating": 0.925,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 1
         },
         {
           "rank": 9,
@@ -2660,7 +3050,7 @@
             "rating": 0.943,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 8
         },
         {
           "rank": 10,
@@ -2691,7 +3081,7 @@
             "rating": 1.043,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 6
         },
         {
           "rank": 11,
@@ -2722,7 +3112,7 @@
             "rating": 1.199,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 10
         },
         {
           "rank": 12,
@@ -2753,14 +3143,79 @@
             "rating": 0.906,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 7
         }
       ],
-      "actual_top3": [],
-      "finishers": [],
-      "top3_hits": 0,
+      "actual_top3": [
+        "THRIVING BROTHERS",
+        "CALL ME TOPSEED",
+        "SUPER UNICORN"
+      ],
+      "finishers": [
+        {
+          "position": 1,
+          "horse_name": "THRIVING BROTHERS",
+          "horse_no": 11
+        },
+        {
+          "position": 2,
+          "horse_name": "CALL ME TOPSEED",
+          "horse_no": 4
+        },
+        {
+          "position": 3,
+          "horse_name": "SUPER UNICORN",
+          "horse_no": 8
+        },
+        {
+          "position": 4,
+          "horse_name": "WINNING DRAGON",
+          "horse_no": 1
+        },
+        {
+          "position": 5,
+          "horse_name": "SOMELOVEFROMABOVE",
+          "horse_no": 10
+        },
+        {
+          "position": 6,
+          "horse_name": "A AMERIC TE SPECSO",
+          "horse_no": 3
+        },
+        {
+          "position": 7,
+          "horse_name": "WINNING BUDDIES",
+          "horse_no": 12
+        },
+        {
+          "position": 8,
+          "horse_name": "HAPPY TERCENTENARY",
+          "horse_no": 7
+        },
+        {
+          "position": 9,
+          "horse_name": "CLASS",
+          "horse_no": 9
+        },
+        {
+          "position": 10,
+          "horse_name": "PASS LINE",
+          "horse_no": 2
+        },
+        {
+          "position": 11,
+          "horse_name": "TRUE BROTHERS",
+          "horse_no": 6
+        },
+        {
+          "position": 12,
+          "horse_name": "I CAN",
+          "horse_no": 5
+        }
+      ],
+      "top3_hits": 1,
       "top_pick_hit": false,
-      "has_results": false
+      "has_results": true
     },
     {
       "race_id": 2040,
@@ -2806,7 +3261,7 @@
             "rating": 0.942,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 10
         },
         {
           "rank": 2,
@@ -2837,7 +3292,7 @@
             "rating": 0.98,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 6
         },
         {
           "rank": 3,
@@ -2868,7 +3323,7 @@
             "rating": 0.887,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 8
         },
         {
           "rank": 4,
@@ -2899,7 +3354,7 @@
             "rating": 1.197,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 4
         },
         {
           "rank": 5,
@@ -2930,7 +3385,7 @@
             "rating": 1.02,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 5
         },
         {
           "rank": 6,
@@ -2961,7 +3416,7 @@
             "rating": 1.246,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 2
         },
         {
           "rank": 7,
@@ -2992,7 +3447,7 @@
             "rating": 1.197,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 1
         },
         {
           "rank": 8,
@@ -3023,7 +3478,7 @@
             "rating": 0.961,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 11
         },
         {
           "rank": 9,
@@ -3054,7 +3509,7 @@
             "rating": 0.869,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 3
         },
         {
           "rank": 10,
@@ -3085,7 +3540,7 @@
             "rating": 0.905,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 9
         },
         {
           "rank": 11,
@@ -3116,14 +3571,74 @@
             "rating": 0.887,
             "days": 1.0
           },
-          "actual_position": null
+          "actual_position": 7
         }
       ],
-      "actual_top3": [],
-      "finishers": [],
+      "actual_top3": [
+        "CRIMSON FLASH",
+        "LUCKY WITH YOU",
+        "TURQUOISE VELOCITY"
+      ],
+      "finishers": [
+        {
+          "position": 1,
+          "horse_name": "CRIMSON FLASH",
+          "horse_no": 3
+        },
+        {
+          "position": 2,
+          "horse_name": "LUCKY WITH YOU",
+          "horse_no": 1
+        },
+        {
+          "position": 3,
+          "horse_name": "TURQUOISE VELOCITY",
+          "horse_no": 11
+        },
+        {
+          "position": 4,
+          "horse_name": "BOTTOMUPTOGETHER",
+          "horse_no": 2
+        },
+        {
+          "position": 5,
+          "horse_name": "YOUNG CHAMPION",
+          "horse_no": 4
+        },
+        {
+          "position": 6,
+          "horse_name": "VICTOR THE WINNER",
+          "horse_no": 5
+        },
+        {
+          "position": 7,
+          "horse_name": "ROMANTIC SON",
+          "horse_no": 9
+        },
+        {
+          "position": 8,
+          "horse_name": "SON PAK FU",
+          "horse_no": 10
+        },
+        {
+          "position": 9,
+          "horse_name": "BRAVE STAR",
+          "horse_no": 8
+        },
+        {
+          "position": 10,
+          "horse_name": "MAGIC CONTROL",
+          "horse_no": 7
+        },
+        {
+          "position": 11,
+          "horse_name": "SING DRAGON",
+          "horse_no": 6
+        }
+      ],
       "top3_hits": 0,
       "top_pick_hit": false,
-      "has_results": false
+      "has_results": true
     },
     {
       "race_id": 2041,
@@ -3520,5 +4035,5 @@
       "has_results": false
     }
   ],
-  "has_results": false
+  "has_results": true
 }
